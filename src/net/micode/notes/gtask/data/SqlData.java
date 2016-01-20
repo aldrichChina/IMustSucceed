@@ -16,14 +16,6 @@
 
 package net.micode.notes.gtask.data;
 
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.util.Log;
-
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.DataColumns;
 import net.micode.notes.data.Notes.DataConstants;
@@ -33,6 +25,14 @@ import net.micode.notes.gtask.exception.ActionFailureException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.util.Log;
 
 
 public class SqlData {

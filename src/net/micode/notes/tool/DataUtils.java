@@ -16,6 +16,13 @@
 
 package net.micode.notes.tool;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
+import net.micode.notes.data.Notes;
+import net.micode.notes.data.Notes.CallNote;
+import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.ui.NotesListAdapter.AppWidgetAttribute;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
@@ -25,14 +32,6 @@ import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.os.RemoteException;
 import android.util.Log;
-
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.CallNote;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.ui.NotesListAdapter.AppWidgetAttribute;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 
 
 public class DataUtils {

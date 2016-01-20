@@ -16,6 +16,10 @@
 
 package net.micode.notes.ui;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.micode.notes.R;
 import android.content.Context;
 import android.graphics.Rect;
 import android.text.Layout;
@@ -31,11 +35,6 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.MotionEvent;
 import android.widget.EditText;
-
-import net.micode.notes.R;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class NoteEditText extends EditText {
     private static final String TAG = "NoteEditText";

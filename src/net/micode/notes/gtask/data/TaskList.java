@@ -16,8 +16,7 @@
 
 package net.micode.notes.gtask.data;
 
-import android.database.Cursor;
-import android.util.Log;
+import java.util.ArrayList;
 
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.NoteColumns;
@@ -27,7 +26,8 @@ import net.micode.notes.tool.GTaskStringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import android.database.Cursor;
+import android.util.Log;
 
 
 public class TaskList extends Node {

@@ -16,6 +16,9 @@
 
 package net.micode.notes.ui;
 
+import net.micode.notes.R;
+import net.micode.notes.data.Notes;
+import net.micode.notes.data.Notes.NoteColumns;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
@@ -23,10 +26,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
 
 
 public class FoldersListAdapter extends CursorAdapter {

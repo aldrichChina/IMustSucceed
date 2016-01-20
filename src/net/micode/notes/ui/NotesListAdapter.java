@@ -16,19 +16,18 @@
 
 package net.micode.notes.ui;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+
+import net.micode.notes.data.Notes;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-
-import net.micode.notes.data.Notes;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 
 
 public class NotesListAdapter extends CursorAdapter {

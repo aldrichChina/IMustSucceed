@@ -16,6 +16,23 @@
 
 package net.micode.notes.ui;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+
+import net.micode.notes.R;
+import net.micode.notes.data.Notes;
+import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.gtask.remote.GTaskSyncService;
+import net.micode.notes.model.WorkingNote;
+import net.micode.notes.tool.BackupUtils;
+import net.micode.notes.tool.DataUtils;
+import net.micode.notes.tool.ResourceParser;
+import net.micode.notes.ui.NotesListAdapter.AppWidgetAttribute;
+import net.micode.notes.widget.NoteWidgetProvider_2x;
+import net.micode.notes.widget.NoteWidgetProvider_4x;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -59,24 +76,6 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.gtask.remote.GTaskSyncService;
-import net.micode.notes.model.WorkingNote;
-import net.micode.notes.tool.BackupUtils;
-import net.micode.notes.tool.DataUtils;
-import net.micode.notes.tool.ResourceParser;
-import net.micode.notes.ui.NotesListAdapter.AppWidgetAttribute;
-import net.micode.notes.widget.NoteWidgetProvider_2x;
-import net.micode.notes.widget.NoteWidgetProvider_4x;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashSet;
 
 public class NotesListActivity extends Activity implements OnClickListener, OnItemLongClickListener {
     private static final int FOLDER_NOTE_LIST_QUERY_TOKEN = 0;

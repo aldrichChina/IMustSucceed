@@ -16,24 +16,23 @@
 
 package net.micode.notes.tool;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.os.Environment;
-import android.text.TextUtils;
-import android.text.format.DateFormat;
-import android.util.Log;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 
 import net.micode.notes.R;
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.DataColumns;
 import net.micode.notes.data.Notes.DataConstants;
 import net.micode.notes.data.Notes.NoteColumns;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import android.content.Context;
+import android.database.Cursor;
+import android.os.Environment;
+import android.text.TextUtils;
+import android.text.format.DateFormat;
+import android.util.Log;
 
 
 public class BackupUtils {

@@ -19,9 +19,7 @@ package net.micode.notes.ui;
 import java.util.Calendar;
 
 import net.micode.notes.R;
-import net.micode.notes.ui.DateTimePicker;
 import net.micode.notes.ui.DateTimePicker.OnDateTimeChangedListener;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;

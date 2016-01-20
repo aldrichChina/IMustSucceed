@@ -15,6 +15,13 @@
  */
 
 package net.micode.notes.model;
+import java.util.ArrayList;
+
+import net.micode.notes.data.Notes;
+import net.micode.notes.data.Notes.CallNote;
+import net.micode.notes.data.Notes.DataColumns;
+import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.data.Notes.TextNote;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentUris;
@@ -24,14 +31,6 @@ import android.content.OperationApplicationException;
 import android.net.Uri;
 import android.os.RemoteException;
 import android.util.Log;
-
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.CallNote;
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.data.Notes.TextNote;
-
-import java.util.ArrayList;
 
 
 public class Note {

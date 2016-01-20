@@ -16,15 +16,14 @@
 
 package net.micode.notes.data;
 
+import net.micode.notes.data.Notes.DataColumns;
+import net.micode.notes.data.Notes.DataConstants;
+import net.micode.notes.data.Notes.NoteColumns;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.DataConstants;
-import net.micode.notes.data.Notes.NoteColumns;
 
 
 public class NotesDatabaseHelper extends SQLiteOpenHelper {

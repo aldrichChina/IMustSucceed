@@ -17,16 +17,15 @@
 
 package net.micode.notes.gtask.remote;
 
+import net.micode.notes.R;
+import net.micode.notes.ui.NotesListActivity;
+import net.micode.notes.ui.NotesPreferenceActivity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-
-import net.micode.notes.R;
-import net.micode.notes.ui.NotesListActivity;
-import net.micode.notes.ui.NotesPreferenceActivity;
 
 
 public class GTaskASyncTask extends AsyncTask<Void, String, Integer> {

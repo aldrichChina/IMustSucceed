@@ -16,14 +16,13 @@
 
 package net.micode.notes.ui;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.text.TextUtils;
-
 import net.micode.notes.data.Contact;
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.NoteColumns;
 import net.micode.notes.tool.DataUtils;
+import android.content.Context;
+import android.database.Cursor;
+import android.text.TextUtils;
 
 
 public class NoteItemData {

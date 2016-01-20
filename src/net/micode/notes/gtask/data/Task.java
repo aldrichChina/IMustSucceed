@@ -16,10 +16,6 @@
 
 package net.micode.notes.gtask.data;
 
-import android.database.Cursor;
-import android.text.TextUtils;
-import android.util.Log;
-
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.DataColumns;
 import net.micode.notes.data.Notes.DataConstants;
@@ -30,6 +26,10 @@ import net.micode.notes.tool.GTaskStringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.database.Cursor;
+import android.text.TextUtils;
+import android.util.Log;
 
 
 public class Task extends Node {

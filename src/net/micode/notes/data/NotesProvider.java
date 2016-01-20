@@ -17,6 +17,10 @@
 package net.micode.notes.data;
 
 
+import net.micode.notes.R;
+import net.micode.notes.data.Notes.DataColumns;
+import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.data.NotesDatabaseHelper.TABLE;
 import android.app.SearchManager;
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -28,11 +32,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
-
-import net.micode.notes.R;
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.data.NotesDatabaseHelper.TABLE;
 
 
 public class NotesProvider extends ContentProvider {

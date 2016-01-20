@@ -16,13 +16,6 @@
 
 package net.micode.notes.model;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ContentUris;
-import android.content.Context;
-import android.database.Cursor;
-import android.text.TextUtils;
-import android.util.Log;
-
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.CallNote;
 import net.micode.notes.data.Notes.DataColumns;
@@ -30,6 +23,12 @@ import net.micode.notes.data.Notes.DataConstants;
 import net.micode.notes.data.Notes.NoteColumns;
 import net.micode.notes.data.Notes.TextNote;
 import net.micode.notes.tool.ResourceParser.NoteBgResources;
+import android.appwidget.AppWidgetManager;
+import android.content.ContentUris;
+import android.content.Context;
+import android.database.Cursor;
+import android.text.TextUtils;
+import android.util.Log;
 
 
 public class WorkingNote {

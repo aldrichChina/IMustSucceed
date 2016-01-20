@@ -16,13 +16,13 @@
 
 package net.micode.notes.gtask.data;
 
-import android.database.Cursor;
-import android.util.Log;
-
 import net.micode.notes.tool.GTaskStringUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.database.Cursor;
+import android.util.Log;
 
 
 public class MetaData extends Task {

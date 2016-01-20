@@ -16,6 +16,11 @@
 
 package net.micode.notes.ui;
 
+import java.io.IOException;
+
+import net.micode.notes.R;
+import net.micode.notes.data.Notes;
+import net.micode.notes.tool.DataUtils;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,12 +37,6 @@ import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.Window;
 import android.view.WindowManager;
-
-import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.tool.DataUtils;
-
-import java.io.IOException;
 
 
 public class AlarmAlertActivity extends Activity implements OnClickListener, OnDismissListener {

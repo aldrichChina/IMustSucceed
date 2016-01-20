@@ -20,8 +20,6 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
 import net.micode.notes.R;
-
-
 import android.content.Context;
 import android.text.format.DateFormat;
 import android.view.View;

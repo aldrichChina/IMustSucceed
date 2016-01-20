@@ -16,13 +16,7 @@
 
 package net.micode.notes.gtask.data;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.util.Log;
+import java.util.ArrayList;
 
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.DataColumns;
@@ -35,7 +29,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import android.appwidget.AppWidgetManager;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.util.Log;
 
 
 public class SqlNote {

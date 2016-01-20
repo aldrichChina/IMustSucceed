@@ -16,9 +16,12 @@
 
 package net.micode.notes.ui;
 
+import net.micode.notes.R;
+import net.micode.notes.data.Notes;
+import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.gtask.remote.GTaskSyncService;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
@@ -35,17 +38,11 @@ import android.preference.PreferenceCategory;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.gtask.remote.GTaskSyncService;
 
 
 public class NotesPreferenceActivity extends PreferenceActivity {

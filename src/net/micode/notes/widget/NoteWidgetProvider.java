@@ -15,6 +15,12 @@
  */
 
 package net.micode.notes.widget;
+import net.micode.notes.R;
+import net.micode.notes.data.Notes;
+import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.tool.ResourceParser;
+import net.micode.notes.ui.NoteEditActivity;
+import net.micode.notes.ui.NotesListActivity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -24,13 +30,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
 import android.widget.RemoteViews;
-
-import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.tool.ResourceParser;
-import net.micode.notes.ui.NoteEditActivity;
-import net.micode.notes.ui.NotesListActivity;
 
 public abstract class NoteWidgetProvider extends AppWidgetProvider {
     public static final String [] PROJECTION = new String [] {

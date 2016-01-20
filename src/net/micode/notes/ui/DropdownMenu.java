@@ -16,6 +16,7 @@
 
 package net.micode.notes.ui;
 
+import net.micode.notes.R;
 import android.content.Context;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,8 +25,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
-
-import net.micode.notes.R;
 
 public class DropdownMenu {
     private Button mButton;

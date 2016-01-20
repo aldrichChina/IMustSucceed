@@ -16,6 +16,24 @@
 
 package net.micode.notes.ui;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import net.micode.notes.R;
+import net.micode.notes.data.Notes;
+import net.micode.notes.data.Notes.TextNote;
+import net.micode.notes.model.WorkingNote;
+import net.micode.notes.model.WorkingNote.NoteSettingChangedListener;
+import net.micode.notes.tool.DataUtils;
+import net.micode.notes.tool.ResourceParser;
+import net.micode.notes.tool.ResourceParser.TextAppearanceResources;
+import net.micode.notes.ui.DateTimePickerDialog.OnDateTimeSetListener;
+import net.micode.notes.ui.NoteEditText.OnTextViewChangeListener;
+import net.micode.notes.widget.NoteWidgetProvider_2x;
+import net.micode.notes.widget.NoteWidgetProvider_4x;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -51,25 +69,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.TextNote;
-import net.micode.notes.model.WorkingNote;
-import net.micode.notes.model.WorkingNote.NoteSettingChangedListener;
-import net.micode.notes.tool.DataUtils;
-import net.micode.notes.tool.ResourceParser;
-import net.micode.notes.tool.ResourceParser.TextAppearanceResources;
-import net.micode.notes.ui.DateTimePickerDialog.OnDateTimeSetListener;
-import net.micode.notes.ui.NoteEditText.OnTextViewChangeListener;
-import net.micode.notes.widget.NoteWidgetProvider_2x;
-import net.micode.notes.widget.NoteWidgetProvider_4x;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class NoteEditActivity extends Activity implements OnClickListener,
