@@ -20,58 +20,53 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 @ContentView(R.layout.main)
 public class MyActivity extends FragmentActivity {
 
-    @ViewInject(R.id.tabhost)
-    private FragmentTabHost mTabHost;
+	@ViewInject(R.id.tabhost)
+	private FragmentTabHost mTabHost;
 
-    private Class fragmentArray[] = {
-            HttpFragment.class,
-            DbFragment.class,
-            BitmapFragment.class,};
-    private int iconArray[] = {
-            R.drawable.icon_http,
-            R.drawable.icon_database,
-            R.drawable.icon_btimap};
-    private String titleArray[] = {
-            "Http",
-            "db",
-            "Bitmap"};
+	private Class fragmentArray[] = { HttpFragment.class, DbFragment.class,
+			BitmapFragment.class, };
+	private int iconArray[] = { R.drawable.icon_http, R.drawable.icon_database,
+			R.drawable.icon_btimap };
+	private String titleArray[] = { "Http", "db", "Bitmap" };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        LogUtils.customTagPrefix = "xUtilsSample"; // 方便调试时过滤 adb logcat 输出
-        LogUtils.allowI = false; //关闭 LogUtils.i(...) 的 adb log 输出
+		LogUtils.customTagPrefix = "xUtilsSample"; // 方便调试时过滤 adb logcat 输出
+		LogUtils.allowI = false; // 关闭 LogUtils.i(...) 的 adb log 输出
 
-        ViewUtils.inject(this);
+		ViewUtils.inject(this);
 
-        setupTabView();
-    }
+		setupTabView();
+	}
 
-    private void setupTabView() {
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-        mTabHost.getTabWidget().setDividerDrawable(null);
+	private void setupTabView() {
+		mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+		mTabHost.getTabWidget().setDividerDrawable(null);
 
-        int count = fragmentArray.length;
+		int count = fragmentArray.length;
 
-        for (int i = 0; i < count; i++) {
-            TabHost.TabSpec tabSpec = mTabHost.newTabSpec(titleArray[i]).setIndicator(getTabItemView(i));
-            mTabHost.addTab(tabSpec, fragmentArray[i], null);
-            mTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.tab_item);
-        }
+		for (int i = 0; i < count; i++) {
+			TabHost.TabSpec tabSpec = mTabHost.newTabSpec(titleArray[i])
+					.setIndicator(getTabItemView(i));
+			mTabHost.addTab(tabSpec, fragmentArray[i], null);
+			mTabHost.getTabWidget().getChildAt(i)
+					.setBackgroundResource(R.drawable.tab_item);
+		}
 
-    }
+	}
 
-    private View getTabItemView(int index) {
-        LayoutInflater layoutInflater = LayoutInflater.from(this);
-        View view = layoutInflater.inflate(R.layout.tab_bottom_nav, null);
+	private View getTabItemView(int index) {
+		LayoutInflater layoutInflater = LayoutInflater.from(this);
+		View view = layoutInflater.inflate(R.layout.tab_bottom_nav, null);
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.iv_icon);
-        imageView.setImageResource(iconArray[index]);
+		ImageView imageView = (ImageView) view.findViewById(R.id.iv_icon);
+		imageView.setImageResource(iconArray[index]);
 
-        TextView textView = (TextView) view.findViewById(R.id.tv_icon);
-        textView.setText(titleArray[index]);
+		TextView textView = (TextView) view.findViewById(R.id.tv_icon);
+		textView.setText(titleArray[index]);
 
-        return view;
-    }
+		return view;
+	}
 }

@@ -15,12 +15,6 @@ import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
 import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import com.lidroid.xutils.bitmap.callback.DefaultBitmapLoadCallBack;
 import com.lidroid.xutils.view.annotation.ViewInject;
-
-/**
- * Author: wyouflf
- * Date: 13-10-9
- * Time: 下午5:26
- */
 public class ImageActivity extends Activity {
 
     @ViewInject(R.id.big_img)

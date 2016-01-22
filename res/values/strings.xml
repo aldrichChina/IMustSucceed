@@ -108,7 +108,7 @@
     <string name="search">Notes</string>
     <string name="datetime_dialog_ok">set</string>
     <string name="datetime_dialog_cancel">cancel</string>
-	<!-- xUtils -->
+    <!-- xUtils -->
     <string name="download_label">Download Address</string>
     <string name="download">Download</string>
     <string name="stop">Stop</string>
@@ -116,6 +116,13 @@
     <string name="retry">Retry</string>
     <string name="remove">Stop</string>
     <string name="test">Test</string>
+	<!-- XListView -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <plurals name="search_results_title">
         <item quantity="one"><xliff:g id="number" example="1">%1$s</xliff:g> result for \"<xliff:g id="search" example="???">%2$s</xliff:g>\"</item>
         <!-- Case of 0 or 2 or more results. -->

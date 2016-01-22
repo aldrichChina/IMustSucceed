@@ -1,5 +1,7 @@
 package net.micode.notes.fragment;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -7,127 +9,174 @@ import java.util.List;
 import net.micode.notes.R;
 import net.micode.notes.entities.Child;
 import net.micode.notes.entities.Parent;
+import net.micode.notes.view.XListView;
+import net.micode.notes.view.XListView.IXListViewListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
 
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.table.DbModel;
 import com.lidroid.xutils.exception.DbException;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 
-/**
- * Author: wyouflf
- * Date: 13-9-14
- * Time: 下午3:35
- */
-public class DbFragment extends Fragment {
+public class DbFragment extends Fragment implements IXListViewListener {
+	private XListView mListView;
+	private ArrayAdapter<String> mAdapter;
+	private ArrayList<String> items = new ArrayList<String>();
+	private Handler mHandler;
+	private int start = 0;
+	private static int refreshCnt = 0;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.db_fragment, container, false);
-        ViewUtils.inject(this, view);
+	/** Called when the activity is first created. */
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.db_fragment, container, false);
+		ViewUtils.inject(this, view);
+		geneItems();
+		mListView = (XListView) view.findViewById(R.id.newmessagelist);
+		mListView.setPullLoadEnable(true);
+		mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item,
+				items);
+		mListView.setAdapter(mAdapter);
+		// mListView.setPullLoadEnable(false);
+		// mListView.setPullRefreshEnable(false);
+		mListView.setXListViewListener(this);
+		mHandler = new Handler();
+		return view;
+	}
+	private void onLoad() {
+		mListView.stopRefresh();
+		mListView.stopLoadMore();
+		mListView.setRefreshTime(df.format(new Date()));
+	}
 
-        return view;
-    }
+	@Override
+	public void onRefresh() {
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				start = ++refreshCnt;
+				items.clear();
+				geneItems();
+				// mAdapter.notifyDataSetChanged();
+				mAdapter = new ArrayAdapter<String>(getActivity(),
+						R.layout.list_item, items);
+				mListView.setAdapter(mAdapter);
+				onLoad();
+			}
+		}, 2000);
+	}
 
-    @ViewInject(R.id.db_test_btn)
-    private Button stopBtn;
+	@Override
+	public void onLoadMore() {
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				geneItems();
+				mAdapter.notifyDataSetChanged();
+				onLoad();
+			}
+		}, 2000);
+	}
 
-    @ViewInject(R.id.result_txt)
-    private TextView resultText;
+	public void geneItems() {
 
-    @OnClick(R.id.db_test_btn)
-    public void testDb(View view) {
+		String temp = "";
 
-        String temp = "";
+		Parent parent = new Parent();
+		parent.name = "测试" + System.currentTimeMillis();
+		parent.setAdmin(true);
+		parent.setEmail("wyouflf@gmail.com");
 
-        Parent parent = new Parent();
-        parent.name = "测试" + System.currentTimeMillis();
-        parent.setAdmin(true);
-        parent.setEmail("wyouflf@gmail.com");
+		/*
+		 * Parent parent2 = new Parent(); parent2.name = "测试2"; parent2.isVIP =
+		 * false;
+		 */
 
-        /*Parent parent2 = new Parent();
-        parent2.name = "测试2";
-        parent2.isVIP = false;*/
+		try {
 
-        try {
+			// DbUtils db = DbUtils.create(this.getActivity(), "/sdcard/",
+			// "test.db");
+			DbUtils db = DbUtils.create(this.getActivity());
+			db.configAllowTransaction(true);
+			db.configDebug(true);
 
-            //DbUtils db = DbUtils.create(this.getActivity(), "/sdcard/", "test.db");
-            DbUtils db = DbUtils.create(this.getActivity());
-            db.configAllowTransaction(true);
-            db.configDebug(true);
+			Child child = new Child();
+			child.name = "child' name";
+			// db.saveBindingId(parent);
+			// child.parent = new ForeignLazyLoader<Parent>(Child.class,
+			// "parentId", parent.getId());
+			// child.parent = parent;
 
-            Child child = new Child();
-            child.name = "child' name";
-            //db.saveBindingId(parent);
-            //child.parent = new ForeignLazyLoader<Parent>(Child.class, "parentId", parent.getId());
-            //child.parent = parent;
+			Parent test = db.findFirst(Selector.from(Parent.class)); // 通过parent的属性查找
+			// Parent test =
+			// db.findFirst(Selector.from(Parent.class).where("id", "in", new
+			// int[]{1, 3, 6}));
+			// Parent test =
+			// db.findFirst(Selector.from(Parent.class).where("id", "between",
+			// new String[]{"1", "5"}));
+			if (test != null) {
+				child.parent = test;
+				temp += "first parent:" + test + "\n";
+				items.add(temp);
+			} else {
+				child.parent = parent;
+			}
 
-            Parent test = db.findFirst(Selector.from(Parent.class)); // 通过parent的属性查找
-            //Parent test = db.findFirst(Selector.from(Parent.class).where("id", "in", new int[]{1, 3, 6}));
-            //Parent test = db.findFirst(Selector.from(Parent.class).where("id", "between", new String[]{"1", "5"}));
-            if (test != null) {
-                child.parent = test;
-                temp += "first parent:" + test + "\n";
-                resultText.setText(temp);
-            } else {
-                child.parent = parent;
-            }
+			parent.setTime(new Date());
+			parent.setDate(new java.sql.Date(new Date().getTime()));
 
-            parent.setTime(new Date());
-            parent.setDate(new java.sql.Date(new Date().getTime()));
+			db.saveBindingId(child);// 保存对象关联数据库生成的id
 
-            db.saveBindingId(child);//保存对象关联数据库生成的id
+			List<Child> children = db.findAll(Selector.from(Child.class));// .where(WhereBuilder.b("name",
+																			// "=",
+																			// "child' name")));
+			temp += "children size:" + children.size() + "\n";
+			items.add(temp);
+			if (children.size() > 0) {
+				temp += "last children:" + children.get(children.size() - 1)
+						+ "\n";
+				items.add(temp);
+			}
 
-            List<Child> children = db.findAll(Selector.from(Child.class));//.where(WhereBuilder.b("name", "=", "child' name")));
-            temp += "children size:" + children.size() + "\n";
-            resultText.setText(temp);
-            if (children.size() > 0) {
-                temp += "last children:" + children.get(children.size() - 1) + "\n";
-                resultText.setText(temp);
-            }
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.DATE, -1);
+			calendar.add(Calendar.HOUR, 3);
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.DATE, -1);
-            calendar.add(Calendar.HOUR, 3);
+			List<Parent> list = db.findAll(Selector.from(Parent.class)
+					.where("id", "<", 54).and("time", ">", calendar.getTime())
+					.orderBy("id").limit(10));
+			temp += "find parent size:" + list.size() + "\n";
+			items.add(temp);
+			if (list.size() > 0) {
+				temp += "last parent:" + list.get(list.size() - 1) + "\n";
+				items.add(temp);
+			}
 
-            List<Parent> list = db.findAll(
-                    Selector.from(Parent.class)
-                            .where("id", "<", 54)
-                            .and("time", ">", calendar.getTime())
-                            .orderBy("id")
-                            .limit(10));
-            temp += "find parent size:" + list.size() + "\n";
-            resultText.setText(temp);
-            if (list.size() > 0) {
-                temp += "last parent:" + list.get(list.size() - 1) + "\n";
-                resultText.setText(temp);
-            }
+			// parent.name = "hahaha123";
+			// db.update(parent);
 
-            //parent.name = "hahaha123";
-            //db.update(parent);
+			Parent entity = db.findById(Parent.class, child.parent.getId());
+			temp += "find by id:" + entity.toString() + "\n";
+			items.add(temp);
 
-            Parent entity = db.findById(Parent.class, child.parent.getId());
-            temp += "find by id:" + entity.toString() + "\n";
-            resultText.setText(temp);
+			List<DbModel> dbModels = db.findDbModelAll(Selector
+					.from(Parent.class).groupBy("name")
+					.select("name", "count(name) as count"));
+			temp += "group by result:" + dbModels.get(0).getDataMap() + "\n";
+			items.add(temp);
 
-            List<DbModel> dbModels = db.findDbModelAll(Selector.from(Parent.class)
-                    .groupBy("name")
-                    .select("name", "count(name) as count"));
-            temp += "group by result:" + dbModels.get(0).getDataMap() + "\n";
-            resultText.setText(temp);
-
-        } catch (DbException e) {
-            temp += "error :" + e.getMessage() + "\n";
-            resultText.setText(temp);
-        }
-    }
+		} catch (DbException e) {
+			temp += "error :" + e.getMessage() + "\n";
+			items.add(temp);
+		}
+	}
 }
