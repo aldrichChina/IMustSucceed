@@ -4,60 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/maintop"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#9dcaed" >
-
-        <ImageView
-            android:id="@+id/topuserinfo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:background="#9dcaed"
-            android:src="@drawable/dropdown_icon" />
-    </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#9dcaed"
-        android:orientation="horizontal" >
+        android:layout_height="250dp"
+        android:background="@android:color/black"
+        android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/mainwelcome"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/old_man_or_woman"
-            android:layout_below="@id/maintop" 
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="20dip"
-        android:background="#9dcaed"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:id="@+id/toptitle"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="6"
-            android:gravity="center_vertical"
-            android:text="最近"
-            android:textSize="20sp" />
+            android:layout_height="230dp"
+            android:src="@drawable/mvlg" 
+            android:scaleType="fitXY"/>
 
         <ImageView
-            android:id="@+id/reflesh"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:src="@drawable/menu_move" />
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/old_man_or_woman" />
     </LinearLayout>
 
     <RelativeLayout

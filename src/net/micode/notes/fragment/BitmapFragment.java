@@ -51,6 +51,8 @@ public class BitmapFragment extends Fragment {
     public static BitmapUtils bitmapUtils;
 
     private String[] imgSites = {
+    		"http://22mm.xiuna.com/mm/qingliang/",
+    		"http://cn.bing.com/images/search?q=超高清美女电脑壁纸&qs=IM&form=QBIR&pq=超高清&sc=8-3&sp=5&sk=IM4",
             "http://image.baidu.com/",
             "http://www.22mm.cc/",
             "http://www.moko.cc/",

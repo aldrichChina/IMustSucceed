@@ -37,11 +37,6 @@ import com.lidroid.xutils.view.annotation.ResInject;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
-/**
- * Author: wyouflf
- * Date: 13-9-14
- * Time: 下午3:35
- */
 public class HttpFragment extends Fragment {
 
     //private HttpHandler handler;
