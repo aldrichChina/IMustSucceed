@@ -11,13 +11,14 @@ import net.micode.notes.entities.Child;
 import net.micode.notes.entities.Parent;
 import net.micode.notes.view.XListView;
 import net.micode.notes.view.XListView.IXListViewListener;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -28,20 +29,27 @@ import com.lidroid.xutils.exception.DbException;
 public class DbFragment extends Fragment implements IXListViewListener {
 	private XListView mListView;
 	private ArrayAdapter<String> mAdapter;
-	private ArrayList<String> items = new ArrayList<String>();
+	private List<String> items = new ArrayList<String>();
 	private Handler mHandler;
 	private int start = 0;
 	private static int refreshCnt = 0;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private TextView tv_empty;
 
 	/** Called when the activity is first created. */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.db_fragment, container, false);
+		mListView = (XListView) view.findViewById(R.id.newmessagelist);
+		tv_empty = (TextView) view.findViewById(R.id.tv_empty);
 		ViewUtils.inject(this, view);
 		geneItems();
-		mListView = (XListView) view.findViewById(R.id.newmessagelist);
+		if (items.size() == 0) {
+			tv_empty.setVisibility(View.VISIBLE);
+		} else {
+			tv_empty.setVisibility(View.GONE);
+		}
 		mListView.setPullLoadEnable(true);
 		mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item,
 				items);
@@ -52,6 +60,7 @@ public class DbFragment extends Fragment implements IXListViewListener {
 		mHandler = new Handler();
 		return view;
 	}
+
 	private void onLoad() {
 		mListView.stopRefresh();
 		mListView.stopLoadMore();
@@ -67,6 +76,11 @@ public class DbFragment extends Fragment implements IXListViewListener {
 				items.clear();
 				geneItems();
 				// mAdapter.notifyDataSetChanged();
+				if (items.size() == 0) {
+					tv_empty.setVisibility(View.VISIBLE);
+				} else {
+					tv_empty.setVisibility(View.GONE);
+				}
 				mAdapter = new ArrayAdapter<String>(getActivity(),
 						R.layout.list_item, items);
 				mListView.setAdapter(mAdapter);

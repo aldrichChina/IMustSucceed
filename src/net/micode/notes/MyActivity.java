@@ -3,70 +3,64 @@ package net.micode.notes;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HttpFragment;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTabHost;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TabHost;
-import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
-import com.lidroid.xutils.view.annotation.ViewInject;
 
 @ContentView(R.layout.main)
-public class MyActivity extends FragmentActivity {
-
-	@ViewInject(R.id.tabhost)
-	private FragmentTabHost mTabHost;
-
-	private Class fragmentArray[] = { HttpFragment.class, DbFragment.class,
-			BitmapFragment.class, };
-	private int iconArray[] = { R.drawable.icon_http, R.drawable.icon_database,
-			R.drawable.icon_btimap };
-	private String titleArray[] = { "Http", "db", "Bitmap" };
+public class MyActivity extends Activity {
+	private FragmentManager fragmentManager;
+	private RadioGroup bottomRg;
+	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),new BitmapFragment(), };
+	private int iconArray[] = { R.drawable.icon_http, R.drawable.icon_database,R.drawable.icon_btimap };
+	private String titleArray[] = { "网络", "数据库", "图片" };
+	private FragmentTransaction beginTransaction;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		LogUtils.customTagPrefix = "xUtilsSample"; // 方便调试时过滤 adb logcat 输出
 		LogUtils.allowI = false; // 关闭 LogUtils.i(...) 的 adb log 输出
 
 		ViewUtils.inject(this);
-
+		bottomRg = (RadioGroup) findViewById(R.id.bottomRg);  
+        fragmentManager=getFragmentManager();
+        beginTransaction = fragmentManager.beginTransaction();
+        beginTransaction.replace(R.id.realtabcontent, fragmentArray[0]).commit();
 		setupTabView();
 	}
 
 	private void setupTabView() {
-		mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-		mTabHost.getTabWidget().setDividerDrawable(null);
-
-		int count = fragmentArray.length;
-
-		for (int i = 0; i < count; i++) {
-			TabHost.TabSpec tabSpec = mTabHost.newTabSpec(titleArray[i])
-					.setIndicator(getTabItemView(i));
-			mTabHost.addTab(tabSpec, fragmentArray[i], null);
-			mTabHost.getTabWidget().getChildAt(i)
-					.setBackgroundResource(R.drawable.tab_item);
-		}
-
+		bottomRg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				FragmentManager fm = getFragmentManager();  
+    	        // 开启Fragment事务  
+    	        FragmentTransaction transaction = fm.beginTransaction();
+				switch(checkedId){
+				case R.id.rbOne:
+					transaction.replace(R.id.realtabcontent, fragmentArray[0]).addToBackStack(null).commit();
+					break;
+				case R.id.rbTwo:
+					transaction.replace(R.id.realtabcontent, fragmentArray[1]).addToBackStack(null).commit();
+					break;
+				case R.id.rbThree:
+					transaction.replace(R.id.realtabcontent, fragmentArray[2]).addToBackStack(null).commit();
+					break;
+					default:
+						break;
+				}
+			}
+		});
 	}
 
-	private View getTabItemView(int index) {
-		LayoutInflater layoutInflater = LayoutInflater.from(this);
-		View view = layoutInflater.inflate(R.layout.tab_bottom_nav, null);
-
-		ImageView imageView = (ImageView) view.findViewById(R.id.iv_icon);
-		imageView.setImageResource(iconArray[index]);
-
-		TextView textView = (TextView) view.findViewById(R.id.tv_icon);
-		textView.setText(titleArray[index]);
-
-		return view;
-	}
 }

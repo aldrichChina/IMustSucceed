@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/lm"
     android:orientation="vertical" >
-
+	<include layout="@layout/top_title_headline"/>
     <FrameLayout
         android:id="@+id/realtabcontent"
         android:layout_width="fill_parent"
@@ -11,23 +12,37 @@
         android:layout_weight="1" >
     </FrameLayout>
 
-    <android.support.v4.app.FragmentTabHost
-        android:id="@+id/tabhost"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/tab_background" >
-
-        <TabHost
-            android:id="@+id/tabs"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-        </TabHost>
-
-        <FrameLayout
-            android:id="@+id/tabcontent"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-        </FrameLayout>
-    </android.support.v4.app.FragmentTabHost>
+    <RadioGroup  
+        android:id="@+id/bottomRg"  
+        android:layout_width="fill_parent"  
+        android:layout_height="65dip"  
+        android:background="@android:color/background_light"
+        android:orientation="horizontal" >  
+  
+        <RadioButton  
+            android:id="@+id/rbOne"  
+            android:checked="true"  
+            android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:drawableTop="@drawable/icon_http"  
+            android:text="首页" />  
+  
+        <RadioButton  
+            android:id="@+id/rbTwo"  
+            android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:drawableTop="@drawable/icon_database"  
+            android:text="搜索" />  
+  
+        <RadioButton  
+            android:id="@+id/rbThree"  
+            android:button="@null"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/icon_btimap"  
+            android:text="设置" />  
+    </RadioGroup>  
 
 </LinearLayout>
