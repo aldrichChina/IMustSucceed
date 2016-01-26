@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/lm"
+    android:background="#FFFFFF"
     android:orientation="vertical" >
 	<include layout="@layout/top_title_headline"/>
     <FrameLayout
@@ -16,7 +16,7 @@
         android:id="@+id/bottomRg"  
         android:layout_width="fill_parent"  
         android:layout_height="65dip"  
-        android:background="@android:color/background_light"
+        android:background="@drawable/abc_list_selector_disabled_holo_dark"
         android:orientation="horizontal" >  
   
         <RadioButton  

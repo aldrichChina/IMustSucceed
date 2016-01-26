@@ -3,16 +3,14 @@ package net.micode.notes.ui.activity;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.http.message.BasicNameValuePair;
-
-import com.umeng.analytics.MobclickAgent;
-
 import net.micode.notes.R;
 import net.micode.notes.tool.Utils;
+
+import org.apache.http.message.BasicNameValuePair;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -34,12 +32,15 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
-public abstract class BaseActivity extends Activity {
+import com.umeng.analytics.MobclickAgent;
+
+public abstract class BaseActivity extends Activity implements OnClickListener{
 
 	protected Activity context;
 	private Toast mToast;
@@ -65,14 +66,12 @@ public abstract class BaseActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onPageStart(getRunningActivityName());
 		MobclickAgent.onResume(this);
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPageEnd(getRunningActivityName());
 		MobclickAgent.onPause(this);
 	}
 
@@ -134,17 +133,6 @@ public abstract class BaseActivity extends Activity {
 	 */
 	public boolean isNetworkAvailable(Context context) {
 		return Utils.isNetworkAvailable(context);
-	}
-
-
-	/**
-	 * 获取当前activity名称
-	 */
-	private String getRunningActivityName() {
-		ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-		String runningActivity = activityManager.getRunningTasks(1).get(0).topActivity
-				.getClassName();
-		return runningActivity;
 	}
 	/**
 	 * toast提示

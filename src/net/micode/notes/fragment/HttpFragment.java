@@ -104,11 +104,6 @@ public class HttpFragment extends Fragment {
 		this.getActivity().startActivity(intent);
 	}
 
-	@OnClick(R.id.button1)
-	public void skip(View view) {
-		Intent intent = new Intent(this.getActivity(), NotesListActivity.class);
-		this.getActivity().startActivity(intent);
-	}
 
 	// ///////////////////////////////////// other
 	// ////////////////////////////////////////////////////////////////
