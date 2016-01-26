@@ -40,12 +40,6 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnItemClick;
-
-/**
- * Author: wyouflf
- * Date: 13-9-14
- * Time: 下午3:35
- */
 public class BitmapFragment extends Fragment {
 
     public static BitmapUtils bitmapUtils;

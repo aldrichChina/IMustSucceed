@@ -45,14 +45,6 @@ public class Utils {
 	private static Toast mToast;
 	private static final String TAG = "Utils";
 
-	public static void showLongToast(Context context, String pMsg) {
-		Toast.makeText(context, pMsg, Toast.LENGTH_LONG).show();
-	}
-
-	public static void showShortToast(Context context, String pMsg) {
-		Toast.makeText(context, pMsg, Toast.LENGTH_SHORT).show();
-	}
-
 	public static void ToastMessage(Context context, String strMessage) {
 		Toast toast = Toast.makeText(context, strMessage, Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.CENTER, 0, 0);
@@ -82,8 +74,8 @@ public class Utils {
 	 */
 	public static void finish(Activity activity) {
 		activity.finish();
-		activity.overridePendingTransition(R.anim.push_right_in,
-				R.anim.push_right_out);
+		activity.overridePendingTransition(R.animator.fragment_slide_right_enter,
+				R.animator.fragment_slide_right_exit);
 	}
 
 	/**
@@ -102,8 +94,8 @@ public class Utils {
 				intent.putExtra(name[i].getName(), name[i].getValue());
 			}
 		activity.startActivity(intent);
-		activity.overridePendingTransition(R.anim.push_left_in,
-				R.anim.push_left_out);
+		activity.overridePendingTransition(R.animator.fragment_slide_left_enter,
+				R.animator.fragment_slide_left_exit);
 
 	}
 

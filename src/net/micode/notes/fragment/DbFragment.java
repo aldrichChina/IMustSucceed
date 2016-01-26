@@ -81,8 +81,7 @@ public class DbFragment extends Fragment implements IXListViewListener {
 				} else {
 					tv_empty.setVisibility(View.GONE);
 				}
-				mAdapter = new ArrayAdapter<String>(getActivity(),
-						R.layout.list_item, items);
+				mAdapter = new ArrayAdapter<String>(getActivity(),R.layout.list_item, items);
 				mListView.setAdapter(mAdapter);
 				onLoad();
 			}

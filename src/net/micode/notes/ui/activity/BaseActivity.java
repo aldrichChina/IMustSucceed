@@ -48,14 +48,14 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (savedInstanceState != null) {
-			Log.d("tag", "savedInstanceState--->"+savedInstanceState);
-			Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(i);
-			this.finish();
-			return;
-		}
+//		if (savedInstanceState != null) {
+//			Log.d("tag", "savedInstanceState--->"+savedInstanceState);
+//			Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+//			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//			startActivity(i);
+//			this.finish();
+//			return;
+//		}
 		MainApplication.getInstance().addActivity(this);
 		context = this;
 		initView();
@@ -150,11 +150,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 		mToast.show();
 	}
 
-	public void cancelToast() {
-		if (mToast != null) {
-			mToast.cancel();
-		}
-	}
 
 
 	/**

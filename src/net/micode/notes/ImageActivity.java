@@ -1,9 +1,12 @@
 package net.micode.notes;
 
 import net.micode.notes.fragment.BitmapFragment;
+import net.micode.notes.tool.dialogfragment.ConfimDialog;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,9 +28,9 @@ public class ImageActivity extends Activity {
     private BitmapDisplayConfig bigPicDisplayConfig;
 
     public void onCreate(Bundle savedInstanceState) {
+    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image);
-
         ViewUtils.inject(this);
 
         String imgUrl = getIntent().getStringExtra("url");
@@ -59,5 +62,14 @@ public class ImageActivity extends Activity {
         bitmapUtils.display(bigImage, imgUrl, bigPicDisplayConfig, callback);
         // 读取assets中的图片
         //bitmapUtils.display(bigImage, "assets/img/wallpaper.jpg", bigPicDisplayConfig, callback);
+        bigImage.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ConfimDialog confimDialog=new ConfimDialog();
+				confimDialog.show(getFragmentManager(), "confimDialog");
+			}
+		});
     }
+
 }

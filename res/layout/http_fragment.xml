@@ -13,7 +13,7 @@
         android:id="@+id/download_addr_edit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="http://22mm-img.xiuna.com/pic/qingliang/2016-1-14/2/1.jpg" />
+        android:text="http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1304/17/c1/19952234_1366184400436.jpg" />
 
     <Button
         android:id="@+id/download_btn"
