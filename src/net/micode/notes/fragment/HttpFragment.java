@@ -85,12 +85,15 @@ public class HttpFragment extends Fragment {
 
 	@OnClick(R.id.download_btn)
 	public void download(View view) {
-		String target = "/sdcard/xUtils/" + System.currentTimeMillis()
-				+ "lzfile.apk";
+		String target = "/sdcard/Picture/" + System.currentTimeMillis()
+				+ "lemon.jpg";
 		try {
-			downloadManager.addNewDownload(downloadAddrEdit.getText()
-					.toString(), "力卓文件", target, true, // 如果目标文件存在，接着未完成的部分继续下载。服务器不支持RANGE时将从新下载。
-					false, // 如果从请求返回信息中获取到文件名，下载完成后自动重命名。
+			downloadManager.addNewDownload(
+					downloadAddrEdit.getText().toString(), 
+					downloadAddrEdit.getText().toString(), 
+					target,
+					true, // 如果目标文件存在，接着未完成的部分继续下载。服务器不支持RANGE时将从新下载。
+					true, // 如果从请求返回信息中获取到文件名，下载完成后自动重命名。
 					null);
 		} catch (DbException e) {
 			LogUtils.e(e.getMessage(), e);
@@ -103,7 +106,6 @@ public class HttpFragment extends Fragment {
 				DownloadListActivity.class);
 		this.getActivity().startActivity(intent);
 	}
-
 
 	// ///////////////////////////////////// other
 	// ////////////////////////////////////////////////////////////////

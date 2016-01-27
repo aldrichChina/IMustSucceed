@@ -4,12 +4,6 @@ import java.io.File;
 
 import com.lidroid.xutils.db.annotation.Transient;
 import com.lidroid.xutils.http.HttpHandler;
-
-/**
- * Author: wyouflf
- * Date: 13-11-10
- * Time: 下午8:11
- */
 public class DownloadInfo {
 
     public DownloadInfo() {

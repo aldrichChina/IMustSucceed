@@ -13,7 +13,7 @@
         android:id="@+id/download_addr_edit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1304/17/c1/19952234_1366184400436.jpg" />
+        android:text="http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/1354845511873.jpg" />
 
     <Button
         android:id="@+id/download_btn"

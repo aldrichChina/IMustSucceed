@@ -10,12 +10,6 @@ import android.os.IBinder;
 
 import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.util.LogUtils;
-
-/**
- * Author: wyouflf
- * Date: 13-11-10
- * Time: 上午1:04
- */
 public class DownloadService extends Service {
 
     private static DownloadManager DOWNLOAD_MANAGER;

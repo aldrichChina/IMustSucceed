@@ -5,8 +5,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="lib" path="libs/xUtils-2.6.2.jar"/>
 	<classpathentry kind="lib" path="libs/pinyin4j-2.5.0.jar"/>
-	<classpathentry kind="lib" path="libs/umeng-analytics-v5.6.3.jar"/>
-	<classpathentry kind="lib" path="libs/umeng-update-v2.6.0.1.jar"/>
 	<classpathentry kind="lib" path="libs/universal-image-loader-1.8.7-snapshot-with-sources.jar"/>
 	<classpathentry kind="lib" path="libs/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="libs/gson-2.2.4.jar"/>

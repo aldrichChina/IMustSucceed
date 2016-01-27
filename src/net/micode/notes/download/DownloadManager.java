@@ -62,8 +62,7 @@ public class DownloadManager {
 		downloadInfo.setFileSavePath(target);
 		HttpUtils http = new HttpUtils();
 		http.configRequestThreadPoolSize(maxDownloadThread);
-		HttpHandler<File> handler = http.download(url, target, autoResume,
-				autoRename, new ManagerCallBack(downloadInfo, callback));
+		HttpHandler<File> handler = http.download(url, target, autoResume,autoRename, new ManagerCallBack(downloadInfo, callback));
 		downloadInfo.setHandler(handler);
 		downloadInfo.setState(handler.getState());
 		downloadInfoList.add(downloadInfo);
