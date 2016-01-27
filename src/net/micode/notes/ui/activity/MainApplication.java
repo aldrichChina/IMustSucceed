@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -21,6 +22,7 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 public class MainApplication extends Application {
 	public static ImageLoader imageLoader = ImageLoader.getInstance();
+	public static OkHttpClient client = new OkHttpClient();
 	private static final String TAG = "MainApplication";
 
 	private List<Activity> mList = new LinkedList<Activity>();

@@ -1,28 +1,22 @@
 package net.micode.notes;
 
-import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.tool.dialogfragment.ConfimDialog;
+import net.micode.notes.ui.activity.BaseActivity;
 import net.micode.notes.ui.activity.MainApplication;
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.bitmap.BitmapCommonUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
-import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
-import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
-import com.lidroid.xutils.bitmap.callback.DefaultBitmapLoadCallBack;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
-public class ImageActivity extends Activity {
+public class ImageActivity extends BaseActivity {
 
 	@ViewInject(R.id.big_img)
 	private ImageView bigImage;
@@ -84,7 +78,7 @@ public class ImageActivity extends Activity {
 				.bitmapConfig(Bitmap.Config.ARGB_8888)
 				.cacheInMemory(true) // 设置下载的图片是否缓存在内存中
 				.cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
-				.displayer(new RoundedBitmapDisplayer(20)) // 设置成圆角图片
+				.displayer(new RoundedBitmapDisplayer(5)) // 设置成圆角图片
 				.build(); // 构建完成
 		MainApplication.getInstance();
 		MainApplication.imageLoader.displayImage(imgUrl, bigImage, options);
@@ -96,6 +90,30 @@ public class ImageActivity extends Activity {
 				confimDialog.show(getFragmentManager(), "confimDialog");
 			}
 		});
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

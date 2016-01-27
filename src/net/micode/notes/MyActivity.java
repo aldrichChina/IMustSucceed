@@ -13,18 +13,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
-import com.lidroid.xutils.view.annotation.ContentView;
 
 public class MyActivity extends BaseActivity implements OnLongClickListener{
 	private FragmentManager fragmentManager;
 	private RadioGroup bottomRg;
-	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),
-			new BitmapFragment(), };
+	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),new BitmapFragment()};
 	private FragmentTransaction beginTransaction;
 	private TextView toptitle;
 
@@ -37,8 +35,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener{
 		ViewUtils.inject(this);
 		fragmentManager = getFragmentManager();
 		beginTransaction = fragmentManager.beginTransaction();
-		beginTransaction.add(R.id.realtabcontent, fragmentArray[0],
-				"HttpFragment").addToBackStack(null).commit();
+		beginTransaction.add(R.id.realtabcontent, fragmentArray[0],"HttpFragment").commit();
 		setupTabView();
 	}
 
@@ -78,7 +75,11 @@ public class MyActivity extends BaseActivity implements OnLongClickListener{
 	protected void setListener() {
 		toptitle.setOnLongClickListener(this);
 	}
-
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
 	/**
 	 * 显示隐藏Fragment
 	 * 
@@ -106,7 +107,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener{
 		if (fragmentArray[x].isAdded()) {
 			transaction.show(fragmentArray[x]).hide(fragmentArray[y]).hide(fragmentArray[z]).addToBackStack(null).commit();
 		} else {
-			transaction.hide(fragmentArray[y]).hide(fragmentArray[z]).add(R.id.realtabcontent, fragmentArray[x], tag).addToBackStack(null).commit();
+			transaction.add(R.id.realtabcontent, fragmentArray[x], tag).hide(fragmentArray[y]).hide(fragmentArray[z]).addToBackStack(null).commit();
 		}
 
 	}
@@ -124,9 +125,5 @@ public class MyActivity extends BaseActivity implements OnLongClickListener{
 		return false;
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

@@ -40,22 +40,24 @@ import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
 
-public abstract class BaseActivity extends Activity implements OnClickListener{
+public abstract class BaseActivity extends Activity implements OnClickListener {
 
 	protected Activity context;
 	private Toast mToast;
+	private long mExitTime = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		if (savedInstanceState != null) {
-//			Log.d("tag", "savedInstanceState--->"+savedInstanceState);
-//			Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-//			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//			startActivity(i);
-//			this.finish();
-//			return;
-//		}
+		// if (savedInstanceState != null) {
+		// Log.d("tag", "savedInstanceState--->"+savedInstanceState);
+		// Intent i =
+		// getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+		// i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		// startActivity(i);
+		// this.finish();
+		// return;
+		// }
 		MainApplication.getInstance().addActivity(this);
 		context = this;
 		initView();
@@ -82,15 +84,20 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 		super.onDestroy();
 	}
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Utils.finish(this);
-			return true;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
-
+//	@Override
+//	public boolean onKeyDown(int keyCode, KeyEvent event) {
+//
+//		if (keyCode == KeyEvent.KEYCODE_BACK) {
+//			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+//				Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+//				mExitTime = System.currentTimeMillis();
+//			} else {
+//				Utils.finish(this);
+//			}
+//			return true;
+//		}
+//		return super.onKeyDown(keyCode, event);
+//	}
 
 	/**
 	 * 初始化控件
@@ -134,13 +141,15 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 	public boolean isNetworkAvailable(Context context) {
 		return Utils.isNetworkAvailable(context);
 	}
+
 	/**
 	 * toast提示
 	 * 
-	 * @param text -提示内容
+	 * @param text
+	 *            -提示内容
 	 */
 
-	public void showToast(String text) {
+	public void ToastMessage(String text) {
 		if (mToast == null) {
 			mToast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
 		} else {
@@ -149,8 +158,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 		}
 		mToast.show();
 	}
-
-
 
 	/**
 	 * 从sdCard显示图片
@@ -228,7 +235,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 	public String getRootPath() {
 		return Environment.getExternalStorageDirectory().toString();
 	}
-
 
 	/**
 	 * 检测网络状态

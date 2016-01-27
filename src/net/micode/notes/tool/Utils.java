@@ -21,6 +21,7 @@ import net.micode.notes.R;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.Manifest;
+import android.R.anim;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -74,8 +75,7 @@ public class Utils {
 	 */
 	public static void finish(Activity activity) {
 		activity.finish();
-		activity.overridePendingTransition(R.animator.fragment_slide_right_enter,
-				R.animator.fragment_slide_right_exit);
+		activity.overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
 	}
 
 	/**

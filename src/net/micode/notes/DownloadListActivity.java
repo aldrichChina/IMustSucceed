@@ -6,7 +6,7 @@ import java.lang.ref.WeakReference;
 import net.micode.notes.download.DownloadInfo;
 import net.micode.notes.download.DownloadManager;
 import net.micode.notes.download.DownloadService;
-import android.app.Activity;
+import net.micode.notes.ui.activity.BaseActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,7 +29,7 @@ import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
-public class DownloadListActivity extends Activity {
+public class DownloadListActivity extends BaseActivity {
 
 	@ViewInject(R.id.download_list)
 	private ListView downloadList;
@@ -120,12 +120,10 @@ public class DownloadListActivity extends Activity {
 				if (callBack instanceof DownloadManager.ManagerCallBack) {
 					DownloadManager.ManagerCallBack managerCallBack = (DownloadManager.ManagerCallBack) callBack;
 					if (managerCallBack.getBaseCallBack() == null) {
-						managerCallBack
-								.setBaseCallBack(new DownloadRequestCallBack());
+						managerCallBack.setBaseCallBack(new DownloadRequestCallBack());
 					}
 				}
-				callBack.setUserTag(new WeakReference<DownloadItemViewHolder>(
-						holder));
+				callBack.setUserTag(new WeakReference<DownloadItemViewHolder>(holder));
 			}
 
 			return view;
@@ -190,7 +188,7 @@ public class DownloadListActivity extends Activity {
 
 		public void update(DownloadInfo downloadInfo) {
 			this.downloadInfo = downloadInfo;
-			refresh();
+//			refresh();
 		}
 
 		public void refresh() {
@@ -199,7 +197,7 @@ public class DownloadListActivity extends Activity {
 			if (downloadInfo.getFileLength() > 0) {
 				progressBar.setProgress((int) (downloadInfo.getProgress() * 100 / downloadInfo.getFileLength()));
 				if(downloadInfo.getProgress()==downloadInfo.getFileLength()){
-					Toast.makeText(mAppContext, downloadInfo.getFileName()+"下载完成", Toast.LENGTH_SHORT).show();
+					ToastMessage(downloadInfo.getFileName()+"下载完成");
 				}
 			} else {
 				progressBar.setProgress(0);
@@ -270,5 +268,29 @@ public class DownloadListActivity extends Activity {
 		public void onCancelled() {
 			refreshListItem();
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }
