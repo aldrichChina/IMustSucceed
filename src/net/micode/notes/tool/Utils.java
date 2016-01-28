@@ -94,8 +94,7 @@ public class Utils {
 				intent.putExtra(name[i].getName(), name[i].getValue());
 			}
 		activity.startActivity(intent);
-		activity.overridePendingTransition(R.animator.fragment_slide_left_enter,
-				R.animator.fragment_slide_left_exit);
+		activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 
 	}
 
