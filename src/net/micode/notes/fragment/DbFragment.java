@@ -9,6 +9,7 @@ import java.util.List;
 
 import net.micode.notes.R;
 import net.micode.notes.data.Constant;
+import net.micode.notes.data.MyDatabaseHelper;
 import net.micode.notes.entities.Child;
 import net.micode.notes.entities.HouseSaid;
 import net.micode.notes.entities.Parent;
@@ -19,6 +20,8 @@ import net.micode.notes.view.XListView.IXListViewListener;
 import okhttp3.Request;
 import okhttp3.Response;
 import android.app.Fragment;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -37,22 +40,33 @@ import com.lidroid.xutils.db.table.DbModel;
 import com.lidroid.xutils.exception.DbException;
 
 public class DbFragment extends Fragment implements IXListViewListener {
+	MyDatabaseHelper dbHelper;
+	SQLiteDatabase db;
 	private XListView mListView;
-	private ArrayAdapter<String> mAdapter;
 	private List<HouseSaid> items = new ArrayList<HouseSaid>();
+	private List<HouseSaid> tmpItems = new ArrayList<HouseSaid>();
 	private Handler mHandler;
-	private int start = 0;
-	private static int refreshCnt = 0;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private TextView tv_empty;
 	Gson gson = new Gson();
 	HouseSaidAdapter houseAdapter = new HouseSaidAdapter();
+	HouseSaid houseSaid;
 
 	/** Called when the activity is first created. */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.db_fragment, container, false);
+		dbHelper = new MyDatabaseHelper(getActivity(), "lemon", 1);
+		db = dbHelper.getReadableDatabase();
+		items.clear();
+		Cursor cursor = db.rawQuery(
+				"select * from said order by inserttime desc", null);
+		while (cursor.moveToNext()) {
+			houseSaid = new HouseSaid();
+			houseSaid.setTaici(cursor.getString(1));
+			items.add(houseSaid);
+		}
 		mListView = (XListView) view.findViewById(R.id.newmessagelist);
 		tv_empty = (TextView) view.findViewById(R.id.tv_empty);
 		ViewUtils.inject(this, view);
@@ -64,7 +78,6 @@ public class DbFragment extends Fragment implements IXListViewListener {
 			tv_empty.setVisibility(View.GONE);
 		}
 		mListView.setPullLoadEnable(true);
-		mAdapter = new ArrayAdapter(getActivity(), R.layout.list_item, items);
 		mListView.setAdapter(houseAdapter);
 		// mListView.setPullLoadEnable(false);
 		// mListView.setPullRefreshEnable(false);
@@ -84,7 +97,6 @@ public class DbFragment extends Fragment implements IXListViewListener {
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				start = ++refreshCnt;
 				// items.clear();
 				// geneItems();
 				getHouseSaid();
@@ -94,7 +106,6 @@ public class DbFragment extends Fragment implements IXListViewListener {
 				} else {
 					tv_empty.setVisibility(View.GONE);
 				}
-				mAdapter = new ArrayAdapter(getActivity(), R.layout.list_item,items);
 				mListView.setAdapter(houseAdapter);
 				onLoad();
 			}
@@ -106,11 +117,28 @@ public class DbFragment extends Fragment implements IXListViewListener {
 
 			@Override
 			public void run() {
-				String responseBody = HttpService.OKHttpGet(Constant.httpUrl, Constant.httpArg);
-				HouseSaid houseSaid = gson.fromJson(responseBody, HouseSaid.class);
-				items.add(houseSaid);
+				String responseBody = HttpService.OKHttpGet(Constant.httpUrl,
+						Constant.httpArg);
+				HouseSaid houseSaid = gson.fromJson(responseBody,
+						HouseSaid.class);
+				db.execSQL(
+						"insert into said values(null,?,?)",
+						new String[] { houseSaid.getTaici(),
+								Long.toString(new Date().getTime()) });
+				Cursor cursor = db.rawQuery(
+						"select * from said order by inserttime desc", null);
+				while (cursor.moveToNext()) {
+					houseSaid = new HouseSaid();
+					houseSaid.setTaici(cursor.getString(1));
+					tmpItems.add(houseSaid);
+				}
 			}
 		}).start();
+		if (tmpItems.size() != 0) {
+			items.clear();
+		}
+		items.addAll(tmpItems);
+		tmpItems.clear();
 	}
 
 	@Override
@@ -120,13 +148,12 @@ public class DbFragment extends Fragment implements IXListViewListener {
 			public void run() {
 				// geneItems();
 				getHouseSaid();
-				mAdapter.notifyDataSetChanged();
+
+				houseAdapter.notifyDataSetChanged();
 				onLoad();
 			}
 		}, 2000);
 	}
-
-	
 
 	private class ViewHolder {
 		private TextView taici;
@@ -169,6 +196,14 @@ public class DbFragment extends Fragment implements IXListViewListener {
 			return convertView;
 		}
 
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (db != null) {
+			db.close();
+		}
 	}
 	/*
 	 * public void geneItems() {

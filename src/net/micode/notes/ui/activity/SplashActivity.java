@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.view.View;
 
 public class SplashActivity extends BaseActivity{
-	private final int SPLASH_DISPLAY_LENGHT = 5000; // 延迟两秒
+	private final int SPLASH_DISPLAY_LENGHT = 2000; // 延迟两秒
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub

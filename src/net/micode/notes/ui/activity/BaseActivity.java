@@ -81,6 +81,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 	protected void onDestroy() {
 		// cancelToast();
 		MainApplication.getInstance().removeActivity(this);
+		
 		super.onDestroy();
 	}
 

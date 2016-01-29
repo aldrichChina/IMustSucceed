@@ -53,36 +53,29 @@ public class HttpFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.http_fragment, container, false);
 		ViewUtils.inject(this, view);
-
 		mAppContext = inflater.getContext().getApplicationContext();
 		Utils.Logger(mAppContext, "---->HttpFragment");
 		downloadManager = DownloadService.getDownloadManager(mAppContext);
-
 		preferencesCookieStore = new PreferencesCookieStore(mAppContext);
 		BasicClientCookie cookie = new BasicClientCookie("test", "hello");
 		cookie.setDomain("192.168.1.5");
 		cookie.setPath("/");
 		preferencesCookieStore.addCookie(cookie);
-
 		return view;
 	}
 
 	@ViewInject(R.id.download_addr_edit)
 	private EditText downloadAddrEdit;
-
 	@ViewInject(R.id.download_btn)
 	private Button downloadBtn;
-
 	@ViewInject(R.id.download_page_btn)
 	private Button downloadPageBtn;
 	@ViewInject(R.id.button1)
 	private Button button1;
 	@ViewInject(R.id.result_txt)
 	private TextView resultText;
-
 	@ResInject(id = R.string.download_label, type = ResType.String)
 	private String label;
-
 	@OnClick(R.id.download_btn)
 	public void download(View view) {
 		String target = "/sdcard/Picture/" + System.currentTimeMillis()
