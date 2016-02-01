@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="TextAppearanceSuper">
         <item name="android:textSize">@dimen/text_font_size_super</item>
         <item name="android:textColorLink">#0000ff</item>
     </style>
+
     <style name="TextAppearanceLarge">
         <item name="android:textSize">@dimen/text_font_size_large</item>
         <item name="android:textColorLink">#0000ff</item>
     </style>
+
     <style name="TextAppearanceMedium">
         <item name="android:textSize">@dimen/text_font_size_medium</item>
         <item name="android:textColorLink">#0000ff</item>
     </style>
+
     <style name="TextAppearanceNormal">
         <item name="android:textSize">@dimen/text_font_size_normal</item>
         <item name="android:textColorLink">#0000ff</item>
@@ -33,7 +37,7 @@
     </style>
 
     <style name="HighlightTextAppearancePrimary">
-    <item name="android:textSize">@dimen/text_font_size_normal</item>
+        <item name="android:textSize">@dimen/text_font_size_normal</item>
         <item name="android:textColor">@color/primary_text_dark</item>
     </style>
 
@@ -47,12 +51,19 @@
     </style>
 
     <style name="NoteActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
-        <item name="android:displayOptions" />
+        <item name="android:displayOptions"/>
         <item name="android:visibility">gone</item>
     </style>
+
     <style name="Splash">
         <item name="android:windowBackground">@drawable/lm</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="fragment_text">
+        <item name="android:textColor">#ffacacac</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
 </resources>

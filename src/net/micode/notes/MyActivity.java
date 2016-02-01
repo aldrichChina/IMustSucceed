@@ -1,15 +1,23 @@
 package net.micode.notes;
 
 import net.micode.notes.fragment.BitmapFragment;
+import net.micode.notes.fragment.CalendarFragment;
 import net.micode.notes.fragment.DbFragment;
+import net.micode.notes.fragment.HomeFragment;
 import net.micode.notes.fragment.HttpFragment;
+import net.micode.notes.fragment.ProfileFragment;
+import net.micode.notes.fragment.SettingsFragment;
+import net.micode.notes.tool.Utils;
 import net.micode.notes.ui.NotesListActivity;
 import net.micode.notes.ui.activity.BaseActivity;
+import net.micode.notes.view.ResideMenu.ResideMenu;
+import net.micode.notes.view.ResideMenu.ResideMenuItem;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.RadioGroup;
@@ -19,12 +27,19 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 
-public class MyActivity extends BaseActivity implements OnLongClickListener{
+public class MyActivity extends BaseActivity implements OnLongClickListener {
 	private FragmentManager fragmentManager;
 	private RadioGroup bottomRg;
-	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),new BitmapFragment()};
+	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),
+			new BitmapFragment() };
 	private FragmentTransaction beginTransaction;
 	private TextView toptitle;
+	private ResideMenu resideMenu;
+	private MyActivity mContext;
+	private ResideMenuItem itemHome;
+	private ResideMenuItem itemProfile;
+	private ResideMenuItem itemCalendar;
+	private ResideMenuItem itemSettings;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +48,14 @@ public class MyActivity extends BaseActivity implements OnLongClickListener{
 		LogUtils.customTagPrefix = "xUtilsSample"; // 方便调试时过滤 adb logcat 输出
 		LogUtils.allowI = false; // 关闭 LogUtils.i(...) 的 adb log 输出
 		ViewUtils.inject(this);
+		mContext = this;
+		setUpMenu();
+		if (savedInstanceState == null)
+			changeFragment(new HomeFragment());
 		fragmentManager = getFragmentManager();
 		beginTransaction = fragmentManager.beginTransaction();
-		beginTransaction.add(R.id.realtabcontent, fragmentArray[0],"HttpFragment").commit();
+		beginTransaction.add(R.id.realtabcontent, fragmentArray[0],
+				"HttpFragment").commit();
 		setupTabView();
 	}
 
@@ -75,11 +95,23 @@ public class MyActivity extends BaseActivity implements OnLongClickListener{
 	protected void setListener() {
 		toptitle.setOnLongClickListener(this);
 	}
+
 	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
+	public void onClick(View view) {
+
+		if (view == itemHome) {
+			changeFragment(new HomeFragment());
+		} else if (view == itemProfile) {
+			changeFragment(new ProfileFragment());
+		} else if (view == itemCalendar) {
+			changeFragment(new CalendarFragment());
+		} else if (view == itemSettings) {
+			changeFragment(new SettingsFragment());
+		}
+
+		resideMenu.closeMenu();
 	}
+
 	/**
 	 * 显示隐藏Fragment
 	 * 
@@ -96,8 +128,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener{
 		FragmentManager fm = getFragmentManager();
 		// 开启Fragment事务
 		FragmentTransaction transaction = fm.beginTransaction();
-		transaction.setCustomAnimations(
-				R.animator.fragment_slide_left_enter,
+		transaction.setCustomAnimations(R.animator.fragment_slide_left_enter,
 				R.animator.fragment_slide_left_exit,
 				R.animator.fragment_slide_right_enter,
 				R.animator.fragment_slide_right_exit);
@@ -105,25 +136,105 @@ public class MyActivity extends BaseActivity implements OnLongClickListener{
 			fragmentArray[x] = new HttpFragment();
 		}
 		if (fragmentArray[x].isAdded()) {
-			transaction.show(fragmentArray[x]).hide(fragmentArray[y]).hide(fragmentArray[z]).addToBackStack(null).commit();
+			transaction.show(fragmentArray[x]).hide(fragmentArray[y])
+					.hide(fragmentArray[z]).addToBackStack(null).commit();
 		} else {
-			transaction.add(R.id.realtabcontent, fragmentArray[x], tag).hide(fragmentArray[y]).hide(fragmentArray[z]).addToBackStack(null).commit();
+			transaction.add(R.id.realtabcontent, fragmentArray[x], tag)
+					.hide(fragmentArray[y]).hide(fragmentArray[z])
+					.addToBackStack(null).commit();
 		}
 
 	}
-
 
 	@Override
 	public boolean onLongClick(View v) {
 
-		switch(v.getId()){
+		switch (v.getId()) {
 		case R.id.toptitle:
 			Intent intent = new Intent(this, NotesListActivity.class);
 			this.startActivity(intent);
 		}
-	
+
 		return false;
 	}
 
-	
+	private void setUpMenu() {
+
+		// attach to current activity;
+		resideMenu = new ResideMenu(this);
+		resideMenu.setUse3D(true);
+		resideMenu.setBackground(R.drawable.menu_background);
+		resideMenu.attachToActivity(this);
+		resideMenu.setMenuListener(menuListener);
+		// valid scale factor is between 0.0f and 1.0f. leftmenu'width is
+		// 150dip.
+		resideMenu.setScaleValue(0.6f);
+
+		// create menu items;
+		itemHome = new ResideMenuItem(this, R.drawable.icon_home, "Home");
+		itemProfile = new ResideMenuItem(this, R.drawable.icon_profile,
+				"Profile");
+		itemCalendar = new ResideMenuItem(this, R.drawable.icon_calendar,
+				"Calendar");
+		itemSettings = new ResideMenuItem(this, R.drawable.icon_settings,
+				"Settings");
+
+		itemHome.setOnClickListener(this);
+		itemProfile.setOnClickListener(this);
+		itemCalendar.setOnClickListener(this);
+		itemSettings.setOnClickListener(this);
+
+		resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
+		resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
+		resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_RIGHT);
+		resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_RIGHT);
+
+		// You can disable a direction by setting ->
+		// resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
+
+		findViewById(R.id.topback).setOnClickListener(
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
+					}
+				});
+		findViewById(R.id.righttitle).setOnClickListener(
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
+					}
+				});
+	}
+
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		return resideMenu.dispatchTouchEvent(ev);
+	}
+
+	private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
+		@Override
+		public void openMenu() {
+			Utils.ToastMessage(context, "Menu is opened!");
+		}
+
+		@Override
+		public void closeMenu() {
+			Utils.ToastMessage(context, "Menu is closed!");
+		}
+	};
+
+	private void changeFragment(Fragment targetFragment) {
+		resideMenu.clearIgnoredViewList();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.realtabcontent, targetFragment, "fragment")
+				.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+				.commit();
+	}
+
+	// What good method is to access resideMenu？
+	public ResideMenu getResideMenu() {
+		return resideMenu;
+	}
 }
