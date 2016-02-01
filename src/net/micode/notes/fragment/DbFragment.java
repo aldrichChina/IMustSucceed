@@ -121,6 +121,7 @@ public class DbFragment extends Fragment implements IXListViewListener {
 						Constant.httpArg);
 				HouseSaid houseSaid = gson.fromJson(responseBody,
 						HouseSaid.class);
+				if(houseSaid==null)return;
 				db.execSQL(
 						"insert into said values(null,?,?)",
 						new String[] { houseSaid.getTaici(),

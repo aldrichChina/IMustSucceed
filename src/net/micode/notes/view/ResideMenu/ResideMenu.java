@@ -155,7 +155,7 @@ public class ResideMenu extends FrameLayout {
         this.setPadding(viewActivity.getPaddingLeft() + insets.left,
                 viewActivity.getPaddingTop() + insets.top,
                 viewActivity.getPaddingRight() + insets.right,
-                bottomPadding);
+                0);
         insets.left = insets.top = insets.right = insets.bottom = 0;
         return true;
     }

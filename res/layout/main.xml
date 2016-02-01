@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/p_login_bg"
     android:orientation="vertical" >
 	<include layout="@layout/top_title_headline"/>
     <FrameLayout
@@ -34,7 +34,7 @@
             android:gravity="center"
             android:button="@null"
             android:drawableTop="@drawable/icon_database"  
-            android:text="搜索" />  
+            android:text="箴言" />  
   
         <RadioButton  
             android:id="@+id/rbThree"  
@@ -42,7 +42,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:drawableTop="@drawable/icon_btimap"  
-            android:text="设置" />  
+            android:text="美图" />  
     </RadioGroup>  
 
 </LinearLayout>

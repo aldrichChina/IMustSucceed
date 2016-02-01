@@ -1,31 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/p_login_bg"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/download_label" />
-
-    <EditText
-        android:id="@+id/download_addr_edit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/1354845511873.jpg" />
-
-    <Button
-        android:id="@+id/download_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/download" />
-
-    <Button
-        android:id="@+id/download_page_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="打开下载页面" />
+   
 
     <Button
         android:id="@+id/button1"

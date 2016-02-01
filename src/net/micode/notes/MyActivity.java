@@ -3,7 +3,6 @@ package net.micode.notes;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.CalendarFragment;
 import net.micode.notes.fragment.DbFragment;
-import net.micode.notes.fragment.HomeFragment;
 import net.micode.notes.fragment.HttpFragment;
 import net.micode.notes.fragment.ProfileFragment;
 import net.micode.notes.fragment.SettingsFragment;
@@ -51,7 +50,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener {
 		mContext = this;
 		setUpMenu();
 		if (savedInstanceState == null)
-			changeFragment(new HomeFragment());
+			changeFragment(new HttpFragment());
 		fragmentManager = getFragmentManager();
 		beginTransaction = fragmentManager.beginTransaction();
 		beginTransaction.add(R.id.realtabcontent, fragmentArray[0],
@@ -65,7 +64,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener {
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				switch (checkedId) {
 				case R.id.rbOne:
-					showHideFragment(0, 1, 2, "DbFragment");
+					showHideFragment(0, 1, 2, "HttpFragment");
 					break;
 				case R.id.rbTwo:
 					showHideFragment(1, 0, 2, "DbFragment");
@@ -100,7 +99,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener {
 	public void onClick(View view) {
 
 		if (view == itemHome) {
-			changeFragment(new HomeFragment());
+			changeFragment(new HttpFragment());
 		} else if (view == itemProfile) {
 			changeFragment(new ProfileFragment());
 		} else if (view == itemCalendar) {
@@ -136,11 +135,11 @@ public class MyActivity extends BaseActivity implements OnLongClickListener {
 			fragmentArray[x] = new HttpFragment();
 		}
 		if (fragmentArray[x].isAdded()) {
-			transaction.show(fragmentArray[x]).hide(fragmentArray[y])
-					.hide(fragmentArray[z]).addToBackStack(null).commit();
+			transaction.show(fm.findFragmentByTag(tag)).hide(fragmentArray[y])
+					.hide(fragmentArray[z]).hide(fm.findFragmentByTag("fragment")).addToBackStack(null).commit();
 		} else {
 			transaction.add(R.id.realtabcontent, fragmentArray[x], tag)
-					.hide(fragmentArray[y]).hide(fragmentArray[z])
+					.hide(fragmentArray[y]).hide(fragmentArray[z]).hide(fm.findFragmentByTag("fragment"))
 					.addToBackStack(null).commit();
 		}
 
@@ -216,12 +215,12 @@ public class MyActivity extends BaseActivity implements OnLongClickListener {
 	private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
 		@Override
 		public void openMenu() {
-			Utils.ToastMessage(context, "Menu is opened!");
+//			Utils.ToastMessage(context, "Menu is opened!");
 		}
 
 		@Override
 		public void closeMenu() {
-			Utils.ToastMessage(context, "Menu is closed!");
+//			Utils.ToastMessage(context, "Menu is closed!");
 		}
 	};
 
