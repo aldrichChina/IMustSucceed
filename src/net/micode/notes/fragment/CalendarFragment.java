@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-public class CalendarFragment extends Fragment {
+public class CalendarFragment extends BaseFragment {
 
     private View parentView;
     private ListView listView;

@@ -46,19 +46,14 @@ public class Utils {
 	private static Toast mToast;
 	private static final String TAG = "Utils";
 
-	public static void ToastMessage(Context context, String strMessage) {
-		Toast toast = Toast.makeText(context, strMessage, Toast.LENGTH_SHORT);
-		toast.setGravity(Gravity.CENTER, 0, 0);
-		toast.show();
-	}
-
 	public static void Toast(Context context, String txt) {
 		if (mToast == null) {
 			mToast = Toast.makeText(context, txt, Toast.LENGTH_SHORT);
 		} else {
 			mToast.setText(txt);
-			mToast.setDuration(Toast.LENGTH_LONG);
+			mToast.setDuration(Toast.LENGTH_SHORT);
 		}
+		mToast.setGravity(Gravity.CENTER, 0, 0);
 		mToast.show();
 	}
 
@@ -420,6 +415,6 @@ public class Utils {
 	}
 
 	public static void Logger(Context context, String logTxt) {
-		Log.d("jia", context.getClass().getName() + logTxt);
+		Log.d("jia", context.getClass().getName() +"---------->"+ logTxt);
 	}
 }

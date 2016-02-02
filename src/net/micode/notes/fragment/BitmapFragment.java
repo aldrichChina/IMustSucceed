@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import net.micode.notes.BitmapHelp;
 import net.micode.notes.ImageActivity;
 import net.micode.notes.R;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -40,7 +39,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnItemClick;
-public class BitmapFragment extends Fragment {
+public class BitmapFragment extends BaseFragment {
 
     public static BitmapUtils bitmapUtils;
 

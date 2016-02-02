@@ -17,7 +17,7 @@ import android.widget.EditText;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.util.LogUtils;
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends BaseFragment {
 	private EditText downloadAddrEdit;
 	private Button downloadBtn;
 	private Button downloadPageBtn;

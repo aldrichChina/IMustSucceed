@@ -39,7 +39,7 @@ import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.table.DbModel;
 import com.lidroid.xutils.exception.DbException;
 
-public class DbFragment extends Fragment implements IXListViewListener {
+public class DbFragment extends BaseFragment implements IXListViewListener {
 	MyDatabaseHelper dbHelper;
 	SQLiteDatabase db;
 	private XListView mListView;
@@ -185,8 +185,7 @@ public class DbFragment extends Fragment implements IXListViewListener {
 				convertView = LayoutInflater.from(getActivity()).inflate(
 						R.layout.test, null);
 				myholder = new ViewHolder();
-				myholder.taici = (TextView) convertView
-						.findViewById(R.id.textView1);
+				myholder.taici = (TextView) convertView.findViewById(R.id.textView1);
 				convertView.setTag(myholder);
 				Log.v("tag", "null getView " + position + " " + convertView);
 			} else {
