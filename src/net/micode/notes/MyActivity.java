@@ -1,12 +1,16 @@
 package net.micode.notes;
 
+import java.util.List;
+
+import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.CalendarFragment;
 import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HttpFragment;
+import net.micode.notes.fragment.HttpFragment.OnHeadlineSelectedListener;
+import net.micode.notes.fragment.NewsDetailFragment;
 import net.micode.notes.fragment.ProfileFragment;
 import net.micode.notes.fragment.SettingsFragment;
-import net.micode.notes.tool.Utils;
 import net.micode.notes.ui.NotesListActivity;
 import net.micode.notes.ui.activity.BaseActivity;
 import net.micode.notes.view.ResideMenu.ResideMenu;
@@ -26,7 +30,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 
-public class MyActivity extends BaseActivity implements OnLongClickListener {
+public class MyActivity extends BaseActivity implements OnLongClickListener ,OnHeadlineSelectedListener{
 	private FragmentManager fragmentManager;
 	private RadioGroup bottomRg;
 	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),
@@ -236,4 +240,43 @@ public class MyActivity extends BaseActivity implements OnLongClickListener {
 	public ResideMenu getResideMenu() {
 		return resideMenu;
 	}
-}
+	public void addFragmentToStack(Fragment fragment, String tag) {
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.replace(R.id.realtabcontent, fragment, tag);
+		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		ft.addToBackStack(null);
+		ft.commit();
+	}
+
+	@Override
+	public void onArticleSelected(NewsDetailContent detailContent,String tag) {
+		  // 用户选中HeadlinesFragment中的头标题后
+        // 做一些必要的业务操作
+
+		NewsDetailFragment articleFrag = (NewsDetailFragment)getFragmentManager().findFragmentByTag(tag);
+
+        if (articleFrag != null) {
+            // 如果 article frag 不为空，那么我们在同时显示两个fragmnet的布局中...
+
+            // 调用ArticleFragment中的方法去更新它的内容
+            articleFrag.updateArticleView(detailContent);
+        } else {
+            // 否则，我们就是在仅包含一个fragment的布局中并需要交换fragment...
+
+            // 创建fragment并给他一个跟选中的文章有关的参数
+        	NewsDetailFragment newFragment = new NewsDetailFragment();
+            Bundle args = new Bundle();
+            args.putSerializable("news_detailContent", detailContent);
+            newFragment.setArguments(args);
+        
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+            // 用这个fragment替换任何在fragment_container中的东西
+            // 并添加事务到back stack中以便用户可以回退到之前的状态
+            transaction.replace(R.id.realtabcontent, newFragment,tag);
+            transaction.addToBackStack(null);
+
+            // 提交事务
+            transaction.commit();
+	}}
+	}

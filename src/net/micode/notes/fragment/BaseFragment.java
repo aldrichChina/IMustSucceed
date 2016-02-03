@@ -1,11 +1,12 @@
 package net.micode.notes.fragment;
 
-import net.micode.notes.tool.Utils;
 import android.app.Fragment;
 
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseFragment extends Fragment {
+	
+	
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -17,4 +18,5 @@ public class BaseFragment extends Fragment {
 		super.onPause();
 		MobclickAgent.onPageEnd(getActivity().getClass().getName());
 	}
+	
 }

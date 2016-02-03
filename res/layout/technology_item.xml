@@ -6,30 +6,36 @@
 
     <ImageView
         android:id="@+id/TechnologyNewsAdapter_pic"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_app" />
 
     <TextView
         android:id="@+id/TechnologyNewsAdapter_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FF60AF"
+        android:textSize="15sp"
+        android:layout_toLeftOf="@+id/TechnologyNewsAdapter_time"
         android:layout_toRightOf="@id/TechnologyNewsAdapter_pic"
+        android:singleLine="true"
         android:text="新闻标题" />
-    <TextView 
+
+    <TextView
         android:id="@+id/TechnologyNewsAdapter_time"
         android:layout_width="wrap_content"
-        android:layout_marginRight="5dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
         android:text="时间"
-        />
-	<TextView 
-	    android:id="@+id/TechnologyNewsAdapter_description"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@id/TechnologyNewsAdapter_title"
-	    android:layout_toRightOf="@id/TechnologyNewsAdapter_pic"
-	    android:text="新闻内容"
-	    />
+        android:textColor="#9F4D95" />
+
+    <TextView
+        android:id="@+id/TechnologyNewsAdapter_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TechnologyNewsAdapter_title"
+        android:layout_toRightOf="@id/TechnologyNewsAdapter_pic"
+        android:text="新闻内容" />
+
 </RelativeLayout>

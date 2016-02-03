@@ -80,7 +80,6 @@ public class ImageActivity extends BaseActivity {
 				.cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
 				.displayer(new RoundedBitmapDisplayer(5)) // 设置成圆角图片
 				.build(); // 构建完成
-		MainApplication.getInstance();
 		MainApplication.imageLoader.displayImage(imgUrl, bigImage, options);
 		bigImage.setOnClickListener(new OnClickListener() {
 

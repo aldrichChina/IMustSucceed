@@ -4,89 +4,132 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.micode.notes.R;
-import net.micode.notes.adapter.TechnologyNewsAdapter;
+import net.micode.notes.adapter.NewsAdapter;
 import net.micode.notes.data.Constant;
-import net.micode.notes.entities.TechnologyNews;
+import net.micode.notes.entities.NewsBody;
+import net.micode.notes.entities.NewsChannel;
+import net.micode.notes.entities.NewsDetailContent;
+import net.micode.notes.entities.NewsPageBean;
 import net.micode.notes.tool.Utils;
 import net.micode.notes.tool.HttpUtils.HttpService;
 import net.micode.notes.view.XListView;
 import net.micode.notes.view.XListView.IXListViewListener;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
-public class HttpFragment extends BaseFragment implements IXListViewListener{
+import com.google.gson.Gson;
+
+public class HttpFragment extends BaseFragment implements IXListViewListener {
 	private XListView mListView;
-	private List<TechnologyNews>newsList=new ArrayList<TechnologyNews>();
-	private TechnologyNewsAdapter adapter;
-	private Handler handler=new Handler();
+	private List<NewsDetailContent> newsList = new ArrayList<NewsDetailContent>();
+	private NewsAdapter adapter;
+	private Handler handler = new Handler();
+	private TextView tv_empty;
+	private UpdateNewsAdapter upadapter;
+	Gson gson = new Gson();
+	OnHeadlineSelectedListener mCallback;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.http_fragment, container, false);
-		
+
 		getTechnologyNews();
-		adapter=new TechnologyNewsAdapter(getActivity(),newsList);
+		adapter = new NewsAdapter(getActivity(), newsList);
 		mListView = (XListView) view.findViewById(R.id.xlistView_newslist);
+		tv_empty = (TextView) view.findViewById(R.id.tv_empty);
 		mListView.setPullLoadEnable(false);
 		mListView.setAdapter(adapter);
 		mListView.setXListViewListener(this);
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				mCallback.onArticleSelected(newsList.get(position-1),"NewsDetailFragment");
+			}
+		});
 		return view;
 	}
 
 	@Override
 	public void onRefresh() {
 		getTechnologyNews();
+		// if (newsList.isEmpty()) {
+		// tv_empty.setVisibility(View.VISIBLE);
+		// } else {
+		// tv_empty.setVisibility(View.INVISIBLE);
+		// }
 	}
+
 	@Override
 	public void onLoadMore() {
-		
+
 	}
-	private void getTechnologyNews(){
+
+	private void getTechnologyNews() {
 
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				String okHttpGet = HttpService.OKHttpGet(Constant.TechnologyNews, Constant.TechnologyArg);
-				try {
-					JSONObject jsonObject = new JSONObject(okHttpGet);
-					int code = jsonObject.optInt("code");
-					Utils.Logger(getActivity(), "code="+code);
-					if(code!=200){
-//						Utils.Toast(getActivity(), jsonObject.optString("msg"));
-						return;
-					}
-					for(int i=0;i<9;i++){
-						TechnologyNews news=new TechnologyNews();
-						JSONObject optJSONObject = jsonObject.optJSONObject(String.valueOf(i));
-						news.setTime(optJSONObject.optString("time"));
-						news.setTitle(optJSONObject.optString("title"));
-						news.setDescription(optJSONObject.optString("description"));
-						news.setPicUrl(optJSONObject.optString("picUrl"));
-						news.setUrl(optJSONObject.optString("url"));
-						newsList.add(news);
-					}
-					handler.post(new Runnable() {
-						@Override
-						public void run() {
-							adapter.notifyDataSetChanged();
-						}
-					});
-				} catch (JSONException e) {
-					e.printStackTrace();
+				String newsokHttpGetReturn = HttpService.OKHttpGet(
+						Constant.HTTPURL + Constant.MailData, null);
+				NewsChannel newsChannel = gson.fromJson(newsokHttpGetReturn,
+						NewsChannel.class);
+				Utils.Logger(getActivity(), newsChannel.toString());
+				if (newsChannel.getShowapi_res_code() != 0) {
+					return;
 				}
+				NewsBody showapi_res_body = newsChannel.getShowapi_res_body();
+				NewsPageBean pagebean = showapi_res_body.getPagebean();
+				newsList = pagebean.getContentlist();
+				Utils.Logger(getActivity(), pagebean.toString());
+				handler.post(new Runnable() {
+
+					@Override
+					public void run() {
+						if (adapter instanceof UpdateNewsAdapter) {
+							adapter.upadapter(newsList);
+						}
+
+						if (newsList.isEmpty()) {
+							tv_empty.setVisibility(View.VISIBLE);
+						} else {
+							tv_empty.setVisibility(View.INVISIBLE);
+						}
+					}
+				});
 			}
-				
-			
+
 		}).start();
-	
+
 	}
+	public interface UpdateNewsAdapter {
+		public void upadapter(List<NewsDetailContent> newsList);
+	}
+	// 用来存放fragment的Activtiy必须实现这个接口
+    public interface OnHeadlineSelectedListener {
+        public void onArticleSelected(NewsDetailContent detailContent,String tag);
+    }
+
+  @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // 这是为了保证Activity容器实现了用以回调的接口。如果没有，它会抛出一个异常。
+        try {
+            mCallback = (OnHeadlineSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 }

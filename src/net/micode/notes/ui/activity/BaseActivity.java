@@ -11,6 +11,8 @@ import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -160,7 +162,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 		}
 		mToast.show();
 	}
-
 	/**
 	 * 从sdCard显示图片
 	 * 

@@ -41,7 +41,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnItemClick;
 public class BitmapFragment extends BaseFragment {
 
-    public static BitmapUtils bitmapUtils;
+	public static BitmapUtils bitmapUtils;
 
     private String[] imgSites = {
     		"http://www.bing.com/gallery/",
@@ -64,7 +64,7 @@ public class BitmapFragment extends BaseFragment {
         bitmapUtils = BitmapHelp.getBitmapUtils(this.getActivity().getApplicationContext());
         bitmapUtils.configDefaultLoadingImage(R.drawable.icon_app);
         bitmapUtils.configDefaultLoadFailedImage(R.drawable.bitmap);
-        bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.RGB_565);
+        bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.ARGB_8888);
 
         //bitmapUtils.configMemoryCacheEnabled(false);
         //bitmapUtils.configDiskCacheEnabled(false);
