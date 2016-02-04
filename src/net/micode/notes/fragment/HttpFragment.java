@@ -1,6 +1,8 @@
 package net.micode.notes.fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import net.micode.notes.R;
@@ -15,7 +17,6 @@ import net.micode.notes.tool.HttpUtils.HttpService;
 import net.micode.notes.view.XListView;
 import net.micode.notes.view.XListView.IXListViewListener;
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -36,6 +37,8 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 	private UpdateNewsAdapter upadapter;
 	Gson gson = new Gson();
 	OnHeadlineSelectedListener mCallback;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -45,7 +48,12 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 		adapter = new NewsAdapter(getActivity(), newsList);
 		mListView = (XListView) view.findViewById(R.id.xlistView_newslist);
 		tv_empty = (TextView) view.findViewById(R.id.tv_empty);
-		mListView.setPullLoadEnable(false);
+		if (newsList.isEmpty()) {
+			tv_empty.setVisibility(View.VISIBLE);
+		} else {
+			tv_empty.setVisibility(View.INVISIBLE);
+		}
+		mListView.setPullLoadEnable(true);
 		mListView.setAdapter(adapter);
 		mListView.setXListViewListener(this);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -53,7 +61,8 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				mCallback.onArticleSelected(newsList.get(position-1),"NewsDetailFragment");
+				mCallback.onArticleSelected(newsList.get(position - 1),
+						"NewsDetailFragment");
 			}
 		});
 		return view;
@@ -61,17 +70,32 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 
 	@Override
 	public void onRefresh() {
-		getTechnologyNews();
-		// if (newsList.isEmpty()) {
-		// tv_empty.setVisibility(View.VISIBLE);
-		// } else {
-		// tv_empty.setVisibility(View.INVISIBLE);
-		// }
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				getTechnologyNews();
+			}
+		}, 1000);
+
 	}
 
 	@Override
 	public void onLoadMore() {
+		handler.postDelayed(new Runnable() {
 
+			@Override
+			public void run() {
+				getTechnologyNews();
+			}
+		}, 1000);
+	}
+
+	/** 停止刷新， */
+	private void onLoad() {
+		mListView.stopRefresh();
+		mListView.stopLoadMore();
+		mListView.setRefreshTime(df.format(new Date()));
 	}
 
 	private void getTechnologyNews() {
@@ -105,6 +129,7 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 						} else {
 							tv_empty.setVisibility(View.INVISIBLE);
 						}
+						onLoad();
 					}
 				});
 			}
@@ -112,24 +137,27 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 		}).start();
 
 	}
+
 	public interface UpdateNewsAdapter {
 		public void upadapter(List<NewsDetailContent> newsList);
 	}
+
 	// 用来存放fragment的Activtiy必须实现这个接口
-    public interface OnHeadlineSelectedListener {
-        public void onArticleSelected(NewsDetailContent detailContent,String tag);
-    }
+	public interface OnHeadlineSelectedListener {
+		public void onArticleSelected(NewsDetailContent detailContent,
+				String tag);
+	}
 
-  @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
 
-        // 这是为了保证Activity容器实现了用以回调的接口。如果没有，它会抛出一个异常。
-        try {
-            mCallback = (OnHeadlineSelectedListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }
+		// 这是为了保证Activity容器实现了用以回调的接口。如果没有，它会抛出一个异常。
+		try {
+			mCallback = (OnHeadlineSelectedListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnHeadlineSelectedListener");
+		}
+	}
 }

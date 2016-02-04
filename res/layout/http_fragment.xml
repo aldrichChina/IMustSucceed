@@ -13,6 +13,7 @@
             android:id="@+id/xlistView_newslist"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:focusable="true"  
             android:cacheColorHint="#00000000" >
         </net.micode.notes.view.XListView>
 

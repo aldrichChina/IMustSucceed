@@ -14,12 +14,13 @@
         android:id="@+id/TechnologyNewsAdapter_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FF60AF"
-        android:textSize="15sp"
         android:layout_toLeftOf="@+id/TechnologyNewsAdapter_time"
         android:layout_toRightOf="@id/TechnologyNewsAdapter_pic"
         android:singleLine="true"
-        android:text="新闻标题" />
+        android:ellipsize="marquee"
+        android:text="新闻标题"
+        android:textColor="#FF0000"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/TechnologyNewsAdapter_time"
