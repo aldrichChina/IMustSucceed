@@ -183,9 +183,9 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 			ViewHolder myholder;
 			if (convertView == null) {
 				convertView = LayoutInflater.from(getActivity()).inflate(
-						R.layout.test, null);
+						R.layout.adapter_item_proverbs, null);
 				myholder = new ViewHolder();
-				myholder.taici = (TextView) convertView.findViewById(R.id.textView1);
+				myholder.taici = (TextView) convertView.findViewById(R.id.adapter_item_proverbs_tv);
 				convertView.setTag(myholder);
 				Log.v("tag", "null getView " + position + " " + convertView);
 			} else {
