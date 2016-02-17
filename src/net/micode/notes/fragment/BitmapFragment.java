@@ -7,8 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.micode.notes.BitmapHelp;
-import net.micode.notes.ImageActivity;
 import net.micode.notes.R;
+import net.micode.notes.ui.activity.ImageActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;

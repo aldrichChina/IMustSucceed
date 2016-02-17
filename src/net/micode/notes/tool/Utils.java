@@ -413,7 +413,9 @@ public class Utils {
 		}
 		return null;
 	}
-
+	public static void Log( String logTxt) {
+		Log.d("tag", "---------->"+ logTxt);
+	}
 	public static void Logger(Context context, String logTxt) {
 		Log.d("jia", context.getClass().getName() +"---------->"+ logTxt);
 	}

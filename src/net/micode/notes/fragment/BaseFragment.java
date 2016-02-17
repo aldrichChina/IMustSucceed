@@ -1,6 +1,8 @@
 package net.micode.notes.fragment;
 
+import net.micode.notes.R;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 
 import com.umeng.analytics.MobclickAgent;
 
@@ -18,5 +20,11 @@ public class BaseFragment extends Fragment {
 		super.onPause();
 		MobclickAgent.onPageEnd(getActivity().getClass().getName());
 	}
-	
+	public void addFragmentToStack(Fragment fragment, String tag) {
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.replace(R.id.realtabcontent, fragment, tag);
+		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		ft.addToBackStack(null);
+		ft.commit();
+	}
 }

@@ -1,8 +1,7 @@
-package net.micode.notes;
+package net.micode.notes.ui.activity;
 
+import net.micode.notes.R;
 import net.micode.notes.tool.dialogfragment.ConfimDialog;
-import net.micode.notes.ui.activity.BaseActivity;
-import net.micode.notes.ui.activity.MainApplication;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +29,7 @@ public class ImageActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.image);
+		setContentView(R.layout.show_one_image);
 		ViewUtils.inject(this);
 
 		imgUrl = getIntent().getStringExtra("url");

@@ -9,6 +9,7 @@ import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HttpFragment;
 import net.micode.notes.fragment.HttpFragment.OnHeadlineSelectedListener;
 import net.micode.notes.fragment.NewsDetailFragment;
+import net.micode.notes.fragment.PictureFragment;
 import net.micode.notes.fragment.ProfileFragment;
 import net.micode.notes.fragment.SettingsFragment;
 import net.micode.notes.ui.NotesListActivity;
@@ -43,7 +44,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 	private ResideMenuItem itemProfile;
 	private ResideMenuItem itemCalendar;
 	private ResideMenuItem itemSettings;
-
+	private ResideMenuItem itemPicture;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.main);
@@ -110,6 +111,8 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 			changeFragment(new CalendarFragment());
 		} else if (view == itemSettings) {
 			changeFragment(new SettingsFragment());
+		}else if(view == itemPicture){
+			changeFragment(new PictureFragment());
 		}
 
 		resideMenu.closeMenu();
@@ -181,17 +184,17 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 				"Calendar");
 		itemSettings = new ResideMenuItem(this, R.drawable.icon_settings,
 				"Settings");
-
+		itemPicture=new ResideMenuItem(this,R.drawable.abc_ic_menu_selectall_mtrl_alpha,"Picture");
 		itemHome.setOnClickListener(this);
 		itemProfile.setOnClickListener(this);
 		itemCalendar.setOnClickListener(this);
 		itemSettings.setOnClickListener(this);
-
+		itemPicture.setOnClickListener(this);
 		resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
 		resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
 		resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_RIGHT);
 		resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_RIGHT);
-
+		resideMenu.addMenuItem(itemPicture, ResideMenu.DIRECTION_RIGHT);
 		// You can disable a direction by setting ->
 		// resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
 
@@ -240,13 +243,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 	public ResideMenu getResideMenu() {
 		return resideMenu;
 	}
-	public void addFragmentToStack(Fragment fragment, String tag) {
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.replace(R.id.realtabcontent, fragment, tag);
-		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-		ft.addToBackStack(null);
-		ft.commit();
-	}
+	
 
 	@Override
 	public void onArticleSelected(NewsDetailContent detailContent,String tag) {
