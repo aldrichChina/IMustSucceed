@@ -1,25 +1,21 @@
 package net.micode.notes.fragment;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import net.micode.notes.R;
 import net.micode.notes.data.Constant;
 import net.micode.notes.data.MyDatabaseHelper;
-import net.micode.notes.entities.Child;
 import net.micode.notes.entities.HouseSaid;
-import net.micode.notes.entities.Parent;
+import net.micode.notes.tool.Utils;
 import net.micode.notes.tool.HttpUtils.HttpService;
-import net.micode.notes.ui.activity.MainApplication;
 import net.micode.notes.view.XListView;
 import net.micode.notes.view.XListView.IXListViewListener;
-import okhttp3.Request;
-import okhttp3.Response;
-import android.app.Fragment;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -27,17 +23,15 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.db.table.DbModel;
-import com.lidroid.xutils.exception.DbException;
 
 public class DbFragment extends BaseFragment implements IXListViewListener {
 	MyDatabaseHelper dbHelper;
@@ -51,17 +45,20 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 	Gson gson = new Gson();
 	HouseSaidAdapter houseAdapter = new HouseSaidAdapter();
 	HouseSaid houseSaid;
+	private View listHead;
+	private ClipboardManager cm;
 
 	/** Called when the activity is first created. */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.db_fragment, container, false);
+		listHead = LayoutInflater.from(getActivity()).inflate(R.layout.item_main_head, null);
+		cm = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
 		dbHelper = new MyDatabaseHelper(getActivity(), "lemon", 1);
 		db = dbHelper.getReadableDatabase();
 		items.clear();
-		Cursor cursor = db.rawQuery(
-				"select * from said order by inserttime desc", null);
+		Cursor cursor = db.rawQuery("select * from said order by inserttime desc", null);
 		while (cursor.moveToNext()) {
 			houseSaid = new HouseSaid();
 			houseSaid.setTaici(cursor.getString(1));
@@ -77,12 +74,27 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 		} else {
 			tv_empty.setVisibility(View.GONE);
 		}
+		mListView.addHeaderView(listHead);
 		mListView.setPullLoadEnable(true);
 		mListView.setAdapter(houseAdapter);
 		// mListView.setPullLoadEnable(false);
 		// mListView.setPullRefreshEnable(false);
 		mListView.setXListViewListener(this);
 		mHandler = new Handler();
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			private String copyTaici;
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				if(position>1){
+					copyTaici = items.get(position-2).getTaici();
+				}
+				cm.setPrimaryClip(ClipData.newPlainText(copyTaici, copyTaici));
+				Utils.Toast(getActivity(), "箴言复制成功");
+			}
+		});
 		return view;
 	}
 
@@ -162,6 +174,8 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 
 	public class HouseSaidAdapter extends BaseAdapter {
 
+		private String proverbs;
+
 		@Override
 		public int getCount() {
 			return items.size();
@@ -192,7 +206,9 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 				myholder = (ViewHolder) convertView.getTag();
 				Log.v("tag", "getView " + position + " " + convertView);
 			}
-			myholder.taici.setText(items.get(position).getTaici());
+			proverbs = items.get(position).getTaici();
+			myholder.taici.setText(proverbs);
+			
 			return convertView;
 		}
 

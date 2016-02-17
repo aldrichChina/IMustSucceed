@@ -5,25 +5,6 @@
     android:background="@drawable/p_login_bg"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@android:color/black"
-        android:orientation="vertical" >
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:src="@drawable/mvlg" 
-            android:scaleType="fitXY"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/old_man_or_woman" />
-    </LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
