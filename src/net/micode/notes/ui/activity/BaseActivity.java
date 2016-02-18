@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import net.micode.notes.R;
+import net.micode.notes.tool.MD5Util;
 import net.micode.notes.tool.Utils;
 
 import org.apache.http.message.BasicNameValuePair;
@@ -11,8 +12,6 @@ import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -33,7 +32,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -465,6 +463,16 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 			}
 		}
 		return ishasSpace;
+	}
+	/**
+	 * @description: 获得字符MD5摘要
+	 * @param strObj
+	 * @return
+	 * @author: wht
+	 * @date: 2015-3-11 下午2:20:12
+	 */
+	public String GetMD5Code(String strObj) {
+		return MD5Util.md5(strObj);
 	}
 
 }

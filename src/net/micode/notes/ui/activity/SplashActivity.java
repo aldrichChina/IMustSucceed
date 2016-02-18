@@ -1,6 +1,5 @@
 package net.micode.notes.ui.activity;
 
-import net.micode.notes.MyActivity;
 import android.os.Handler;
 import android.view.View;
 
@@ -18,7 +17,7 @@ public class SplashActivity extends BaseActivity{
 			
 			@Override
 			public void run() {
-				start_Activity(SplashActivity.this, MyActivity.class);
+				start_Activity(SplashActivity.this, LoginActivity.class);
 				finish(SplashActivity.this);
 			}
 		}, SPLASH_DISPLAY_LENGHT);

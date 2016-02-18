@@ -416,7 +416,26 @@ public class Utils {
 	public static void Log( String logTxt) {
 		Log.d("tag", "---------->"+ logTxt);
 	}
+	/**
+	 * 打印log
+	 * @param context
+	 * @param logTxt
+	 */
 	public static void Logger(Context context, String logTxt) {
 		Log.d("jia", context.getClass().getName() +"---------->"+ logTxt);
 	}
+	 /** 
+		 * @description: 判断是否有网络连接
+		 */	
+		public static boolean isNetworkConnected(Context context) {  
+		    if (context != null) {  
+		        ConnectivityManager mConnectivityManager = (ConnectivityManager) context  
+		                .getSystemService(Context.CONNECTIVITY_SERVICE);  
+		        NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();  
+		        if (mNetworkInfo != null) {  
+		            return mNetworkInfo.isAvailable();  
+		        }  
+		    }  
+		    return false;  
+		}
 }

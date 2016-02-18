@@ -1,7 +1,5 @@
 package net.micode.notes;
 
-import java.util.List;
-
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.CalendarFragment;

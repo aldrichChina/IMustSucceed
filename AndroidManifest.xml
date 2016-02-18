@@ -41,6 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.LoginActivity" >
+        </activity>
         <activity android:name=".MyActivity" >
         </activity>
         <activity android:name=".ui.activity.ImageActivity" />
