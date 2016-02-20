@@ -129,6 +129,9 @@
     <string name="login_please_input_password">请输入密码</string>
     <string name="login_progress_dialog">正在登录请稍后.....</string>
     <string name="login_loginfailed">哎呀，出错了！请再试试</string>
+    
+    
+    <string name="descr_image">Image</string>
     <plurals name="search_results_title">
         <item quantity="one"><xliff:g id="number" example="1">%1$s</xliff:g> result for \"<xliff:g id="search" example="???">%2$s</xliff:g>\"</item>
         <!-- Case of 0 or 2 or more results. -->

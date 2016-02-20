@@ -10,14 +10,13 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 public class MainApplication extends Application {
@@ -59,7 +58,7 @@ public class MainApplication extends Application {
 				// 内存缓存的最大值
 				.memoryCacheSizePercentage(13)
 				// default
-				.discCache(new UnlimitedDiscCache(cacheDir))
+				.diskCache(new UnlimitedDiskCache(cacheDir))
 				// default 可以自定义缓存路径
 				.discCacheSize(50 * 1024 * 1024)
 				// 50 Mb sd卡(本地)缓存的最大值

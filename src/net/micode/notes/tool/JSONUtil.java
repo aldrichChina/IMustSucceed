@@ -1,9 +1,13 @@
 package net.micode.notes.tool;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.micode.notes.entities.Detailed;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -108,5 +112,32 @@ public class JSONUtil {
 		}
 		return strValue;
 	}
-
+	/**
+	 * @param httpUrl
+	 * @param httpArg
+	 * @return
+	 * @throws IOException
+	 */
+	public static List<Detailed> analysisResponse(String responseBody)throws IOException {
+		List<Detailed> detailedList = new ArrayList<Detailed>();
+		try {
+			JSONObject jsonObject = new JSONObject(responseBody);
+			JSONArray jsonArray = jsonObject.getJSONArray("newslist");
+			for(int i=0;i<jsonArray.length();i++){
+				JSONObject detailJSONObject = jsonArray.optJSONObject(i);
+				Detailed detailed = new Detailed();
+				detailed.setTitle(detailJSONObject.optString("title"));
+				detailed.setDescription(detailJSONObject.optString("description"));
+				detailed.setPicUrl(detailJSONObject.optString("picUrl"));
+				detailed.setUrl(detailJSONObject.optString("url"));
+				detailedList.add(detailed);
+			}
+			for (Detailed detailList : detailedList) {
+				Utils.Log("detailList--->=" + detailList);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return detailedList;
+	}
 }

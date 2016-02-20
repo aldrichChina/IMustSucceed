@@ -8,6 +8,7 @@ import net.micode.notes.R;
 import net.micode.notes.adapter.MeinvAdapter;
 import net.micode.notes.data.Constant;
 import net.micode.notes.entities.Detailed;
+import net.micode.notes.tool.JSONUtil;
 import net.micode.notes.tool.Utils;
 import net.micode.notes.tool.HttpUtils.HttpService;
 import net.micode.notes.ui.activity.ImageActivity;
@@ -50,7 +51,7 @@ public class PictureFragment extends BaseFragment {
 			@Override
 			public void run() {
 				try {
-					analysisResponse(HttpService.OKHttpGet(Constant.HTTPURLMEINV,httpArg));
+					detailedList = JSONUtil.analysisResponse(HttpService.OKHttpGet(Constant.HTTPURLMEINV,httpArg));
 					handler.post(new Runnable() {
 						@Override
 						public void run() {
@@ -65,34 +66,7 @@ public class PictureFragment extends BaseFragment {
 		return view;
 	}
 
-	/**
-	 * @param httpUrl
-	 * @param httpArg
-	 * @return
-	 * @throws IOException
-	 */
-	public List<Detailed> analysisResponse(String responseBody)throws IOException {
-		detailedList = new ArrayList<Detailed>();
-		try {
-			JSONObject jsonObject = new JSONObject(responseBody);
-			JSONArray jsonArray = jsonObject.getJSONArray("newslist");
-			for(int i=0;i<jsonArray.length();i++){
-				JSONObject detailJSONObject = jsonArray.optJSONObject(i);
-				Detailed detailed = new Detailed();
-				detailed.setTitle(detailJSONObject.optString("title"));
-				detailed.setDescription(detailJSONObject.optString("description"));
-				detailed.setPicUrl(detailJSONObject.optString("picUrl"));
-				detailed.setUrl(detailJSONObject.optString("url"));
-				detailedList.add(detailed);
-			}
-			for (Detailed detailList : detailedList) {
-				Utils.Logger(getActivity(),"detailList--->=" + detailList);
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return detailedList;
-	}
+	
 	private void setDate() {
 		listView.setAdapter(new MeinvAdapter(getActivity(), detailedList));
 		setListener();
