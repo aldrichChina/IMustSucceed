@@ -79,18 +79,22 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 	private List<View> views;
 	// 是否开启自动循环
 	private boolean isRunning;
+	// 当前显示View的位置
+	int pagerPosition = 0;
 	/**
 	 * 自动循环的实现策略：1、定时器timer 2、开启子线程，while true循环 3、使用handler方式发送延时消息，实现循环
 	 */
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			// viewPager滑动到下一页
-//			viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-			viewPager.setCurrentItem(viewPager.getCurrentItem()==(imageUrls.size()-1)?0:viewPager.getCurrentItem()+1);
-			Utils.Logger(getActivity(),"viewPager.getCurrentItem()="+ viewPager.getCurrentItem());
+			// viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+			viewPager.setCurrentItem(viewPager.getCurrentItem() == (imageUrls
+					.size() - 1) ? 0 : viewPager.getCurrentItem() + 1);
+			Utils.Logger(getActivity(), "viewPager.getCurrentItem()="
+					+ viewPager.getCurrentItem());
 			// 发送一个延时消息,延时2秒钟继续执行handler，达到循环的效果
 			if (isRunning) {
-				handler.sendEmptyMessageDelayed(0, 1000);
+				handler.sendEmptyMessageDelayed(0, 10000);
 			}
 		};
 	};
@@ -100,17 +104,33 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.db_fragment, container, false);
-		listHead = LayoutInflater.from(getActivity()).inflate(
-				R.layout.item_main_head, null);
+		// 如果之前有保存用户数据
+		if (savedInstanceState != null) {
+			pagerPosition = savedInstanceState.getInt(STATE_POSITION);
+		}
+		initView(view);
+		initData();
+		return view;
+	}
+
+	public void initView(View view) {
+		mListView = (XListView) view.findViewById(R.id.newmessagelist);
+		tv_empty = (TextView) view.findViewById(R.id.tv_empty);
+		listHead = LayoutInflater.from(getActivity()).inflate(R.layout.item_main_head, null);
+		viewPager = (ViewPager) listHead.findViewById(R.id.pager);
+		desc_image = (TextView) listHead.findViewById(R.id.tv_image_desc);
+		point_group = (LinearLayout) listHead.findViewById(R.id.point_group);
+	}
+
+	public void initData() {
+
+		
 		cm = (ClipboardManager) getActivity().getSystemService(
 				Context.CLIPBOARD_SERVICE);
 		dbHelper = new MyDatabaseHelper(getActivity(), "lemon", 1);
 		db = dbHelper.getReadableDatabase();
-		// 当前显示View的位置
-		int pagerPosition = 0;
-		viewPager = (ViewPager) listHead.findViewById(R.id.pager);
-		desc_image = (TextView) listHead.findViewById(R.id.tv_image_desc);
-		point_group = (LinearLayout) listHead.findViewById(R.id.point_group);
+
+		
 		new Thread(new Runnable() {
 
 			@Override
@@ -133,15 +153,10 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 			}
 		}).start();
 
-		// 如果之前有保存用户数据
-		if (savedInstanceState != null) {
-			pagerPosition = savedInstanceState.getInt(STATE_POSITION);
-		}
 		options = new DisplayImageOptions.Builder()
 				.showImageForEmptyUri(R.drawable.ic_empty)
-				.showImageOnFail(R.drawable.ic_error)
-				.resetViewBeforeLoading(true).cacheOnDisc(true)
-				.imageScaleType(ImageScaleType.EXACTLY)
+				.showImageOnFail(R.drawable.mvlg).resetViewBeforeLoading(true)
+				.cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY)
 				.bitmapConfig(Bitmap.Config.RGB_565)
 				.displayer(new FadeInBitmapDisplayer(300)).build();
 
@@ -154,7 +169,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 				return false;
 			}
 		});
-		
+
 		items.clear();
 		Cursor cursor = db.rawQuery(
 				"select * from said order by inserttime desc", null);
@@ -163,9 +178,8 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 			houseSaid.setTaici(cursor.getString(1));
 			items.add(houseSaid);
 		}
-		mListView = (XListView) view.findViewById(R.id.newmessagelist);
-		tv_empty = (TextView) view.findViewById(R.id.tv_empty);
-		ViewUtils.inject(this, view);
+
+		// ViewUtils.inject(this, view);
 		// geneItems();
 		getHouseSaid();
 		if (items.size() == 0) {
@@ -194,7 +208,6 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 				Utils.Toast(getActivity(), "箴言复制成功");
 			}
 		});
-		return view;
 	}
 
 	/**
@@ -233,20 +246,24 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 			point_group.addView(point);
 
 		}
+		desc_image.setText(imageUrls.get(0).getDescription());
 		// 准备好了views，之后设置ViewPager的适配器
 		ImagePagerAdapter adapter = new ImagePagerAdapter(views, imageUrls);
 		// 设置适配器，向viewpager容器中添加图片
 		viewPager.setAdapter(adapter);
 		// 让ViewPager左右滑动的时候无限循环
-//		viewPager.setCurrentItem(Integer.MAX_VALUE / 2- (Integer.MAX_VALUE / 2 % views.size()));
-		Utils.Logger(getActivity(), "Integer.MAX_VALUE="+Integer.MAX_VALUE);
-		Utils.Logger(getActivity(), "Integer.MAX_VALUE="+Integer.MIN_VALUE);
-		Utils.Logger(getActivity(), "Integer.MAX_VALUE / 2="+Integer.MAX_VALUE / 2);
-		Utils.Logger(getActivity(), "Integer.MAX_VALUE / 2 % views.size()="+Integer.MAX_VALUE / 2 % views.size());
+		// viewPager.setCurrentItem(Integer.MAX_VALUE / 2- (Integer.MAX_VALUE /
+		// 2 % views.size()));
+		Utils.Logger(getActivity(), "Integer.MAX_VALUE=" + Integer.MAX_VALUE);
+		Utils.Logger(getActivity(), "Integer.MAX_VALUE=" + Integer.MIN_VALUE);
+		Utils.Logger(getActivity(), "Integer.MAX_VALUE / 2="
+				+ Integer.MAX_VALUE / 2);
+		Utils.Logger(getActivity(), "Integer.MAX_VALUE / 2 % views.size()="
+				+ Integer.MAX_VALUE / 2 % views.size());
 		// 开启自动循环
-				isRunning = true;
-				// 发送延时消息，达到轮播广告的效果
-				handler.sendEmptyMessageDelayed(0, 2000);
+		isRunning = true;
+		// 发送延时消息，达到轮播广告的效果
+		handler.sendEmptyMessageDelayed(0, 15000);
 		// 设置viewpager滑动时候的监听，设置图片的描述和小点点的切换
 		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
 			/**
@@ -326,6 +343,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 			public void run() {
 				String responseBody = HttpService.OKHttpGet(Constant.httpUrl,
 						Constant.httpArg);
+				Utils.Logger(getActivity(), "responseBody=" + responseBody);
 				HouseSaid houseSaid = gson.fromJson(responseBody,
 						HouseSaid.class);
 				if (houseSaid == null)
@@ -419,72 +437,6 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 		}
 	}
 
-	/*
-	 * public void geneItems() {
-	 * 
-	 * String temp = "";
-	 * 
-	 * Parent parent = new Parent(); parent.name = "测试" +
-	 * System.currentTimeMillis(); parent.setAdmin(true);
-	 * parent.setEmail("wyouflf@gmail.com");
-	 * 
-	 * 
-	 * Parent parent2 = new Parent(); parent2.name = "测试2"; parent2.isVIP =
-	 * false;
-	 * 
-	 * 
-	 * try {
-	 * 
-	 * // DbUtils db = DbUtils.create(this.getActivity(), "/sdcard/", //
-	 * "test.db"); DbUtils db = DbUtils.create(this.getActivity());
-	 * db.configAllowTransaction(true); db.configDebug(true);
-	 * 
-	 * Child child = new Child(); child.name = "child' name"; //
-	 * db.saveBindingId(parent); // child.parent = new
-	 * ForeignLazyLoader<Parent>(Child.class, // "parentId", parent.getId()); //
-	 * child.parent = parent;
-	 * 
-	 * Parent test = db.findFirst(Selector.from(Parent.class)); // 通过parent的属性查找
-	 * // Parent test = // db.findFirst(Selector.from(Parent.class).where("id",
-	 * "in", new // int[]{1, 3, 6})); // Parent test = //
-	 * db.findFirst(Selector.from(Parent.class).where("id", "between", // new
-	 * String[]{"1", "5"})); if (test != null) { child.parent = test; temp +=
-	 * "first parent:" + test + "\n"; items.add(temp); } else { child.parent =
-	 * parent; }
-	 * 
-	 * parent.setTime(new Date()); parent.setDate(new java.sql.Date(new
-	 * Date().getTime()));
-	 * 
-	 * db.saveBindingId(child);// 保存对象关联数据库生成的id
-	 * 
-	 * List<Child> children = db.findAll(Selector.from(Child.class));//
-	 * .where(WhereBuilder.b("name", // "=", // "child' name"))); temp +=
-	 * "children size:" + children.size() + "\n"; items.add(temp); if
-	 * (children.size() > 0) { temp += "last children:" +
-	 * children.get(children.size() - 1) + "\n"; items.add(temp); }
-	 * 
-	 * Calendar calendar = Calendar.getInstance(); calendar.add(Calendar.DATE,
-	 * -1); calendar.add(Calendar.HOUR, 3);
-	 * 
-	 * List<Parent> list = db.findAll(Selector.from(Parent.class) .where("id",
-	 * "<", 54).and("time", ">", calendar.getTime()) .orderBy("id").limit(10));
-	 * temp += "find parent size:" + list.size() + "\n"; items.add(temp); if
-	 * (list.size() > 0) { temp += "last parent:" + list.get(list.size() - 1) +
-	 * "\n"; items.add(temp); }
-	 * 
-	 * // parent.name = "hahaha123"; // db.update(parent);
-	 * 
-	 * Parent entity = db.findById(Parent.class, child.parent.getId()); temp +=
-	 * "find by id:" + entity.toString() + "\n"; items.add(temp);
-	 * 
-	 * List<DbModel> dbModels = db.findDbModelAll(Selector
-	 * .from(Parent.class).groupBy("name") .select("name",
-	 * "count(name) as count")); temp += "group by result:" +
-	 * dbModels.get(0).getDataMap() + "\n"; items.add(temp);
-	 * 
-	 * } catch (DbException e) { temp += "error :" + e.getMessage() + "\n";
-	 * items.add(temp); } }
-	 */
 	private class ImagePagerAdapter extends PagerAdapter {
 		private List<Detailed> images;
 		private LayoutInflater inflater;
@@ -511,7 +463,8 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 		// PagerAdapter只缓存三张要显示的图片，如果滑动的图片超出了缓存的范围，就会调用这个方法，将图片销毁
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			((ViewPager) container).removeView(views.get(position % views.size()));
+			((ViewPager) container).removeView(views.get(position
+					% views.size()));
 		}
 
 		@Override
