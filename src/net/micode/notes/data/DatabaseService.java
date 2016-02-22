@@ -1,6 +1,11 @@
 package net.micode.notes.data;   
   
   
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import net.micode.notes.entities.HouseSaid;
 import net.micode.notes.entities.User;
 import net.micode.notes.tool.Utils;
 import android.content.Context;
@@ -59,6 +64,36 @@ public class DatabaseService {
 						"insert into user(enterprisename,lastlogintime,lastloginip)values(?,?,?)",
 						new Object[] { Enterprisename, Lastlogintime,Lastloginip });
 	  return true;
+  }
+  public boolean insertSaid(HouseSaid houseSaid){
+	  dbOpenHelper.getReadableDatabase().execSQL("insert into said(_id,taici,cat,catcn,show,source,inserttime)values(?,?,?,?,?,?,?)",
+			  new Object[]{
+			  houseSaid.getId(),
+			  houseSaid.getTaici(),
+			  houseSaid.getCat(),
+			  houseSaid.getCatcn(),
+			  houseSaid.getShow()==null?"":houseSaid.getShow() ,
+			  houseSaid.getSource(),
+			  Long.toString(new Date().getTime())});
+	  Utils.Log("insertSaid插入成功");
+	return true;
+	  
+  }
+  public List<HouseSaid> rawQuerySaid(){
+	  List<HouseSaid> tmpItems = new ArrayList<HouseSaid>();
+	  Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery(
+				"select * from said order by inserttime desc", null);
+		while (cursor.moveToNext()) {
+			HouseSaid houseSaid = new HouseSaid();
+			houseSaid.setId(cursor.getString(cursor.getColumnIndex("_id")));
+			houseSaid.setTaici(cursor.getString(cursor.getColumnIndex("taici")));
+			houseSaid.setCat(cursor.getString(cursor.getColumnIndex("cat")));
+			houseSaid.setCatcn(cursor.getString(cursor.getColumnIndex("catcn")));
+			houseSaid.setShow(cursor.getString(cursor.getColumnIndex("show")));
+			houseSaid.setSource(cursor.getString(cursor.getColumnIndex("source")));
+			tmpItems.add(houseSaid);
+		}
+		return tmpItems;
   }
   /*  public void saveConfigInfo(ConfigInfo configInfo) {   
         dbOpenHelper.getWritableDatabase().execSQL(   

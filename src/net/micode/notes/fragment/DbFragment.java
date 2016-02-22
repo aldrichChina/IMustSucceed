@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.micode.notes.R;
 import net.micode.notes.data.Constant;
+import net.micode.notes.data.DatabaseService;
 import net.micode.notes.data.MyDatabaseHelper;
 import net.micode.notes.entities.Detailed;
 import net.micode.notes.entities.HouseSaid;
@@ -61,8 +62,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 	ViewPager viewPager;
 	private TextView desc_image;
 	private LinearLayout point_group;
-	MyDatabaseHelper dbHelper;
-	SQLiteDatabase db;
+	DatabaseService dbHelper;
 	private XListView mListView;
 	private List<HouseSaid> items = new ArrayList<HouseSaid>();
 	private List<HouseSaid> tmpItems = new ArrayList<HouseSaid>();
@@ -81,6 +81,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 	private boolean isRunning;
 	// 当前显示View的位置
 	int pagerPosition = 0;
+	
 	/**
 	 * 自动循环的实现策略：1、定时器timer 2、开启子线程，while true循环 3、使用handler方式发送延时消息，实现循环
 	 */
@@ -123,14 +124,9 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 	}
 
 	public void initData() {
-
-		
 		cm = (ClipboardManager) getActivity().getSystemService(
 				Context.CLIPBOARD_SERVICE);
-		dbHelper = new MyDatabaseHelper(getActivity());
-		db = dbHelper.getReadableDatabase();
-
-		
+		dbHelper = new DatabaseService(getActivity());
 		new Thread(new Runnable() {
 
 			@Override
@@ -171,14 +167,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 		});
 
 		items.clear();
-		Cursor cursor = db.rawQuery(
-				"select * from said order by inserttime desc", null);
-		while (cursor.moveToNext()) {
-			houseSaid = new HouseSaid();
-			houseSaid.setTaici(cursor.getString(1));
-			items.add(houseSaid);
-		}
-
+		items= dbHelper.rawQuerySaid();
 		// ViewUtils.inject(this, view);
 		// geneItems();
 		getHouseSaid();
@@ -348,17 +337,9 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 						HouseSaid.class);
 				if (houseSaid == null)
 					return;
-				db.execSQL(
-						"insert into said values(null,?,?)",
-						new String[] { houseSaid.getTaici(),
-								Long.toString(new Date().getTime()) });
-				Cursor cursor = db.rawQuery(
-						"select * from said order by inserttime desc", null);
-				while (cursor.moveToNext()) {
-					houseSaid = new HouseSaid();
-					houseSaid.setTaici(cursor.getString(1));
-					tmpItems.add(houseSaid);
-				}
+				dbHelper.insertSaid(houseSaid);
+//				db.execSQL("insert into said values(null,?,?)",new String[] { houseSaid.getTaici(),Long.toString(new Date().getTime()) });
+				tmpItems=dbHelper.rawQuerySaid();
 			}
 		}).start();
 		if (tmpItems.size() != 0) {
@@ -432,8 +413,8 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		if (db != null) {
-			db.close();
+		if (dbHelper != null) {
+			dbHelper.close();
 		}
 	}
 

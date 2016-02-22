@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 	private static final String name = "lemon.db";// 数据库名称
 	private static final int version = 1;// 数据库版本
-	final String CREATE_TABLE_SQL = "create table said(_id integer primary "+ "key autoincrement , word , inserttime)";
+	final String CREATE_TABLE_SQL = "create table said(_id integer primary key ,taici,cat,catcn,show,source,inserttime)";
 	String CREATE_TABLE_USER="CREATE TABLE IF NOT EXISTS user (id integer primary key autoincrement, enterprisename, lastlogintime,lastloginip)";
 	public MyDatabaseHelper(Context context) {
 		super(context, name, null, version);

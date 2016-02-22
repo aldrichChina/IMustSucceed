@@ -414,7 +414,7 @@ public class Utils {
 		return null;
 	}
 	public static void Log( String logTxt) {
-		Log.d("tag", "---------->"+ logTxt);
+		Log.d("jia", "---------->"+ logTxt);
 	}
 	/**
 	 * 打印log
