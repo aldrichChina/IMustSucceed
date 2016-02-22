@@ -7,6 +7,7 @@ import net.micode.notes.InvoicePreference;
 import net.micode.notes.MyActivity;
 import net.micode.notes.R;
 import net.micode.notes.data.ConstantUtil;
+import net.micode.notes.data.DatabaseService;
 import net.micode.notes.tool.DeviceInfoUtil;
 import net.micode.notes.tool.NetWorkConnect;
 import net.micode.notes.tool.Utils;
@@ -133,9 +134,8 @@ public class LoginActivity extends BaseActivity {
 			for (String temp : params) {
 				list.add(temp);
 			}
-
 			// userService.SetConnect();
-			Boolean flag = HttpService.login(list);
+			Boolean flag = HttpService.login(list,LoginActivity.this);
 
 			return flag;
 		}

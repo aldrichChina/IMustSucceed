@@ -127,7 +127,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 		
 		cm = (ClipboardManager) getActivity().getSystemService(
 				Context.CLIPBOARD_SERVICE);
-		dbHelper = new MyDatabaseHelper(getActivity(), "lemon", 1);
+		dbHelper = new MyDatabaseHelper(getActivity());
 		db = dbHelper.getReadableDatabase();
 
 		

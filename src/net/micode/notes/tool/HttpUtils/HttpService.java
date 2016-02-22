@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.micode.notes.data.ConstantUtil;
+import net.micode.notes.data.DatabaseService;
 import net.micode.notes.data.ErrorCode;
 import net.micode.notes.entities.RelationUserEnterprise;
 import net.micode.notes.entities.User;
@@ -24,6 +25,7 @@ import okhttp3.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.lidroid.xutils.http.RequestParams;
@@ -50,7 +52,7 @@ public class HttpService {
 	 * @author: wht
 	 * @date: 2015-3-5 上午11:04:53
 	 */
-	public static boolean login(List<String> list) {
+	public static boolean login(List<String> list,Context context) {
 		// http发送请求
 		Boolean flag = false;
 		JSONObject jsonObject = null;
@@ -80,6 +82,7 @@ public class HttpService {
 						Utils.Log(rue.toString());
 					}
 //					flag = userDAO.saveOrUpdate(user);
+					flag = new DatabaseService(context).insertUser(user);
 					Utils.Log(user.toString());
 //					ConstantUtil.loginDB = 1;
 //					Log.d("tag", "本地保存数据ConstantUtil.loginDB--->"+ ConstantUtil.loginDB);
