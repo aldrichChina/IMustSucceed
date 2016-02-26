@@ -16,7 +16,8 @@ import android.database.Cursor;
  *  
  */  
 public class DatabaseService {   
-    private static MyDatabaseHelper dbOpenHelper;   
+    private static MyDatabaseHelper dbOpenHelper;
+	private String enterprisename;   
   
     public DatabaseService(Context context) {   
         dbOpenHelper = new MyDatabaseHelper(context);   
@@ -57,12 +58,12 @@ public class DatabaseService {
         dbOpenHelper.getWritableDatabase().execSQL(sql);   
     }   
   public  boolean insertUser(User user){
-	  String Enterprisename=user.getRelationuserenterprise().getEnterprisename()==null?"":user.getRelationuserenterprise().getEnterprisename();
+	  if(user.getRelationuserenterprise()!=null){enterprisename = user.getRelationuserenterprise().getEnterprisename()==null?"":user.getRelationuserenterprise().getEnterprisename();}
 	  String Lastlogintime=user.getLastlogintime()==null?"":user.getLastlogintime().toString();
 	  String Lastloginip= user.getLastloginip()==null?"":user.getLastloginip();
 		dbOpenHelper.getReadableDatabase().execSQL(
 						"insert into user(enterprisename,lastlogintime,lastloginip)values(?,?,?)",
-						new Object[] { Enterprisename, Lastlogintime,Lastloginip });
+						new Object[] { enterprisename==null?"Enterprisename":enterprisename, Lastlogintime,Lastloginip });
 	  return true;
   }
   public boolean insertSaid(HouseSaid houseSaid){

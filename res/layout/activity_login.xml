@@ -8,15 +8,15 @@
 	<EditText 
 	    android:id="@+id/phone"
 	    android:layout_width="match_parent"
+	    android:text="18515634368"
 	    android:layout_height="wrap_content"
-	    android:text="13671081161"
 	    android:hint="电话"
 	    />
 	<EditText 
 	    android:id="@+id/password"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:text="123456"
+	    android:text="aaaa"
 	    android:hint="密码"
 	    />
 	<Button 

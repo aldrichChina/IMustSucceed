@@ -100,6 +100,7 @@ public class LoginActivity extends BaseActivity {
 	private void loginFirst(String type) {
 		String userNameValue = etvUserId.getText().toString();
 		String passwordValue = etvPassword.getText().toString();
+		
 		passwordValue = GetMD5Code(passwordValue);
 		mTask = new LoginTask();
 		// mTask.SetContent(this);

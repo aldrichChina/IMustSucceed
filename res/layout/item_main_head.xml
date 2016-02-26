@@ -4,44 +4,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:orientation="vertical" >
+        android:background="@android:color/black" >
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
             android:layout_width="fill_parent"
             android:layout_height="230dp" />
 
-        <LinearLayout
-            android:id="@+id/desc_layout"
+        <TextView
+            android:id="@+id/tv_image_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#33000000"
-            android:orientation="vertical" >
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:layout_alignBottom="@id/pager"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <!-- 小点点动态的通过代码区添加，这里只提供一个容器，用来存储小点点 -->
 
-            <TextView
-                android:id="@+id/tv_image_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-
-            <!-- 小点点动态的通过代码区添加，这里只提供一个容器，用来存储小点点 -->
-
-            <LinearLayout
-                android:id="@+id/point_group"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:background="@drawable/old_man_or_woman"
-                android:orientation="horizontal" >
-            </LinearLayout>
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/point_group"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/old_man_or_woman"
+        android:orientation="horizontal" >
     </LinearLayout>
 
 </LinearLayout>
