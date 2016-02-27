@@ -70,7 +70,7 @@ public class NewsAdapter extends BaseAdapter implements UpdateNewsAdapter {
 		}
 		holder.title.setSelected(true);
 		List<NewsImageUrls> imageurls = newsList.get(position).getImageurls();
-		if (!imageurls.isEmpty()) {
+		if (imageurls!=null) {
 			MainApplication.imageLoader.displayImage(newsList.get(position)
 					.getImageurls().get(0).getUrl(), holder.pic);
 		}

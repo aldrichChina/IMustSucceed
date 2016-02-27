@@ -7,7 +7,10 @@ import java.util.List;
 
 import net.micode.notes.R;
 import net.micode.notes.adapter.NewsAdapter;
+import net.micode.notes.asynctask.ContentAsyncTask;
+import net.micode.notes.asynctask.ContentAsyncTask.ContentCallback;
 import net.micode.notes.data.Constant;
+import net.micode.notes.data.DatabaseService;
 import net.micode.notes.entities.NewsBody;
 import net.micode.notes.entities.NewsChannel;
 import net.micode.notes.entities.NewsDetailContent;
@@ -35,15 +38,14 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 	private Handler handler = new Handler();
 	private TextView tv_empty;
 	private UpdateNewsAdapter upadapter;
-	Gson gson = new Gson();
+	private DatabaseService databaseService;
 	OnHeadlineSelectedListener mCallback;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.http_fragment, container, false);
-
+		databaseService=new DatabaseService(getActivity());
 		getTechnologyNews();
 		adapter = new NewsAdapter(getActivity(), newsList);
 		mListView = (XListView) view.findViewById(R.id.xlistView_newslist);
@@ -100,26 +102,12 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 
 	private void getTechnologyNews() {
 
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				String newsokHttpGetReturn = HttpService.OKHttpGet(
-						Constant.HTTPURL + Constant.MailData, null);
-				NewsChannel newsChannel = gson.fromJson(newsokHttpGetReturn,
-						NewsChannel.class);
-				Utils.Logger(getActivity(), newsChannel.toString());
-				if (newsChannel.getShowapi_res_code() != 0) {
-					return;
-				}
-				NewsBody showapi_res_body = newsChannel.getShowapi_res_body();
-				NewsPageBean pagebean = showapi_res_body.getPagebean();
-				newsList = pagebean.getContentlist();
-				Utils.Logger(getActivity(), pagebean.toString());
-				handler.post(new Runnable() {
-
+				ContentAsyncTask contentAsyncTask=new ContentAsyncTask(getActivity(), new ContentCallback() {
+					
 					@Override
-					public void run() {
+					public void send(Boolean result) {
+						if(result){
+							newsList = databaseService.rawQueryNewsDetailContent();
 						if (adapter instanceof UpdateNewsAdapter) {
 							adapter.upadapter(newsList);
 						}
@@ -130,14 +118,15 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 							tv_empty.setVisibility(View.INVISIBLE);
 						}
 						onLoad();
-					}
+					
+					}else{
+						Utils.Toast(getActivity(), "哎呀，出错了！请再试试");
+					}}
 				});
-			}
-
-		}).start();
+				contentAsyncTask.execute();
 
 	}
-
+	/** 停止刷新， */
 	public interface UpdateNewsAdapter {
 		public void upadapter(List<NewsDetailContent> newsList);
 	}

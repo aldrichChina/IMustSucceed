@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import net.micode.notes.entities.HouseSaid;
+import net.micode.notes.entities.NewsDetailContent;
+import net.micode.notes.entities.NewsImageUrls;
 import net.micode.notes.entities.User;
 import net.micode.notes.tool.Utils;
 import android.content.Context;
@@ -15,6 +17,10 @@ import android.database.Cursor;
  * @author 阿福（trygf521@126.com）  
  *  
  */  
+/**
+ * @author Aldrich_jia
+ *
+ */
 public class DatabaseService {   
     private static MyDatabaseHelper dbOpenHelper;
 	private String enterprisename;   
@@ -66,6 +72,50 @@ public class DatabaseService {
 						new Object[] { enterprisename==null?"Enterprisename":enterprisename, Lastlogintime,Lastloginip });
 	  return true;
   }
+ /**
+ * @param newsDetailContent
+ * @return
+ */
+public boolean insertNewsDetailContent(NewsDetailContent newsDetailContent){
+	String channelId=newsDetailContent.getChannelId();
+	String channelName=newsDetailContent.getChannelName();
+	String desc=newsDetailContent.getDesc();
+//	String imageUrl=newsDetailContent.getImageurls().get(0).getUrl()==null?"没有图片路径":newsDetailContent.getImageurls().get(0).getUrl();
+	String link=newsDetailContent.getLink();
+	String long_desc=newsDetailContent.getLong_desc();
+	String pubDate=newsDetailContent.getPubDate();
+	String source=newsDetailContent.getSource();
+	String title=newsDetailContent.getTitle();
+	  dbOpenHelper.getReadableDatabase().execSQL("insert into NewsDetailContent("
+	  		+ "_id,"
+	  		+ "channelName,"
+	  		+ "desc,"
+	  		+ "link,"
+	  		+ "long_desc,"
+	  		+ "pubDate,"
+	  		+ "source,"
+	  		+ "title)values(?,?,?,?,?,?,?,?)",new Object[]{channelId,channelName,desc,link,long_desc,pubDate,source,title});
+	return false;
+  }
+	public  List<NewsDetailContent> rawQueryNewsDetailContent(){
+		List<NewsDetailContent> newsDetailContentList=new ArrayList<NewsDetailContent>();
+		Cursor cursor=dbOpenHelper.getReadableDatabase().rawQuery("select * from NewsDetailContent order by pubDate desc", null);
+		while(cursor.moveToNext()){
+			NewsDetailContent newsDetailContent=new NewsDetailContent();
+			newsDetailContent.setChannelId(cursor.getString(cursor.getColumnIndex("channelId")));
+			newsDetailContent.setChannelName(cursor.getString(cursor.getColumnIndex("channelName")));
+			newsDetailContent.setDesc(cursor.getString(cursor.getColumnIndex("desc")));
+//			newsDetailContent.setImageurls(cursor.getFloat((cursor.getColumnIndex("imageurls")));
+			newsDetailContent.setLink(cursor.getString(cursor.getColumnIndex("link")));
+			newsDetailContent.setLong_desc(cursor.getString(cursor.getColumnIndex("long_desc")));
+			newsDetailContent.setPubDate(cursor.getString(cursor.getColumnIndex("pubDate")));
+			newsDetailContent.setSource(cursor.getString(cursor.getColumnIndex("source")));
+			newsDetailContent.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+			newsDetailContentList.add(newsDetailContent);
+		}
+		return newsDetailContentList;
+		
+	}
   public boolean insertSaid(HouseSaid houseSaid){
 	  dbOpenHelper.getReadableDatabase().execSQL("insert into said(_id,taici,cat,catcn,show,source,inserttime)values(?,?,?,?,?,?,?)",
 			  new Object[]{
