@@ -17,6 +17,7 @@ public class HouseSaid {
 	private String catcn;
 	private String show;
 	private String source;
+
 	public String getId() {
 		return id;
 	}

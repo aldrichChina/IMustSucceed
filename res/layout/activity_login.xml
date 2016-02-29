@@ -5,24 +5,27 @@
     android:gravity="center_vertical"
     android:orientation="vertical"
     tools:context="com.jia.login.MainActivity" >
-	<EditText 
-	    android:id="@+id/phone"
-	    android:layout_width="match_parent"
-	    android:text="18515634368"
-	    android:layout_height="wrap_content"
-	    android:hint="电话"
-	    />
-	<EditText 
-	    android:id="@+id/password"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:text="aaaa"
-	    android:hint="密码"
-	    />
-	<Button 
-	    android:id="@+id/loginbtn"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:text="登录"
-	    />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="电话"
+        android:inputType="textPassword"
+        android:text="18515634368" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:text="aaaa" />
+
+    <Button
+        android:id="@+id/loginbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登录" />
+
 </LinearLayout>

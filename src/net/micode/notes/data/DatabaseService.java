@@ -23,7 +23,8 @@ import android.database.Cursor;
  */
 public class DatabaseService {   
     private static MyDatabaseHelper dbOpenHelper;
-	private String enterprisename;   
+	private String enterprisename;
+	  
   
     public DatabaseService(Context context) {   
         dbOpenHelper = new MyDatabaseHelper(context);   
@@ -77,35 +78,50 @@ public class DatabaseService {
  * @return
  */
 public boolean insertNewsDetailContent(NewsDetailContent newsDetailContent){
+	String imageUrl; 
+	List<NewsImageUrls> imageurls = newsDetailContent.getImageurls();
+	if( imageurls!=null&&imageurls.size()>0){
+		
+		NewsImageUrls newsImageUrls = imageurls.get(0);
+		imageUrl = newsImageUrls.getUrl()==null?"":newsDetailContent.getImageurls().get(0).getUrl();
+	}else{
+		imageUrl="";
+	}
 	String channelId=newsDetailContent.getChannelId();
 	String channelName=newsDetailContent.getChannelName();
 	String desc=newsDetailContent.getDesc();
-//	String imageUrl=newsDetailContent.getImageurls().get(0).getUrl()==null?"没有图片路径":newsDetailContent.getImageurls().get(0).getUrl();
 	String link=newsDetailContent.getLink();
 	String long_desc=newsDetailContent.getLong_desc();
 	String pubDate=newsDetailContent.getPubDate();
 	String source=newsDetailContent.getSource();
 	String title=newsDetailContent.getTitle();
 	  dbOpenHelper.getReadableDatabase().execSQL("insert into NewsDetailContent("
-	  		+ "_id,"
+	  		+ "channelId,"
 	  		+ "channelName,"
 	  		+ "desc,"
+	  		+"imageUrl,"
 	  		+ "link,"
 	  		+ "long_desc,"
 	  		+ "pubDate,"
 	  		+ "source,"
-	  		+ "title)values(?,?,?,?,?,?,?,?)",new Object[]{channelId,channelName,desc,link,long_desc,pubDate,source,title});
+	  		+ "title)values(?,?,?,?,?,?,?,?,?)",new Object[]{channelId,channelName,desc,imageUrl,link,long_desc,pubDate,source,title});
 	return false;
   }
 	public  List<NewsDetailContent> rawQueryNewsDetailContent(){
 		List<NewsDetailContent> newsDetailContentList=new ArrayList<NewsDetailContent>();
 		Cursor cursor=dbOpenHelper.getReadableDatabase().rawQuery("select * from NewsDetailContent order by pubDate desc", null);
 		while(cursor.moveToNext()){
+			List<NewsImageUrls>imageurlsList=new ArrayList<NewsImageUrls>();
+			NewsImageUrls newsImageUrls=new NewsImageUrls();
+			int imageurlsIndex = cursor.getColumnIndex("imageUrl");
+			String imageurls = cursor.getString(imageurlsIndex);
+			newsImageUrls.setUrl(imageurls);
+			imageurlsList.add(newsImageUrls);
 			NewsDetailContent newsDetailContent=new NewsDetailContent();
 			newsDetailContent.setChannelId(cursor.getString(cursor.getColumnIndex("channelId")));
 			newsDetailContent.setChannelName(cursor.getString(cursor.getColumnIndex("channelName")));
 			newsDetailContent.setDesc(cursor.getString(cursor.getColumnIndex("desc")));
-//			newsDetailContent.setImageurls(cursor.getFloat((cursor.getColumnIndex("imageurls")));
+			newsDetailContent.setImageurls(imageurlsList);
 			newsDetailContent.setLink(cursor.getString(cursor.getColumnIndex("link")));
 			newsDetailContent.setLong_desc(cursor.getString(cursor.getColumnIndex("long_desc")));
 			newsDetailContent.setPubDate(cursor.getString(cursor.getColumnIndex("pubDate")));

@@ -91,8 +91,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 			// viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
 			viewPager.setCurrentItem(viewPager.getCurrentItem() == (imageUrls
 					.size() - 1) ? 0 : viewPager.getCurrentItem() + 1);
-			Utils.Logger(getActivity(), "viewPager.getCurrentItem()="
-					+ viewPager.getCurrentItem());
+			Utils.Log("viewPager.getCurrentItem()="+ viewPager.getCurrentItem());
 			// 发送一个延时消息,延时2秒钟继续执行handler，达到循环的效果
 			if (isRunning) {
 				handler.sendEmptyMessageDelayed(0, 10000);

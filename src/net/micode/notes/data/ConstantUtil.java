@@ -29,7 +29,7 @@ public class ConstantUtil {
 	public static final String DATABASE_PASSWORD = "Mutation.2016!@#";
 	// "Mutation.2016!@#";
 	// public static final String URL = "http://192.168.32.220:7070";
-	public static final String URL = "http://invoice.aisino.com";
+	public static final String URL = "http://172.26.2.109";
 	// jsessionid "http://invoice.aisino.com";
 	public static final String JSESSIONID = "jsessionid";
 	// token

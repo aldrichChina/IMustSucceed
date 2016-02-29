@@ -19,6 +19,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -29,11 +31,11 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 
-public class MyActivity extends BaseActivity implements OnLongClickListener ,OnHeadlineSelectedListener{
+public class MyActivity extends BaseActivity implements OnLongClickListener,
+		OnHeadlineSelectedListener {
 	private FragmentManager fragmentManager;
 	private RadioGroup bottomRg;
-	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),
-			new BitmapFragment() };
+	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),new BitmapFragment() };
 	private FragmentTransaction beginTransaction;
 	private TextView toptitle;
 	private ResideMenu resideMenu;
@@ -43,6 +45,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 	private ResideMenuItem itemCalendar;
 	private ResideMenuItem itemSettings;
 	private ResideMenuItem itemPicture;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.main);
@@ -109,7 +112,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 			changeFragment(new CalendarFragment());
 		} else if (view == itemSettings) {
 			changeFragment(new SettingsFragment());
-		}else if(view == itemPicture){
+		} else if (view == itemPicture) {
 			changeFragment(new PictureFragment());
 		}
 
@@ -141,10 +144,13 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 		}
 		if (fragmentArray[x].isAdded()) {
 			transaction.show(fm.findFragmentByTag(tag)).hide(fragmentArray[y])
-					.hide(fragmentArray[z]).hide(fm.findFragmentByTag("fragment")).addToBackStack(null).commit();
+					.hide(fragmentArray[z])
+					.hide(fm.findFragmentByTag("fragment"))
+					.addToBackStack(null).commit();
 		} else {
 			transaction.add(R.id.realtabcontent, fragmentArray[x], tag)
-					.hide(fragmentArray[y]).hide(fragmentArray[z]).hide(fm.findFragmentByTag("fragment"))
+					.hide(fragmentArray[y]).hide(fragmentArray[z])
+					.hide(fm.findFragmentByTag("fragment"))
 					.addToBackStack(null).commit();
 		}
 
@@ -182,7 +188,8 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 				"Calendar");
 		itemSettings = new ResideMenuItem(this, R.drawable.icon_settings,
 				"Settings");
-		itemPicture=new ResideMenuItem(this,R.drawable.abc_ic_menu_selectall_mtrl_alpha,"Picture");
+		itemPicture = new ResideMenuItem(this,
+				R.drawable.abc_ic_menu_selectall_mtrl_alpha, "Picture");
 		itemHome.setOnClickListener(this);
 		itemProfile.setOnClickListener(this);
 		itemCalendar.setOnClickListener(this);
@@ -220,14 +227,15 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 	private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
 		@Override
 		public void openMenu() {
-//			Utils.ToastMessage(context, "Menu is opened!");
+			// Utils.ToastMessage(context, "Menu is opened!");
 		}
 
 		@Override
 		public void closeMenu() {
-//			Utils.ToastMessage(context, "Menu is closed!");
+			// Utils.ToastMessage(context, "Menu is closed!");
 		}
 	};
+	private NewsDetailFragment newFragment;
 
 	private void changeFragment(Fragment targetFragment) {
 		resideMenu.clearIgnoredViewList();
@@ -241,37 +249,47 @@ public class MyActivity extends BaseActivity implements OnLongClickListener ,OnH
 	public ResideMenu getResideMenu() {
 		return resideMenu;
 	}
-	
 
 	@Override
-	public void onArticleSelected(NewsDetailContent detailContent,String tag) {
-		  // 用户选中HeadlinesFragment中的头标题后
-        // 做一些必要的业务操作
+	public void onArticleSelected(NewsDetailContent detailContent, String tag) {
+		// 用户选中HeadlinesFragment中的头标题后
+		// 做一些必要的业务操作
 
-		NewsDetailFragment articleFrag = (NewsDetailFragment)getFragmentManager().findFragmentByTag(tag);
+		NewsDetailFragment articleFrag = (NewsDetailFragment) getFragmentManager()
+				.findFragmentByTag(tag);
 
-        if (articleFrag != null) {
-            // 如果 article frag 不为空，那么我们在同时显示两个fragmnet的布局中...
+		if (articleFrag != null) {
+			// 如果 article frag 不为空，那么我们在同时显示两个fragmnet的布局中...
 
-            // 调用ArticleFragment中的方法去更新它的内容
-            articleFrag.updateArticleView(detailContent);
-        } else {
-            // 否则，我们就是在仅包含一个fragment的布局中并需要交换fragment...
+			// 调用ArticleFragment中的方法去更新它的内容
+			articleFrag.updateArticleView(detailContent);
+		} else {
+			// 否则，我们就是在仅包含一个fragment的布局中并需要交换fragment...
 
-            // 创建fragment并给他一个跟选中的文章有关的参数
-        	NewsDetailFragment newFragment = new NewsDetailFragment();
-            Bundle args = new Bundle();
-            args.putSerializable("news_detailContent", detailContent);
-            newFragment.setArguments(args);
-        
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+			newFragment = new NewsDetailFragment();
+			Bundle args = new Bundle();
+			args.putSerializable("news_detailContent", detailContent);
+			newFragment.setArguments(args);
 
-            // 用这个fragment替换任何在fragment_container中的东西
-            // 并添加事务到back stack中以便用户可以回退到之前的状态
-            transaction.replace(R.id.realtabcontent, newFragment,tag);
-            transaction.addToBackStack(null);
+			FragmentTransaction transaction = getFragmentManager()
+					.beginTransaction();
 
-            // 提交事务
-            transaction.commit();
-	}}
+			// 用这个fragment替换任何在fragment_container中的东西
+			// 并添加事务到back stack中以便用户可以回退到之前的状态
+			transaction.replace(R.id.realtabcontent, newFragment, tag);
+			transaction.addToBackStack(null);
+
+			// 提交事务
+			transaction.commit();
+		}
 	}
+	@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        Log.d("ActionBar", "OnKey事件");
+        if(newFragment instanceof NewsDetailFragment){
+        	newFragment.onKeyDown(keyCode, event);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+}

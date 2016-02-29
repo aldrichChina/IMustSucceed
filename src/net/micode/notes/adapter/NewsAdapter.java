@@ -76,7 +76,7 @@ public class NewsAdapter extends BaseAdapter implements UpdateNewsAdapter {
 		}
 		holder.title.setText(newsList.get(position).getTitle());
 		holder.time.setText(newsList.get(position).getPubDate());
-		holder.description.setText(newsList.get(position).getLong_desc());
+		holder.description.setText(newsList.get(position).getDesc());
 		return convertView;
 	}
 
