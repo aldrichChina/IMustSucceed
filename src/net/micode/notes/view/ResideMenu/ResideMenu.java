@@ -594,7 +594,7 @@ public class ResideMenu extends FrameLayout {
                 pressedState = PRESSED_DOWN;
                 break;
 
-            case MotionEvent.ACTION_MOVE:
+           /* case MotionEvent.ACTION_MOVE:
                 if (isInIgnoredView || isInDisableDirection(scaleDirection))
                     break;
 
@@ -638,7 +638,7 @@ public class ResideMenu extends FrameLayout {
                     return true;
                 }
 
-                break;
+                break;*/
 
             case MotionEvent.ACTION_UP:
 
