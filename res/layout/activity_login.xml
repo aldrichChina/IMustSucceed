@@ -36,7 +36,8 @@
                     android:background="@drawable/edittext_default"
                     android:hint="手机号码/邮箱地址/陌陌号"
                     android:inputType="text"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="86930007" />
 
                 <EditText
                     android:id="@+id/login_et_pwd"
@@ -47,9 +48,10 @@
                     android:hint="输入密码"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="123456" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:id="@+id/login_htv_forgotpassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,7 +61,7 @@
                     android:textColor="@color/text_color_selector_default"
                     android:textSize="16sp" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:id="@+id/login_htv_selectcountrycode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

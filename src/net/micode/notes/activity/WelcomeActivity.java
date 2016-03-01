@@ -18,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+
+
 public class WelcomeActivity extends BaseActivity implements OnClickListener {
 
 	private LinearLayout mLinearCtrlbar;

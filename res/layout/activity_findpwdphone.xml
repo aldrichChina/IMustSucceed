@@ -24,7 +24,7 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal" >
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:id="@+id/findpwdphone_htv_areacode"
                     android:layout_width="100dip"
                     android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                     android:singleLine="true" />
             </LinearLayout>
 
-            <com.immomo.momo.android.view.HandyTextView
+            <net.micode.notes.view.HandyTextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dip"

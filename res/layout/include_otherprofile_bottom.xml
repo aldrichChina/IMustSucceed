@@ -25,7 +25,7 @@
             android:background="@drawable/btn_profile_bottom_icon_chat"
             android:scaleType="centerInside" />
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="对话"
@@ -52,7 +52,7 @@
             android:background="@drawable/btn_profile_bottom_icon_unfollow"
             android:scaleType="centerInside" />
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="取消关注"
@@ -78,7 +78,7 @@
             android:background="@drawable/btn_profile_bottom_icon_follow"
             android:scaleType="centerInside" />
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="关注"
@@ -103,7 +103,7 @@
             android:background="@drawable/btn_profile_bottom_icon_report"
             android:scaleType="centerInside" />
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="拉黑/举报"

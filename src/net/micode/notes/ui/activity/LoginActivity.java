@@ -40,7 +40,7 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v) {/*
 		switch (v.getId()) {
 		case R.id.loginbtn:
 			if (judgeInfor()) {
@@ -60,13 +60,13 @@ public class LoginActivity extends BaseActivity {
 			break;
 		}
 
-	}
+	*/}
 
 	@Override
 	protected void initView() {
-		etvUserId = (EditText) findViewById(R.id.phone);
-		etvPassword = (EditText) findViewById(R.id.password);
-		loginbtn = (Button) findViewById(R.id.loginbtn);
+//		etvUserId = (EditText) findViewById(R.id.phone);
+//		etvPassword = (EditText) findViewById(R.id.password);
+//		loginbtn = (Button) findViewById(R.id.loginbtn);
 	}
 
 	@Override

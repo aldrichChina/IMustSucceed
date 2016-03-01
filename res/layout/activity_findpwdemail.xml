@@ -27,7 +27,7 @@
                 android:inputType="textEmailAddress"
                 android:singleLine="true" />
 
-            <com.immomo.momo.android.view.HandyTextView
+            <net.micode.notes.view.HandyTextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dip"

@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@color/background_normal" >
 
-    <com.immomo.momo.android.view.HandyTextView
+    <net.micode.notes.view.HandyTextView
         android:id="@+id/reg_photo_htv_recommendation"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                             android:layout_weight="1"
                             android:src="@drawable/ic_reg_album" />
 
-                        <com.immomo.momo.android.view.HandyTextView
+                        <net.micode.notes.view.HandyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="0.5dip"
@@ -97,7 +97,7 @@
                             android:layout_weight="1.0"
                             android:src="@drawable/ic_reg_camera" />
 
-                        <com.immomo.momo.android.view.HandyTextView
+                        <net.micode.notes.view.HandyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="0.5dip"
@@ -108,7 +108,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <com.immomo.momo.android.view.HandyTextView
+            <net.micode.notes.view.HandyTextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dip"
@@ -129,7 +129,7 @@
         android:background="@color/background_dark"
         android:orientation="vertical" >
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"

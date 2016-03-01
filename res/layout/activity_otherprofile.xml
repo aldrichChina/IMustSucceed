@@ -9,7 +9,7 @@
         android:layout_alignParentTop="true"
         layout="@layout/include_header" />
 
-    <com.immomo.momo.android.view.PagerScrollView
+    <net.micode.notes.view.PagerScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/otherprofile_bottom"
@@ -33,7 +33,7 @@
 
             <include layout="@layout/include_otherprofile_joingroup" />
         </LinearLayout>
-    </com.immomo.momo.android.view.PagerScrollView>
+    </net.micode.notes.view.PagerScrollView>
 
     <include
         android:id="@+id/otherprofile_bottom"

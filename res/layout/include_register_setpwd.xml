@@ -18,7 +18,7 @@
             android:paddingRight="10dip"
             android:paddingTop="15dip" >
 
-            <com.immomo.momo.android.view.HandyTextView
+            <net.micode.notes.view.HandyTextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dip"

@@ -41,7 +41,7 @@
                     android:layout_alignParentRight="true"
                     android:gravity="center" >
 
-                    <com.immomo.momo.android.view.HandyTextView
+                    <net.micode.notes.view.HandyTextView
                         android:id="@+id/feed_item_htv_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                     android:minHeight="36dip"
                     android:orientation="vertical" >
 
-                    <com.immomo.momo.android.view.HandyTextView
+                    <net.micode.notes.view.HandyTextView
                         android:id="@+id/feed_item_htv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <com.immomo.momo.android.view.EmoticonsTextView
+            <net.micode.notes.view.EmoticonsTextView
                 android:id="@+id/feed_item_etv_content"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
                         android:layout_marginRight="2dip"
                         android:src="@drawable/ic_feed_comment" />
 
-                    <com.immomo.momo.android.view.HandyTextView
+                    <net.micode.notes.view.HandyTextView
                         android:id="@+id/feed_item_htv_commentcount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
                     android:scaleType="center"
                     android:src="@drawable/ic_user_location" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:id="@+id/feed_item_htv_site"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

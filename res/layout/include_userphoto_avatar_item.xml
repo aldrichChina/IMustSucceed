@@ -7,7 +7,7 @@
     android:layout_margin="2dip"
     android:layout_weight="1" >
 
-    <com.immomo.momo.android.view.RoundImageView
+    <net.micode.notes.view.RoundImageView
         android:id="@+id/userphoto_avatar_item_riv_avatar"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

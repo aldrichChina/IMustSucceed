@@ -27,7 +27,7 @@
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip" >
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -43,7 +43,7 @@
                     android:background="@color/blue"
                     android:orientation="vertical" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:id="@+id/resetpwdphone_htv_content"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                     android:textColor="@color/font_attribute"
                     android:textSize="18sp" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -80,7 +80,7 @@
                     android:imeOptions="actionNext"
                     android:singleLine="true" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dip"

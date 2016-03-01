@@ -19,7 +19,7 @@
             android:paddingRight="10dip"
             android:paddingTop="15dip" >
 
-            <com.immomo.momo.android.view.HandyTextView
+            <net.micode.notes.view.HandyTextView
                 android:id="@+id/reg_verify_htv_phonenumber"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     android:minWidth="180dip"/>
             </LinearLayout>
 
-            <com.immomo.momo.android.view.HandyTextView
+            <net.micode.notes.view.HandyTextView
                 android:id="@+id/reg_verify_htv_nocode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

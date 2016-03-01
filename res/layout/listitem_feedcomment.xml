@@ -27,7 +27,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_common_def_header" />
 
-        <com.immomo.momo.android.view.EmoticonsTextView
+        <net.micode.notes.view.EmoticonsTextView
             android:id="@+id/feedcomment_item_etv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:textColor="@color/font_attribute"
             android:textSize="14sp" />
 
-        <com.immomo.momo.android.view.EmoticonsTextView
+        <net.micode.notes.view.EmoticonsTextView
             android:id="@+id/feedcomment_item_etv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             android:textColor="@color/font_value"
             android:textSize="14sp" />
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:id="@+id/feedcomment_item_htv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

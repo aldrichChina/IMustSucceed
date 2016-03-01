@@ -5,7 +5,7 @@
     android:background="@drawable/bg_dropmenu_up"
     android:orientation="vertical" >
 
-    <com.immomo.momo.android.view.HandyTextView
+    <net.micode.notes.view.HandyTextView
         android:id="@+id/dialog_otherfeedlist_htv_copy"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_height="1px"
         android:background="@color/dialog_divider" />
 
-    <com.immomo.momo.android.view.HandyTextView
+    <net.micode.notes.view.HandyTextView
         android:id="@+id/dialog_otherfeedlist_htv_report"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

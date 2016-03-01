@@ -14,7 +14,7 @@
         android:layout_below="@+id/otherfeedlist_header"
         android:orientation="vertical" >
 
-        <com.immomo.momo.android.view.MoMoRefreshListView
+        <net.micode.notes.view.MoMoRefreshListView
             android:id="@+id/otherfeedlist_mmrlv_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

@@ -55,31 +55,43 @@
 
             <include
                 android:id="@+id/welcome_include_member_avatar_block0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
                 android:id="@+id/welcome_include_member_avatar_block1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
                 android:id="@+id/welcome_include_member_avatar_block2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
                 android:id="@+id/welcome_include_member_avatar_block3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
                 android:id="@+id/welcome_include_member_avatar_block4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
                 android:id="@+id/welcome_include_member_avatar_block5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
         </LinearLayout>
@@ -97,7 +109,7 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_index_totaluser" />
 
-            <com.immomo.momo.android.view.HandyTextView
+            <net.micode.notes.view.HandyTextView
                 android:id="@+id/welcome_htv_usercount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,7 +120,7 @@
                 android:textColor="#FFFFFFFF"
                 android:textSize="18sp" />
 
-            <com.immomo.momo.android.view.HandyTextView
+            <net.micode.notes.view.HandyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"

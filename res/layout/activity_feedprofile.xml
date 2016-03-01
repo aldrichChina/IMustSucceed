@@ -43,7 +43,7 @@
             android:layout_height="1dip"
             android:background="@color/devideline" />
 
-        <com.immomo.momo.android.view.EmoticonsTextView
+        <net.micode.notes.view.EmoticonsTextView
             android:id="@+id/feedprofile_etv_editertitle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 android:text="评论"
                 android:textColor="@color/white" />
 
-            <com.immomo.momo.android.view.EmoticonsEditText
+            <net.micode.notes.view.EmoticonsEditText
                 android:id="@+id/feedprofile_eet_editer"
                 android:layout_width="fill_parent"
                 android:layout_height="45dip"
@@ -107,7 +107,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/msg_editor_backgroud" >
 
-        <com.immomo.momo.android.view.EmoteInputView
+        <net.micode.notes.view.EmoteInputView
             android:id="@+id/feedprofile_eiv_input"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" 

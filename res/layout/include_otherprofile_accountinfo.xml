@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -50,7 +50,7 @@
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip" >
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -68,7 +68,7 @@
                     android:layout_marginRight="15dip"
                     android:src="@drawable/ic_profile_vip" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -98,7 +98,7 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip" >
 
-                    <com.immomo.momo.android.view.HandyTextView
+                    <net.micode.notes.view.HandyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -108,7 +108,7 @@
                         android:textColor="@color/font_attribute"
                         android:textSize="18sp" />
 
-                    <com.immomo.momo.android.view.HandyTextView
+                    <net.micode.notes.view.HandyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -136,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dip" >
 
-                    <com.immomo.momo.android.view.HandyTextView
+                    <net.micode.notes.view.HandyTextView
                         android:id="@+id/otherprofile_info_htv_sign_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
                         android:textColor="@color/font_attribute"
                         android:textSize="18sp" />
 
-                    <com.immomo.momo.android.view.EmoticonsTextView
+                    <net.micode.notes.view.EmoticonsTextView
                         android:id="@+id/otherprofile_info_htv_sign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dip" >
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:id="@+id/otherprofile_info_htv_company_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
                     android:textColor="@color/font_attribute"
                     android:textSize="18sp" />
 
-                <com.immomo.momo.android.view.EmoticonsTextView
+                <net.micode.notes.view.EmoticonsTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/otherprofile_info_htv_company_title"
@@ -223,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dip" >
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:id="@+id/otherprofile_info_htv_school_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -232,7 +232,7 @@
                     android:textColor="@color/font_attribute"
                     android:textSize="18sp" />
 
-                <com.immomo.momo.android.view.EmoticonsTextView
+                <net.micode.notes.view.EmoticonsTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/otherprofile_info_htv_school_title"
@@ -248,7 +248,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -280,7 +280,7 @@
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip" >
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -290,7 +290,7 @@
                     android:textColor="@color/font_attribute"
                     android:textSize="18sp" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -319,7 +319,7 @@
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip" >
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -329,7 +329,7 @@
                     android:textColor="@color/font_attribute"
                     android:textSize="18sp" />
 
-                <com.immomo.momo.android.view.HandyTextView
+                <net.micode.notes.view.HandyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

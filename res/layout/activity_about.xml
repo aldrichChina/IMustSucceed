@@ -27,7 +27,7 @@
         android:paddingLeft="15dip"
         android:paddingRight="15dip" >
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:id="@+id/about_htv_versionname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/pic_about_immomo" />
 
-        <com.immomo.momo.android.view.HandyTextView
+        <net.micode.notes.view.HandyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Copyright © 2013 MOMO TECH All Rights Reserved"
