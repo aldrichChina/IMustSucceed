@@ -1,6 +1,5 @@
 package net.micode.notes.activity;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.util.TextUtils;
 import net.micode.notes.view.HandyTextView;
@@ -30,8 +29,8 @@ public class ResetPwdPhoneActivity extends BaseActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_resetpwdphone);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 	}
@@ -169,6 +168,12 @@ public class ResetPwdPhoneActivity extends BaseActivity implements
 			startActivity(intent);
 			break;
 		}
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

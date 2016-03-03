@@ -2,7 +2,6 @@ package net.micode.notes.activity;
 
 import java.util.regex.Pattern;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.adapter.SimpleListDialogAdapter;
 import net.micode.notes.dialog.SimpleListDialog;
@@ -32,8 +31,8 @@ public class FindPwdPhoneActivity extends BaseActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_findpwdphone);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 	}
@@ -164,6 +163,13 @@ public class FindPwdPhoneActivity extends BaseActivity implements
 		String text = TextUtils.getCountryCodeBracketsInfo(
 				mCountryCodes[position], mAreaCode);
 		mHtvAreaCode.setText(text);
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.micode.notes.BaseApplication;
 import net.micode.notes.data.ConstantUtil;
 import net.micode.notes.data.DatabaseService;
 import net.micode.notes.data.ErrorCode;
@@ -18,7 +19,6 @@ import net.micode.notes.tool.DateTimeUtils;
 import net.micode.notes.tool.JSONUtil;
 import net.micode.notes.tool.MD5Util;
 import net.micode.notes.tool.Utils;
-import net.micode.notes.ui.activity.MainApplication;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -36,7 +36,7 @@ public class HttpService {
 		try {
 			httpUrl = httpUrl + "?" + httpArg;
 			Request request = new Request.Builder().url(httpUrl).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe").build();
-			Response response = MainApplication.client.newCall(request).execute();
+			Response response = BaseApplication.client.newCall(request).execute();
 			Utils.Log("response=" + response);
 			if (!response.isSuccessful())throw new IOException("Unexpected code " + response);
 			responseBody = response.body().string();

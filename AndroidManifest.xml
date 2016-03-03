@@ -165,7 +165,7 @@
             </intent-filter>
             -->
         </activity>
-        <activity android:name=".ui.activity.LoginActivity" >
+        <activity android:name="net.micode.notes.ui.LoginActivity" >
         </activity>
         <activity android:name=".MyActivity" >
         </activity>

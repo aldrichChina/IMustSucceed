@@ -3,7 +3,6 @@ package net.micode.notes.adapter;
 import java.util.List;
 
 import net.micode.notes.BaseApplication;
-import net.micode.notes.BaseArrayListAdapter;
 import net.micode.notes.R;
 import android.content.Context;
 import android.view.View;

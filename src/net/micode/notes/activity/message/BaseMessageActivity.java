@@ -3,9 +3,9 @@ package net.micode.notes.activity.message;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
+import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.OtherProfileActivity;
 import net.micode.notes.adapter.ChatAdapter;
 import net.micode.notes.dialog.SimpleListDialog;
@@ -94,8 +94,8 @@ public abstract class BaseMessageActivity extends BaseActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 	}

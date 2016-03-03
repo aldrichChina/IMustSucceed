@@ -2,7 +2,6 @@ package net.micode.notes.activity;
 
 import java.util.regex.Pattern;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
 import android.content.DialogInterface;
@@ -28,8 +27,8 @@ public class FindPwdEmailActivity extends BaseActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_findpwdemail);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 	}
@@ -149,5 +148,12 @@ public class FindPwdEmailActivity extends BaseActivity implements
 			}
 
 		});
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }

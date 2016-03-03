@@ -2,7 +2,6 @@ package net.micode.notes.adapter;
 
 import java.util.List;
 
-import net.micode.notes.BaseArrayListAdapter;
 import net.micode.notes.R;
 import net.micode.notes.view.HandyTextView;
 import android.content.Context;

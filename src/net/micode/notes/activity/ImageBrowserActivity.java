@@ -3,7 +3,6 @@ package net.micode.notes.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.adapter.ImageBrowserAdapter;
 import net.micode.notes.entity.NearByPeopleProfile;
@@ -33,8 +32,8 @@ public class ImageBrowserActivity extends BaseActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imagebrowser);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 		init();
@@ -107,6 +106,13 @@ public class ImageBrowserActivity extends BaseActivity implements
 	public void onBackPressed() {
 		defaultFinish();
 		overridePendingTransition(0, R.anim.zoom_exit);
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

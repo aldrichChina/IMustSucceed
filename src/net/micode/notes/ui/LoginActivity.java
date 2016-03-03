@@ -1,15 +1,14 @@
-package net.micode.notes.ui.activity;
+package net.micode.notes.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import net.micode.notes.InvoicePreference;
-import net.micode.notes.MyActivity;
 import net.micode.notes.R;
+import net.micode.notes.activity.BaseActivity;
+import net.micode.notes.activity.MyActivity;
 import net.micode.notes.data.ConstantUtil;
-import net.micode.notes.data.DatabaseService;
 import net.micode.notes.tool.DeviceInfoUtil;
-import net.micode.notes.tool.NetWorkConnect;
 import net.micode.notes.tool.Utils;
 import net.micode.notes.tool.HttpUtils.HttpService;
 import android.app.ProgressDialog;
@@ -18,10 +17,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements OnClickListener{
 	private static final String TAG = "jia";// 日志标记
 	private EditText etvUserId;
 	private EditText etvPassword;
@@ -63,14 +63,14 @@ public class LoginActivity extends BaseActivity {
 	*/}
 
 	@Override
-	protected void initView() {
+	protected void initViews() {
 //		etvUserId = (EditText) findViewById(R.id.phone);
 //		etvPassword = (EditText) findViewById(R.id.password);
 //		loginbtn = (Button) findViewById(R.id.loginbtn);
 	}
 
 	@Override
-	protected void initData() {
+	protected void initEvents() {
 		// myDataSource = DataSource.getInstance();
 		// 缓存中的信息
 		deviceID = DeviceInfoUtil.getid(this);
@@ -213,4 +213,6 @@ public class LoginActivity extends BaseActivity {
 			// indexAsyncTask.execute();
 		}
 	}
+
+
 }

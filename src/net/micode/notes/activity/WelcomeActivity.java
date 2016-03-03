@@ -1,6 +1,5 @@
 package net.micode.notes.activity;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.activity.register.RegisterActivity;
 import net.micode.notes.view.HandyTextView;
@@ -36,11 +35,8 @@ public class WelcomeActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-		initViews();
-		initEvents();
+		super.onCreate(savedInstanceState);
 		initAvatarsItem();
 		showWelcomeAnimation();
 	}
@@ -142,5 +138,12 @@ public class WelcomeActivity extends BaseActivity implements OnClickListener {
 			startActivity(AboutTabsActivity.class);
 			break;
 		}
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }

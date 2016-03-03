@@ -1,6 +1,5 @@
 package net.micode.notes.activity;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.activity.message.ChatActivity;
 import net.micode.notes.entity.NearByPeople;
@@ -68,8 +67,8 @@ public class OtherProfileActivity extends BaseActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_otherprofile);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 		init();
@@ -280,6 +279,13 @@ public class OtherProfileActivity extends BaseActivity implements
 		mIvAvatar.setImageBitmap(mApplication.getAvatar("nearby_group_1"));
 		mEtvName.setText("℡一群二B的小青年");
 		mHtvOwner.setVisibility(View.VISIBLE);
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

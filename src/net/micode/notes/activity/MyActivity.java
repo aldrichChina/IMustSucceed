@@ -1,5 +1,6 @@
-package net.micode.notes;
+package net.micode.notes.activity;
 
+import net.micode.notes.R;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.CalendarFragment;
@@ -11,7 +12,7 @@ import net.micode.notes.fragment.PictureFragment;
 import net.micode.notes.fragment.ProfileFragment;
 import net.micode.notes.fragment.SettingsFragment;
 import net.micode.notes.ui.NotesListActivity;
-import net.micode.notes.ui.activity.BaseActivity;
+import net.micode.notes.view.MoMoRefreshListView.OnCancelListener;
 import net.micode.notes.view.ResideMenu.ResideMenu;
 import net.micode.notes.view.ResideMenu.ResideMenuItem;
 import android.app.Fragment;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -32,7 +34,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 
 public class MyActivity extends BaseActivity implements OnLongClickListener,
-		OnHeadlineSelectedListener {
+		OnHeadlineSelectedListener,OnClickListener {
 	private FragmentManager fragmentManager;
 	private RadioGroup bottomRg;
 	private Fragment fragmentArray[] = { new HttpFragment(), new DbFragment(),new BitmapFragment() };
@@ -86,15 +88,11 @@ public class MyActivity extends BaseActivity implements OnLongClickListener,
 	}
 
 	@Override
-	protected void initView() {
+	protected void initViews() {
 		toptitle = (TextView) findViewById(R.id.toptitle);
 		bottomRg = (RadioGroup) findViewById(R.id.bottomRg);
 	}
 
-	@Override
-	protected void initData() {
-
-	}
 
 	@Override
 	protected void setListener() {
@@ -292,4 +290,11 @@ public class MyActivity extends BaseActivity implements OnLongClickListener,
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
+	@Override
+	protected void initEvents() {
+		// TODO Auto-generated method stub
+		
+	}
 }

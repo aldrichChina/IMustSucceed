@@ -3,7 +3,6 @@ package net.micode.notes.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.adapter.OtherFeedListAdapter;
 import net.micode.notes.entity.Feed;
@@ -17,6 +16,7 @@ import net.micode.notes.view.MoMoRefreshListView.OnCancelListener;
 import net.micode.notes.view.MoMoRefreshListView.OnRefreshListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 
 public class OtherFeedListActivity extends BaseActivity implements
 		OnRefreshListener, OnCancelListener {
@@ -31,8 +31,8 @@ public class OtherFeedListActivity extends BaseActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_otherfeedlist);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 		init();
@@ -121,5 +121,12 @@ public class OtherFeedListActivity extends BaseActivity implements
 				mMmrlvList.onRefreshComplete();
 			}
 		});
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,6 +1,8 @@
-package net.micode.notes.ui.activity;
+package net.micode.notes.activity;
 
+import net.micode.notes.BaseApplication;
 import net.micode.notes.R;
+import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.tool.dialogfragment.ConfimDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -28,8 +30,8 @@ public class ImageActivity extends BaseActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.show_one_image);
+		super.onCreate(savedInstanceState);
 		ViewUtils.inject(this);
 
 		imgUrl = getIntent().getStringExtra("url");
@@ -79,7 +81,7 @@ public class ImageActivity extends BaseActivity {
 				.cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
 				.displayer(new RoundedBitmapDisplayer(5)) // 设置成圆角图片
 				.build(); // 构建完成
-		MainApplication.imageLoader.displayImage(imgUrl, bigImage, options);
+		BaseApplication.imageLoader.displayImage(imgUrl, bigImage, options);
 		bigImage.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -90,26 +92,21 @@ public class ImageActivity extends BaseActivity {
 		});
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void initView() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void initData() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	protected void setListener() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initViews() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initEvents() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -12,9 +12,9 @@ import net.micode.notes.view.HeaderSpinner;
 import net.micode.notes.view.HeaderSpinner.onSpinnerClickListener;
 import net.micode.notes.view.SwitcherButton.SwitcherButtonState;
 import net.micode.notes.view.SwitcherButton.onSwitcherButtonClickListener;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -31,11 +31,9 @@ public class NearByActivity extends TabItemActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nearby);
+		super.onCreate(savedInstanceState);
 		initPopupWindow();
-		initViews();
-		initEvents();
 		init();
 	}
 
@@ -60,7 +58,7 @@ public class NearByActivity extends TabItemActivity {
 	protected void init() {
 		mPeopleFragment = new NearByPeopleFragment(mApplication, this, this);
 		mGroupFragment = new NearByGroupFragment(mApplication, this, this);
-		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		ft.replace(R.id.nearby_layout_content, mPeopleFragment).commit();
 	}
 
@@ -152,7 +150,7 @@ public class NearByActivity extends TabItemActivity {
 
 		@Override
 		public void onClick(SwitcherButtonState state) {
-			FragmentTransaction ft = getSupportFragmentManager()
+			FragmentTransaction ft = getFragmentManager()
 					.beginTransaction();
 			ft.setCustomAnimations(R.anim.fragment_fadein,
 					R.anim.fragment_fadeout);
@@ -182,5 +180,12 @@ public class NearByActivity extends TabItemActivity {
 		} else {
 			finish();
 		}
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }

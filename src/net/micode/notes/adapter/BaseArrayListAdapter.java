@@ -1,4 +1,4 @@
-package net.micode.notes;
+package net.micode.notes.adapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

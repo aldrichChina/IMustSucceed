@@ -1,7 +1,7 @@
 package net.micode.notes.activity.imagefactory;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
+import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.util.PhotoUtils;
 import net.micode.notes.view.HeaderLayout;
 import net.micode.notes.view.HeaderLayout.HeaderStyle;
@@ -32,8 +32,9 @@ public class ImageFactoryActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imagefactory);
+		super.onCreate(savedInstanceState);
+		
 		initViews();
 		initEvents();
 		init();
@@ -183,5 +184,10 @@ public class ImageFactoryActivity extends BaseActivity {
 				break;
 			}
 		}
+	}
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }

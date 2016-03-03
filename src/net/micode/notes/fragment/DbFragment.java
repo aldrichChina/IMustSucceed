@@ -6,26 +6,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import net.micode.notes.BaseApplication;
 import net.micode.notes.R;
 import net.micode.notes.data.Constant;
 import net.micode.notes.data.DatabaseService;
-import net.micode.notes.data.MyDatabaseHelper;
 import net.micode.notes.entities.Detailed;
 import net.micode.notes.entities.HouseSaid;
 import net.micode.notes.tool.JSONUtil;
 import net.micode.notes.tool.Utils;
 import net.micode.notes.tool.HttpUtils.HttpService;
-import net.micode.notes.ui.activity.MainApplication;
 import net.micode.notes.view.XListView;
 import net.micode.notes.view.XListView.IXListViewListener;
-
-import org.json.JSONArray;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -49,7 +43,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.lidroid.xutils.ViewUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -463,7 +456,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 			final ProgressBar spinner = (ProgressBar) view
 					.findViewById(R.id.loading);
 
-			MainApplication.imageLoader.displayImage(images.get(position)
+			BaseApplication.imageLoader.displayImage(images.get(position)
 					.getPicUrl(), imageView, options,
 					new SimpleImageLoadingListener() {
 						@Override

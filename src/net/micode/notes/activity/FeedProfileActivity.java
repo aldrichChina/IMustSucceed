@@ -3,7 +3,6 @@ package net.micode.notes.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.adapter.FeedProfileCommentsAdapter;
 import net.micode.notes.adapter.SimpleListDialogAdapter;
@@ -103,8 +102,8 @@ public class FeedProfileActivity extends BaseActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feedprofile);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 		init();
@@ -528,6 +527,13 @@ public class FeedProfileActivity extends BaseActivity implements
 			}
 
 		});
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

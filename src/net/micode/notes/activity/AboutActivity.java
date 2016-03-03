@@ -1,6 +1,5 @@
 package net.micode.notes.activity;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.view.HandyTextView;
 import android.content.Intent;
@@ -23,8 +22,8 @@ public class AboutActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 		mHandler = new Handler();
@@ -93,5 +92,12 @@ public class AboutActivity extends BaseActivity implements OnClickListener {
 			markMomo();
 			break;
 		}
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }

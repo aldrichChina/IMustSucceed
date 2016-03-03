@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.micode.notes.R;
+import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.TextNote;
 import net.micode.notes.model.WorkingNote;
@@ -71,7 +72,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class NoteEditActivity extends Activity implements OnClickListener,
+public class NoteEditActivity extends BaseActivity implements OnClickListener,
         NoteSettingChangedListener, OnTextViewChangeListener {
     private class HeadViewHolder {
         public TextView tvModified;
@@ -150,8 +151,8 @@ public class NoteEditActivity extends Activity implements OnClickListener,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	this.setContentView(R.layout.note_edit);
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.note_edit);
 
         if (savedInstanceState == null && !initActivityState(getIntent())) {
             finish();
@@ -869,4 +870,22 @@ public class NoteEditActivity extends Activity implements OnClickListener,
     private void showToast(int resId, int duration) {
         Toast.makeText(this, resId, duration).show();
     }
+
+	@Override
+	protected void initViews() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initEvents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
+	}
 }

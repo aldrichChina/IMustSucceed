@@ -1,29 +1,19 @@
 package net.micode.notes.fragment;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import net.micode.notes.R;
+import net.micode.notes.activity.ImageActivity;
 import net.micode.notes.adapter.MeinvAdapter;
 import net.micode.notes.data.Constant;
 import net.micode.notes.entities.Detailed;
 import net.micode.notes.tool.JSONUtil;
-import net.micode.notes.tool.Utils;
 import net.micode.notes.tool.HttpUtils.HttpService;
-import net.micode.notes.ui.activity.ImageActivity;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

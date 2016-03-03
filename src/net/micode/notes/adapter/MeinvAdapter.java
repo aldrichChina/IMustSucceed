@@ -1,15 +1,10 @@
 package net.micode.notes.adapter;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
+import net.micode.notes.BaseApplication;
 import net.micode.notes.R;
 import net.micode.notes.entities.Detailed;
-import net.micode.notes.ui.activity.MainApplication;
-
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class MeinvAdapter extends BaseAdapter{
 	private List<Detailed> detailedList;
@@ -67,8 +65,8 @@ public class MeinvAdapter extends BaseAdapter{
 			hodler  = (ViewHodler) view.getTag();
 		}
 		hodler.textView.setText(detailedList.get(position).getDescription());
-		MainApplication.imageLoader.displayImage(detailedList.get(position).getPicUrl(), hodler.imageView);
-		MainApplication.imageLoader.displayImage(detailedList.get(position).getPicUrl(), hodler.imageView,options);
+		BaseApplication.imageLoader.displayImage(detailedList.get(position).getPicUrl(), hodler.imageView);
+		BaseApplication.imageLoader.displayImage(detailedList.get(position).getPicUrl(), hodler.imageView,options);
 		return view;
 	}
 

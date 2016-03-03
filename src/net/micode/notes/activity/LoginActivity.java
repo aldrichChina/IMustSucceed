@@ -2,7 +2,6 @@ package net.micode.notes.activity;
 
 import java.util.regex.Pattern;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.activity.maintabs.MainTabActivity;
 import net.micode.notes.adapter.SimpleListDialogAdapter;
@@ -43,10 +42,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		initViews();
-		initEvents();
+		super.onCreate(savedInstanceState);
 	}
 
 	@Override
@@ -237,5 +234,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				}
 			}
 		});
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,5 +1,6 @@
-package net.micode.notes;
+package net.micode.notes.activity;
 
+import net.micode.notes.R;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +16,8 @@ public class BaseWebActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_baseweb);
+		super.onCreate(savedInstanceState);
 		initViews();
 		initEvents();
 	}
@@ -67,5 +68,12 @@ public class BaseWebActivity extends BaseActivity {
 				dismissProgress();
 			}
 		});
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,9 +1,9 @@
 package net.micode.notes.activity.register;
 
-import net.micode.notes.BaseActivity;
 import net.micode.notes.BaseApplication;
 import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
+import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.register.RegisterStep.onNextActionListener;
 import net.micode.notes.util.FileUtils;
 import net.micode.notes.util.PhotoUtils;
@@ -44,8 +44,8 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
+		super.onCreate(savedInstanceState);
 		initViews();
 		mCurrentStep = initStep();
 		initEvents();
@@ -311,6 +311,13 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 			return mStepPhone.getPhoneNumber();
 		}
 		return "";
+	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,6 +1,5 @@
 package net.micode.notes.activity;
 
-import net.micode.notes.BaseWebActivity;
 import net.micode.notes.jni.JniManager;
 import net.micode.notes.util.NetWorkUtils.NetWorkState;
 import android.os.Bundle;

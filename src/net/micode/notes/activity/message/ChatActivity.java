@@ -381,4 +381,11 @@ public class ChatActivity extends BaseMessageActivity {
 	public void refreshAdapter() {
 		mAdapter.notifyDataSetChanged();
 	}
+
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
+	}
 }

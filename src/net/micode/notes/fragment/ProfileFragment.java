@@ -1,11 +1,10 @@
 package net.micode.notes.fragment;
 
-import net.micode.notes.DownloadListActivity;
 import net.micode.notes.R;
+import net.micode.notes.activity.DownloadListActivity;
 import net.micode.notes.download.DownloadManager;
 import net.micode.notes.download.DownloadService;
 import net.micode.notes.tool.Utils;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

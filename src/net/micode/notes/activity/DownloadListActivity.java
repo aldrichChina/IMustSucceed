@@ -1,12 +1,12 @@
-package net.micode.notes;
+package net.micode.notes.activity;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
 
+import net.micode.notes.R;
 import net.micode.notes.download.DownloadInfo;
 import net.micode.notes.download.DownloadManager;
 import net.micode.notes.download.DownloadService;
-import net.micode.notes.ui.activity.BaseActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.DbException;
@@ -40,8 +39,8 @@ public class DownloadListActivity extends BaseActivity {
 	private Context mAppContext;
 
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.download_list);
+		super.onCreate(savedInstanceState);
 		ViewUtils.inject(this);
 
 		mAppContext = this.getApplicationContext();
@@ -270,26 +269,21 @@ public class DownloadListActivity extends BaseActivity {
 		}
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void initView() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void initData() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	protected void setListener() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initViews() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initEvents() {
 		// TODO Auto-generated method stub
 		
 	}
