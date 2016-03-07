@@ -3,7 +3,7 @@ package net.micode.notes.activity;
 import java.util.regex.Pattern;
 
 import net.micode.notes.R;
-import net.micode.notes.activity.maintabs.MainTabActivity;
+import net.micode.notes.activity.maintabs.MainActivity;
 import net.micode.notes.adapter.SimpleListDialogAdapter;
 import net.micode.notes.dialog.SimpleListDialog;
 import net.micode.notes.dialog.SimpleListDialog.onSimpleListItemClickListener;
@@ -31,8 +31,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	private Button mBtnLogin;
 
 	private static final String[] DEFAULT_ACCOUNTS = new String[] {
-			"+8612345678901", "86930007@qq.com", "86930007" };
-	private static final String DEFAULT_PASSWORD = "123456";
+			"+8612345678901", "86930007@qq.com", "77779999" };
+	private static final String DEFAULT_PASSWORD = "1111";
 	private String mAreaCode = "+86";
 	private String mAccount;
 	private String mPassword;
@@ -208,9 +208,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 			protected Boolean doInBackground(Void... params) {
 				try {
 					Thread.sleep(2000);
-					if ((DEFAULT_ACCOUNTS[0].equals(mAccount)
-							|| DEFAULT_ACCOUNTS[1].equals(mAccount) || DEFAULT_ACCOUNTS[2]
-								.equals(mAccount))
+					if ((DEFAULT_ACCOUNTS[0].equals(mAccount)|| DEFAULT_ACCOUNTS[1].equals(mAccount) || DEFAULT_ACCOUNTS[2].equals(mAccount))
 							&& DEFAULT_PASSWORD.equals(mPassword)) {
 						return true;
 					}
@@ -226,7 +224,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				dismissLoadingDialog();
 				if (result) {
 					Intent intent = new Intent(LoginActivity.this,
-							MainTabActivity.class);
+							MainActivity.class);
 					startActivity(intent);
 					finish();
 				} else {

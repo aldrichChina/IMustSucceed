@@ -97,7 +97,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="net.micode.notes.activity.maintabs.MainTabActivity"
+            android:name="net.micode.notes.activity.maintabs.MainActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -162,7 +162,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
         <activity android:name="net.micode.notes.ui.LoginActivity" >

@@ -1,6 +1,7 @@
 package net.micode.notes.activity;
 
 import net.micode.notes.R;
+import net.micode.notes.activity.maintabs.NearByActivity;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.CalendarFragment;
@@ -159,7 +160,7 @@ public class MyActivity extends BaseActivity implements OnLongClickListener,
 
 		switch (v.getId()) {
 		case R.id.toptitle:
-			Intent intent = new Intent(this, NotesListActivity.class);
+			Intent intent = new Intent(this, NearByActivity.class);
 			this.startActivity(intent);
 		}
 

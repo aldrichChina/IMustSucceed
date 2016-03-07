@@ -41,11 +41,7 @@ public class NearByActivity extends TabItemActivity {
 	protected void initViews() {
 		mHeaderLayout = (HeaderLayout) findViewById(R.id.nearby_header);
 		mHeaderLayout.initSearch(new OnSearchClickListener());
-		mHeaderSpinner = mHeaderLayout.setTitleNearBy("附近",
-				new OnSpinnerClickListener(), "附近群组",
-				R.drawable.ic_topbar_search,
-				new OnMiddleImageButtonClickListener(), "个人", "群组",
-				new OnSwitcherButtonClickListener());
+		mHeaderSpinner = mHeaderLayout.setTitleNearBy("附近",new OnSpinnerClickListener(), "附近群组",R.drawable.ic_topbar_search,new OnMiddleImageButtonClickListener(), "个人", "群组",new OnSwitcherButtonClickListener());
 		mHeaderLayout.init(HeaderStyle.TITLE_NEARBY_PEOPLE);
 	}
 
@@ -152,8 +148,7 @@ public class NearByActivity extends TabItemActivity {
 		public void onClick(SwitcherButtonState state) {
 			FragmentTransaction ft = getFragmentManager()
 					.beginTransaction();
-			ft.setCustomAnimations(R.anim.fragment_fadein,
-					R.anim.fragment_fadeout);
+			ft.setCustomAnimations(R.animator.fragment_slide_left_enter,R.animator.fragment_slide_right_exit);
 			switch (state) {
 			case LEFT:
 				mHeaderLayout.init(HeaderStyle.TITLE_NEARBY_PEOPLE);

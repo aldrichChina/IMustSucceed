@@ -37,7 +37,7 @@
                     android:hint="手机号码/邮箱地址/陌陌号"
                     android:inputType="text"
                     android:singleLine="true"
-                    android:text="86930007" />
+                    android:text="77779999" />
 
                 <EditText
                     android:id="@+id/login_et_pwd"
@@ -49,7 +49,7 @@
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:text="123456" />
+                    android:text="1111" />
 
                 <net.micode.notes.view.HandyTextView
                     android:id="@+id/login_htv_forgotpassword"
