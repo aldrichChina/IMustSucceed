@@ -2,14 +2,16 @@ package net.micode.notes.activity.maintabs;
 
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
-import net.micode.notes.activity.MyActivity;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
+import net.micode.notes.fragment.CalendarFragment;
 import net.micode.notes.fragment.ContactsFragment;
 import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HttpFragment;
-import net.micode.notes.fragment.NewsDetailFragment;
 import net.micode.notes.fragment.HttpFragment.OnHeadlineSelectedListener;
+import net.micode.notes.fragment.NewsDetailFragment;
+import net.micode.notes.fragment.PictureFragment;
+import net.micode.notes.fragment.ProfileFragment;
 import net.micode.notes.fragment.SettingsFragment;
 import net.micode.notes.view.ResideMenu.ResideMenu;
 import net.micode.notes.view.ResideMenu.ResideMenuItem;
@@ -24,7 +26,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class MainActivity extends BaseActivity implements OnClickListener,
@@ -185,6 +186,21 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 		default:
 			break;
 		}
+
+		if (v == itemHome) {
+			changeFragment(new HttpFragment());
+		} else if (v == itemProfile) {
+			changeFragment(new ProfileFragment());
+		} else if (v == itemCalendar) {
+			changeFragment(new CalendarFragment());
+		} else if (v == itemSettings) {
+			changeFragment(new SettingsFragment());
+		} else if (v == itemPicture) {
+			changeFragment(new PictureFragment());
+		}
+
+		resideMenu.closeMenu();
+
 	}
 
 	/**
@@ -353,7 +369,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
 			// 用这个fragment替换任何在fragment_container中的东西
 			// 并添加事务到back stack中以便用户可以回退到之前的状态
-			transaction.replace(R.id.realtabcontent, newFragment, tag);
+			transaction.replace(R.id.content, newFragment, tag);
 			transaction.addToBackStack(null);
 
 			// 提交事务
@@ -435,4 +451,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 			// Utils.ToastMessage(context, "Menu is closed!");
 		}
 	};
+
+	private void changeFragment(Fragment targetFragment) {
+		resideMenu.clearIgnoredViewList();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.content, targetFragment, "fragment")
+				.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+				.commit();
+	}
 }

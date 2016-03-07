@@ -3,6 +3,7 @@ package net.micode.notes.activity.maintabs;
 import net.micode.notes.BasePopupWindow.onSubmitClickListener;
 import net.micode.notes.R;
 import net.micode.notes.popupwindow.NearByPopupWindow;
+import net.micode.notes.ui.NotesListActivity;
 import net.micode.notes.view.HeaderLayout;
 import net.micode.notes.view.HeaderLayout.HeaderStyle;
 import net.micode.notes.view.HeaderLayout.SearchState;
@@ -16,6 +17,8 @@ import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.PopupWindow.OnDismissListener;
@@ -43,6 +46,14 @@ public class NearByActivity extends TabItemActivity {
 		mHeaderLayout.initSearch(new OnSearchClickListener());
 		mHeaderSpinner = mHeaderLayout.setTitleNearBy("附近",new OnSpinnerClickListener(), "附近群组",R.drawable.ic_topbar_search,new OnMiddleImageButtonClickListener(), "个人", "群组",new OnSwitcherButtonClickListener());
 		mHeaderLayout.init(HeaderStyle.TITLE_NEARBY_PEOPLE);
+		mHeaderLayout.mIvLogo.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				start_Activity(NearByActivity.this, NotesListActivity.class);
+			}            
+
+		});
 	}
 
 	@Override

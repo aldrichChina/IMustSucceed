@@ -21,7 +21,7 @@ public class HeaderLayout extends LinearLayout {
 
 	private LayoutInflater mInflater;
 	private View mHeader;
-	private ImageView mIvLogo;
+	public ImageView mIvLogo;
 	private LinearLayout mLayoutLeftContainer;
 	private LinearLayout mLayoutMiddleContainer;
 	private LinearLayout mLayoutRightContainer;

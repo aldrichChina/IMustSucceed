@@ -1,6 +1,7 @@
 package net.micode.notes.activity;
 
 import net.micode.notes.R;
+import net.micode.notes.activity.maintabs.MainActivity;
 import net.micode.notes.activity.register.RegisterActivity;
 import net.micode.notes.view.HandyTextView;
 import android.os.Bundle;
@@ -131,7 +132,8 @@ public class WelcomeActivity extends BaseActivity implements OnClickListener {
 			break;
 
 		case R.id.welcome_btn_login:
-			startActivity(LoginActivity.class);
+//			startActivity(LoginActivity.class);
+			startActivity(MainActivity.class);
 			break;
 
 		case R.id.welcome_ibtn_about:
