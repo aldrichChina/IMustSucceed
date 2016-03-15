@@ -169,8 +169,9 @@
         </activity>
         <activity android:name=".MyActivity" >
         </activity>
-        <activity android:name=".ui.activity.ImageActivity" />
-        <activity android:name=".DownloadListActivity" />
+        <activity android:name=".activity.ImageActivity" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity android:name=".activity.DownloadListActivity" />
 
         <service android:name=".download.DownloadService" >
             <intent-filter>

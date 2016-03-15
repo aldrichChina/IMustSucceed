@@ -8,10 +8,11 @@ import java.util.List;
 
 import net.micode.notes.BaseApplication;
 import net.micode.notes.R;
+import net.micode.notes.dialog.CustomExitDialog;
 import net.micode.notes.dialog.FlippingLoadingDialog;
-import net.micode.notes.tool.MD5Util;
-import net.micode.notes.tool.Utils;
+import net.micode.notes.util.MD5Util;
 import net.micode.notes.util.NetWorkUtils;
+import net.micode.notes.util.Utils;
 import net.micode.notes.view.HandyTextView;
 
 import org.apache.http.message.BasicNameValuePair;
@@ -94,22 +95,19 @@ public abstract class BaseActivity extends Activity {
 		initViews();
 		initEvents();
 		setListener();
-	
+
 	}
 
 	@Override
 	protected void onDestroy() {
 		clearAsyncTask();
-		
 
 		// cancelToast();
 		BaseApplication.getInstance().removeActivity(this);
 
 		super.onDestroy();
-	
-	}
 
-	
+	}
 
 	protected void putAsyncTask(AsyncTask<Void, Void, Boolean> asyncTask) {
 		mAsyncTasks.add(asyncTask.execute());
@@ -264,14 +262,10 @@ public abstract class BaseActivity extends Activity {
 	protected void defaultFinish() {
 		super.finish();
 	}
-	
-	
-
 
 	protected Activity context;
 	private Toast mToast;
 	private long mExitTime = 0;
-
 
 	@Override
 	protected void onResume() {
@@ -285,21 +279,33 @@ public abstract class BaseActivity extends Activity {
 		MobclickAgent.onPause(this);
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-//	 @Override
-//	 public boolean onKeyDown(int keyCode, KeyEvent event) {
-//	
-//	 if (keyCode == KeyEvent.KEYCODE_BACK) {
-//	 if ((System.currentTimeMillis() - mExitTime) > 2000) {
-//	 Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-//	 mExitTime = System.currentTimeMillis();
-//	 } else {
-//	 Utils.finish(this);
-//	 }
-//	 return true;
-//	 }
-//	 return super.onKeyDown(keyCode, event);
-//	 }
+		/*if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				Utils.finish(this);
+			}
+			return true;
+		}*/
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) { // 按下的如果是BACK，同时没有重复
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(getApplicationContext(), "再按一次退出程序",
+						Toast.LENGTH_SHORT).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				CustomExitDialog exitDialog = new CustomExitDialog(this,
+						R.style.customExitDailogStyle,
+						R.layout.custom_exit_dialog);
+				exitDialog.show();
+			}
+		}
+		return true;
+	}
+
 	/** 初始化视图 **/
 	protected abstract void initViews();
 
@@ -355,6 +361,7 @@ public abstract class BaseActivity extends Activity {
 		}
 		mToast.show();
 	}
+
 	/**
 	 * 从sdCard显示图片
 	 * 
@@ -659,6 +666,7 @@ public abstract class BaseActivity extends Activity {
 		}
 		return ishasSpace;
 	}
+
 	/**
 	 * @description: 获得字符MD5摘要
 	 * @param strObj
@@ -669,6 +677,5 @@ public abstract class BaseActivity extends Activity {
 	public String GetMD5Code(String strObj) {
 		return MD5Util.md5(strObj);
 	}
-
 
 }

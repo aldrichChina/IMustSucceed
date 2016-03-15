@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import net.micode.notes.R;
 import net.micode.notes.data.Notes;
-import net.micode.notes.tool.DataUtils;
+import net.micode.notes.util.DataUtils;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;

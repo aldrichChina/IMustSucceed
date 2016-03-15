@@ -22,7 +22,7 @@ import net.micode.notes.data.Notes.DataColumns;
 import net.micode.notes.data.Notes.DataConstants;
 import net.micode.notes.data.Notes.NoteColumns;
 import net.micode.notes.data.Notes.TextNote;
-import net.micode.notes.tool.ResourceParser.NoteBgResources;
+import net.micode.notes.util.ResourceParser.NoteBgResources;
 import android.appwidget.AppWidgetManager;
 import android.content.ContentUris;
 import android.content.Context;

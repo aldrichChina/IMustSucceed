@@ -18,8 +18,8 @@ package net.micode.notes.ui;
 
 import net.micode.notes.R;
 import net.micode.notes.data.Notes;
-import net.micode.notes.tool.DataUtils;
-import net.micode.notes.tool.ResourceParser.NoteItemBgResources;
+import net.micode.notes.util.DataUtils;
+import net.micode.notes.util.ResourceParser.NoteItemBgResources;
 import android.content.Context;
 import android.text.format.DateUtils;
 import android.view.View;

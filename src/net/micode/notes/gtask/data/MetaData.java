@@ -16,7 +16,7 @@
 
 package net.micode.notes.gtask.data;
 
-import net.micode.notes.tool.GTaskStringUtils;
+import net.micode.notes.util.GTaskStringUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

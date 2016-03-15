@@ -7,8 +7,10 @@ import net.micode.notes.R;
 import net.micode.notes.download.DownloadInfo;
 import net.micode.notes.download.DownloadManager;
 import net.micode.notes.download.DownloadService;
+import net.micode.notes.util.Utils;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -286,5 +288,12 @@ public class DownloadListActivity extends BaseActivity {
 	protected void initEvents() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK ) {
+			Utils.finish(this);
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

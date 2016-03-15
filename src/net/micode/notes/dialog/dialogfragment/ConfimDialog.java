@@ -1,4 +1,4 @@
-package net.micode.notes.tool.dialogfragment;
+package net.micode.notes.dialog.dialogfragment;
 
 import net.micode.notes.activity.DownloadListActivity;
 import net.micode.notes.download.DownloadService;

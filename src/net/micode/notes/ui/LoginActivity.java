@@ -8,9 +8,9 @@ import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.MyActivity;
 import net.micode.notes.data.ConstantUtil;
-import net.micode.notes.tool.DeviceInfoUtil;
-import net.micode.notes.tool.Utils;
-import net.micode.notes.tool.HttpUtils.HttpService;
+import net.micode.notes.util.DeviceInfoUtil;
+import net.micode.notes.util.Utils;
+import net.micode.notes.util.HttpUtils.LoginHttp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -136,7 +136,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 				list.add(temp);
 			}
 			// userService.SetConnect();
-			Boolean flag = HttpService.login(list,LoginActivity.this);
+			Boolean flag = LoginHttp.login(list,LoginActivity.this);
 
 			return flag;
 		}

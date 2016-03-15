@@ -6,7 +6,7 @@
  * @date 2015年4月13日 上午11:50:02 
  * @version 1.0.0 
  */
-package net.micode.notes.tool;
+package net.micode.notes.util;
 
 import java.io.File;
 import java.io.FileOutputStream;

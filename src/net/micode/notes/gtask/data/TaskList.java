@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.NoteColumns;
 import net.micode.notes.gtask.exception.ActionFailureException;
-import net.micode.notes.tool.GTaskStringUtils;
+import net.micode.notes.util.GTaskStringUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

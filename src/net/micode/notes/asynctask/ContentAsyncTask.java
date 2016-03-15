@@ -9,8 +9,8 @@ import net.micode.notes.entities.NewsBody;
 import net.micode.notes.entities.NewsChannel;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.entities.NewsPageBean;
-import net.micode.notes.tool.Utils;
-import net.micode.notes.tool.HttpUtils.HttpService;
+import net.micode.notes.util.Utils;
+import net.micode.notes.util.HttpUtils.HttpService;
 import android.content.Context;
 import android.os.AsyncTask;
 

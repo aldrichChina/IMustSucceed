@@ -32,8 +32,8 @@ import net.micode.notes.gtask.data.Task;
 import net.micode.notes.gtask.data.TaskList;
 import net.micode.notes.gtask.exception.ActionFailureException;
 import net.micode.notes.gtask.exception.NetworkFailureException;
-import net.micode.notes.tool.DataUtils;
-import net.micode.notes.tool.GTaskStringUtils;
+import net.micode.notes.util.DataUtils;
+import net.micode.notes.util.GTaskStringUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

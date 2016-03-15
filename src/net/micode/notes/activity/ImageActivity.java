@@ -2,10 +2,11 @@ package net.micode.notes.activity;
 
 import net.micode.notes.BaseApplication;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
-import net.micode.notes.tool.dialogfragment.ConfimDialog;
+import net.micode.notes.dialog.dialogfragment.ConfimDialog;
+import net.micode.notes.util.Utils;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -110,5 +111,11 @@ public class ImageActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK ) {
+			Utils.finish(this);
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

@@ -22,8 +22,8 @@ import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.DataColumns;
 import net.micode.notes.data.Notes.NoteColumns;
 import net.micode.notes.gtask.exception.ActionFailureException;
-import net.micode.notes.tool.GTaskStringUtils;
-import net.micode.notes.tool.ResourceParser;
+import net.micode.notes.util.GTaskStringUtils;
+import net.micode.notes.util.ResourceParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;

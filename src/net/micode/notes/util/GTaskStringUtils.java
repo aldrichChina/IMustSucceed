@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.micode.notes.tool;
+package net.micode.notes.util;
 
 public class GTaskStringUtils {
 

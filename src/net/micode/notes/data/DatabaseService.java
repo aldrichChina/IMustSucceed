@@ -9,7 +9,7 @@ import net.micode.notes.entities.HouseSaid;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.entities.NewsImageUrls;
 import net.micode.notes.entities.User;
-import net.micode.notes.tool.Utils;
+import net.micode.notes.util.Utils;
 import android.content.Context;
 import android.database.Cursor;
 /**  

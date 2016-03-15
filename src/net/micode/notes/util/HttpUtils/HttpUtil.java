@@ -1,12 +1,4 @@
-/**   
- * @title: HttpUtil.java 
- * @package: com.founder.medical.utils 
- * @description: TODO
- * @author liutf  
- * @date 2015年4月17日 下午5:05:19 
- * @version 1.0.0 
- */
-package net.micode.notes.tool.HttpUtils;
+package net.micode.notes.util.HttpUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,13 +17,6 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 
 import android.util.Log;
-
-/**
- * @description: Http请求工具类
- * @author: wht
- * @date: 2015-4-23 下午3:49:13
- * @version: V1.0.0
- */
 public class HttpUtil {
 	/**
 	 * 使用Get方式获取数据

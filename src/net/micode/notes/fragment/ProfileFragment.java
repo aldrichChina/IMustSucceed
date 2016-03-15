@@ -4,7 +4,7 @@ import net.micode.notes.R;
 import net.micode.notes.activity.DownloadListActivity;
 import net.micode.notes.download.DownloadManager;
 import net.micode.notes.download.DownloadService;
-import net.micode.notes.tool.Utils;
+import net.micode.notes.util.Utils;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

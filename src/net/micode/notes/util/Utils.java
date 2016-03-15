@@ -1,4 +1,4 @@
-package net.micode.notes.tool;
+package net.micode.notes.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;

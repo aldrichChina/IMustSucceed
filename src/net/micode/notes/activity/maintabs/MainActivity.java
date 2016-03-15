@@ -2,6 +2,7 @@ package net.micode.notes.activity.maintabs;
 
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
+import net.micode.notes.dialog.CustomExitDialog;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.CalendarFragment;
@@ -21,12 +22,14 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends BaseActivity implements OnClickListener,
 		OnHeadlineSelectedListener, OnLongClickListener {
@@ -124,6 +127,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 	private ResideMenuItem itemCalendar;
 	private ResideMenuItem itemSettings;
 	private ResideMenuItem itemPicture;
+	private long exitTime = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -348,7 +352,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 		// 用户选中HeadlinesFragment中的头标题后
 		// 做一些必要的业务操作
 
-		NewsDetailFragment articleFrag = (NewsDetailFragment) getFragmentManager()
+		articleFrag = (NewsDetailFragment) getFragmentManager()
 				.findFragmentByTag(tag);
 
 		if (articleFrag != null) {
@@ -452,11 +456,22 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 		}
 	};
 
+	private NewsDetailFragment articleFrag;
+
 	private void changeFragment(Fragment targetFragment) {
 		resideMenu.clearIgnoredViewList();
 		getFragmentManager().beginTransaction()
 				.replace(R.id.content, targetFragment, "fragment")
 				.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 				.commit();
+	}
+
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (getFragmentManager().getBackStackEntryCount() <= 0) {
+			super.onKeyDown(keyCode, event);
+		} else {
+			getFragmentManager().popBackStack();
+		}
+		return true;
 	}
 }

@@ -31,8 +31,8 @@ import net.micode.notes.gtask.data.Task;
 import net.micode.notes.gtask.data.TaskList;
 import net.micode.notes.gtask.exception.ActionFailureException;
 import net.micode.notes.gtask.exception.NetworkFailureException;
-import net.micode.notes.tool.GTaskStringUtils;
 import net.micode.notes.ui.NotesPreferenceActivity;
+import net.micode.notes.util.GTaskStringUtils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

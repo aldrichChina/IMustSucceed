@@ -6,7 +6,7 @@
  * @date 2015年4月16日 上午10:23:10 
  * @version 1.0.0 
  */
-package net.micode.notes.tool;
+package net.micode.notes.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
