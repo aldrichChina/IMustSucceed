@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.micode.notes.BaseFragment;
 import net.micode.notes.BitmapHelp;
 import net.micode.notes.R;
 import net.micode.notes.activity.ImageActivity;
@@ -63,7 +64,6 @@ public class BitmapFragment extends BaseFragment {
 
         bitmapUtils = BitmapHelp.getBitmapUtils(this.getActivity().getApplicationContext());
         bitmapUtils.configDefaultLoadingImage(R.drawable.icon_app);
-        bitmapUtils.configDefaultLoadFailedImage(R.drawable.bitmap);
         bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.ARGB_8888);
 
         //bitmapUtils.configMemoryCacheEnabled(false);
@@ -243,5 +243,23 @@ public class BitmapFragment extends BaseFragment {
         }
         return pics;
     }
+
+	@Override
+	protected void initViews() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initEvents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void init() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.micode.notes.dialog.FlippingLoadingDialog;
 import net.micode.notes.util.NetWorkUtils;
 import net.micode.notes.view.HandyTextView;
@@ -129,5 +131,16 @@ public abstract class BaseFragment extends Fragment {
 		Intent intent = new Intent();
 		intent.setClass(mContext, cls);
 		startActivity(intent);
+	}
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onPageStart(getActivity().getClass().getName());
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPageEnd(getActivity().getClass().getName());
 	}
 }

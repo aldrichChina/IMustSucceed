@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import net.micode.notes.BaseApplication;
+import net.micode.notes.BaseFragment;
 import net.micode.notes.R;
 import net.micode.notes.data.Constant;
 import net.micode.notes.data.DatabaseService;
@@ -515,5 +516,23 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 			// TODO Auto-generated method stub
 			super.startUpdate(container);
 		}
+	}
+
+	@Override
+	protected void initViews() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initEvents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void init() {
+		// TODO Auto-generated method stub
+		
 	}
 }

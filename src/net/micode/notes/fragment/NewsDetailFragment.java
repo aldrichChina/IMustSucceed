@@ -1,5 +1,6 @@
 package net.micode.notes.fragment;
 
+import net.micode.notes.BaseFragment;
 import net.micode.notes.R;
 import net.micode.notes.entities.NewsDetailContent;
 import android.content.Intent;
@@ -97,4 +98,19 @@ public class NewsDetailFragment extends BaseFragment {
 		        // system behavior (probably exit the activity)
 		        return false;
 		    }
+			@Override
+			protected void initViews() {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			protected void initEvents() {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			protected void init() {
+				// TODO Auto-generated method stub
+				
+			}
 	}

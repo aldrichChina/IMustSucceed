@@ -48,6 +48,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.ResideMenuItem.ProfileActivity" ></activity>
+        <activity android:name=".activity.ResideMenuItem.PictureActivity" ></activity>
+        <activity android:name=".activity.ResideMenuItem.CalendarActivity" ></activity>
         <activity
             android:name="net.micode.notes.activity.AboutTabsActivity"
             android:screenOrientation="portrait" >
@@ -162,15 +165,16 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
         <activity android:name="net.micode.notes.ui.LoginActivity" >
         </activity>
         <activity android:name=".MyActivity" >
         </activity>
-        <activity android:name=".activity.ImageActivity" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name=".activity.ImageActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activity.DownloadListActivity" />
 
         <service android:name=".download.DownloadService" >

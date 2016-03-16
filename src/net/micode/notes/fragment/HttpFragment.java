@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import net.micode.notes.BaseFragment;
 import net.micode.notes.R;
 import net.micode.notes.adapter.NewsAdapter;
 import net.micode.notes.asynctask.ContentAsyncTask;
@@ -148,5 +149,23 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 			throw new ClassCastException(activity.toString()
 					+ " must implement OnHeadlineSelectedListener");
 		}
+	}
+
+	@Override
+	protected void initViews() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initEvents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void init() {
+		// TODO Auto-generated method stub
+		
 	}
 }

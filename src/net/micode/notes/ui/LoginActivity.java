@@ -6,7 +6,7 @@ import java.util.List;
 import net.micode.notes.InvoicePreference;
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
-import net.micode.notes.activity.MyActivity;
+import net.micode.notes.activity.maintabs.MainActivity;
 import net.micode.notes.data.ConstantUtil;
 import net.micode.notes.util.DeviceInfoUtil;
 import net.micode.notes.util.Utils;
@@ -187,7 +187,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 		InvoicePreference.getInstance(LoginActivity.this).SetIsSavePwd(true);
 		if (!ifLogin)// 如果是自动登录
 		{
-			Intent intent = new Intent(LoginActivity.this, MyActivity.class);
+			Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 			intent.putExtra("from", "LoginActivity");
 			startActivity(intent);
 			Utils.finish(LoginActivity.this);
@@ -201,7 +201,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 			Boolean result = true;
 			dialog.dismiss();
 			if (result) {
-				Intent intent = new Intent(LoginActivity.this, MyActivity.class);
+				Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 				intent.putExtra("from", "LoginActivity");
 				startActivity(intent);
 				Utils.finish(LoginActivity.this);

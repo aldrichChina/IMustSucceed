@@ -2,20 +2,21 @@ package net.micode.notes.activity.maintabs;
 
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
-import net.micode.notes.dialog.CustomExitDialog;
+import net.micode.notes.activity.ResideMenuItem.CalendarActivity;
+import net.micode.notes.activity.ResideMenuItem.PictureActivity;
+import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
-import net.micode.notes.fragment.CalendarFragment;
 import net.micode.notes.fragment.ContactsFragment;
 import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HttpFragment;
+import net.micode.notes.fragment.SettingsFragment;
 import net.micode.notes.fragment.HttpFragment.OnHeadlineSelectedListener;
 import net.micode.notes.fragment.NewsDetailFragment;
-import net.micode.notes.fragment.PictureFragment;
-import net.micode.notes.fragment.ProfileFragment;
-import net.micode.notes.fragment.SettingsFragment;
+import net.micode.notes.util.Utils;
 import net.micode.notes.view.ResideMenu.ResideMenu;
 import net.micode.notes.view.ResideMenu.ResideMenuItem;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -29,7 +30,6 @@ import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends BaseActivity implements OnClickListener,
 		OnHeadlineSelectedListener, OnLongClickListener {
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 	/**
 	 * 用于展示设置的Fragment
 	 */
-	private SettingsFragment settingFragment;
+	private SettingsFragment  settingFragment;
 
 	/**
 	 * 消息界面布局
@@ -127,8 +127,15 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 	private ResideMenuItem itemCalendar;
 	private ResideMenuItem itemSettings;
 	private ResideMenuItem itemPicture;
-	private long exitTime = 0;
+	private NewsDetailFragment articleFrag;
 
+	private ProfileActivity profileActivity;
+
+	private CalendarActivity calendarActivity;
+
+	private ProfileActivity settingsActivity;
+
+	private PictureActivity pictureActivity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -165,6 +172,22 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
+		
+		profileActivity = new ProfileActivity();
+		calendarActivity = new CalendarActivity();
+		settingsActivity = new ProfileActivity();
+		pictureActivity = new PictureActivity();
+		if (v == itemHome) {
+			changeActivity(MainActivity.this);
+		} else if (v == itemProfile) {
+			changeActivity(profileActivity);
+		} else if (v == itemCalendar) {
+			changeActivity(calendarActivity);
+		} else if (v == itemSettings) {
+			changeActivity(settingsActivity);
+		} else if (v == itemPicture) {
+			changeActivity(pictureActivity);
+		}
 		switch (v.getId()) {
 		case R.id.news_layout:
 			// 当点击了动态tab时，选中第3个tab
@@ -190,20 +213,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 		default:
 			break;
 		}
-
-		if (v == itemHome) {
-			changeFragment(new HttpFragment());
-		} else if (v == itemProfile) {
-			changeFragment(new ProfileFragment());
-		} else if (v == itemCalendar) {
-			changeFragment(new CalendarFragment());
-		} else if (v == itemSettings) {
-			changeFragment(new SettingsFragment());
-		} else if (v == itemPicture) {
-			changeFragment(new PictureFragment());
-		}
-
-		resideMenu.closeMenu();
 
 	}
 
@@ -456,7 +465,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 		}
 	};
 
-	private NewsDetailFragment articleFrag;
+	
 
 	private void changeFragment(Fragment targetFragment) {
 		resideMenu.clearIgnoredViewList();
@@ -464,8 +473,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 				.replace(R.id.content, targetFragment, "fragment")
 				.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 				.commit();
+		resideMenu.closeMenu();
 	}
-
+	private void changeActivity(Activity targetActivity){
+		resideMenu.clearIgnoredViewList();
+		Utils.start_Activity(MainActivity.this, targetActivity.getClass());
+    }
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (getFragmentManager().getBackStackEntryCount() <= 0) {
 			super.onKeyDown(keyCode, event);
@@ -474,4 +487,5 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 		}
 		return true;
 	}
+	
 }
