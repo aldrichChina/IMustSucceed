@@ -46,9 +46,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_register);
 		super.onCreate(savedInstanceState);
-		initViews();
-		mCurrentStep = initStep();
-		initEvents();
 		initBackDialog();
 	}
 
@@ -70,6 +67,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	protected void initEvents() {
+		mCurrentStep = initStep();
 		mCurrentStep.setOnNextActionListener(this);
 		mBtnPrevious.setOnClickListener(this);
 		mBtnNext.setOnClickListener(this);
@@ -313,11 +311,10 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 		return "";
 	}
 
-
 	@Override
 	protected void setListener() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

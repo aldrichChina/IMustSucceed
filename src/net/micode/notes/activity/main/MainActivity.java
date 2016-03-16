@@ -140,7 +140,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 	private PictureActivity pictureActivity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_maintabs);
 		super.onCreate(savedInstanceState);
 		// 初始化布局元素
