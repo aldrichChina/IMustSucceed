@@ -1,4 +1,4 @@
-package net.micode.notes.activity.maintabs;
+package net.micode.notes.activity.main;
 
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
@@ -10,11 +10,11 @@ import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.ContactsFragment;
 import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HttpFragment;
-import net.micode.notes.fragment.SettingsFragment;
 import net.micode.notes.fragment.HttpFragment.OnHeadlineSelectedListener;
 import net.micode.notes.fragment.NewsDetailFragment;
+import net.micode.notes.fragment.SettingsFragment;
 import net.micode.notes.util.Utils;
-import net.micode.notes.view.ResideMenu.ResideMenu;
+import net.micode.notes.view.ResideMenu.ResideMenu;	
 import net.micode.notes.view.ResideMenu.ResideMenuItem;
 import android.app.Activity;
 import android.app.Fragment;
@@ -30,6 +30,8 @@ import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.umeng.update.UmengUpdateAgent;
 
 public class MainActivity extends BaseActivity implements OnClickListener,
 		OnHeadlineSelectedListener, OnLongClickListener {
@@ -344,6 +346,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 	@Override
 	protected void initEvents() {
 		setUpMenu();
+		UmengUpdateAgent.update(this);
 	}
 
 	@Override
@@ -487,5 +490,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 		}
 		return true;
 	}
+
 	
 }

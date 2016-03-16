@@ -1,4 +1,4 @@
-package net.micode.notes.activity.maintabs;
+package net.micode.notes.activity.main;
 
 import net.micode.notes.BasePopupWindow.onSubmitClickListener;
 import net.micode.notes.R;

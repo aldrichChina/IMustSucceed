@@ -53,6 +53,7 @@ import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
 
+
 public abstract class BaseActivity extends Activity {
 	protected BaseApplication mApplication;
 	protected NetWorkUtils mNetWorkUtils;

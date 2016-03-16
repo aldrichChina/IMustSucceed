@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.micode.notes"
-    android:versionCode="1"
+    android:versionCode="0"
     android:versionName="0.1" >
 
     <uses-sdk android:minSdkVersion="14" />
@@ -48,9 +48,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ResideMenuItem.ProfileActivity" ></activity>
-        <activity android:name=".activity.ResideMenuItem.PictureActivity" ></activity>
-        <activity android:name=".activity.ResideMenuItem.CalendarActivity" ></activity>
+        <activity android:name=".activity.ResideMenuItem.ProfileActivity" >
+        </activity>
+        <activity android:name=".activity.ResideMenuItem.PictureActivity" >
+        </activity>
+        <activity android:name=".activity.ResideMenuItem.CalendarActivity" >
+        </activity>
         <activity
             android:name="net.micode.notes.activity.AboutTabsActivity"
             android:screenOrientation="portrait" >
@@ -100,27 +103,27 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="net.micode.notes.activity.maintabs.MainActivity"
+            android:name="net.micode.notes.activity.main.MainActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="net.micode.notes.activity.maintabs.NearByActivity"
+            android:name="net.micode.notes.activity.main.NearByActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="net.micode.notes.activity.maintabs.NearByFeedsActivity"
+            android:name="net.micode.notes.activity.main.NearByFeedsActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="net.micode.notes.activity.maintabs.SessionListActivity"
+            android:name="net.micode.notes.activity.main.SessionListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="net.micode.notes.activity.maintabs.ContactTabsActivity"
+            android:name="net.micode.notes.activity.main.ContactTabsActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="net.micode.notes.activity.maintabs.UserSettingActivity"
+            android:name="net.micode.notes.activity.main.UserSettingActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -165,7 +168,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
         <activity android:name="net.micode.notes.ui.LoginActivity" >
@@ -286,6 +289,16 @@
         <meta-data
             android:name="android.app.default_searchable"
             android:value=".ui.NoteEditActivity" />
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService" >
+        </service>
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>

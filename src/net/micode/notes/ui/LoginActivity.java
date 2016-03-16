@@ -6,7 +6,7 @@ import java.util.List;
 import net.micode.notes.InvoicePreference;
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
-import net.micode.notes.activity.maintabs.MainActivity;
+import net.micode.notes.activity.main.MainActivity;
 import net.micode.notes.data.ConstantUtil;
 import net.micode.notes.util.DeviceInfoUtil;
 import net.micode.notes.util.Utils;
