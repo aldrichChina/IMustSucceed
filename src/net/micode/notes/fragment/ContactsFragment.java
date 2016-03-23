@@ -25,9 +25,4 @@ public class ContactsFragment extends BaseFragment{
 		
 	}
 
-	@Override
-	protected void init() {
-		// TODO Auto-generated method stub
-		
-	}
 }

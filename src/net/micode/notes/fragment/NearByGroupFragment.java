@@ -1,4 +1,4 @@
-package net.micode.notes.activity.main;
+package net.micode.notes.fragment;
 
 import net.micode.notes.BaseApplication;
 import net.micode.notes.BaseFragment;
@@ -56,12 +56,9 @@ public class NearByGroupFragment extends BaseFragment implements
 		mMmrelvList.setOnItemClickListener(this);
 		mMmrelvList.setOnRefreshListener(this);
 		mMmrelvList.setOnCancelListener(this);
-	}
-
-	@Override
-	protected void init() {
 		getGroups();
 	}
+
 
 	private void getGroups() {
 		if (mApplication.mNearByGroups.isEmpty()) {

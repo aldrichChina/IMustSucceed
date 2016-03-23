@@ -1,4 +1,4 @@
-package net.micode.notes.activity.main;
+package net.micode.notes.fragment;
 
 import net.micode.notes.BaseApplication;
 import net.micode.notes.BaseFragment;
@@ -54,10 +54,6 @@ public class NearByPeopleFragment extends BaseFragment implements
 		mMmrlvList.setOnItemClickListener(this);
 		mMmrlvList.setOnRefreshListener(this);
 		mMmrlvList.setOnCancelListener(this);
-	}
-
-	@Override
-	protected void init() {
 		getPeoples();
 	}
 

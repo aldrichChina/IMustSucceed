@@ -65,7 +65,6 @@ public abstract class BaseFragment extends Fragment {
 			Bundle savedInstanceState) {
 		initViews();
 		initEvents();
-		init();
 		return mView;
 	}
 
@@ -78,8 +77,6 @@ public abstract class BaseFragment extends Fragment {
 	protected abstract void initViews();
 
 	protected abstract void initEvents();
-
-	protected abstract void init();
 
 	public View findViewById(int id) {
 		return mView.findViewById(id);

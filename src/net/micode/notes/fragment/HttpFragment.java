@@ -153,19 +153,12 @@ public class HttpFragment extends BaseFragment implements IXListViewListener {
 
 	@Override
 	protected void initViews() {
-		// TODO Auto-generated method stub
-		
+		Utils.Log("HttpFragment--->initViews只喜萨达纳副科级 ");
 	}
 
 	@Override
 	protected void initEvents() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void init() {
-		// TODO Auto-generated method stub
+		Utils.Log("HttpFragment--->initEvents只喜萨达纳副科级");
 		
 	}
 }

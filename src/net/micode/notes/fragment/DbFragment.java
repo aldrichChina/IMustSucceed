@@ -530,9 +530,4 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
 		
 	}
 
-	@Override
-	protected void init() {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -256,10 +256,5 @@ public class BitmapFragment extends BaseFragment {
 		
 	}
 
-	@Override
-	protected void init() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

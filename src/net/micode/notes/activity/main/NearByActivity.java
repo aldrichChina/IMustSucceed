@@ -2,6 +2,8 @@ package net.micode.notes.activity.main;
 
 import net.micode.notes.BasePopupWindow.onSubmitClickListener;
 import net.micode.notes.R;
+import net.micode.notes.fragment.NearByGroupFragment;
+import net.micode.notes.fragment.NearByPeopleFragment;
 import net.micode.notes.popupwindow.NearByPopupWindow;
 import net.micode.notes.ui.NotesListActivity;
 import net.micode.notes.view.HeaderLayout;

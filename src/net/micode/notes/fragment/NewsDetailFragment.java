@@ -108,9 +108,4 @@ public class NewsDetailFragment extends BaseFragment {
 				// TODO Auto-generated method stub
 				
 			}
-			@Override
-			protected void init() {
-				// TODO Auto-generated method stub
-				
-			}
 	}
