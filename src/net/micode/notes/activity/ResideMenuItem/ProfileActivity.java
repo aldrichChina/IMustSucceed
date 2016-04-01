@@ -3,7 +3,7 @@ package net.micode.notes.activity.ResideMenuItem;
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.DownloadListActivity;
-import net.micode.notes.activity.main.MainActivity;
+import net.micode.notes.activity.MainActivity;
 import net.micode.notes.download.DownloadManager;
 import net.micode.notes.download.DownloadService;
 import net.micode.notes.util.Utils;

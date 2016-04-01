@@ -1,7 +1,6 @@
 package net.micode.notes.activity;
 
 import net.micode.notes.R;
-import net.micode.notes.activity.main.MainActivity;
 import net.micode.notes.activity.register.RegisterActivity;
 import net.micode.notes.view.HandyTextView;
 import android.os.Bundle;

@@ -3,7 +3,6 @@ package net.micode.notes.activity;
 import java.util.regex.Pattern;
 
 import net.micode.notes.R;
-import net.micode.notes.activity.main.MainActivity;
 import net.micode.notes.adapter.SimpleListDialogAdapter;
 import net.micode.notes.dialog.SimpleListDialog;
 import net.micode.notes.dialog.SimpleListDialog.onSimpleListItemClickListener;
