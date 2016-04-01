@@ -1,4 +1,4 @@
-package com.zxing.encoding;
+package net.micode.notes.zxing.encoding;
 
 import java.util.Hashtable;
 

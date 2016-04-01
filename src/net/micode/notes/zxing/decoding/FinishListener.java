@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zxing.decoding;
+package net.micode.notes.zxing.decoding;
 
 import android.app.Activity;
 import android.content.DialogInterface;

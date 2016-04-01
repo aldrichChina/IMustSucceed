@@ -1,11 +1,8 @@
-package com.ericssonlabs;
+package net.micode.notes.activity.ResideMenuItem;
 
 import net.micode.notes.R;
-
-import com.google.zxing.WriterException;
-import com.zxing.activity.CaptureActivity;
-import com.zxing.encoding.EncodingHandler;
-
+import net.micode.notes.zxing.activity.CaptureActivity;
+import net.micode.notes.zxing.encoding.EncodingHandler;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.zxing.WriterException;
 
 public class BarCodeActivity extends Activity {
     /** Called when the activity is first created. */

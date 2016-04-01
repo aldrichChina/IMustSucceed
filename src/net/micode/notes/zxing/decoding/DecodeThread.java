@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.zxing.decoding;
+package net.micode.notes.zxing.decoding;
 
 import java.util.Hashtable;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
 
+import net.micode.notes.zxing.activity.CaptureActivity;
 import android.os.Handler;
 import android.os.Looper;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
-import com.zxing.activity.CaptureActivity;
 
 /**
  * This thread does all the heavy lifting of decoding the images.
- * ½âÂëÏß³Ì
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
  */
 final class DecodeThread extends Thread {
 

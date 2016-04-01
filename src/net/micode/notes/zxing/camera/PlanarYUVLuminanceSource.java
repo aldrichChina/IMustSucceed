@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zxing.camera;
+package net.micode.notes.zxing.camera;
 
 import com.google.zxing.LuminanceSource;
 

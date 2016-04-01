@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-package com.zxing.decoding;
+package net.micode.notes.zxing.decoding;
 
 import java.util.Vector;
 
 import net.micode.notes.R;
+import net.micode.notes.zxing.activity.CaptureActivity;
+import net.micode.notes.zxing.camera.CameraManager;
+import net.micode.notes.zxing.view.ViewfinderResultPointCallback;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,9 +33,6 @@ import android.util.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.zxing.activity.CaptureActivity;
-import com.zxing.camera.CameraManager;
-import com.zxing.view.ViewfinderResultPointCallback;
 
 /**
  * This class handles all the messaging which comprises the state machine for capture.

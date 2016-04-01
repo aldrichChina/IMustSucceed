@@ -1,6 +1,7 @@
 package net.micode.notes.activity;
 
 import net.micode.notes.R;
+import net.micode.notes.activity.ResideMenuItem.BarCodeActivity;
 import net.micode.notes.activity.ResideMenuItem.CalendarActivity;
 import net.micode.notes.activity.ResideMenuItem.CameraActivity;
 import net.micode.notes.activity.ResideMenuItem.PictureActivity;
@@ -31,7 +32,6 @@ import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ericssonlabs.BarCodeActivity;
 import com.umeng.update.UmengUpdateAgent;
 
 public class MainActivity extends BaseActivity implements OnClickListener, OnHeadlineSelectedListener,

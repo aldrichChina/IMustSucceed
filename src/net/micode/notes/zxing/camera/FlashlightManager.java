@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zxing.camera;
+package net.micode.notes.zxing.camera;
 
 import android.os.IBinder;
 import android.util.Log;
@@ -54,7 +54,7 @@ final class FlashlightManager {
   }
 
   /**
-   * ¿ØÖÆÏà»úÉÁ¹âµÆ¿ª¹Ø
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½
    */
   //FIXME
   static void enableFlashlight() {

@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-package com.zxing.decoding;
+package net.micode.notes.zxing.decoding;
 import java.util.Hashtable;
 
 import net.micode.notes.R;
+import net.micode.notes.zxing.activity.CaptureActivity;
+import net.micode.notes.zxing.camera.CameraManager;
+import net.micode.notes.zxing.camera.PlanarYUVLuminanceSource;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -30,9 +33,6 @@ import com.google.zxing.MultiFormatReader;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.zxing.activity.CaptureActivity;
-import com.zxing.camera.CameraManager;
-import com.zxing.camera.PlanarYUVLuminanceSource;
 
 final class DecodeHandler extends Handler {
 
