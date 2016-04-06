@@ -4,6 +4,8 @@ import net.micode.notes.R;
 import net.micode.notes.activity.ResideMenuItem.BarCodeActivity;
 import net.micode.notes.activity.ResideMenuItem.CalendarActivity;
 import net.micode.notes.activity.ResideMenuItem.CameraActivity;
+import net.micode.notes.activity.ResideMenuItem.CameraBeginActivity;
+import net.micode.notes.activity.ResideMenuItem.CustomCameraActivity;
 import net.micode.notes.activity.ResideMenuItem.PictureActivity;
 import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
 import net.micode.notes.activity.main.NearByActivity;
@@ -131,6 +133,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private ResideMenuItem itemSettings;
     private ResideMenuItem itemPicture;
     private ResideMenuItem itemCamera;
+    private ResideMenuItem itemCustomCamera;
     private ResideMenuItem itemScan;
     private NewsDetailFragment articleFrag;
 
@@ -142,6 +145,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
 
     private PictureActivity pictureActivity;
     private CameraActivity cameraActivity;
+    private CameraBeginActivity cameraBeginActivity;
     private BarCodeActivity barCodeActivity;
 
     @Override
@@ -185,7 +189,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         settingsActivity = new ProfileActivity();
         pictureActivity = new PictureActivity();
         cameraActivity = new CameraActivity();
-        barCodeActivity=new BarCodeActivity();
+        cameraBeginActivity=new CameraBeginActivity();
+        barCodeActivity = new BarCodeActivity();
         new CameraActivity();
         if (v == itemHome) {
             changeActivity(MainActivity.this);
@@ -199,6 +204,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             changeActivity(pictureActivity);
         } else if (v == itemCamera) {
             changeActivity(cameraActivity);
+        } else if (v == itemCustomCamera) {
+            changeActivity(cameraBeginActivity);
         } else if (v == itemScan) {
             changeActivity(barCodeActivity);
         }
@@ -433,14 +440,16 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         itemCalendar = new ResideMenuItem(this, R.drawable.icon_calendar, "Calendar");
         itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "Settings");
         itemPicture = new ResideMenuItem(this, R.drawable.abc_ic_menu_selectall_mtrl_alpha, "Picture");
-        itemCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "Camera");
-        itemScan = new ResideMenuItem(this, R.drawable.nact_chose_camera, "二维码");
+        itemCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "系统相机");
+        itemCustomCamera=new ResideMenuItem(this, R.drawable.nact_chose_camera, "自定义相机");
+        itemScan = new ResideMenuItem(this, R.drawable.share_btn_logo_pyq, "二维码");
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
         itemCalendar.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
         itemPicture.setOnClickListener(this);
         itemCamera.setOnClickListener(this);
+        itemCustomCamera.setOnClickListener(this);
         itemScan.setOnClickListener(this);
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
@@ -448,6 +457,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemPicture, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemCamera, ResideMenu.DIRECTION_RIGHT);
+        resideMenu.addMenuItem(itemCustomCamera, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemScan, ResideMenu.DIRECTION_RIGHT);
         // You can disable a direction by setting ->
         // resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);

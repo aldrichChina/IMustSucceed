@@ -44,7 +44,6 @@ import android.widget.ImageView;
  * @version 1.0.0
  */
 public class CameraActivity extends BaseActivity {
-
     private ImageView ivImage;
     private Button btCamera;
     private String saveDir;
@@ -68,6 +67,17 @@ public class CameraActivity extends BaseActivity {
     protected void initEvents() {
         saveDir = Environment.getExternalStorageDirectory().getPath() + "/SucceedCamera";
         state = Environment.getExternalStorageState();
+        ImageView righttitle = (ImageView) findViewById(R.id.righttitle);
+        righttitle.setVisibility(View.INVISIBLE);
+        ImageView topback = (ImageView) findViewById(R.id.topback);
+        topback.setBackgroundResource(R.drawable.ic_topbar_back_normal);
+        topback.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Utils.finish(CameraActivity.this);
+            }
+        });
     }
 
     @Override

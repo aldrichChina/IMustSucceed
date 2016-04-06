@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@android:color/white"
     android:orientation="vertical" >
-
+<include layout="@layout/top_title_headline" />
     <Button
         android:id="@+id/btn_scan_barcode"
         android:layout_width="fill_parent"

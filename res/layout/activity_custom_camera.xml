@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- 显示预览图形 -->
+
+    <SurfaceView
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#7f7f7f" >
+
+        <Button
+            android:id="@+id/button_capture"
+            android:layout_width="98dp"
+            android:layout_height="96dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_capture"
+            android:maxHeight="32dp"
+            android:minHeight="24dip"
+            android:minWidth="24dip"
+            android:width="32dp" />
+
+        <ImageButton
+            android:id="@+id/imgBtnOpenPic"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="28dp"
+            android:layout_toLeftOf="@+id/button_capture"
+            android:adjustViewBounds="false"
+            android:background="#0000"
+            android:maxHeight="48dp"
+            android:maxWidth="48dp"
+            android:minHeight="32dp"
+            android:minWidth="32dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gallery_pic" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="returnActivity"
+            android:text="选中" />
+    </RelativeLayout>
+
+</LinearLayout>

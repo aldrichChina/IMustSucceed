@@ -28,80 +28,79 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 
 public class PictureActivity extends BaseActivity {
-	OkHttpClient client = new OkHttpClient();
-	String httpArg = "num=50";
-	Handler handler = new Handler();
-	private ListView listView;
-	Gson gson = new Gson();
-	private List<Detailed> detailedList;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.picture_fragment);
-		super.onCreate(savedInstanceState);
+    OkHttpClient client = new OkHttpClient();
+    String httpArg = "num=50";
+    Handler handler = new Handler();
+    private ListView listView;
+    Gson gson = new Gson();
+    private List<Detailed> detailedList;
 
-		
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.picture_fragment);
+        super.onCreate(savedInstanceState);
 
-	}
+    }
 
-	private void setDate() {
-		listView.setAdapter(new MeinvAdapter(this, detailedList));
-		setListener();
-	}
+    private void setDate() {
+        listView.setAdapter(new MeinvAdapter(this, detailedList));
+        setListener();
+    }
 
-	@Override
-	protected void setListener() {
-		listView.setOnItemClickListener(new OnItemClickListener() {
+    @Override
+    protected void setListener() {
+        listView.setOnItemClickListener(new OnItemClickListener() {
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Intent intent = new Intent();
-				intent.putExtra("url", detailedList.get(position).getPicUrl());
-				intent.setClass(PictureActivity.this, ImageActivity.class);
-				startActivity(intent);
-			}
-		});
-	}
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.putExtra("url", detailedList.get(position).getPicUrl());
+                intent.setClass(PictureActivity.this, ImageActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
-	@Override
-	protected void initViews() {
+    @Override
+    protected void initViews() {
 
-		ImageView righttitle = (ImageView) findViewById(R.id.righttitle);
-		righttitle.setVisibility(View.INVISIBLE);
-		ImageView topback = (ImageView) findViewById(R.id.topback);
-		topback.setBackgroundResource(R.drawable.ic_topbar_back_normal);
-		topback.setOnClickListener(new OnClickListener() {
+        ImageView righttitle = (ImageView) findViewById(R.id.righttitle);
+        righttitle.setVisibility(View.INVISIBLE);
+        ImageView topback = (ImageView) findViewById(R.id.topback);
+        topback.setBackgroundResource(R.drawable.ic_topbar_back_normal);
+        topback.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				Utils.finish(PictureActivity.this);
-			}
-		});
-	
-	}
+            @Override
+            public void onClick(View v) {
+                Utils.finish(PictureActivity.this);
+            }
+        });
 
-	@Override
-	protected void initEvents() {
-		listView = (ListView) findViewById(R.id.listView);
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					detailedList = JSONUtil.analysisResponse(HttpService
-							.OKHttpGet(Constant.HTTPURLMEINV, httpArg));
-					handler.post(new Runnable() {
-						@Override
-						public void run() {
-							setDate();
-						}
-					});
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
+    }
 
-	}
+    @Override
+    protected void initEvents() {
+        listView = (ListView) findViewById(R.id.listView);
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    detailedList = JSONUtil.analysisResponse(HttpService.OKHttpGet(Constant.HTTPURLMEINV, httpArg));
+                    handler.post(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            setDate();
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
 
 }
