@@ -10,14 +10,9 @@ import net.micode.notes.R;
 import net.micode.notes.adapter.NewsAdapter;
 import net.micode.notes.asynctask.ContentAsyncTask;
 import net.micode.notes.asynctask.ContentAsyncTask.ContentCallback;
-import net.micode.notes.data.Constant;
 import net.micode.notes.data.DatabaseService;
-import net.micode.notes.entities.NewsBody;
-import net.micode.notes.entities.NewsChannel;
 import net.micode.notes.entities.NewsDetailContent;
-import net.micode.notes.entities.NewsPageBean;
 import net.micode.notes.util.Utils;
-import net.micode.notes.util.HttpUtils.HttpService;
 import net.micode.notes.view.XListView;
 import net.micode.notes.view.XListView.IXListViewListener;
 import android.app.Activity;
@@ -29,8 +24,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
 
 public class HttpFragment extends BaseFragment implements IXListViewListener {
 	private XListView mListView;

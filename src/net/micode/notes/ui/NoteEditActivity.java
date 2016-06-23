@@ -35,7 +35,6 @@ import net.micode.notes.util.ResourceParser;
 import net.micode.notes.util.ResourceParser.TextAppearanceResources;
 import net.micode.notes.widget.NoteWidgetProvider_2x;
 import net.micode.notes.widget.NoteWidgetProvider_4x;
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;

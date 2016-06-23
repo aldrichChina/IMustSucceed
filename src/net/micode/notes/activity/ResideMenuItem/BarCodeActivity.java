@@ -5,7 +5,6 @@ import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.util.Utils;
 import net.micode.notes.zxing.activity.CaptureActivity;
 import net.micode.notes.zxing.encoding.EncodingHandler;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;

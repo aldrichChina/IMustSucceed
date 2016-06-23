@@ -21,7 +21,6 @@ import net.micode.notes.R;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.Manifest;
-import android.R.anim;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;

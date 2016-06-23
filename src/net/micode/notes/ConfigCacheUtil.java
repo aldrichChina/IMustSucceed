@@ -1,11 +1,7 @@
 package net.micode.notes;
 import java.io.File;
-import java.io.IOException;
 
-import net.micode.notes.util.FileUtils;
 import android.os.Environment;
-import android.provider.SyncStateContract.Constants;
-import android.util.Log;
   
   
 /** 

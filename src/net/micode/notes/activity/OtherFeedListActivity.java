@@ -16,7 +16,6 @@ import net.micode.notes.view.MoMoRefreshListView.OnCancelListener;
 import net.micode.notes.view.MoMoRefreshListView.OnRefreshListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 
 public class OtherFeedListActivity extends BaseActivity implements
 		OnRefreshListener, OnCancelListener {

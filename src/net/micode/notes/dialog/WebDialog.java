@@ -7,7 +7,6 @@ import net.micode.notes.util.NetWorkUtils.NetWorkState;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;

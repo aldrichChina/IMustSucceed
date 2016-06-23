@@ -5,7 +5,6 @@ import net.micode.notes.activity.ResideMenuItem.BarCodeActivity;
 import net.micode.notes.activity.ResideMenuItem.CalendarActivity;
 import net.micode.notes.activity.ResideMenuItem.CameraActivity;
 import net.micode.notes.activity.ResideMenuItem.CameraBeginActivity;
-import net.micode.notes.activity.ResideMenuItem.CustomCameraActivity;
 import net.micode.notes.activity.ResideMenuItem.PictureActivity;
 import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
 import net.micode.notes.activity.main.NearByActivity;
