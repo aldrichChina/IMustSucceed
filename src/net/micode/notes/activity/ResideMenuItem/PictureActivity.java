@@ -11,11 +11,12 @@ import net.micode.notes.data.Constant;
 import net.micode.notes.entities.Detailed;
 import net.micode.notes.util.JSONUtil;
 import net.micode.notes.util.Utils;
-import net.micode.notes.util.HttpUtils.HttpService;
+import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -24,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 public class PictureActivity extends BaseActivity {
 
@@ -80,25 +83,25 @@ public class PictureActivity extends BaseActivity {
     @Override
     protected void initEvents() {
         listView = (ListView) findViewById(R.id.listView);
-        new Thread(new Runnable() {
+        OkHttpUtils.get().url(Constant.HTTPURLMEINV).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
+                .addParams("num", "50").build().execute(new StringCallback() {
 
-            @Override
-            public void run() {
-                try {
-                    detailedList = JSONUtil.analysisResponse(HttpService.OKHttpGet(Constant.HTTPURLMEINV, httpArg));
-                    handler.post(new Runnable() {
-
-                        @Override
-                        public void run() {
+                    @Override
+                    public void onResponse(String response, int id) {
+                        try {
+                            Log.d("jia", "HTTPURLMEINV=response==" + response);
+                            detailedList = JSONUtil.analysisResponse(response.toString());
                             setDate();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+                    }
 
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Log.d("jia", "onError==" + e.toString());
+                        e.printStackTrace();
+                    }
+                });
     }
-
 }

@@ -16,72 +16,69 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NewsAdapter extends BaseAdapter implements UpdateNewsAdapter {
-	private List<NewsDetailContent> newsList;
-	private Context context;
 
-	public NewsAdapter(Context context, List<NewsDetailContent> newsList) {
-		super();
-		this.newsList = newsList;
-		this.context = context;
-	}
+    private List<NewsDetailContent> newsList;
+    private Context context;
 
-	@Override
-	public int getCount() {
-		return newsList.size();
-	}
+    public NewsAdapter(Context context, List<NewsDetailContent> newsList) {
+        super();
+        this.newsList = newsList;
+        this.context = context;
+    }
 
-	@Override
-	public Object getItem(int position) {
-		return newsList.get(position);
-	}
+    @Override
+    public int getCount() {
+        return newsList.size();
+    }
 
-	@Override
-	public long getItemId(int position) {
-		// TODO Auto-generated method stub
-		return position;
-	}
+    @Override
+    public Object getItem(int position) {
+        return newsList.get(position);
+    }
 
-	public class ViewHolder {
-		private ImageView pic;
-		private TextView time;
-		private TextView title;
-		private TextView description;
-	}
+    @Override
+    public long getItemId(int position) {
+        // TODO Auto-generated method stub
+        return position;
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
-		if (convertView == null) {
-			convertView = LayoutInflater.from(context).inflate(R.layout.technology_item, null);
-			holder = new ViewHolder();
-			holder.pic = (ImageView) convertView
-					.findViewById(R.id.TechnologyNewsAdapter_pic);
-			holder.title = (TextView) convertView
-					.findViewById(R.id.TechnologyNewsAdapter_title);
-			holder.time = (TextView) convertView
-					.findViewById(R.id.TechnologyNewsAdapter_time);
-			holder.description = (TextView) convertView
-					.findViewById(R.id.TechnologyNewsAdapter_description);
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
-		holder.title.setSelected(true);
-		List<NewsImageUrls> imageurls = newsList.get(position).getImageurls();
-		if (imageurls!=null) {
-			BaseApplication.imageLoader.displayImage(newsList.get(position)
-					.getImageurls().get(0).getUrl(), holder.pic);
-		}
-		holder.title.setText(newsList.get(position).getTitle());
-		holder.time.setText(newsList.get(position).getPubDate());
-		holder.description.setText(newsList.get(position).getDesc());
-		return convertView;
-	}
+    public class ViewHolder {
 
-	@Override
-	public void upadapter(List<NewsDetailContent> newsList) {
-		this.newsList = newsList;
-		notifyDataSetChanged();
-	}
+        private ImageView pic;
+        private TextView time;
+        private TextView title;
+        private TextView description;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.technology_item, null);
+            holder = new ViewHolder();
+            holder.pic = (ImageView) convertView.findViewById(R.id.TechnologyNewsAdapter_pic);
+            holder.title = (TextView) convertView.findViewById(R.id.TechnologyNewsAdapter_title);
+            holder.time = (TextView) convertView.findViewById(R.id.TechnologyNewsAdapter_time);
+            holder.description = (TextView) convertView.findViewById(R.id.TechnologyNewsAdapter_description);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.title.setSelected(true);
+        List<NewsImageUrls> imageurls = newsList.get(position).getImageurls();
+        if (imageurls != null) {
+            BaseApplication.imageLoader.displayImage(newsList.get(position).getImageurls().get(0).getUrl(), holder.pic);
+        }
+        holder.title.setText(newsList.get(position).getTitle());
+        holder.time.setText(newsList.get(position).getPubDate());
+        holder.description.setText(newsList.get(position).getDesc());
+        return convertView;
+    }
+
+    @Override
+    public void upadapter(List<NewsDetailContent> newsList) {
+        this.newsList = newsList;
+        notifyDataSetChanged();
+    }
 
 }

@@ -15,9 +15,9 @@ import net.micode.notes.entities.Detailed;
 import net.micode.notes.entities.HouseSaid;
 import net.micode.notes.util.JSONUtil;
 import net.micode.notes.util.Utils;
-import net.micode.notes.util.HttpUtils.HttpService;
 import net.micode.notes.view.XListView;
 import net.micode.notes.view.XListView.IXListViewListener;
+import okhttp3.Call;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -49,6 +49,8 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 public class DbFragment extends BaseFragment implements IXListViewListener {
 
@@ -120,27 +122,27 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
     public void initData() {
         cm = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         dbHelper = new DatabaseService(getActivity());
-        new Thread(new Runnable() {
+        OkHttpUtils.get().url(Constant.HTTPURLMEINV).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
+                .addParams("num", "50").build().execute(new StringCallback() {
 
-            @Override
-            public void run() {
-                try {
-                    imageUrls = JSONUtil.analysisResponse(HttpService.OKHttpGet(Constant.HTTPURLMEINV, "num=50"));
-                    getActivity().runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.d("jia", "HTTPURLMEINV response==" + response.toString());
+                        try {
+                            imageUrls = JSONUtil.analysisResponse(response.toString());
                             initSource(imageUrls, true);
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
                         }
-                    });
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                    }
 
-            }
-        }).start();
-
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Log.d("jia", "HTTPURLMEINV e==" + e.toString());
+                        e.printStackTrace();
+                    }
+                });
         options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.ic_empty)
                 .showImageOnFail(R.drawable.mvlg).resetViewBeforeLoading(true).cacheOnDisc(true)
                 .imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565)
@@ -312,26 +314,32 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
     }
 
     public void getHouseSaid() {
-        new Thread(new Runnable() {
+        OkHttpUtils.get().url(Constant.httpUrl).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
+                .addParams("fangfa", "json").build().execute(new StringCallback() {
 
-            @Override
-            public void run() {
-                String responseBody = HttpService.OKHttpGet(Constant.httpUrl, Constant.httpArg);
-                Utils.Logger(getActivity(), "responseBody=" + responseBody);
-                HouseSaid houseSaid = gson.fromJson(responseBody, HouseSaid.class);
-                if (houseSaid == null)
-                    return;
-                dbHelper.insertSaid(houseSaid);
-                // db.execSQL("insert into said values(null,?,?)",new String[] { houseSaid.getTaici(),Long.toString(new
-                // Date().getTime()) });
-                tmpItems = dbHelper.rawQuerySaid();
-            }
-        }).start();
-        if (tmpItems.size() != 0) {
-            items.clear();
-        }
-        items.addAll(tmpItems);
-        tmpItems.clear();
+                    @Override
+                    public void onResponse(String response, int id) {
+                        String responseBody = response.toString();
+                        Utils.Logger(getActivity(), "responseBody=" + responseBody);
+                        HouseSaid houseSaid = gson.fromJson(responseBody, HouseSaid.class);
+                        if (houseSaid == null)
+                            return;
+                        dbHelper.insertSaid(houseSaid);
+                        tmpItems = dbHelper.rawQuerySaid();
+                        if (tmpItems.size() != 0) {
+                            items.clear();
+                        }
+                        items.addAll(tmpItems);
+                        tmpItems.clear();
+                    }
+
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Log.d("jia", "onError==" + e.toString());
+                        e.printStackTrace();
+                    }
+                });
+
     }
 
     @Override
