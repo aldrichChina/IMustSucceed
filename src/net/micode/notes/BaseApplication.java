@@ -59,15 +59,12 @@ public class BaseApplication extends Application {
     public Map<String, SoftReference<Bitmap>> mPhotoOriginalCache = new HashMap<String, SoftReference<Bitmap>>();
     public Map<String, SoftReference<Bitmap>> mPhotoThumbnailCache = new HashMap<String, SoftReference<Bitmap>>();
     public Map<String, SoftReference<Bitmap>> mStatusPhotoCache = new HashMap<String, SoftReference<Bitmap>>();
-
     public List<NearByPeople> mNearByPeoples = new ArrayList<NearByPeople>();
     public List<NearByGroup> mNearByGroups = new ArrayList<NearByGroup>();
-
     public static List<String> mEmoticons = new ArrayList<String>();
     public static Map<String, Integer> mEmoticonsId = new HashMap<String, Integer>();
     public static List<String> mEmoticons_Zem = new ArrayList<String>();
     public static List<String> mEmoticons_Zemoji = new ArrayList<String>();
-
     public LocationClient mLocationClient;
     public double mLongitude;
     public double mLatitude;
@@ -77,15 +74,17 @@ public class BaseApplication extends Application {
     private static Looper mMainLooper;
     private static Handler mMainHander;
     public static ImageLoader imageLoader = ImageLoader.getInstance();
-     public static OkHttpClient client = new OkHttpClient();
+    public static OkHttpClient client = new OkHttpClient();
     private static final String TAG = "MainApplication";
-
     private List<Activity> mList = new LinkedList<Activity>();
 
-    private static BaseApplication instance;
+    private static class BaseApplicationHolder {
 
-    public synchronized static BaseApplication getInstance() {
-        return instance;
+        private static final BaseApplication instance = new BaseApplication();
+    }
+
+    public static BaseApplication getInstance() {
+        return BaseApplicationHolder.instance;
     }
 
     private String CER_12306 = "-----BEGIN CERTIFICATE-----\n"
@@ -124,7 +123,6 @@ public class BaseApplication extends Application {
                 }).sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager).build();
         OkHttpUtils.initClient(okHttpClient);
 
-        instance = this;
         // 应用程序的上下文
         mContext = getApplicationContext();
         // 主线程

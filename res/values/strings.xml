@@ -116,7 +116,7 @@
     <string name="retry">Retry</string>
     <string name="remove">Stop</string>
     <string name="test">Test</string>
-	<!-- XListView -->
+    <!-- XListView -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
     <string name="xlistview_header_hint_loading">正在加载...</string>
@@ -132,6 +132,9 @@
     <!-- 照相 -->
     <string name="camera">开始拍照</string>
     <string name="descr_image">Image</string>
+    <!-- 二维码 -->
+    <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
+
     <plurals name="search_results_title">
         <item quantity="one"><xliff:g id="number" example="1">%1$s</xliff:g> result for \"<xliff:g id="search" example="???">%2$s</xliff:g>\"</item>
         <!-- Case of 0 or 2 or more results. -->

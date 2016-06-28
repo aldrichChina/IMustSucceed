@@ -1,5 +1,6 @@
 package net.micode.notes.dialog;
 
+import net.micode.notes.BaseApplication;
 import net.micode.notes.R;
 import android.app.Activity;
 import android.app.Dialog;
@@ -24,76 +25,77 @@ import android.widget.Button;
  * @version 1.0
  */
 public class CustomExitDialog extends Dialog implements OnClickListener {
-	int layoutRes;// 布局文件
-	Context context;
-	Activity mActivity;
-	/** 确定按钮 **/
-	private Button confirmBtn;
-	/** 取消按钮 **/
-	private Button cancelBtn;
 
-	public CustomExitDialog(Context context) {
-		super(context);
-		this.context = context;
-		mActivity = (Activity) context;
-	}
+    int layoutRes;// 布局文件
+    Context context;
+    Activity mActivity;
+    /** 确定按钮 **/
+    private Button confirmBtn;
+    /** 取消按钮 **/
+    private Button cancelBtn;
 
-	/**
-	 * 自定义布局的构造方法
-	 * 
-	 * @param context
-	 * @param resLayout
-	 */
-	public CustomExitDialog(Context context, int resLayout) {
-		super(context);
-		this.context = context;
-		this.layoutRes = resLayout;
-		mActivity = (Activity) context;
-	}
+    public CustomExitDialog(Context context) {
+        super(context);
+        this.context = context;
+        mActivity = (Activity) context;
+    }
 
-	/**
-	 * 自定义主题及布局的构造方法
-	 * 
-	 * @param context
-	 * @param theme
-	 * @param resLayout
-	 */
-	public CustomExitDialog(Context context, int theme, int resLayout) {
-		super(context, theme);
-		this.context = context;
-		this.layoutRes = resLayout;
-		mActivity = (Activity) context;
-	}
+    /**
+     * 自定义布局的构造方法
+     * 
+     * @param context
+     * @param resLayout
+     */
+    public CustomExitDialog(Context context, int resLayout) {
+        super(context);
+        this.context = context;
+        this.layoutRes = resLayout;
+        mActivity = (Activity) context;
+    }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		this.setContentView(layoutRes);
+    /**
+     * 自定义主题及布局的构造方法
+     * 
+     * @param context
+     * @param theme
+     * @param resLayout
+     */
+    public CustomExitDialog(Context context, int theme, int resLayout) {
+        super(context, theme);
+        this.context = context;
+        this.layoutRes = resLayout;
+        mActivity = (Activity) context;
+    }
 
-		// 根据id在布局中找到控件对象
-		confirmBtn = (Button) findViewById(R.id.confirm_btn);
-		cancelBtn = (Button) findViewById(R.id.cancel_btn);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.setContentView(layoutRes);
 
-		// 设置按钮的文本颜色
-		confirmBtn.setTextColor(0xff1E90FF);
-		cancelBtn.setTextColor(0xff1E90FF);
+        // 根据id在布局中找到控件对象
+        confirmBtn = (Button) findViewById(R.id.confirm_btn);
+        cancelBtn = (Button) findViewById(R.id.cancel_btn);
 
-		// 为按钮绑定点击事件监听器
-		confirmBtn.setOnClickListener(this);
-		cancelBtn.setOnClickListener(this);
-	}
+        // 设置按钮的文本颜色
+        confirmBtn.setTextColor(0xff1E90FF);
+        cancelBtn.setTextColor(0xff1E90FF);
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.confirm_btn:
-			mActivity.finish();
-			System.exit(0);
-			break;
-			
-		case R.id.cancel_btn:
-			dismiss();
-			break;
-		}
-	}
+        // 为按钮绑定点击事件监听器
+        confirmBtn.setOnClickListener(this);
+        cancelBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+        case R.id.confirm_btn:
+            mActivity.finish();
+            BaseApplication.getInstance().exit();
+            break;
+
+        case R.id.cancel_btn:
+            dismiss();
+            break;
+        }
+    }
 }

@@ -3,8 +3,6 @@ package net.micode.notes.activity.ResideMenuItem;
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.util.Utils;
-import net.micode.notes.zxing.activity.CaptureActivity;
-import net.micode.notes.zxing.encoding.EncodingHandler;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -17,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.WriterException;
+import com.zbar.lib.CaptureActivity;
+import com.zbar.lib.EncodingHandler;
 
 public class BarCodeActivity extends BaseActivity {
 

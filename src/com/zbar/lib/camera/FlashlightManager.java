@@ -1,20 +1,4 @@
-/*
- * Copyright (C) 2010 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-package net.micode.notes.zxing.camera;
+package com.zbar.lib.camera;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -23,16 +7,13 @@ import android.os.IBinder;
 import android.util.Log;
 
 /**
- * This class is used to activate the weak light on some camera phones (not flash)
- * in order to illuminate surfaces for scanning. There is no official way to do this,
- * but, classes which allow access to this function still exist on some devices.
- * This therefore proceeds through a great deal of reflection.
+ * 作者: 陈涛(1076559197@qq.com)
+ * 
+ * 时间: 2014年5月9日 下午12:22:42
  *
- * See <a href="http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/">
- * http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/</a> and
- * <a href="http://code.google.com/p/droidled/source/browse/trunk/src/com/droidled/demo/DroidLED.java">
- * http://code.google.com/p/droidled/source/browse/trunk/src/com/droidled/demo/DroidLED.java</a>.
- * Thanks to Ryan Alford for pointing out the availability of this class.
+ * 版本: V_1.0.0
+ *
+ * 描述: 闪光灯管理
  */
 final class FlashlightManager {
 
@@ -51,18 +32,6 @@ final class FlashlightManager {
   }
 
   private FlashlightManager() {
-  }
-
-  /**
-   * �����������ƿ���
-   */
-  //FIXME
-  static void enableFlashlight() {
-    setFlashlight(false);
-  }
-
-  static void disableFlashlight() {
-    setFlashlight(false);
   }
 
   private static Object getHardwareService() {
@@ -139,6 +108,14 @@ final class FlashlightManager {
       Log.w(TAG, "Unexpected error while invoking " + method, re);
       return null;
     }
+  }
+
+  static void enableFlashlight() {
+    setFlashlight(true);
+  }
+
+  static void disableFlashlight() {
+    setFlashlight(false);
   }
 
   private static void setFlashlight(boolean active) {

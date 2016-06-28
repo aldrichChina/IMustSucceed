@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="23" />
+        android:targetSdkVersion="24" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -71,7 +71,7 @@
         <activity android:name=".activity.ResideMenuItem.CameraBeginActivity" />
         <activity android:name=".activity.ResideMenuItem.CustomCameraActivity" />
         <activity android:name=".activity.ResideMenuItem.BarCodeActivity" />
-        <activity android:name=".zxing.activity.CaptureActivity" />
+        <activity android:name="com.zbar.lib.CaptureActivity" />
         <activity
             android:name="net.micode.notes.activity.AboutTabsActivity"
             android:screenOrientation="portrait" >
@@ -187,7 +187,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
         <activity android:name="net.micode.notes.ui.LoginActivity" >

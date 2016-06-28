@@ -201,6 +201,7 @@ public abstract class BaseActivity extends Activity {
 
 	/** 含有Bundle通过Class跳转界面 **/
 	protected void startActivity(Class<?> cls, Bundle bundle) {
+	    BaseApplication.getInstance().addActivity(this);
 		Intent intent = new Intent();
 		intent.setClass(this, cls);
 		if (bundle != null) {
@@ -336,6 +337,7 @@ public abstract class BaseActivity extends Activity {
 	 * @param activity
 	 */
 	public void finish(Activity activity) {
+	    BaseApplication.getInstance().removeActivity(activity);
 		Utils.finish(activity);
 	}
 
