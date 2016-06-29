@@ -1,5 +1,10 @@
 package net.micode.notes.fragment;
 
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
+
 import net.micode.notes.BaseFragment;
 import net.micode.notes.R;
 import net.micode.notes.entities.NewsDetailContent;
@@ -8,10 +13,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebSettings.LayoutAlgorithm;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 public class NewsDetailFragment extends BaseFragment {
 	NewsDetailContent detailContent;
 	private WebView myWebView;
