@@ -15,12 +15,12 @@ import android.widget.Toast;
 
 public class BaseObjectListAdapter extends BaseAdapter {
 
-	protected BaseApplication mApplication;
+	protected MyApplication mApplication;
 	protected Context mContext;
 	protected LayoutInflater mInflater;
 	protected List<? extends Entity> mDatas = new ArrayList<Entity>();
 
-	public BaseObjectListAdapter(BaseApplication application, Context context,
+	public BaseObjectListAdapter(MyApplication application, Context context,
 			List<? extends Entity> datas) {
 		mApplication = application;
 		mContext = context;

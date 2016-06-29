@@ -3,7 +3,7 @@ package net.micode.notes.asynctask;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.data.Constant;
+import net.micode.notes.ConstantProvider;
 import net.micode.notes.data.DatabaseService;
 import net.micode.notes.entities.NewsBody;
 import net.micode.notes.entities.NewsChannel;
@@ -35,7 +35,7 @@ public class ContentAsyncTask extends AsyncTask<String, Integer, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... params) {
-        OkHttpUtils.get().url(Constant.HTTPURL + Constant.MailData).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe").build().execute(new StringCallback() {
+        OkHttpUtils.get().url(ConstantProvider.HTTPURL + ConstantProvider.MailData).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe").build().execute(new StringCallback() {
 
                     @Override
                     public void onResponse(String response, int id) {

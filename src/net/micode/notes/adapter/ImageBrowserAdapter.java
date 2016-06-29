@@ -3,7 +3,7 @@ package net.micode.notes.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.activity.ImageBrowserActivity;
 import net.micode.notes.view.photoview.PhotoView;
 import android.graphics.Bitmap;
@@ -15,11 +15,11 @@ import android.view.ViewGroup.LayoutParams;
 
 public class ImageBrowserAdapter extends PagerAdapter {
 
-	private BaseApplication mApplication;
+	private MyApplication mApplication;
 	private List<String> mPhotos = new ArrayList<String>();
 	private String mType;
 
-	public ImageBrowserAdapter(BaseApplication application,
+	public ImageBrowserAdapter(MyApplication application,
 			List<String> photos, String type) {
 		mApplication = application;
 		if (photos != null) {

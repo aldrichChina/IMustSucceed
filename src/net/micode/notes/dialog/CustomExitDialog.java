@@ -1,6 +1,6 @@
 package net.micode.notes.dialog;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import android.app.Activity;
 import android.app.Dialog;
@@ -90,7 +90,7 @@ public class CustomExitDialog extends Dialog implements OnClickListener {
         switch (v.getId()) {
         case R.id.confirm_btn:
             mActivity.finish();
-            BaseApplication.getInstance().exit();
+            MyApplication.getInstance().exit();
             break;
 
         case R.id.cancel_btn:

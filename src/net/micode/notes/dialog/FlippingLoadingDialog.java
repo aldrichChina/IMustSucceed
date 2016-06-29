@@ -1,6 +1,5 @@
 package net.micode.notes.dialog;
 
-import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
 import net.micode.notes.view.FlippingImageView;
 import net.micode.notes.view.HandyTextView;

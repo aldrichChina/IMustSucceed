@@ -1,5 +1,9 @@
-package net.micode.notes;
+package net.micode.notes.dialog;
 
+import net.micode.notes.R;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
+import net.micode.notes.R.style;
 import net.micode.notes.view.HandyTextView;
 import android.app.Dialog;
 import android.content.Context;

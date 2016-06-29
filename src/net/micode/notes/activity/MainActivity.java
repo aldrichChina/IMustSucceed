@@ -12,8 +12,8 @@ import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.ContactsFragment;
 import net.micode.notes.fragment.DbFragment;
-import net.micode.notes.fragment.HttpFragment;
-import net.micode.notes.fragment.HttpFragment.OnHeadlineSelectedListener;
+import net.micode.notes.fragment.NewsFragment;
+import net.micode.notes.fragment.NewsFragment.OnHeadlineSelectedListener;
 import net.micode.notes.fragment.NewsDetailFragment;
 import net.micode.notes.fragment.SettingsFragment;
 import net.micode.notes.util.Utils;
@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     /**
      * 用于展示消息的Fragment
      */
-    private HttpFragment httpFragment;
+    private NewsFragment newsFragment;
 
     private DbFragment dbFragment;
 
@@ -254,13 +254,13 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             // 当点击了动态tab时，改变控件的图片和文字颜色
             newsImage.setImageResource(R.drawable.ic_nav_3_active);
             newsText.setTextColor(Color.WHITE);
-            if (httpFragment == null) {
+            if (newsFragment == null) {
                 // 如果NewsFragment为空，则创建一个并添加到界面上
-                httpFragment = new HttpFragment();
-                transaction.add(R.id.content, httpFragment);
+                newsFragment = new NewsFragment();
+                transaction.add(R.id.content, newsFragment);
             } else {
                 // 如果NewsFragment不为空，则直接将它显示出来
-                transaction.show(httpFragment);
+                transaction.show(newsFragment);
             }
             break;
         case 1:
@@ -344,8 +344,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
      *            用于对Fragment执行操作的事务
      */
     private void hideFragments(FragmentTransaction transaction) {
-        if (httpFragment != null) {
-            transaction.hide(httpFragment);
+        if (newsFragment != null) {
+            transaction.hide(newsFragment);
         }
         if (dbFragment != null) {
             transaction.hide(dbFragment);

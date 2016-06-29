@@ -1,4 +1,4 @@
-package net.micode.notes.util.HttpUtils;
+package net.micode.notes.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Map;
 
-import net.micode.notes.data.ConstantUtil;
+import net.micode.notes.ConstantProvider;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -41,9 +41,9 @@ public class HttpUtil {
             connection.setReadTimeout(10000);
             connection.setRequestProperty("accept", "*/*");
             connection.setRequestProperty("connection", "Keep-Alive");
-            connection.setRequestProperty("user-agent", "mutation_ws/" + ConstantUtil.sessionMap.get("version") + " ("
-                    + ConstantUtil.sessionMap.get("brand") + ConstantUtil.sessionMap.get("model") + "; Android "
-                    + ConstantUtil.sessionMap.get("sdk") + ")");
+            connection.setRequestProperty("user-agent", "mutation_ws/" + ConstantProvider.sessionMap.get("version")
+                    + " (" + ConstantProvider.sessionMap.get("brand") + ConstantProvider.sessionMap.get("model")
+                    + "; Android " + ConstantProvider.sessionMap.get("sdk") + ")");
             // 建立实际的连接
             connection.connect();
             // 定义 BufferedReader输入流来读取URL的响应
@@ -53,7 +53,7 @@ public class HttpUtil {
                 result += line;
             }
         } catch (Exception e) {
-            ConstantUtil.RTMSG = "服务器请求异常";
+            ConstantProvider.RTMSG = "服务器请求异常";
             Log.e("发送GET请求出现异常！", e.getMessage());
             e.printStackTrace();
         }
@@ -96,9 +96,9 @@ public class HttpUtil {
             conn.setReadTimeout(10000);
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent", "mutation_ws/" + ConstantUtil.sessionMap.get("version") + " ("
-                    + ConstantUtil.sessionMap.get("brand") + ConstantUtil.sessionMap.get("model") + "; Android "
-                    + ConstantUtil.sessionMap.get("sdk") + ")");
+            conn.setRequestProperty("user-agent", "mutation_ws/" + ConstantProvider.sessionMap.get("version") + " ("
+                    + ConstantProvider.sessionMap.get("brand") + ConstantProvider.sessionMap.get("model")
+                    + "; Android " + ConstantProvider.sessionMap.get("sdk") + ")");
             // 发送POST请求必须设置如下两行
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -116,7 +116,7 @@ public class HttpUtil {
                 result.append(line);
             }
         } catch (Exception e) {
-            ConstantUtil.RTMSG = "服务器请求异常";
+            ConstantProvider.RTMSG = "服务器请求异常";
             Log.e("发送 POST 请求出现异常！", e.getMessage());
             e.printStackTrace();
         }
@@ -146,7 +146,6 @@ public class HttpUtil {
      * @param charset
      *            编码方式
      */
-    @SuppressWarnings("deprecation")
     public static String sendPost(String url, Map<String, String> param, String charset) {
 
         StringBuffer buffer = new StringBuffer();
@@ -175,9 +174,9 @@ public class HttpUtil {
             conn.setReadTimeout(10000);
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent", "mutation_ws/" + ConstantUtil.sessionMap.get("version") + " ("
-                    + ConstantUtil.sessionMap.get("brand") + ConstantUtil.sessionMap.get("model") + "; Android "
-                    + ConstantUtil.sessionMap.get("sdk") + ")");
+            conn.setRequestProperty("user-agent", "mutation_ws/" + ConstantProvider.sessionMap.get("version") + " ("
+                    + ConstantProvider.sessionMap.get("brand") + ConstantProvider.sessionMap.get("model")
+                    + "; Android " + ConstantProvider.sessionMap.get("sdk") + ")");
             // 发送POST请求必须设置如下两行
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -194,7 +193,7 @@ public class HttpUtil {
                 result += line;
             }
         } catch (Exception e) {
-            ConstantUtil.RTMSG = "服务器请求异常";
+            ConstantProvider.RTMSG = "服务器请求异常";
             Log.e("发送 POST 请求出现异常！", e.getMessage());
             e.printStackTrace();
         }
@@ -246,7 +245,6 @@ public class HttpUtil {
      * @param charset
      *            编码方式
      */
-    @SuppressWarnings("deprecation")
     public static String sendPostUCODE(String url, Map<String, String> param, String charset) {
 
         StringBuffer buffer = new StringBuffer();
@@ -271,9 +269,9 @@ public class HttpUtil {
             conn.setReadTimeout(10000);
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent", "mutation_ws/" + ConstantUtil.sessionMap.get("version") + " ("
-                    + ConstantUtil.sessionMap.get("brand") + ConstantUtil.sessionMap.get("model") + "; Android "
-                    + ConstantUtil.sessionMap.get("sdk") + ")");
+            conn.setRequestProperty("user-agent", "mutation_ws/" + ConstantProvider.sessionMap.get("version") + " ("
+                    + ConstantProvider.sessionMap.get("brand") + ConstantProvider.sessionMap.get("model")
+                    + "; Android " + ConstantProvider.sessionMap.get("sdk") + ")");
             // 发送POST请求必须设置如下两行
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -292,8 +290,8 @@ public class HttpUtil {
                 result.append(line);
             }
         } catch (Exception e) {
-            ConstantUtil.RTMSG = "服务器请求异常" + e.getMessage();
-            Log.e("HttpUtil", ConstantUtil.RTMSG);
+            ConstantProvider.RTMSG = "服务器请求异常" + e.getMessage();
+            Log.e("HttpUtil", ConstantProvider.RTMSG);
             e.printStackTrace();
         }
         // 使用finally块来关闭输出流、输入流

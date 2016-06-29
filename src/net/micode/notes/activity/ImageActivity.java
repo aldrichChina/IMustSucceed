@@ -1,6 +1,6 @@
 package net.micode.notes.activity;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.dialog.dialogfragment.ConfimDialog;
 import net.micode.notes.util.Utils;
@@ -82,7 +82,7 @@ public class ImageActivity extends BaseActivity {
 				.cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
 				.displayer(new RoundedBitmapDisplayer(5)) // 设置成圆角图片
 				.build(); // 构建完成
-		BaseApplication.imageLoader.displayImage(imgUrl, bigImage, options);
+		MyApplication.imageLoader.displayImage(imgUrl, bigImage, options);
 		bigImage.setOnClickListener(new OnClickListener() {
 
 			@Override

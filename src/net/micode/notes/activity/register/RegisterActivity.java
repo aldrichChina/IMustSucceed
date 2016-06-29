@@ -1,10 +1,10 @@
 package net.micode.notes.activity.register;
 
-import net.micode.notes.BaseApplication;
-import net.micode.notes.BaseDialog;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.register.RegisterStep.onNextActionListener;
+import net.micode.notes.dialog.BaseDialog;
 import net.micode.notes.util.FileUtils;
 import net.micode.notes.util.PhotoUtils;
 import net.micode.notes.view.HeaderLayout;
@@ -300,7 +300,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 		return mScreenWidth;
 	}
 
-	protected BaseApplication getBaseApplication() {
+	protected MyApplication getBaseApplication() {
 		return mApplication;
 	}
 

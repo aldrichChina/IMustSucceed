@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.ConstantProvider;
+import net.micode.notes.MyApplication;
 import net.micode.notes.BaseFragment;
 import net.micode.notes.R;
-import net.micode.notes.data.Constant;
 import net.micode.notes.data.DatabaseService;
 import net.micode.notes.entities.Detailed;
 import net.micode.notes.entities.HouseSaid;
@@ -122,7 +122,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
     public void initData() {
         cm = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         dbHelper = new DatabaseService(getActivity());
-        OkHttpUtils.get().url(Constant.HTTPURLMEINV).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
+        OkHttpUtils.get().url(ConstantProvider.HTTPURLMEINV).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
                 .addParams("num", "50").build().execute(new StringCallback() {
 
                     @Override
@@ -314,7 +314,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
     }
 
     public void getHouseSaid() {
-        OkHttpUtils.get().url(Constant.httpUrl).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
+        OkHttpUtils.get().url(ConstantProvider.httpUrl).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
                 .addParams("fangfa", "json").build().execute(new StringCallback() {
 
                     @Override
@@ -455,7 +455,7 @@ public class DbFragment extends BaseFragment implements IXListViewListener {
             ImageView imageView = (ImageView) view.findViewById(R.id.ivAdvertise);
             final ProgressBar spinner = (ProgressBar) view.findViewById(R.id.loading);
 
-            BaseApplication.imageLoader.displayImage(images.get(position).getPicUrl(), imageView, options,
+            MyApplication.imageLoader.displayImage(images.get(position).getPicUrl(), imageView, options,
                     new SimpleImageLoadingListener() {
 
                         @Override

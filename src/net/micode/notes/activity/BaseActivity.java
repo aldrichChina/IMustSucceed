@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.dialog.CustomExitDialog;
 import net.micode.notes.dialog.FlippingLoadingDialog;
@@ -55,7 +55,7 @@ import com.umeng.analytics.MobclickAgent;
 
 
 public abstract class BaseActivity extends Activity {
-	protected BaseApplication mApplication;
+	protected MyApplication mApplication;
 	protected NetWorkUtils mNetWorkUtils;
 	protected FlippingLoadingDialog mLoadingDialog;
 
@@ -71,7 +71,7 @@ public abstract class BaseActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mApplication = (BaseApplication) getApplication();
+		mApplication = (MyApplication) getApplication();
 		mNetWorkUtils = new NetWorkUtils(this);
 		mLoadingDialog = new FlippingLoadingDialog(this, "请求提交中");
 
@@ -91,7 +91,7 @@ public abstract class BaseActivity extends Activity {
 			this.finish();
 			return;
 		}
-		BaseApplication.getInstance().addActivity(this);
+		MyApplication.getInstance().addActivity(this);
 		context = this;
 		initViews();
 		initEvents();
@@ -104,7 +104,7 @@ public abstract class BaseActivity extends Activity {
 		clearAsyncTask();
 
 		// cancelToast();
-		BaseApplication.getInstance().removeActivity(this);
+		MyApplication.getInstance().removeActivity(this);
 
 		super.onDestroy();
 
@@ -201,7 +201,7 @@ public abstract class BaseActivity extends Activity {
 
 	/** 含有Bundle通过Class跳转界面 **/
 	protected void startActivity(Class<?> cls, Bundle bundle) {
-	    BaseApplication.getInstance().addActivity(this);
+	    MyApplication.getInstance().addActivity(this);
 		Intent intent = new Intent();
 		intent.setClass(this, cls);
 		if (bundle != null) {
@@ -337,7 +337,7 @@ public abstract class BaseActivity extends Activity {
 	 * @param activity
 	 */
 	public void finish(Activity activity) {
-	    BaseApplication.getInstance().removeActivity(activity);
+	    MyApplication.getInstance().removeActivity(activity);
 		Utils.finish(activity);
 	}
 

@@ -1,6 +1,6 @@
 package net.micode.notes.activity.message;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.entity.Message;
 import net.micode.notes.util.ImageMapUtils;
@@ -24,12 +24,12 @@ public class MapMessageItem extends MessageItem implements OnClickListener,
 	private LinearLayout mLayoutLoading;
 	private ImageView mIvLoading;
 	private AnimationDrawable mAnimation;
-	private BaseApplication mApplication;
+	private MyApplication mApplication;
 	private ImageMapUtils mImageMapUtils;
 
 	public MapMessageItem(Message msg, Context context) {
 		super(msg, context);
-		mApplication = ((BaseApplication) ((Activity) mContext)
+		mApplication = ((MyApplication) ((Activity) mContext)
 				.getApplication());
 		mImageMapUtils = ImageMapUtils.create(context);
 	}

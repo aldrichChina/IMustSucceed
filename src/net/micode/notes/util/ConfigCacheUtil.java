@@ -1,4 +1,4 @@
-package net.micode.notes;
+package net.micode.notes.util;
 import java.io.File;
 
 import android.os.Environment;

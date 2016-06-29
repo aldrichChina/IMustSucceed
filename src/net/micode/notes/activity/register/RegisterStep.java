@@ -2,7 +2,7 @@ package net.micode.notes.activity.register;
 
 import java.util.regex.Pattern;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
@@ -97,7 +97,7 @@ public abstract class RegisterStep {
 		return mActivity.getScreenWidth();
 	}
 
-	protected BaseApplication getBaseApplication() {
+	protected MyApplication getBaseApplication() {
 		return mActivity.getBaseApplication();
 	}
 

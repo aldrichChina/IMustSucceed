@@ -48,7 +48,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
 
-public class BaseApplication extends Application {
+public class MyApplication extends Application {
 
     private Bitmap mDefaultAvatar;
     private static final String AVATAR_DIR = "avatar/";
@@ -80,10 +80,10 @@ public class BaseApplication extends Application {
 
     private static class BaseApplicationHolder {
 
-        private static final BaseApplication instance = new BaseApplication();
+        private static final MyApplication instance = new MyApplication();
     }
 
-    public static BaseApplication getInstance() {
+    public static MyApplication getInstance() {
         return BaseApplicationHolder.instance;
     }
 

@@ -1,5 +1,6 @@
-package net.micode.notes;
+package net.micode.notes.util;
 
+import net.micode.notes.MyApplication;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Handler;
@@ -13,7 +14,7 @@ import android.util.DisplayMetrics;
  */
 public class UIUtils {
 	public static Context getContext() {
-		return BaseApplication.getContext();
+		return MyApplication.getContext();
 	}
 
 	public static Resources getResources() {
@@ -37,11 +38,11 @@ public class UIUtils {
 	}
 
 	public static Handler getMainHandler() {
-		return BaseApplication.getMainHander();
+		return MyApplication.getMainHander();
 	}
 
 	public static long getMainThreadId() {
-		return BaseApplication.getMainThreadId();
+		return MyApplication.getMainThreadId();
 	}
 
 	public static void post(Runnable task) {

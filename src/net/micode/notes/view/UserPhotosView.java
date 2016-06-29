@@ -3,7 +3,7 @@ package net.micode.notes.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import android.app.Activity;
 import android.content.Context;
@@ -34,7 +34,7 @@ public class UserPhotosView extends LinearLayout implements OnClickListener {
 	private List<String> mPhotos = new ArrayList<String>();
 	private int mTotalPage;
 	private int mWidth;
-	private BaseApplication mApplication;
+	private MyApplication mApplication;
 
 	private onPagerPhotoItemClickListener mOnPagerPhotoItemClickListener;
 
@@ -65,7 +65,7 @@ public class UserPhotosView extends LinearLayout implements OnClickListener {
 
 	}
 
-	public void setPhotos(BaseApplication application, List<String> photos) {
+	public void setPhotos(MyApplication application, List<String> photos) {
 		removeAllViews();
 		if (photos == null || photos.isEmpty()) {
 			return;

@@ -2,11 +2,11 @@ package net.micode.notes.adapter;
 
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.entities.NewsImageUrls;
-import net.micode.notes.fragment.HttpFragment.UpdateNewsAdapter;
+import net.micode.notes.fragment.NewsFragment.UpdateNewsAdapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +67,7 @@ public class NewsAdapter extends BaseAdapter implements UpdateNewsAdapter {
         holder.title.setSelected(true);
         List<NewsImageUrls> imageurls = newsList.get(position).getImageurls();
         if (imageurls != null) {
-            BaseApplication.imageLoader.displayImage(newsList.get(position).getImageurls().get(0).getUrl(), holder.pic);
+            MyApplication.imageLoader.displayImage(newsList.get(position).getImageurls().get(0).getUrl(), holder.pic);
         }
         holder.title.setText(newsList.get(position).getTitle());
         holder.time.setText(newsList.get(position).getPubDate());

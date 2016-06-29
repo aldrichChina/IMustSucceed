@@ -2,7 +2,7 @@ package net.micode.notes.adapter;
 
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.BaseObjectListAdapter;
 import net.micode.notes.activity.message.MessageItem;
 import net.micode.notes.entity.Entity;
@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 public class ChatAdapter extends BaseObjectListAdapter {
 
-	public ChatAdapter(BaseApplication application, Context context,
+	public ChatAdapter(MyApplication application, Context context,
 			List<? extends Entity> datas) {
 		super(application, context, datas);
 	}

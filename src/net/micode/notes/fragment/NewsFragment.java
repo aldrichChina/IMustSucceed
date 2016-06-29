@@ -25,7 +25,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
-public class HttpFragment extends BaseFragment implements IXListViewListener {
+public class NewsFragment extends BaseFragment implements IXListViewListener {
 
     private XListView mListView;
     private List<NewsDetailContent> newsList = new ArrayList<NewsDetailContent>();

@@ -3,7 +3,7 @@ package net.micode.notes.view;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,10 +38,10 @@ public class EmoticonsTextView extends HandyTextView {
 
 	private Pattern buildPattern() {
 		StringBuilder patternString = new StringBuilder(
-				BaseApplication.mEmoticons.size() * 3);
+				MyApplication.mEmoticons.size() * 3);
 		patternString.append('(');
-		for (int i = 0; i < BaseApplication.mEmoticons.size(); i++) {
-			String s = BaseApplication.mEmoticons.get(i);
+		for (int i = 0; i < MyApplication.mEmoticons.size(); i++) {
+			String s = MyApplication.mEmoticons.get(i);
 			patternString.append(Pattern.quote(s));
 			patternString.append('|');
 		}
@@ -56,8 +56,8 @@ public class EmoticonsTextView extends HandyTextView {
 			Pattern pattern = buildPattern();
 			Matcher matcher = pattern.matcher(text);
 			while (matcher.find()) {
-				if (BaseApplication.mEmoticonsId.containsKey(matcher.group())) {
-					int id = BaseApplication.mEmoticonsId.get(matcher.group());
+				if (MyApplication.mEmoticonsId.containsKey(matcher.group())) {
+					int id = MyApplication.mEmoticonsId.get(matcher.group());
 					Bitmap bitmap = BitmapFactory.decodeResource(
 							getResources(), id);
 					if (bitmap != null) {

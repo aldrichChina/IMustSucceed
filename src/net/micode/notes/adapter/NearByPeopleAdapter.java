@@ -2,7 +2,7 @@ package net.micode.notes.adapter;
 
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.BaseObjectListAdapter;
 import net.micode.notes.R;
 import net.micode.notes.entity.Entity;
@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 
 public class NearByPeopleAdapter extends BaseObjectListAdapter {
 
-	public NearByPeopleAdapter(BaseApplication application, Context context,
+	public NearByPeopleAdapter(MyApplication application, Context context,
 			List<? extends Entity> datas) {
 		super(application, context, datas);
 	}

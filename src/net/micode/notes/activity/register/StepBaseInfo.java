@@ -1,7 +1,7 @@
 package net.micode.notes.activity.register;
 
-import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
+import net.micode.notes.dialog.BaseDialog;
 import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;

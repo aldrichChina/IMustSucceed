@@ -1,5 +1,5 @@
 package net.micode.notes.activity.message ;
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.entity.Message;
 import net.micode.notes.entity.Message.MESSAGE_TYPE;
@@ -152,7 +152,7 @@ public abstract class MessageItem {
 
 	protected void fillPhotoView() {
 		mLayoutRightContainer.setVisibility(View.VISIBLE);
-		mIvPhotoView.setImageBitmap(((BaseApplication) ((Activity) mContext)
+		mIvPhotoView.setImageBitmap(((MyApplication) ((Activity) mContext)
 				.getApplication()).getAvatar(mMsg.getAvatar()));
 	}
 

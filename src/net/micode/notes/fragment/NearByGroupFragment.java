@@ -1,6 +1,6 @@
 package net.micode.notes.fragment;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.BaseFragment;
 import net.micode.notes.R;
 import net.micode.notes.adapter.NearByGroupAdapter;
@@ -31,7 +31,7 @@ public class NearByGroupFragment extends BaseFragment implements
 		super();
 	}
 
-	public NearByGroupFragment(BaseApplication application, Activity activity,
+	public NearByGroupFragment(MyApplication application, Activity activity,
 			Context context) {
 		super(application, activity, context);
 	}

@@ -2,7 +2,7 @@ package net.micode.notes.adapter;
 
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.entities.Detailed;
 import android.content.Context;
@@ -65,8 +65,8 @@ public class MeinvAdapter extends BaseAdapter{
 			hodler  = (ViewHodler) view.getTag();
 		}
 		hodler.textView.setText(detailedList.get(position).getDescription());
-		BaseApplication.imageLoader.displayImage(detailedList.get(position).getPicUrl(), hodler.imageView);
-		BaseApplication.imageLoader.displayImage(detailedList.get(position).getPicUrl(), hodler.imageView,options);
+		MyApplication.imageLoader.displayImage(detailedList.get(position).getPicUrl(), hodler.imageView);
+		MyApplication.imageLoader.displayImage(detailedList.get(position).getPicUrl(), hodler.imageView,options);
 		return view;
 	}
 

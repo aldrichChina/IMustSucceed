@@ -3,7 +3,7 @@ package net.micode.notes.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.entity.Feed;
 import net.micode.notes.entity.FeedComment;
@@ -46,7 +46,7 @@ public class JsonResolveUtils {
 	 * @param application
 	 * @return
 	 */
-	public static boolean resolveNearbyPeople(BaseApplication application) {
+	public static boolean resolveNearbyPeople(MyApplication application) {
 		if (application.mNearByPeoples != null
 				&& application.mNearByPeoples.isEmpty()) {
 			String json = TextUtils.getJson(
@@ -105,7 +105,7 @@ public class JsonResolveUtils {
 	 * @param application
 	 * @return
 	 */
-	public static boolean resolveNearbyGroup(BaseApplication application) {
+	public static boolean resolveNearbyGroup(MyApplication application) {
 		if (application.mNearByGroups != null
 				&& application.mNearByGroups.isEmpty()) {
 			String json = TextUtils.getJson(

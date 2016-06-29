@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.BaseObjectListAdapter;
 import net.micode.notes.R;
 import net.micode.notes.entity.Entity;
@@ -28,7 +28,7 @@ public class NearByGroupAdapter extends BaseObjectListAdapter implements
 	private int mCount = 0;
 
 	@SuppressWarnings("unchecked")
-	public NearByGroupAdapter(BaseApplication application, Context context,
+	public NearByGroupAdapter(MyApplication application, Context context,
 			List<? extends Entity> datas) {
 		super(application, context, datas);
 		mNearByGroups = (List<NearByGroup>) datas;

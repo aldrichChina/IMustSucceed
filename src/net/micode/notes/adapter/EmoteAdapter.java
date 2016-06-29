@@ -2,7 +2,7 @@ package net.micode.notes.adapter;
 
 import java.util.List;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import android.content.Context;
 import android.view.View;
@@ -28,7 +28,7 @@ public class EmoteAdapter extends BaseArrayListAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		String name = (String) getItem(position);
-		int id = BaseApplication.mEmoticonsId.get(name);
+		int id = MyApplication.mEmoticonsId.get(name);
 		holder.mIvImage.setImageResource(id);
 		return convertView;
 	}

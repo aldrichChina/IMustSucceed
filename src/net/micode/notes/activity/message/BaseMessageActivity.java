@@ -3,11 +3,11 @@ package net.micode.notes.activity.message;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.OtherProfileActivity;
 import net.micode.notes.adapter.ChatAdapter;
+import net.micode.notes.dialog.BaseDialog;
 import net.micode.notes.dialog.SimpleListDialog;
 import net.micode.notes.dialog.SimpleListDialog.onSimpleListItemClickListener;
 import net.micode.notes.entity.Message;

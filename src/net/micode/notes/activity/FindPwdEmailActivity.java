@@ -2,8 +2,8 @@ package net.micode.notes.activity;
 
 import java.util.regex.Pattern;
 
-import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
+import net.micode.notes.dialog.BaseDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;

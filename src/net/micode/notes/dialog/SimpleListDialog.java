@@ -1,6 +1,5 @@
 package net.micode.notes.dialog;
 
-import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
 import android.content.Context;
 import android.view.View;

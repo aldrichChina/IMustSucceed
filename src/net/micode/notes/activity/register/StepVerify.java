@@ -1,7 +1,7 @@
 package net.micode.notes.activity.register;
 
-import net.micode.notes.BaseDialog;
 import net.micode.notes.R;
+import net.micode.notes.dialog.BaseDialog;
 import net.micode.notes.util.TextUtils;
 import net.micode.notes.view.HandyTextView;
 import android.content.DialogInterface;

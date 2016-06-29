@@ -3,11 +3,11 @@ package net.micode.notes.activity.ResideMenuItem;
 import java.io.IOException;
 import java.util.List;
 
+import net.micode.notes.ConstantProvider;
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.ImageActivity;
 import net.micode.notes.adapter.MeinvAdapter;
-import net.micode.notes.data.Constant;
 import net.micode.notes.entities.Detailed;
 import net.micode.notes.util.JSONUtil;
 import net.micode.notes.util.Utils;
@@ -83,7 +83,7 @@ public class PictureActivity extends BaseActivity {
     @Override
     protected void initEvents() {
         listView = (ListView) findViewById(R.id.listView);
-        OkHttpUtils.get().url(Constant.HTTPURLMEINV).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
+        OkHttpUtils.get().url(ConstantProvider.HTTPURLMEINV).addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
                 .addParams("num", "50").build().execute(new StringCallback() {
 
                     @Override

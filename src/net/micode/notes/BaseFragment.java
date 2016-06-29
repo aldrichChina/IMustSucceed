@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseFragment extends Fragment {
-	protected BaseApplication mApplication;
+	protected MyApplication mApplication;
 	protected Activity mActivity;
 	protected Context mContext;
 	protected View mView;
@@ -43,7 +43,7 @@ public abstract class BaseFragment extends Fragment {
 		super();
 	}
 
-	public BaseFragment(BaseApplication application, Activity activity,
+	public BaseFragment(MyApplication application, Activity activity,
 			Context context) {
 		mApplication = application;
 		mActivity = activity;

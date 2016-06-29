@@ -1,6 +1,6 @@
 package net.micode.notes.view;
 
-import net.micode.notes.BaseApplication;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.adapter.EmoteAdapter;
 import android.content.Context;
@@ -58,9 +58,9 @@ public class EmoteInputView extends LinearLayout implements OnClickListener,
 		mIvDelete.setOnClickListener(this);
 
 		mDefaultAdapter = new EmoteAdapter(getContext(),
-				BaseApplication.mEmoticons_Zem);
+				MyApplication.mEmoticons_Zem);
 		mEmojiAdapter = new EmoteAdapter(getContext(),
-				BaseApplication.mEmoticons_Zemoji);
+				MyApplication.mEmoticons_Zemoji);
 		mGvDisplay.setAdapter(mDefaultAdapter);
 		mIsSelectedDefault = true;
 	}
@@ -130,9 +130,9 @@ public class EmoteInputView extends LinearLayout implements OnClickListener,
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		String text = null;
 		if (mIsSelectedDefault) {
-			text = BaseApplication.mEmoticons_Zem.get(arg2);
+			text = MyApplication.mEmoticons_Zem.get(arg2);
 		} else {
-			text = BaseApplication.mEmoticons_Zemoji.get(arg2);
+			text = MyApplication.mEmoticons_Zemoji.get(arg2);
 		}
 		if (mEEtView != null && !TextUtils.isEmpty(text)) {
 			int start = mEEtView.getSelectionStart();
