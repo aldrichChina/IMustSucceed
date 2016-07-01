@@ -1,5 +1,6 @@
 package net.micode.notes.db;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,9 +11,11 @@ import net.micode.notes.entities.HouseSaid;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.entities.NewsImageUrls;
 import net.micode.notes.entities.User;
+import net.micode.notes.entities.WxhotArticle;
 import net.micode.notes.util.Utils;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.util.Log;
 
 /**  
@@ -81,9 +84,11 @@ public class DatabaseService {
     }
 
     /**
+     * NewsDetailContent表 用于插入新闻信息数据库
+     * 
      * @param newsDetailContent
      * @return
-     * @throws ParseException 
+     * @throws ParseException
      */
     public boolean insertNewsDetailContent(NewsDetailContent newsDetailContent) throws ParseException {
         String imageUrl;
@@ -95,8 +100,8 @@ public class DatabaseService {
         } else {
             imageUrl = "";
         }
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         String channelId = newsDetailContent.getChannelId();
         String channelName = newsDetailContent.getChannelName();
         String desc = newsDetailContent.getDesc();
@@ -105,14 +110,19 @@ public class DatabaseService {
         String pubDate = newsDetailContent.getPubDate();
         String source = newsDetailContent.getSource();
         String title = newsDetailContent.getTitle();
-        String timeStamp=String.valueOf(dateFormat.parse(newsDetailContent.getPubDate()).getTime());
+        String timeStamp = String.valueOf(dateFormat.parse(newsDetailContent.getPubDate()).getTime());
         dbOpenHelper.getReadableDatabase().execSQL(
                 "insert into NewsDetailContent(" + "channelId," + "channelName," + "desc," + "imageUrl," + "link,"
-                        + "long_desc," + "pubDate," + "source," + "title,"+"timeStamp)values(?,?,?,?,?,?,?,?,?,?)",
-                new Object[] {channelId, channelName, desc, imageUrl, link, long_desc, pubDate, source, title ,timeStamp});
+                        + "long_desc," + "pubDate," + "source," + "title," + "timeStamp)values(?,?,?,?,?,?,?,?,?,?)",
+                new Object[] {channelId, channelName, desc, imageUrl, link, long_desc, pubDate, source, title,
+                        timeStamp });
         return false;
     }
 
+    /**
+     * @Description (NewsDetailContent表) 读取新闻NewsDetailContent表
+     * @return
+     */
     public List<NewsDetailContent> rawQueryNewsDetailContent() {
         List<NewsDetailContent> newsDetailContentList = new ArrayList<NewsDetailContent>();
         Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery(
@@ -140,6 +150,11 @@ public class DatabaseService {
 
     }
 
+    /**
+     * @Description (插入said表)
+     * @param houseSaid
+     * @return
+     */
     public boolean insertSaid(HouseSaid houseSaid) {
         dbOpenHelper.getReadableDatabase().execSQL(
                 "insert into said(_id,taici,cat,catcn,show,source,inserttime)values(?,?,?,?,?,?,?)",
@@ -151,6 +166,10 @@ public class DatabaseService {
 
     }
 
+    /**
+     * @Description (读取said表)
+     * @return
+     */
     public List<HouseSaid> rawQuerySaid() {
         List<HouseSaid> tmpItems = new ArrayList<HouseSaid>();
         Cursor cursor = dbOpenHelper.getReadableDatabase()
@@ -166,6 +185,45 @@ public class DatabaseService {
             tmpItems.add(houseSaid);
         }
         return tmpItems;
+    }
+
+    public boolean insertHotArticle(List<WxhotArticle> hotArticleList) {
+        try {
+            for (WxhotArticle hotArticle : hotArticleList) {
+                String ctime = hotArticle.getCtime();
+                String title = hotArticle.getTitle();
+                String description = hotArticle.getDescription();
+                String picUrl = hotArticle.getPicUrl();
+                String url = hotArticle.getUrl();
+                dbOpenHelper.getReadableDatabase().execSQL(
+                        "insert into HotArticle (ctime,title,description,picUrl,url,timestamp)values(?,?,?,?,?,?)",
+                        new String[] {ctime, title, description, picUrl, url,
+                                Long.toString(new Date().getTime() / 1000) });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.d("jia", e.toString());
+        }
+
+        return true;
+    }
+
+    public List<WxhotArticle> rawQueryHotArticle() {
+        List<WxhotArticle> hotArticleList = new ArrayList<WxhotArticle>();
+        Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery("select * from HotArticle order by timestamp desc",
+                null);
+        while (cursor.moveToNext()) {
+            WxhotArticle hotArticle = new WxhotArticle();
+            hotArticle.setId(cursor.getString(cursor.getColumnIndex("_id")));
+            hotArticle.setCtime(cursor.getString(cursor.getColumnIndex("ctime")));
+            hotArticle.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+            hotArticle.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+            hotArticle.setPicUrl(cursor.getString(cursor.getColumnIndex("picUrl")));
+            hotArticle.setUrl(cursor.getString(cursor.getColumnIndex("url")));
+
+            hotArticleList.add(hotArticle);
+        }
+        return hotArticleList;
     }
 
     /*

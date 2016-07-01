@@ -7,6 +7,7 @@ import net.micode.notes.BaseFragment;
 import net.micode.notes.ConstantProvider;
 import net.micode.notes.R;
 import net.micode.notes.adapter.WxhotAdapter;
+import net.micode.notes.db.DatabaseService;
 import net.micode.notes.entities.WxhotArticle;
 import net.micode.notes.util.RecyclerDividerItemDecoration;
 import okhttp3.Call;
@@ -30,10 +31,11 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    private List<WxhotArticle> wxHotList= new ArrayList<WxhotArticle>();;
     private SwipeRefreshLayout swipeContainer;
     private RecyclerView recyclerView;
     private WxhotAdapter wxhotAdapter;
+    private DatabaseService databaseService;
+    private List<WxhotArticle> hotArticleList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wxhot, container, false);
@@ -45,18 +47,21 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
     private void findViewById(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.id_RecyclerView);
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
-                android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        swipeContainer.setOnRefreshListener(this);
+
         initViews();
     }
 
     @Override
     protected void initViews() {
-        wxhotAdapter=new WxhotAdapter(getActivity(), wxHotList);
+        databaseService = new DatabaseService(getActivity());
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        swipeContainer.setOnRefreshListener(this);
+        hotArticleList=databaseService.rawQueryHotArticle();
+        wxhotAdapter = new WxhotAdapter(getActivity(), hotArticleList);
         recyclerView.setAdapter(wxhotAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.addItemDecoration(new RecyclerDividerItemDecoration(getActivity(), RecyclerDividerItemDecoration.VERTICAL_LIST));
+        recyclerView.addItemDecoration(new RecyclerDividerItemDecoration(getActivity(),RecyclerDividerItemDecoration.VERTICAL_LIST));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         obtainWxhotArticle();
         initEvents();
@@ -95,6 +100,7 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
     }
 
     private void parseWxhotArticleJson(JSONObject jsonObject) throws JSONException {
+        List<WxhotArticle> wxHotList = new ArrayList<WxhotArticle>();
         JSONArray articlelist = jsonObject.getJSONArray("newslist");
         for (int i = 0; i < articlelist.length(); i++) {
             JSONObject articleJsonObject = articlelist.getJSONObject(i);
@@ -105,9 +111,11 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
             wxhotArticle.setPicUrl(articleJsonObject.getString("picUrl"));
             wxhotArticle.setUrl(articleJsonObject.getString("url"));
             wxHotList.add(wxhotArticle);
-            wxhotAdapter.notifyItemInserted(wxHotList.size()-1);
         }
-        
+        databaseService.insertHotArticle(wxHotList);
+        hotArticleList=databaseService.rawQueryHotArticle();
+        wxhotAdapter.notifyDataSetChanged();
+
     }
 
     /*

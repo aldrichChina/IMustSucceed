@@ -50,7 +50,7 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
      */
     @Override
     public int getItemCount() {
-        return wxhotList.size() == 0 ? 0 : wxhotList.size() + 1;
+        return wxhotList.size() == 0 ? 0 : wxhotList.size() ;
     }
 
     /*

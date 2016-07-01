@@ -28,12 +28,29 @@ package net.micode.notes.entities;
       "url": "http://mp.weixin.qq.com/s?__biz=MzA3NjgzNDUwMQ==&idx=2&mid=401864059&sn=cfa082e38ba38c7e673b1ce0a075faee"
  */
 public class WxhotArticle {
+    private String id;
     private String ctime;
     private String title;
     private String description;
     private String picUrl;
     private String url;
     
+    
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
     /**
      * @return the ctime
      */
