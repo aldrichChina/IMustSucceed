@@ -33,16 +33,16 @@ public class ConstantProvider {
     public static final String UPDATE = "UPDATE";
     public static final String SELECT = "SELECT";
     public static final String DELETE = "DELETE";
-
+    public static String newsTitle = "";
     // 信息编码
     public static String RTCODE = "0";
     // 操作信息
     public static String RTMSG = "";
-
-    public static final String HTTPURL = "http://apis.baidu.com/";
+    public static final String APIKEY="334070f0f84d859e75972ebfdaae49fe";
+    public static final String BaseURL = "http://apis.baidu.com/";
     public static final String httpUrl = "http://apis.baidu.com/acman/zhaiyanapi/tcrand";
     public static final String httpArg = "fangfa=json";
     public static final String MailData = "showapi_open_bus/channel_news/search_news";
     public static final String HTTPURLMEINV = "http://apis.baidu.com/txapi/mvtp/meinv";
-
+    public static final String WXHOTURL = "txapi/weixin/wxhot";
 }

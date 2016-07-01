@@ -23,121 +23,120 @@ import android.widget.Toast;
 import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseFragment extends Fragment {
-	protected MyApplication mApplication;
-	protected Activity mActivity;
-	protected Context mContext;
-	protected View mView;
-	protected NetWorkUtils mNetWorkUtils;
-	protected FlippingLoadingDialog mLoadingDialog;
 
-	/**
-	 * 屏幕的宽度、高度、密度
-	 */
-	protected int mScreenWidth;
-	protected int mScreenHeight;
-	protected float mDensity;
+    protected MyApplication mApplication;
+    protected Activity mActivity;
+    protected Context mContext;
+    protected View mView;
+    protected NetWorkUtils mNetWorkUtils;
+    protected FlippingLoadingDialog mLoadingDialog;
 
-	protected List<AsyncTask<Void, Void, Boolean>> mAsyncTasks = new ArrayList<AsyncTask<Void, Void, Boolean>>();
+    /**
+     * 屏幕的宽度、高度、密度
+     */
+    protected int mScreenWidth;
+    protected int mScreenHeight;
+    protected float mDensity;
 
-	public BaseFragment() {
-		super();
-	}
+    protected List<AsyncTask<Void, Void, Boolean>> mAsyncTasks = new ArrayList<AsyncTask<Void, Void, Boolean>>();
 
-	public BaseFragment(MyApplication application, Activity activity,
-			Context context) {
-		mApplication = application;
-		mActivity = activity;
-		mContext = context;
-		mNetWorkUtils = new NetWorkUtils(context);
-		mLoadingDialog = new FlippingLoadingDialog(context, "请求提交中");
-		/**
-		 * 获取屏幕宽度、高度、密度
-		 */
-		DisplayMetrics metric = new DisplayMetrics();
-		activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
-		mScreenWidth = metric.widthPixels;
-		mScreenHeight = metric.heightPixels;
-		mDensity = metric.density;
-	}
+    public BaseFragment() {
+        super();
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		initViews();
-		initEvents();
-		return mView;
-	}
+    public BaseFragment(MyApplication application, Activity activity, Context context) {
+        mApplication = application;
+        mActivity = activity;
+        mContext = context;
+        mNetWorkUtils = new NetWorkUtils(context);
+        mLoadingDialog = new FlippingLoadingDialog(context, "请求提交中");
+        /**
+         * 获取屏幕宽度、高度、密度
+         */
+        DisplayMetrics metric = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
+        mScreenWidth = metric.widthPixels;
+        mScreenHeight = metric.heightPixels;
+        mDensity = metric.density;
+    }
 
-	@Override
-	public void onDestroy() {
-		clearAsyncTask();
-		super.onDestroy();
-	}
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        initViews();
+        initEvents();
+        return mView;
+    }
 
-	protected abstract void initViews();
+    @Override
+    public void onDestroy() {
+        clearAsyncTask();
+        super.onDestroy();
+    }
 
-	protected abstract void initEvents();
+    protected abstract void initViews();
 
-	public View findViewById(int id) {
-		return mView.findViewById(id);
-	}
+    protected abstract void initEvents();
 
-	protected void putAsyncTask(AsyncTask<Void, Void, Boolean> asyncTask) {
-		mAsyncTasks.add(asyncTask.execute());
-	}
+    public View findViewById(int id) {
+        return mView.findViewById(id);
+    }
 
-	protected void clearAsyncTask() {
-		Iterator<AsyncTask<Void, Void, Boolean>> iterator = mAsyncTasks
-				.iterator();
-		while (iterator.hasNext()) {
-			AsyncTask<Void, Void, Boolean> asyncTask = iterator.next();
-			if (asyncTask != null && !asyncTask.isCancelled()) {
-				asyncTask.cancel(true);
-			}
-		}
-		mAsyncTasks.clear();
-	}
+    protected void putAsyncTask(AsyncTask<Void, Void, Boolean> asyncTask) {
+        mAsyncTasks.add(asyncTask.execute());
+    }
 
-	protected void showLoadingDialog(String text) {
-		if (text != null) {
-			mLoadingDialog.setText(text);
-		}
-		mLoadingDialog.show();
-	}
+    protected void clearAsyncTask() {
+        Iterator<AsyncTask<Void, Void, Boolean>> iterator = mAsyncTasks.iterator();
+        while (iterator.hasNext()) {
+            AsyncTask<Void, Void, Boolean> asyncTask = iterator.next();
+            if (asyncTask != null && !asyncTask.isCancelled()) {
+                asyncTask.cancel(true);
+            }
+        }
+        mAsyncTasks.clear();
+    }
 
-	protected void dismissLoadingDialog() {
-		if (mLoadingDialog.isShowing()) {
-			mLoadingDialog.dismiss();
-		}
-	}
+    protected void showLoadingDialog(String text) {
+        if (text != null) {
+            mLoadingDialog.setText(text);
+        }
+        mLoadingDialog.show();
+    }
 
-	/** 显示自定义Toast提示(来自String) **/
-	protected void showCustomToast(String text) {
-		View toastRoot = LayoutInflater.from(mContext).inflate(
-				R.layout.common_toast, null);
-		((HandyTextView) toastRoot.findViewById(R.id.toast_text)).setText(text);
-		Toast toast = new Toast(mContext);
-		toast.setGravity(Gravity.CENTER, 0, 0);
-		toast.setDuration(Toast.LENGTH_SHORT);
-		toast.setView(toastRoot);
-		toast.show();
-	}
+    protected void dismissLoadingDialog() {
+        if (mLoadingDialog.isShowing()) {
+            mLoadingDialog.dismiss();
+        }
+    }
 
-	/** 通过Class跳转界面 **/
-	protected void startActivity(Class<?> cls) {
-		Intent intent = new Intent();
-		intent.setClass(mContext, cls);
-		startActivity(intent);
-	}
-	@Override
-	public void onResume() {
-		super.onResume();
-		MobclickAgent.onPageStart(getActivity().getClass().getName());
-	}
+    /** 显示自定义Toast提示(来自String) **/
+    protected void showCustomToast(String text) {
+        mContext=getActivity();
+        View toastRoot = LayoutInflater.from(mContext).inflate(R.layout.common_toast, null);
+        ((HandyTextView) toastRoot.findViewById(R.id.toast_text)).setText(text);
+        Toast toast = new Toast(mContext);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(toastRoot);
+        toast.show();
+    }
 
-	@Override
-	public void onPause() {
-		super.onPause();
-		MobclickAgent.onPageEnd(getActivity().getClass().getName());
-	}
+    /** 通过Class跳转界面 **/
+    protected void startActivity(Class<?> cls) {
+        Intent intent = new Intent();
+        intent.setClass(mContext, cls);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(getActivity().getClass().getName());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(getActivity().getClass().getName());
+    }
 }

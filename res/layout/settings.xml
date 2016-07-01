@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/p_login_bg"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/fragment_text"
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="新闻标题，模糊匹配" />
+
+    <Button
+        android:id="@+id/news_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Settings" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/title"
+        android:text="确定" />
 
-</FrameLayout>
+</RelativeLayout>

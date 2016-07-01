@@ -77,7 +77,10 @@ public class NewsAdapter extends BaseAdapter implements UpdateNewsAdapter {
 
     @Override
     public void upadapter(List<NewsDetailContent> newsList) {
-        this.newsList = newsList;
+        if (this.newsList != null) {
+            this.newsList.clear();
+            this.newsList.addAll(newsList);
+        }
         notifyDataSetChanged();
     }
 

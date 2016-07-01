@@ -10,7 +10,7 @@ import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
 import net.micode.notes.activity.main.NearByActivity;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
-import net.micode.notes.fragment.ContactsFragment;
+import net.micode.notes.fragment.HotArticleFragment;
 import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.NewsFragment;
 import net.micode.notes.fragment.NewsFragment.OnHeadlineSelectedListener;
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     /**
      * 用于展示联系人的Fragment
      */
-    private ContactsFragment contactsFragment;
+    private HotArticleFragment hotArticleFragment;
     /**
      * 用于展示设置的Fragment
      */
@@ -190,7 +190,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         cameraActivity = new CameraActivity();
         cameraBeginActivity=new CameraBeginActivity();
         barCodeActivity = new BarCodeActivity();
-        new CameraActivity();
+//        new CameraActivity();
         if (v == itemHome) {
             changeActivity(MainActivity.this);
         } else if (v == itemProfile) {
@@ -293,13 +293,13 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             // 当点击了联系人tab时，改变控件的图片和文字颜色
             contactsImage.setImageResource(R.drawable.ic_nav_4_active);
             contactsText.setTextColor(Color.WHITE);
-            if (contactsFragment == null) {
+            if (hotArticleFragment == null) {
                 // 如果ContactsFragment为空，则创建一个并添加到界面上
-                contactsFragment = new ContactsFragment();
-                transaction.add(R.id.content, contactsFragment);
+                hotArticleFragment = new HotArticleFragment();
+                transaction.add(R.id.content, hotArticleFragment);
             } else {
                 // 如果ContactsFragment不为空，则直接将它显示出来
-                transaction.show(contactsFragment);
+                transaction.show(hotArticleFragment);
             }
             break;
 
@@ -353,8 +353,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         if (bitmapFragment != null) {
             transaction.hide(bitmapFragment);
         }
-        if (contactsFragment != null) {
-            transaction.hide(contactsFragment);
+        if (hotArticleFragment != null) {
+            transaction.hide(hotArticleFragment);
         }
         if (settingFragment != null) {
             transaction.hide(settingFragment);
@@ -428,7 +428,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         resideMenu.setUse3D(true);
         resideMenu.setBackground(R.drawable.menu_background);
         resideMenu.attachToActivity(this);
-        resideMenu.setMenuListener(menuListener);
+//        resideMenu.setMenuListener(menuListener);
         // valid scale factor is between 0.0f and 1.0f. leftmenu'width is
         // 150dip.
         resideMenu.setScaleValue(0.6f);
@@ -477,18 +477,18 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         });
     }
 
-    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
-
-        @Override
-        public void openMenu() {
-            // Utils.ToastMessage(context, "Menu is opened!");
-        }
-
-        @Override
-        public void closeMenu() {
-            // Utils.ToastMessage(context, "Menu is closed!");
-        }
-    };
+//    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
+//
+//        @Override
+//        public void openMenu() {
+//            // Utils.ToastMessage(context, "Menu is opened!");
+//        }
+//
+//        @Override
+//        public void closeMenu() {
+//            // Utils.ToastMessage(context, "Menu is closed!");
+//        }
+//    };
 
     private void changeFragment(Fragment targetFragment) {
         resideMenu.clearIgnoredViewList();

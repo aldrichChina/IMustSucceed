@@ -9,7 +9,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 	private static final int version = 1;// 数据库版本
 	final String CREATE_TABLE_SQL = "create table said(_id integer primary key ,taici,cat,catcn,show,source,inserttime)";
 	String CREATE_TABLE_USER="CREATE TABLE IF NOT EXISTS user (id integer primary key autoincrement, enterprisename, lastlogintime,lastloginip)";
-	String CREATE_TABLE_NEWSDETAILCONTENT="create table NewsDetailContent(_id integer primary key autoincrement, channelId,channelName,desc,imageUrl,link,long_desc,pubDate,source,title UNIQUE ON CONFLICT REPLACE)";
+	String CREATE_TABLE_NEWSDETAILCONTENT="create table NewsDetailContent(_id integer primary key autoincrement, channelId,channelName,desc,imageUrl,link,long_desc,pubDate,source,timeStamp,title UNIQUE ON CONFLICT REPLACE)";
 	public MyDatabaseHelper(Context context) {
 		super(context, name, null, version);
 	}

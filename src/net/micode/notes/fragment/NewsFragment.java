@@ -36,15 +36,15 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
     private DatabaseService databaseService;
     OnHeadlineSelectedListener mCallback;
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+    private int page=1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.http_fragment, container, false);
         databaseService = new DatabaseService(getActivity());
-        getTechnologyNews();
-        adapter = new NewsAdapter(getActivity(), newsList);
         mListView = (XListView) view.findViewById(R.id.xlistView_newslist);
         tv_empty = (TextView) view.findViewById(R.id.tv_empty);
+        getTechnologyNews();
+        adapter = new NewsAdapter(getActivity(), newsList);
         if (newsList.isEmpty()) {
             tv_empty.setVisibility(View.VISIBLE);
         } else {
@@ -57,7 +57,9 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mCallback.onArticleSelected(newsList.get(position - 1), "NewsDetailFragment");
+                if (position != 0) {
+                    mCallback.onArticleSelected(newsList.get(position - 1), "NewsDetailFragment");
+                }
             }
         });
         return view;
@@ -69,6 +71,7 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
             @Override
             public void run() {
+                page=1;
                 getTechnologyNews();
             }
         }, 1000);
@@ -81,6 +84,7 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
             @Override
             public void run() {
+                page++;
                 getTechnologyNews();
             }
         }, 1000);
@@ -94,31 +98,37 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
     }
 
     private void getTechnologyNews() {
-
-        ContentAsyncTask contentAsyncTask = new ContentAsyncTask(getActivity(), new ContentCallback() {
+        getNewsFromDb();
+        ContentAsyncTask contentAsyncTask = new ContentAsyncTask(getActivity(),page, new ContentCallback() {
 
             @Override
             public void send(Boolean result) {
                 if (result) {
-                    newsList = databaseService.rawQueryNewsDetailContent();
-                    if (adapter instanceof UpdateNewsAdapter) {
-                        adapter.upadapter(newsList);
-                    }
-
-                    if (newsList.isEmpty()) {
-                        tv_empty.setVisibility(View.VISIBLE);
-                    } else {
-                        tv_empty.setVisibility(View.INVISIBLE);
-                    }
+                    getNewsFromDb();
                     onLoad();
 
                 } else {
                     Utils.Toast(getActivity(), "哎呀，出错了！请再试试");
                 }
             }
+
         });
         contentAsyncTask.execute();
 
+    }
+
+    // 从数据库获取新闻列表
+    private void getNewsFromDb() {
+        newsList = databaseService.rawQueryNewsDetailContent();
+        if (adapter instanceof UpdateNewsAdapter) {
+            adapter.upadapter(newsList);
+        }
+
+        if (newsList.isEmpty()) {
+            tv_empty.setVisibility(View.VISIBLE);
+        } else {
+            tv_empty.setVisibility(View.INVISIBLE);
+        }
     }
 
     /** 停止刷新， */

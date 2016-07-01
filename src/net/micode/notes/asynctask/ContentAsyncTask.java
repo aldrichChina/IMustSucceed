@@ -1,5 +1,6 @@
 package net.micode.notes.asynctask;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +27,24 @@ public class ContentAsyncTask extends AsyncTask<String, Integer, Boolean> {
     private Context context;
     private ContentCallback contentCallback;
     private DatabaseService databaseService;
+    private int page;
 
-    public ContentAsyncTask(Context context, ContentCallback contentCallback) {
+    public ContentAsyncTask(Context context, int page, ContentCallback contentCallback) {
         this.context = context;
+        this.page = page;
         this.contentCallback = contentCallback;
         databaseService = new DatabaseService(context);
     }
 
     @Override
     protected Boolean doInBackground(String... params) {
-        OkHttpUtils.get().url(ConstantProvider.HTTPURL + ConstantProvider.MailData)
-                .addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe").build().execute(new StringCallback() {
+        OkHttpUtils.get().url(ConstantProvider.BaseURL + ConstantProvider.MailData)
+                .addHeader("apikey", "334070f0f84d859e75972ebfdaae49fe")
+                .addParams("page", ""+page)
+                .addParams("title", ConstantProvider.newsTitle)
+                .addParams("needContent", "1")
+                .addParams("needHtml", "1")
+                .build().execute(new StringCallback() {
 
                     @Override
                     public void onResponse(String response, int id) {
@@ -52,7 +60,12 @@ public class ContentAsyncTask extends AsyncTask<String, Integer, Boolean> {
                         newsList = pagebean.getContentlist();
                         Utils.Logger(context, pagebean.toString());
                         for (NewsDetailContent detailContent : newsList) {
-                            databaseService.insertNewsDetailContent(detailContent);
+                            try {
+                                databaseService.insertNewsDetailContent(detailContent);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                                Log.d("jia","ParseException="+ e);
+                            }
                         }
                     }
 
