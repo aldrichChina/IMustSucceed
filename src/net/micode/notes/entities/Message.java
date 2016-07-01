@@ -1,4 +1,5 @@
-package net.micode.notes.entity;
+package net.micode.notes.entities;
+
 
 public class Message extends Entity {
 

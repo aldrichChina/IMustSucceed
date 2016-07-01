@@ -1,4 +1,5 @@
-package net.micode.notes.entity;
+package net.micode.notes.entities;
+
 
 /**
  * @fileName NearByGroups.java

@@ -5,9 +5,9 @@ import java.util.List;
 
 import net.micode.notes.R;
 import net.micode.notes.adapter.OtherFeedListAdapter;
-import net.micode.notes.entity.Feed;
-import net.micode.notes.entity.NearByPeople;
-import net.micode.notes.entity.NearByPeopleProfile;
+import net.micode.notes.entities.Feed;
+import net.micode.notes.entities.NearByPeople;
+import net.micode.notes.entities.NearByPeopleProfile;
 import net.micode.notes.util.JsonResolveUtils;
 import net.micode.notes.view.HeaderLayout;
 import net.micode.notes.view.HeaderLayout.HeaderStyle;

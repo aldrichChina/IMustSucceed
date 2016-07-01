@@ -1,4 +1,4 @@
-package net.micode.notes.entity;
+package net.micode.notes.entities;
 
 /**
  * @fileName Entity.java

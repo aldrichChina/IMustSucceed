@@ -1,6 +1,6 @@
 package net.micode.notes.activity.message;
 
-import net.micode.notes.entity.Message;
+import net.micode.notes.entities.Message;
 import android.content.Context;
 
 public class VoiceMessageItem extends MessageItem {

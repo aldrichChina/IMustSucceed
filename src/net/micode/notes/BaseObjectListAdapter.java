@@ -3,7 +3,7 @@ package net.micode.notes;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.entity.Entity;
+import net.micode.notes.entities.Entity;
 import net.micode.notes.view.HandyTextView;
 import android.content.Context;
 import android.view.Gravity;
