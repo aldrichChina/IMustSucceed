@@ -247,7 +247,7 @@
         </activity>
 
         <provider
-            android:name="net.micode.notes.data.NotesProvider"
+            android:name="net.micode.notes.db.NotesProvider"
             android:authorities="micode_notes"
             android:multiprocess="true" />
 

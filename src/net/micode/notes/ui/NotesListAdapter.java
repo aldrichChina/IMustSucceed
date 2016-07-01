@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import net.micode.notes.data.Notes;
+import net.micode.notes.db.Notes;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;

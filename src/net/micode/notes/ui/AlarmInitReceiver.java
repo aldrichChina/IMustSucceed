@@ -16,8 +16,8 @@
 
 package net.micode.notes.ui;
 
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.NoteColumns;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;

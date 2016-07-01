@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.micode.notes.data;
+package net.micode.notes.db;
 
 import android.net.Uri;
 public class Notes {

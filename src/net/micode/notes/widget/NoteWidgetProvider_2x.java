@@ -17,7 +17,7 @@
 package net.micode.notes.widget;
 
 import net.micode.notes.R;
-import net.micode.notes.data.Notes;
+import net.micode.notes.db.Notes;
 import net.micode.notes.util.ResourceParser;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package net.micode.notes.data;
+package net.micode.notes.db;
 
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.DataConstants;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes.DataColumns;
+import net.micode.notes.db.Notes.DataConstants;
+import net.micode.notes.db.Notes.NoteColumns;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

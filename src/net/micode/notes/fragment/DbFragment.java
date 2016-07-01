@@ -10,7 +10,7 @@ import net.micode.notes.ConstantProvider;
 import net.micode.notes.MyApplication;
 import net.micode.notes.BaseFragment;
 import net.micode.notes.R;
-import net.micode.notes.data.DatabaseService;
+import net.micode.notes.db.DatabaseService;
 import net.micode.notes.entities.Detailed;
 import net.micode.notes.entities.HouseSaid;
 import net.micode.notes.util.JSONUtil;

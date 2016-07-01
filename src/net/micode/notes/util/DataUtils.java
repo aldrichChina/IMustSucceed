@@ -19,9 +19,9 @@ package net.micode.notes.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.CallNote;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.CallNote;
+import net.micode.notes.db.Notes.NoteColumns;
 import net.micode.notes.ui.NotesListAdapter.AppWidgetAttribute;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;

@@ -17,7 +17,7 @@
 package net.micode.notes.ui;
 
 import net.micode.notes.R;
-import net.micode.notes.data.Notes;
+import net.micode.notes.db.Notes;
 import net.micode.notes.util.DataUtils;
 import net.micode.notes.util.ResourceParser.NoteItemBgResources;
 import android.content.Context;

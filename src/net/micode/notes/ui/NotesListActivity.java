@@ -23,8 +23,8 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 
 import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.NoteColumns;
 import net.micode.notes.gtask.remote.GTaskSyncService;
 import net.micode.notes.model.WorkingNote;
 import net.micode.notes.ui.NotesListAdapter.AppWidgetAttribute;

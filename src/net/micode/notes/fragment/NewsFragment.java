@@ -10,7 +10,7 @@ import net.micode.notes.R;
 import net.micode.notes.adapter.NewsAdapter;
 import net.micode.notes.asynctask.ContentAsyncTask;
 import net.micode.notes.asynctask.ContentAsyncTask.ContentCallback;
-import net.micode.notes.data.DatabaseService;
+import net.micode.notes.db.DatabaseService;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.util.Utils;
 import net.micode.notes.view.XListView;

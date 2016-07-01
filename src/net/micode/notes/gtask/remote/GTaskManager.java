@@ -22,9 +22,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.DataColumns;
+import net.micode.notes.db.Notes.NoteColumns;
 import net.micode.notes.gtask.data.MetaData;
 import net.micode.notes.gtask.data.Node;
 import net.micode.notes.gtask.data.SqlNote;

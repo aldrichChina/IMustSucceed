@@ -16,8 +16,8 @@
 
 package net.micode.notes.widget;
 import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.NoteColumns;
 import net.micode.notes.ui.NoteEditActivity;
 import net.micode.notes.ui.NotesListActivity;
 import net.micode.notes.util.ResourceParser;

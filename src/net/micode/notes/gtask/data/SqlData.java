@@ -16,11 +16,11 @@
 
 package net.micode.notes.gtask.data;
 
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.DataConstants;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.data.NotesDatabaseHelper.TABLE;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.DataColumns;
+import net.micode.notes.db.Notes.DataConstants;
+import net.micode.notes.db.Notes.NoteColumns;
+import net.micode.notes.db.NotesDatabaseHelper.TABLE;
 import net.micode.notes.gtask.exception.ActionFailureException;
 
 import org.json.JSONException;

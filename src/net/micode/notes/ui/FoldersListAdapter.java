@@ -17,8 +17,8 @@
 package net.micode.notes.ui;
 
 import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.NoteColumns;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;

@@ -23,10 +23,10 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.DataConstants;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.DataColumns;
+import net.micode.notes.db.Notes.DataConstants;
+import net.micode.notes.db.Notes.NoteColumns;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Environment;

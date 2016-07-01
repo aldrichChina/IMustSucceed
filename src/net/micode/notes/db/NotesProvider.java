@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package net.micode.notes.data;
+package net.micode.notes.db;
 
 
 import net.micode.notes.R;
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.data.NotesDatabaseHelper.TABLE;
+import net.micode.notes.db.Notes.DataColumns;
+import net.micode.notes.db.Notes.NoteColumns;
+import net.micode.notes.db.NotesDatabaseHelper.TABLE;
 import android.app.SearchManager;
 import android.content.ContentProvider;
 import android.content.ContentUris;

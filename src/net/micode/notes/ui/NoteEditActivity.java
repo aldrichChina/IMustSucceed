@@ -24,8 +24,8 @@ import java.util.regex.Pattern;
 
 import net.micode.notes.R;
 import net.micode.notes.activity.BaseActivity;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.TextNote;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.TextNote;
 import net.micode.notes.model.WorkingNote;
 import net.micode.notes.model.WorkingNote.NoteSettingChangedListener;
 import net.micode.notes.ui.DateTimePickerDialog.OnDateTimeSetListener;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.micode.notes.ConstantProvider;
-import net.micode.notes.data.DatabaseService;
+import net.micode.notes.db.DatabaseService;
 import net.micode.notes.entities.NewsBody;
 import net.micode.notes.entities.NewsChannel;
 import net.micode.notes.entities.NewsDetailContent;

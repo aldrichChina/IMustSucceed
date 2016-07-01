@@ -1,4 +1,4 @@
-package net.micode.notes.data;
+package net.micode.notes.db;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

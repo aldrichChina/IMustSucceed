@@ -16,12 +16,12 @@
 
 package net.micode.notes.model;
 
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.CallNote;
-import net.micode.notes.data.Notes.DataColumns;
-import net.micode.notes.data.Notes.DataConstants;
-import net.micode.notes.data.Notes.NoteColumns;
-import net.micode.notes.data.Notes.TextNote;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.CallNote;
+import net.micode.notes.db.Notes.DataColumns;
+import net.micode.notes.db.Notes.DataConstants;
+import net.micode.notes.db.Notes.NoteColumns;
+import net.micode.notes.db.Notes.TextNote;
 import net.micode.notes.util.ResourceParser.NoteBgResources;
 import android.appwidget.AppWidgetManager;
 import android.content.ContentUris;

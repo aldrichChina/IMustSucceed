@@ -17,8 +17,8 @@
 package net.micode.notes.ui;
 
 import net.micode.notes.R;
-import net.micode.notes.data.Notes;
-import net.micode.notes.data.Notes.NoteColumns;
+import net.micode.notes.db.Notes;
+import net.micode.notes.db.Notes.NoteColumns;
 import net.micode.notes.gtask.remote.GTaskSyncService;
 import android.accounts.Account;
 import android.accounts.AccountManager;

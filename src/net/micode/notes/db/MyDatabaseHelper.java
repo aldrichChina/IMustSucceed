@@ -1,4 +1,4 @@
-package net.micode.notes.data;
+package net.micode.notes.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
