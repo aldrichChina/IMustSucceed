@@ -7,6 +7,7 @@ import net.micode.notes.BaseFragment;
 import net.micode.notes.ConstantProvider;
 import net.micode.notes.R;
 import net.micode.notes.adapter.WxhotAdapter;
+import net.micode.notes.adapter.WxhotAdapter.ItemClickListener;
 import net.micode.notes.db.DatabaseService;
 import net.micode.notes.entities.WxhotArticle;
 import net.micode.notes.util.RecyclerDividerItemDecoration;
@@ -25,11 +26,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener ,ItemClickListener{
 
     private SwipeRefreshLayout swipeContainer;
     private RecyclerView recyclerView;
@@ -47,18 +49,18 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
     private void findViewById(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.id_RecyclerView);
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
-
         initViews();
     }
 
     @Override
     protected void initViews() {
         databaseService = new DatabaseService(getActivity());
+        
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
         swipeContainer.setOnRefreshListener(this);
         hotArticleList=databaseService.rawQueryHotArticle();
-        wxhotAdapter = new WxhotAdapter(getActivity(), hotArticleList);
+        wxhotAdapter = new WxhotAdapter(getActivity(), hotArticleList,this);
         recyclerView.setAdapter(wxhotAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new RecyclerDividerItemDecoration(getActivity(),RecyclerDividerItemDecoration.VERTICAL_LIST));
@@ -115,7 +117,6 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
         databaseService.insertHotArticle(wxHotList);
         hotArticleList=databaseService.rawQueryHotArticle();
         wxhotAdapter.notifyDataSetChanged();
-
     }
 
     /*
@@ -126,5 +127,15 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
     public void onRefresh() {
         obtainWxhotArticle();
         swipeContainer.setRefreshing(false);
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.adapter.WxhotAdapter.ItemClickListener#onItemClick(android.view.View, int)
+     */
+    @Override
+    public void onItemClick(View view, int postion) {
+        WxhotArticle wxhotArticle = hotArticleList.get(postion);
+        Toast.makeText(getActivity(), wxhotArticle.getTitle(), Toast.LENGTH_SHORT).show();
     }
 }

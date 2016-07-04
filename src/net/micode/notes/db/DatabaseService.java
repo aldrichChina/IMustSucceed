@@ -1,6 +1,5 @@
 package net.micode.notes.db;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,8 +14,6 @@ import net.micode.notes.entities.WxhotArticle;
 import net.micode.notes.util.Utils;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.util.Log;
 
 /**  
  * 数据库方法封装，创建表，删除表，数据（增删该查）...  
@@ -187,25 +184,23 @@ public class DatabaseService {
         return tmpItems;
     }
 
-    public boolean insertHotArticle(List<WxhotArticle> hotArticleList) {
-        try {
-            for (WxhotArticle hotArticle : hotArticleList) {
-                String ctime = hotArticle.getCtime();
-                String title = hotArticle.getTitle();
-                String description = hotArticle.getDescription();
-                String picUrl = hotArticle.getPicUrl();
-                String url = hotArticle.getUrl();
-                dbOpenHelper.getReadableDatabase().execSQL(
-                        "insert into HotArticle (ctime,title,description,picUrl,url,timestamp)values(?,?,?,?,?,?)",
-                        new String[] {ctime, title, description, picUrl, url,
-                                Long.toString(new Date().getTime() / 1000) });
+    public void insertHotArticle(final List<WxhotArticle> hotArticleList) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (WxhotArticle hotArticle : hotArticleList) {
+                    String ctime = hotArticle.getCtime();
+                    String title = hotArticle.getTitle();
+                    String description = hotArticle.getDescription();
+                    String picUrl = hotArticle.getPicUrl();
+                    String url = hotArticle.getUrl();
+                    dbOpenHelper.getReadableDatabase().execSQL(
+                            "insert into HotArticle (ctime,title,description,picUrl,url,timestamp)values(?,?,?,?,?,?)",
+                            new String[] {ctime, title, description, picUrl, url,
+                                    Long.toString(new Date().getTime() / 1000) });
+                }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Log.d("jia", e.toString());
-        }
-
-        return true;
+        }).start();
     }
 
     public List<WxhotArticle> rawQueryHotArticle() {

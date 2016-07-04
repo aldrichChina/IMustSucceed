@@ -183,14 +183,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     @Override
     public void onClick(View v) {
 
-        profileActivity = new ProfileActivity();
-        calendarActivity = new CalendarActivity();
-        settingsActivity = new ProfileActivity();
-        pictureActivity = new PictureActivity();
-        cameraActivity = new CameraActivity();
-        cameraBeginActivity=new CameraBeginActivity();
-        barCodeActivity = new BarCodeActivity();
-//        new CameraActivity();
+        // new CameraActivity();
         if (v == itemHome) {
             changeActivity(MainActivity.this);
         } else if (v == itemProfile) {
@@ -363,6 +356,13 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
 
     @Override
     protected void initEvents() {
+        profileActivity = new ProfileActivity();
+        calendarActivity = new CalendarActivity();
+        settingsActivity = new ProfileActivity();
+        pictureActivity = new PictureActivity();
+        cameraActivity = new CameraActivity();
+        cameraBeginActivity = new CameraBeginActivity();
+        barCodeActivity = new BarCodeActivity();
         setUpMenu();
         UmengUpdateAgent.update(this);
     }
@@ -428,7 +428,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         resideMenu.setUse3D(true);
         resideMenu.setBackground(R.drawable.menu_background);
         resideMenu.attachToActivity(this);
-//        resideMenu.setMenuListener(menuListener);
+        // resideMenu.setMenuListener(menuListener);
         // valid scale factor is between 0.0f and 1.0f. leftmenu'width is
         // 150dip.
         resideMenu.setScaleValue(0.6f);
@@ -440,7 +440,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "Settings");
         itemPicture = new ResideMenuItem(this, R.drawable.abc_ic_menu_selectall_mtrl_alpha, "Picture");
         itemCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "系统相机");
-        itemCustomCamera=new ResideMenuItem(this, R.drawable.nact_chose_camera, "自定义相机");
+        itemCustomCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "自定义相机");
         itemScan = new ResideMenuItem(this, R.drawable.share_btn_logo_pyq, "二维码");
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
@@ -477,18 +477,18 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         });
     }
 
-//    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
-//
-//        @Override
-//        public void openMenu() {
-//            // Utils.ToastMessage(context, "Menu is opened!");
-//        }
-//
-//        @Override
-//        public void closeMenu() {
-//            // Utils.ToastMessage(context, "Menu is closed!");
-//        }
-//    };
+    // private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
+    //
+    // @Override
+    // public void openMenu() {
+    // // Utils.ToastMessage(context, "Menu is opened!");
+    // }
+    //
+    // @Override
+    // public void closeMenu() {
+    // // Utils.ToastMessage(context, "Menu is closed!");
+    // }
+    // };
 
     private void changeFragment(Fragment targetFragment) {
         resideMenu.clearIgnoredViewList();

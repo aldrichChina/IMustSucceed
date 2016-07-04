@@ -25,8 +25,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 /**
  * @ClassName WxhotAdapter
@@ -38,10 +42,19 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
 
     private List<WxhotArticle> wxhotList;
     private LayoutInflater inflater;
+    private Context context;
+    private ItemClickListener clickListener;
 
-    public WxhotAdapter(Context context, List<WxhotArticle> wxhotList) {
+    public interface ItemClickListener {
+
+        public void onItemClick(View view, int postion);
+    }
+
+    public WxhotAdapter(Context context, List<WxhotArticle> wxhotList,ItemClickListener listener) {
+        this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.wxhotList = wxhotList;
+        this.clickListener=listener;
     }
 
     /*
@@ -50,7 +63,7 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
      */
     @Override
     public int getItemCount() {
-        return wxhotList.size() == 0 ? 0 : wxhotList.size() ;
+        return wxhotList.size() == 0 ? 0 : wxhotList.size();
     }
 
     /*
@@ -62,6 +75,8 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
     @Override
     public void onBindViewHolder(WxhotViewHolder holder, int position) {
         holder.titile.setText(wxhotList.get(position).getTitle());
+        holder.tvArticleContent.setText(wxhotList.get(position).getDescription());
+        Picasso.with(context).load(wxhotList.get(position).getPicUrl()).into(holder.articlePic);
     }
 
     /*
@@ -71,17 +86,36 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
     @Override
     public WxhotViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         WxhotViewHolder wxhotViewHolder = new WxhotViewHolder(inflater.inflate(R.layout.adapter_item_wxhot, parent,
-                false));
+                false), clickListener);
         return wxhotViewHolder;
     }
 
-    class WxhotViewHolder extends ViewHolder {
 
-        TextView titile;
+    class WxhotViewHolder extends ViewHolder implements OnClickListener {
 
-        public WxhotViewHolder(View itemView) {
+        private TextView titile;
+        private ImageView articlePic;
+        private TextView tvArticleContent;
+        private ItemClickListener clickListener;
+
+        public WxhotViewHolder(View itemView, ItemClickListener clickListener) {
             super(itemView);
+            this.clickListener = clickListener;
             titile = (TextView) itemView.findViewById(R.id.tv_title);
+            articlePic = (ImageView) itemView.findViewById(R.id.article_pic);
+            tvArticleContent = (TextView) itemView.findViewById(R.id.tv_article_content);
+            itemView.setOnClickListener(this);
+        }
+
+        /*
+         * (非 Javadoc) Description:
+         * @see android.view.View.OnClickListener#onClick(android.view.View)
+         */
+        @Override
+        public void onClick(View v) {
+            if (clickListener != null) {
+                clickListener.onItemClick(v, getPosition());
+            }
         }
 
     }
