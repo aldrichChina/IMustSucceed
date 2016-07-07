@@ -72,6 +72,9 @@
         <activity android:name=".activity.ResideMenuItem.CustomCameraActivity" />
         <activity android:name=".activity.ResideMenuItem.BarCodeActivity" />
         <activity android:name="com.zbar.lib.CaptureActivity" />
+        <!-- X5WebView -->
+        <activity android:name="net.micode.notes.activity.X5WebViewActivity" >
+        </activity>
         <activity
             android:name="net.micode.notes.activity.AboutTabsActivity"
             android:screenOrientation="portrait" >
@@ -181,14 +184,6 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/Splash" >
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
         </activity>
         <activity android:name="net.micode.notes.ui.LoginActivity" >
         </activity>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FFFFFFFF" >
+    android:background="#FFFFFFFF"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/baseweb_linear_header_container"
@@ -13,7 +16,38 @@
         <include layout="@layout/include_header" />
     </LinearLayout>
 
-    <WebView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#379cef" >
+
+        <ImageButton
+            android:id="@+id/topback"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_imagebutton"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="柠檬"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbar_extraweb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:progressDrawable="@drawable/progress_drawable"
+        android:visibility="visible" />
+
+    <com.tencent.smtt.sdk.WebView
         android:id="@+id/baseweb_webview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -26,4 +60,4 @@
         layout="@layout/include_loading_indicator"
         android:visibility="gone" />
 
-</RelativeLayout>
+</LinearLayout>

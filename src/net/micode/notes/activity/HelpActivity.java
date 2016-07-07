@@ -3,7 +3,8 @@ package net.micode.notes.activity;
 import net.micode.notes.jni.JniManager;
 import net.micode.notes.util.NetWorkUtils.NetWorkState;
 import android.os.Bundle;
-import android.webkit.WebSettings;
+
+import com.tencent.smtt.sdk.WebSettings;
 
 public class HelpActivity extends BaseWebActivity {
 	@Override

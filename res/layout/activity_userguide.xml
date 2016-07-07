@@ -2,6 +2,8 @@
 <net.micode.notes.view.ScrollViewPager xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/userguide_svp_pager"
     android:layout_width="fill_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
     android:layout_height="fill_parent" >
 
 </net.micode.notes.view.ScrollViewPager>

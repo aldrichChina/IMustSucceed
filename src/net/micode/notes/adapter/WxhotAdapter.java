@@ -75,7 +75,6 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
     @Override
     public void onBindViewHolder(WxhotViewHolder holder, int position) {
         holder.titile.setText(wxhotList.get(position).getTitle());
-        holder.tvArticleContent.setText(wxhotList.get(position).getDescription());
         Picasso.with(context).load(wxhotList.get(position).getPicUrl()).into(holder.articlePic);
     }
 
@@ -95,7 +94,6 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
 
         private TextView titile;
         private ImageView articlePic;
-        private TextView tvArticleContent;
         private ItemClickListener clickListener;
 
         public WxhotViewHolder(View itemView, ItemClickListener clickListener) {
@@ -103,7 +101,6 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
             this.clickListener = clickListener;
             titile = (TextView) itemView.findViewById(R.id.tv_title);
             articlePic = (ImageView) itemView.findViewById(R.id.article_pic);
-            tvArticleContent = (TextView) itemView.findViewById(R.id.tv_article_content);
             itemView.setOnClickListener(this);
         }
 

@@ -10,6 +10,8 @@ import net.micode.notes.adapter.WxhotAdapter;
 import net.micode.notes.adapter.WxhotAdapter.ItemClickListener;
 import net.micode.notes.db.DatabaseService;
 import net.micode.notes.entities.WxhotArticle;
+import net.micode.notes.interfacemanage.InterfaceManager;
+import net.micode.notes.interfacemanage.InterfaceManager.OpenX5WebFragment;
 import net.micode.notes.util.RecyclerDividerItemDecoration;
 import okhttp3.Call;
 
@@ -17,6 +19,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -26,18 +30,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener ,ItemClickListener{
+public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, ItemClickListener {
 
     private SwipeRefreshLayout swipeContainer;
     private RecyclerView recyclerView;
     private WxhotAdapter wxhotAdapter;
     private DatabaseService databaseService;
     private List<WxhotArticle> hotArticleList;
+    private InterfaceManager.OpenX5WebFragment openX5FragmentIMPL;
+
+    public HotArticleFragment(OpenX5WebFragment openX5FragmentIMPL) {
+        this.openX5FragmentIMPL = openX5FragmentIMPL;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wxhot, container, false);
@@ -55,15 +64,16 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
     @Override
     protected void initViews() {
         databaseService = new DatabaseService(getActivity());
-        
+
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
         swipeContainer.setOnRefreshListener(this);
-        hotArticleList=databaseService.rawQueryHotArticle();
-        wxhotAdapter = new WxhotAdapter(getActivity(), hotArticleList,this);
+        hotArticleList = databaseService.rawQueryHotArticle();
+        wxhotAdapter = new WxhotAdapter(getActivity(), hotArticleList, this);
         recyclerView.setAdapter(wxhotAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.addItemDecoration(new RecyclerDividerItemDecoration(getActivity(),RecyclerDividerItemDecoration.VERTICAL_LIST));
+        recyclerView.addItemDecoration(new RecyclerDividerItemDecoration(getActivity(),
+                RecyclerDividerItemDecoration.VERTICAL_LIST));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         obtainWxhotArticle();
         initEvents();
@@ -71,7 +81,7 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
 
     private void obtainWxhotArticle() {
         OkHttpUtils.get().url(ConstantProvider.BaseURL + ConstantProvider.WXHOTURL)
-                .addHeader("apikey", ConstantProvider.APIKEY).addParams("num", "50").build()
+                .addHeader("apikey", ConstantProvider.APIKEY).addParams("num", "100").build()
                 .execute(new StringCallback() {
 
                     @Override
@@ -115,7 +125,8 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
             wxHotList.add(wxhotArticle);
         }
         databaseService.insertHotArticle(wxHotList);
-        hotArticleList=databaseService.rawQueryHotArticle();
+         hotArticleList.clear();
+        hotArticleList.addAll(databaseService.rawQueryHotArticle());
         wxhotAdapter.notifyDataSetChanged();
     }
 
@@ -129,13 +140,13 @@ public class HotArticleFragment extends BaseFragment implements SwipeRefreshLayo
         swipeContainer.setRefreshing(false);
     }
 
-    /* (非 Javadoc)
-     * Description:
+    /*
+     * (非 Javadoc) Description:
      * @see net.micode.notes.adapter.WxhotAdapter.ItemClickListener#onItemClick(android.view.View, int)
      */
     @Override
     public void onItemClick(View view, int postion) {
         WxhotArticle wxhotArticle = hotArticleList.get(postion);
-        Toast.makeText(getActivity(), wxhotArticle.getTitle(), Toast.LENGTH_SHORT).show();
+        openX5FragmentIMPL.openX5Fragment(wxhotArticle.getUrl());
     }
 }

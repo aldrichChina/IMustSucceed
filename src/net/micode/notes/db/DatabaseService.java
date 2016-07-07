@@ -186,6 +186,7 @@ public class DatabaseService {
 
     public void insertHotArticle(final List<WxhotArticle> hotArticleList) {
         new Thread(new Runnable() {
+
             @Override
             public void run() {
                 for (WxhotArticle hotArticle : hotArticleList) {
@@ -194,10 +195,12 @@ public class DatabaseService {
                     String description = hotArticle.getDescription();
                     String picUrl = hotArticle.getPicUrl();
                     String url = hotArticle.getUrl();
-                    dbOpenHelper.getReadableDatabase().execSQL(
-                            "insert into HotArticle (ctime,title,description,picUrl,url,timestamp)values(?,?,?,?,?,?)",
-                            new String[] {ctime, title, description, picUrl, url,
-                                    Long.toString(new Date().getTime() / 1000) });
+                    dbOpenHelper
+                            .getReadableDatabase()
+                            .execSQL(
+                                    "insert into HotArticle (ctime,title,description,picUrl,url,timestamp)values(?,?,?,?,?,?)",
+                                    new String[] {ctime, title, description, picUrl, url,
+                                            Long.toString(new Date().getTime()) });
                 }
             }
         }).start();

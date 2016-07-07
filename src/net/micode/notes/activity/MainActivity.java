@@ -10,17 +10,17 @@ import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
 import net.micode.notes.activity.main.NearByActivity;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
-import net.micode.notes.fragment.HotArticleFragment;
 import net.micode.notes.fragment.DbFragment;
+import net.micode.notes.fragment.HotArticleFragment;
+import net.micode.notes.fragment.NewsDetailFragment;
 import net.micode.notes.fragment.NewsFragment;
 import net.micode.notes.fragment.NewsFragment.OnHeadlineSelectedListener;
-import net.micode.notes.fragment.NewsDetailFragment;
 import net.micode.notes.fragment.SettingsFragment;
+import net.micode.notes.interfacemanage.InterfaceManager.OpenX5WebFragment;
 import net.micode.notes.util.Utils;
 import net.micode.notes.view.ResideMenu.ResideMenu;
 import net.micode.notes.view.ResideMenu.ResideMenuItem;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -36,7 +36,7 @@ import android.widget.TextView;
 import com.umeng.update.UmengUpdateAgent;
 
 public class MainActivity extends BaseActivity implements OnClickListener, OnHeadlineSelectedListener,
-        OnLongClickListener {
+        OnLongClickListener,OpenX5WebFragment {
 
     /**
      * 用于展示消息的Fragment
@@ -122,7 +122,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     /**
      * 用于对Fragment进行管理
      */
-    private NewsDetailFragment newFragment;
+    private NewsDetailFragment newsDetailFragment;
     private FragmentManager fragmentManager;
     private TextView toptitle;
     private ResideMenu resideMenu;
@@ -134,7 +134,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private ResideMenuItem itemCamera;
     private ResideMenuItem itemCustomCamera;
     private ResideMenuItem itemScan;
-    private NewsDetailFragment articleFrag;
 
     private ProfileActivity profileActivity;
 
@@ -146,6 +145,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private CameraActivity cameraActivity;
     private CameraBeginActivity cameraBeginActivity;
     private BarCodeActivity barCodeActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,7 +288,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             contactsText.setTextColor(Color.WHITE);
             if (hotArticleFragment == null) {
                 // 如果ContactsFragment为空，则创建一个并添加到界面上
-                hotArticleFragment = new HotArticleFragment();
+                hotArticleFragment = new HotArticleFragment(MainActivity.this);
                 transaction.add(R.id.content, hotArticleFragment);
             } else {
                 // 如果ContactsFragment不为空，则直接将它显示出来
@@ -379,35 +379,43 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
 
     @Override
     public void onArticleSelected(NewsDetailContent detailContent, String tag) {
-        // 用户选中HeadlinesFragment中的头标题后
+        Bundle bundle=new Bundle();
+        bundle.putString("articalUrl", detailContent.getLink());
+        startActivity( X5WebViewActivity.class,bundle);
+        
+        
+        
+        
+        /*// 用户选中HeadlinesFragment中的头标题后
         // 做一些必要的业务操作
 
-        articleFrag = (NewsDetailFragment) getFragmentManager().findFragmentByTag(tag);
+        newsDetailFragment = (NewsDetailFragment) getFragmentManager().findFragmentByTag(tag);
 
-        if (articleFrag != null) {
+        if (newsDetailFragment != null) {
             // 如果 article frag 不为空，那么我们在同时显示两个fragmnet的布局中...
 
             // 调用ArticleFragment中的方法去更新它的内容
-            articleFrag.updateArticleView(detailContent);
+            newsDetailFragment.updateArticleView(detailContent);
         } else {
             // 否则，我们就是在仅包含一个fragment的布局中并需要交换fragment...
 
-            newFragment = new NewsDetailFragment();
+            newsDetailFragment = new NewsDetailFragment();
             Bundle args = new Bundle();
             args.putSerializable("news_detailContent", detailContent);
-            newFragment.setArguments(args);
+            newsDetailFragment.setArguments(args);
 
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
             // 用这个fragment替换任何在fragment_container中的东西
             // 并添加事务到back stack中以便用户可以回退到之前的状态
-            transaction.replace(R.id.content, newFragment, tag);
+            transaction.replace(R.id.content, newsDetailFragment, tag);
             transaction.addToBackStack(null);
 
             // 提交事务
             transaction.commit();
+        }*/
+    
         }
-    }
 
     @Override
     public boolean onLongClick(View v) {
@@ -477,25 +485,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         });
     }
 
-    // private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
-    //
-    // @Override
-    // public void openMenu() {
-    // // Utils.ToastMessage(context, "Menu is opened!");
-    // }
-    //
-    // @Override
-    // public void closeMenu() {
-    // // Utils.ToastMessage(context, "Menu is closed!");
-    // }
-    // };
 
-    private void changeFragment(Fragment targetFragment) {
-        resideMenu.clearIgnoredViewList();
-        getFragmentManager().beginTransaction().replace(R.id.content, targetFragment, "fragment")
-                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
-        resideMenu.closeMenu();
-    }
 
     private void changeActivity(Activity targetActivity) {
         resideMenu.clearIgnoredViewList();
@@ -509,6 +499,27 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             getFragmentManager().popBackStack();
         }
         return true;
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.interfacemanage.InterfaceManager.OpenX5WebFragment#openX5Fragment(java.lang.String)
+     */
+    @Override
+    public void openX5Fragment(String articalUrl) {
+        Bundle bundle=new Bundle();
+        bundle.putString("articalUrl", articalUrl);
+        startActivity( X5WebViewActivity.class,bundle);
+        
+        
+        
+        
+//        x5WebViewFragment = new X5WebViewFragment(articalUrl);
+//        FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
+//        hideFragments(beginTransaction);
+//        beginTransaction.replace(R.id.content, x5WebViewFragment, "x5WebViewFragment");
+//        beginTransaction.addToBackStack(null);
+//        beginTransaction.commit();        
     }
 
 }

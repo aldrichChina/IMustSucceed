@@ -36,7 +36,8 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
     private DatabaseService databaseService;
     OnHeadlineSelectedListener mCallback;
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private int page=1;
+    private int page = 1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.http_fragment, container, false);
@@ -71,7 +72,7 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
             @Override
             public void run() {
-                page=1;
+                page = 1;
                 getTechnologyNews();
             }
         }, 1000);
@@ -99,7 +100,7 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
     private void getTechnologyNews() {
         getNewsFromDb();
-        ContentAsyncTask contentAsyncTask = new ContentAsyncTask(getActivity(),page, new ContentCallback() {
+        ContentAsyncTask contentAsyncTask = new ContentAsyncTask(getActivity(), page, new ContentCallback() {
 
             @Override
             public void send(Boolean result) {
@@ -157,12 +158,10 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
     @Override
     protected void initViews() {
-        Utils.Log("HttpFragment--->initViews只喜萨达纳副科级 ");
     }
 
     @Override
     protected void initEvents() {
-        Utils.Log("HttpFragment--->initEvents只喜萨达纳副科级");
 
     }
 }
