@@ -68,27 +68,27 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
     @Override
     public void onRefresh() {
-        handler.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
+//        handler.postDelayed(new Runnable() {
+//
+//            @Override
+//            public void run() {
                 page = 1;
                 getTechnologyNews();
-            }
-        }, 1000);
+//            }
+//        }, 1000);
 
     }
 
     @Override
     public void onLoadMore() {
-        handler.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
+//        handler.postDelayed(new Runnable() {
+//
+//            @Override
+//            public void run() {
                 page++;
                 getTechnologyNews();
-            }
-        }, 1000);
+//            }
+//        }, 1000);
     }
 
     /** 停止刷新， */

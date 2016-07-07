@@ -12,7 +12,6 @@ import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HotArticleFragment;
-import net.micode.notes.fragment.NewsDetailFragment;
 import net.micode.notes.fragment.NewsFragment;
 import net.micode.notes.fragment.NewsFragment.OnHeadlineSelectedListener;
 import net.micode.notes.fragment.SettingsFragment;
@@ -26,8 +25,11 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
@@ -122,7 +124,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     /**
      * 用于对Fragment进行管理
      */
-    private NewsDetailFragment newsDetailFragment;
     private FragmentManager fragmentManager;
     private TextView toptitle;
     private ResideMenu resideMenu;

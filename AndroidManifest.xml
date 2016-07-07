@@ -123,10 +123,7 @@
             android:name="net.micode.notes.activity.imagefactory.ImageFactoryActivity"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="net.micode.notes.activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyNoTitleBar" >
+        <activity android:name="net.micode.notes.activity.MainActivity" >
         </activity>
         <activity
             android:name="net.micode.notes.activity.main.NearByActivity"
