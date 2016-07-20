@@ -36,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.umeng.update.UmengUpdateAgent;
+import com.zhy.sample_okhttp.OkHttpActivity;
 
 public class MainActivity extends BaseActivity implements OnClickListener, OnHeadlineSelectedListener,
         OnLongClickListener,OpenX5WebFragment {
@@ -129,6 +130,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private ResideMenu resideMenu;
     private ResideMenuItem itemHome;
     private ResideMenuItem itemProfile;
+    private ResideMenuItem itemOkHttp;
     private ResideMenuItem itemCalendar;
     private ResideMenuItem itemSettings;
     private ResideMenuItem itemPicture;
@@ -137,7 +139,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private ResideMenuItem itemScan;
 
     private ProfileActivity profileActivity;
-
+    private OkHttpActivity okHttpActivity;
     private CalendarActivity calendarActivity;
 
     private ProfileActivity settingsActivity;
@@ -150,7 +152,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_maintabs);
+        setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
         // 初始化布局元素
         fragmentManager = getFragmentManager();
@@ -189,6 +191,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             changeActivity(MainActivity.this);
         } else if (v == itemProfile) {
             changeActivity(profileActivity);
+        } else if (v == itemOkHttp) {
+            changeActivity(okHttpActivity);
         } else if (v == itemCalendar) {
             changeActivity(calendarActivity);
         } else if (v == itemSettings) {
@@ -358,6 +362,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     @Override
     protected void initEvents() {
         profileActivity = new ProfileActivity();
+        okHttpActivity=new OkHttpActivity();
         calendarActivity = new CalendarActivity();
         settingsActivity = new ProfileActivity();
         pictureActivity = new PictureActivity();
@@ -445,6 +450,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         // create menu items;
         itemHome = new ResideMenuItem(this, R.drawable.icon_home, "Home");
         itemProfile = new ResideMenuItem(this, R.drawable.icon_profile, "Profile");
+        itemOkHttp = new ResideMenuItem(this, R.drawable.icon_profile, "OkHttpUtil");
         itemCalendar = new ResideMenuItem(this, R.drawable.icon_calendar, "Calendar");
         itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "Settings");
         itemPicture = new ResideMenuItem(this, R.drawable.abc_ic_menu_selectall_mtrl_alpha, "Picture");
@@ -453,6 +459,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         itemScan = new ResideMenuItem(this, R.drawable.share_btn_logo_pyq, "二维码");
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
+        itemOkHttp.setOnClickListener(this);
         itemCalendar.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
         itemPicture.setOnClickListener(this);
@@ -461,6 +468,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         itemScan.setOnClickListener(this);
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemOkHttp, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemPicture, ResideMenu.DIRECTION_RIGHT);

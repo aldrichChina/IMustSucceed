@@ -134,6 +134,8 @@
     <string name="descr_image">Image</string>
     <!-- 二维码 -->
     <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
     <plurals name="search_results_title">
         <item quantity="one"><xliff:g id="number" example="1">%1$s</xliff:g> result for \"<xliff:g id="search" example="???">%2$s</xliff:g>\"</item>

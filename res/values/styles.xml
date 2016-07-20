@@ -54,8 +54,9 @@
         <item name="android:displayOptions"/>
         <item name="android:visibility">gone</item>
     </style>
+
     <style name="MyNoTitleBar" parent="@android:style/Theme.NoTitleBar">
-         <item name="android:listDivider">@drawable/recycler_divider</item>
+        <item name="android:listDivider">@drawable/recycler_divider</item>
     </style>
 
     <style name="Splash">
@@ -68,7 +69,7 @@
         <item name="android:textColor">#ffacacac</item>
         <item name="android:textSize">25sp</item>
     </style>
-<!-- 对话框文字大小 -->
+    <!-- 对话框文字大小 -->
     <style name="dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -79,6 +80,7 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:textSize">25sp</item>
     </style>
+
     <style name="Theme.Light.CustomDialog" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">@drawable/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -187,7 +189,7 @@
         <item name="android:windowEnterAnimation">@anim/enter_dropup</item>
         <item name="android:windowExitAnimation">@anim/exit_dropdown</item>
     </style>
-     <!-- 退出的自定义dialog -->
+    <!-- 退出的自定义dialog -->
     <style name="customExitDailogStyle" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -195,5 +197,26 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/exit_dialog_bg</item>
         <item name="android:backgroundDimEnabled">true</item>
-    </style>   
+    </style>
+
+    <style name="mySpinnerStyle" parent="android:style/Widget.ListView.DropDown">
+        <item name="android:divider">#5c5c5c</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="activityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@animator/fragment_slide_right_enter</item>
+        <item name="android:activityOpenExitAnimation">@animator/fragment_slide_left_exit</item>
+        <item name="android:activityCloseEnterAnimation">@animator/fragment_slide_left_enter</item>
+        <item name="android:activityCloseExitAnimation">@animator/fragment_slide_right_exit</item>
+    </style>
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+        <item name="android:dropDownListViewStyle">@style/mySpinnerStyle</item>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
 </resources>
