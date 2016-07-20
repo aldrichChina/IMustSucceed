@@ -1,33 +1,21 @@
-/**   
- * @title: Installation.java 
- * @package: com.founder.medical.dao 
- * @description: TODO
- * @author x.yan  
- * @date 2015年4月13日 上午11:50:02 
- * @version 1.0.0 
- */
 package net.micode.notes.util;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Random;
 import java.util.UUID;
+
+
+
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 
-/**
- * @description: 获取设备的编号
- * @author: x.yan
- * @date: 2015年4月13日 上午11:50:02
- * @version: V1.0.0
- */
 public class DeviceInfoUtil {
-	
-	private static final String TAG = "DeviceInfoUtil";
 	
 	private static String sID = null;
 	private static final String INSTALLATION = "INSTALLATION";
@@ -69,6 +57,11 @@ public class DeviceInfoUtil {
 			sID = getIMEI(context);
 			if (sID == null) {
 				sID = getMacAddress(context);
+				if (sID==null) {
+					for (int i = 0; i < 4; i++) {
+						sID += ""+(1000+new Random().nextInt(9000));
+					}
+				}
 				return sID;
 			}
 		}
@@ -82,7 +75,20 @@ public class DeviceInfoUtil {
 		TelephonyManager mTm = (TelephonyManager) context
 				.getSystemService(Context.TELEPHONY_SERVICE);
 		String imei = mTm.getDeviceId();
-		return imei + imei.charAt(0);
+		if (imei != null) {
+			if (imei.length() < 16 && imei.length() > 0) {
+				while (imei.length() < 16) {
+					imei += imei;
+				}
+				return imei.substring(0, 16);
+			} else if (imei.length() <= 0) {
+				return null;
+			} else {
+				return imei.substring(0, 16);
+			}
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -92,6 +98,20 @@ public class DeviceInfoUtil {
 		WifiManager wifiManager = (WifiManager) context
 				.getSystemService(Context.WIFI_SERVICE);
 		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-		return wifiInfo.getMacAddress();
+		String macAddress = wifiInfo.getMacAddress();
+		if (macAddress != null) {
+			if (macAddress.length() < 16 && macAddress.length() > 0) {
+				while (macAddress.length() < 16) {
+					macAddress += macAddress;
+				}
+				return macAddress.substring(0, 16);
+			} else if (macAddress.length() <= 0) {
+				return null;
+			} else {
+				return macAddress.substring(0, 16);
+			}
+		} else {
+			return null;
+		}
 	}
 }
