@@ -74,6 +74,7 @@ public class HeaderLayout extends LinearLayout {
 	}
 
 	public void initViews() {
+	    if (isInEditMode()) { return; }
 		mIvLogo = (ImageView) findViewByHeaderId(R.id.header_iv_logo);
 		mIvLogo.setVisibility(View.VISIBLE);
 		mLayoutLeftContainer = (LinearLayout) findViewByHeaderId(R.id.header_layout_leftview_container);

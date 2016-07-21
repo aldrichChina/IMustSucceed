@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import net.micode.notes.R;
+import net.micode.notes.activity.BaseActivity;
+import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
+import net.micode.notes.util.Utils;
 import okhttp3.Call;
 import okhttp3.CookieJar;
 import okhttp3.MediaType;
@@ -16,6 +19,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,7 +33,7 @@ import com.zhy.http.okhttp.callback.GenericsCallback;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 
-public class OkHttpActivity extends Activity {
+public class OkHttpActivity extends BaseActivity {
 
     // private String mBaseUrl = "http://192.168.31.242:8888/okHttpServer/";
     private String mBaseUrl = "http://www.jianshu.com/";
@@ -81,10 +85,8 @@ public class OkHttpActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_okhttp);
-
+        super.onCreate(savedInstanceState);
         mTv = (TextView) findViewById(R.id.id_textview);
         mImageView = (ImageView) findViewById(R.id.id_imageview);
         mProgressBar = (ProgressBar) findViewById(R.id.id_progress);
@@ -293,5 +295,44 @@ public class OkHttpActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         OkHttpUtils.getInstance().cancelTag(this);
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.activity.BaseActivity#initViews()
+     */
+    @Override
+    protected void initViews() {
+        ImageView righttitle = (ImageView) findViewById(R.id.righttitle);
+        righttitle.setVisibility(View.INVISIBLE);
+        ImageView topback = (ImageView) findViewById(R.id.topback);
+        topback.setBackgroundResource(R.drawable.ic_topbar_back_normal);
+        topback.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Utils.finish(OkHttpActivity.this);
+            }
+        });
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.activity.BaseActivity#initEvents()
+     */
+    @Override
+    protected void initEvents() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.activity.BaseActivity#setListener()
+     */
+    @Override
+    protected void setListener() {
+        // TODO Auto-generated method stub
+        
     }
 }
