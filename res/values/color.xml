@@ -629,5 +629,5 @@
     <dimen name="custom_ev_border_width">10dp</dimen>
     <dimen name="custom_ev_border_radius">10dp</dimen>
     <dimen name="custom_ev_password_width">10dp</dimen>
-
+<color name="btn_pressed">#D5D5D5</color>
 </resources>

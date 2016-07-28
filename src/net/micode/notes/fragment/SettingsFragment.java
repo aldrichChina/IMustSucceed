@@ -19,7 +19,7 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.settings, container, false);
+        View view = inflater.inflate(R.layout.activity_user_center, container, false);
         etTitle = (EditText) view.findViewById(R.id.title);
         newsConfirm = (Button) view.findViewById(R.id.news_confirm);
         newsConfirm.setOnClickListener(new OnClickListener() {

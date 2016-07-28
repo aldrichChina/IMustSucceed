@@ -35,7 +35,7 @@ import com.tencent.tauth.UiError;
 public class TencentUtil {
 
     private static Tencent mTencent;
-    private static String mAppid = "222222";
+    private static String mAppid = "1105252041";
     private static Activity mActivity;
     private Context mContext;
     private UserInfo mInfo;
