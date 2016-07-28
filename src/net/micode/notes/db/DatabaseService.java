@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import net.micode.notes.ConstantProvider;
 import net.micode.notes.entities.HouseSaid;
+import net.micode.notes.entities.LoginBean;
 import net.micode.notes.entities.NewsDetailContent;
 import net.micode.notes.entities.NewsImageUrls;
 import net.micode.notes.entities.User;
+import net.micode.notes.entities.UserBean;
 import net.micode.notes.entities.WxhotArticle;
 import net.micode.notes.util.Utils;
 import android.content.Context;
@@ -67,18 +70,18 @@ public class DatabaseService {
         dbOpenHelper.getWritableDatabase().execSQL(sql);
     }
 
-    public boolean insertUser(User user) {
-        if (user.getRelationuserenterprise() != null) {
-            enterprisename = user.getRelationuserenterprise().getEnterprisename() == null ? "" : user
-                    .getRelationuserenterprise().getEnterprisename();
-        }
-        String Lastlogintime = user.getLastlogintime() == null ? "" : user.getLastlogintime().toString();
-        String Lastloginip = user.getLastloginip() == null ? "" : user.getLastloginip();
-        dbOpenHelper.getReadableDatabase().execSQL(
-                "insert into user(enterprisename,lastlogintime,lastloginip)values(?,?,?)",
-                new Object[] {enterprisename == null ? "Enterprisename" : enterprisename, Lastlogintime, Lastloginip });
-        return true;
-    }
+//    public boolean insertUser(User user) {
+//        if (user.getRelationuserenterprise() != null) {
+//            enterprisename = user.getRelationuserenterprise().getEnterprisename() == null ? "" : user
+//                    .getRelationuserenterprise().getEnterprisename();
+//        }
+//        String Lastlogintime = user.getLastlogintime() == null ? "" : user.getLastlogintime().toString();
+//        String Lastloginip = user.getLastloginip() == null ? "" : user.getLastloginip();
+//        dbOpenHelper.getReadableDatabase().execSQL(
+//                "insert into user(enterprisename,lastlogintime,lastloginip)values(?,?,?)",
+//                new Object[] {enterprisename == null ? "Enterprisename" : enterprisename, Lastlogintime, Lastloginip });
+//        return true;
+//    }
 
     /**
      * NewsDetailContent表 用于插入新闻信息数据库
@@ -185,6 +188,10 @@ public class DatabaseService {
         return tmpItems;
     }
 
+    /**
+     * @Description (TODO这里用一句话描述这个方法的作用)
+     * @param hotArticleList
+     */
     public void insertHotArticle(final List<WxhotArticle> hotArticleList) {
         new Thread(new Runnable() {
 
@@ -207,6 +214,10 @@ public class DatabaseService {
         }).start();
     }
 
+    /**
+     * @Description (TODO这里用一句话描述这个方法的作用)
+     * @return
+     */
     public List<WxhotArticle> rawQueryHotArticle() {
         List<WxhotArticle> hotArticleList = new ArrayList<WxhotArticle>();
         Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery("select * from HotArticle order by timestamp desc",
@@ -223,6 +234,116 @@ public class DatabaseService {
             hotArticleList.add(hotArticle);
         }
         return hotArticleList;
+    }
+
+    /**
+     * @Description (插入Login表)
+     * @param houseSaid
+     * @return
+     */
+    public boolean insertLogin(LoginBean loginBean) {
+        dbOpenHelper.getReadableDatabase().execSQL(
+                "insert into Login(_openid, ret, pay_token,pf,query_authority_cost,authority_cost,expires_in,pfkey,msg,access_token,login_cost)values(?,?,?,?,?,?,?,?,?,?,?)",
+                new Object[] {loginBean.getOpenid(), 
+                        loginBean.getRet(),
+                        loginBean.getPay_token(),
+                        loginBean.getPf(),
+                        loginBean.getQuery_authority_cost(),
+                        loginBean.getAuthority_cost(),
+                        loginBean.getExpires_in(),
+                        loginBean.getPfkey(),
+                        loginBean.getMsg(),
+                        loginBean.getAccess_token(),
+                        loginBean.getLogin_cost()
+                        });
+        Utils.Log("insertLogin插入成功");
+        return true;
+    }
+    /**
+     * @Description (读取Login表)
+     * @return
+     */
+    public List<LoginBean> rawQueryLogin() {
+        List<LoginBean> userList = new ArrayList<LoginBean>();
+        Cursor cursor = dbOpenHelper.getReadableDatabase()
+                .rawQuery("select * from Login  where _openid=?", new String[] { ConstantProvider.getUserId() });
+        while (cursor.moveToNext()) {
+            LoginBean loginBean = new LoginBean();
+            loginBean.setRet(cursor.getString(cursor.getColumnIndex("ret")));
+            loginBean.setPay_token(cursor.getString(cursor.getColumnIndex("pay_token")));
+            loginBean.setPf(cursor.getString(cursor.getColumnIndex("pf")));
+            loginBean.setQuery_authority_cost(cursor.getString(cursor.getColumnIndex("query_authority_cost")));
+            loginBean.setAuthority_cost(cursor.getString(cursor.getColumnIndex("authority_cost")));
+            loginBean.setOpenid(cursor.getString(cursor.getColumnIndex("_openid")));
+            loginBean.setExpires_in(cursor.getString(cursor.getColumnIndex("expires_in")));
+            loginBean.setPfkey(cursor.getString(cursor.getColumnIndex("pfkey")));
+            loginBean.setMsg(cursor.getString(cursor.getColumnIndex("msg")));
+            loginBean.setAccess_token(cursor.getString(cursor.getColumnIndex("access_token")));
+            loginBean.setLogin_cost(cursor.getString(cursor.getColumnIndex("login_cost")));
+            userList.add(loginBean);
+        }
+        return userList;
+    }
+    /**
+     * @Description (插入User表)
+     * @param houseSaid
+     * @return
+     */
+    public boolean insertUser(UserBean userBean) {
+        dbOpenHelper.getReadableDatabase().execSQL(
+                "insert into User(_nickname  , is_yellow_year_vip, ret,figureurl_qq_1,figureurl_qq_2,yellow_vip_level,is_lost,msg,city,figureurl_1,vip,level,figureurl_2,province,is_yellow_vip,gender,figureurl,openid)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                new Object[] {userBean.getNickname(), 
+                        userBean.getIs_yellow_year_vip(),
+                        userBean.getRet(),
+                        userBean.getFigureurl_qq_1(),
+                        userBean.getFigureurl_qq_2(),
+                        userBean.getYellow_vip_level(),
+                        userBean.getIs_lost(),
+                        userBean.getMsg(),
+                        userBean.getCity(),
+                        userBean.getFigureurl_1(),
+                        userBean.getVip(),
+                        userBean.getLevel(),
+                        userBean.getFigureurl_2(),
+                        userBean.getProvince(),
+                        userBean.getIs_yellow_vip(),
+                        userBean.getGender(),
+                        userBean.getFigureurl(),
+                        ConstantProvider.getUserId() 
+                        });
+        Utils.Log("insertUser插入成功");
+        return true;
+    }
+    /**
+     * @Description (读取User表)
+     * @return
+     */
+    public List<UserBean> rawQueryUser() {
+        List<UserBean> userList = new ArrayList<UserBean>();
+        Cursor cursor = dbOpenHelper.getReadableDatabase()
+                .rawQuery("select * from User where openid=?", new String[] { ConstantProvider.getUserId() });
+        while (cursor.moveToNext()) {
+            UserBean userBean = new UserBean();
+            userBean.setIs_yellow_year_vip(cursor.getString(cursor.getColumnIndex("is_yellow_year_vip")));
+            userBean.setRet(cursor.getString(cursor.getColumnIndex("ret")));
+            userBean.setFigureurl_qq_1(cursor.getString(cursor.getColumnIndex("figureurl_qq_1")));
+            userBean.setFigureurl_qq_2(cursor.getString(cursor.getColumnIndex("figureurl_qq_2")));
+            userBean.setNickname(cursor.getString(cursor.getColumnIndex("_nickname")));
+            userBean.setYellow_vip_level(cursor.getString(cursor.getColumnIndex("yellow_vip_level")));
+            userBean.setIs_lost(cursor.getString(cursor.getColumnIndex("is_lost")));
+            userBean.setMsg(cursor.getString(cursor.getColumnIndex("msg")));
+            userBean.setCity(cursor.getString(cursor.getColumnIndex("city")));
+            userBean.setFigureurl_1(cursor.getString(cursor.getColumnIndex("figureurl_1")));
+            userBean.setVip(cursor.getString(cursor.getColumnIndex("vip")));
+            userBean.setLevel(cursor.getString(cursor.getColumnIndex("level")));
+            userBean.setFigureurl_2(cursor.getString(cursor.getColumnIndex("figureurl_2")));
+            userBean.setProvince(cursor.getString(cursor.getColumnIndex("province")));
+            userBean.setIs_yellow_vip(cursor.getString(cursor.getColumnIndex("is_yellow_vip")));
+            userBean.setGender(cursor.getString(cursor.getColumnIndex("gender")));
+            userBean.setFigureurl(cursor.getString(cursor.getColumnIndex("figureurl")));
+            userList.add(userBean);
+        }
+        return userList;
     }
 
     /*

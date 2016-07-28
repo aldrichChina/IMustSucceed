@@ -4,15 +4,21 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * @ClassName MyDatabaseHelper
+ * @Description TODO(这里用一句话描述这个类的作用)
+ * @Date 2016年7月28日 下午2:59:59
+ * @version 1.0.0
+ */
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String name = "lemon.db";// 数据库名称
     private static final int version = 1;// 数据库版本
-    final String CREATE_TABLE_SQL = "create table said(_id integer primary key UNIQUE ON CONFLICT REPLACE,taici,cat,catcn,show,source,inserttime)";
-    String CREATE_TABLE_USER = "CREATE TABLE IF NOT EXISTS user (_id integer primary key autoincrement, enterprisename, lastlogintime,lastloginip)";
-    String CREATE_TABLE_NEWSDETAILCONTENT = "create table NewsDetailContent(_id integer primary key autoincrement, channelId,channelName,desc,imageUrl,link,long_desc,pubDate,source,timeStamp,title UNIQUE ON CONFLICT REPLACE)";
+    private final String CREATE_TABLE_SQL = "create table said(_id integer primary key UNIQUE ON CONFLICT REPLACE,taici,cat,catcn,show,source,inserttime)";
+    private final String CREATE_TABLE_NEWSDETAILCONTENT = "create table NewsDetailContent(_id integer primary key autoincrement, channelId,channelName,desc,imageUrl,link,long_desc,pubDate,source,timeStamp,title UNIQUE ON CONFLICT REPLACE)";
     private final String CREATE_TABLE_HOTARTICLE = "CREATE TABLE IF NOT EXISTS HotArticle (_id integer primary key autoincrement, ctime, title UNIQUE ON CONFLICT REPLACE,description,picUrl,url,timestamp)";
-
+    private final String CREATE_TABLE_LOGIN="CREATE TABLE IF NOT EXISTS Login (_openid  primary key UNIQUE ON CONFLICT REPLACE, ret, pay_token,pf,query_authority_cost,authority_cost,expires_in,pfkey,msg,access_token,login_cost)";
+    private final String CREATE_TABLE_USER = "CREATE TABLE IF NOT EXISTS User (_nickname  primary key UNIQUE ON CONFLICT REPLACE, is_yellow_year_vip, ret,figureurl_qq_1,figureurl_qq_2,yellow_vip_level,is_lost,msg,city,figureurl_1,vip,level,figureurl_2,province,is_yellow_vip,gender,figureurl,openid)";
     /**
      * @Description TODO(这里用一句话描述这个方法的作用)
      * @param context
@@ -42,6 +48,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_NEWSDETAILCONTENT);
         db.execSQL(CREATE_TABLE_HOTARTICLE);
+        db.execSQL(CREATE_TABLE_LOGIN);
     }
 
     /*

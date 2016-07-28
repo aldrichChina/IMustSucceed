@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import net.micode.notes.ConstantProvider;
+import net.micode.notes.db.DatabaseService;
 import net.micode.notes.entities.LoginBean;
 import net.micode.notes.entities.UserBean;
 
@@ -44,7 +46,7 @@ public class TencentUtil {
     private SharedPreferences share;
     private Editor edit;
     private Handler QQHandler;
-
+    private DatabaseService databaseService;
     public TencentUtil(ImageView imageView, TextView textView) {
     }
 
@@ -53,6 +55,7 @@ public class TencentUtil {
         mContext = context;
         mActivity = activity;
         QQHandler = handler;
+        databaseService = new DatabaseService(mContext);
         onClickLogin();
 
     }
@@ -90,9 +93,12 @@ public class TencentUtil {
                 // 将登录后返回的数据token，expires，openId保存到mTencent对象中
                 initOpenidAndToken((JSONObject) response);
                 parseLoginJson(response);
+                ConstantProvider.setToken(loginBean.getAccess_token());
+                ConstantProvider.setUserId(loginBean.getOpenid());
+                ConstantProvider.setSession(loginBean.getPay_token());
+                databaseService.insertLogin(loginBean);
                 // 更新界面，显示登录用户头像和昵称
                 updateUserInfo();
-
                 /* 此处采用异步通信告知调用activity获取资源完成，可以跳转到主界面 */
                 Message msg = new Message();
                 msg.what = 0x123;
@@ -119,7 +125,7 @@ public class TencentUtil {
             loginBean.setMsg(jsonObject.getString("msg"));
             loginBean.setAccess_token(jsonObject.getString("access_token"));
             loginBean.setLogin_cost(jsonObject.getString("login_cost"));
-            Log.d("jia", "loginBean=="+loginBean.toString());
+            Log.d("jia", "loginBean==" + loginBean.toString());
         }
 
         public void onCancel() {
@@ -195,6 +201,8 @@ public class TencentUtil {
 
     Handler mHandler = new Handler() {
 
+        private UserBean userBean;
+
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
@@ -202,6 +210,7 @@ public class TencentUtil {
                 if (response.has("nickname")) {
                     try {
                         parseUserJson(response);
+                        databaseService.insertUser(userBean);
                         String QQnick = response.getString("nickname");
                         SharedPreferences share = mActivity.getSharedPreferences("htq", mActivity.MODE_WORLD_READABLE);
                         Editor edit = share.edit();
@@ -219,10 +228,10 @@ public class TencentUtil {
         }
 
         private void parseUserJson(final JSONObject response) throws JSONException {
-            UserBean userBean = new UserBean();
+            userBean = new UserBean();
             userBean.setIs_yellow_year_vip(response.getString("is_yellow_year_vip"));
             userBean.setRet(response.getString("ret"));
-            userBean.setFigureurl_qq_1(response.getString("figureurl_qq_1"));
+            userBean.setFigureurl_qq_1(response.optString("figureurl_qq_1"));
             userBean.setFigureurl_qq_2(response.getString("figureurl_qq_2"));
             userBean.setNickname(response.getString("nickname"));
             userBean.setYellow_vip_level(response.getString("yellow_vip_level"));
@@ -237,9 +246,10 @@ public class TencentUtil {
             userBean.setIs_yellow_vip(response.getString("is_yellow_vip"));
             userBean.setGender(response.getString("gender"));
             userBean.setFigureurl(response.getString("figureurl"));
-            Log.d("jia", "userBean=="+userBean.toString());
+            Log.d("jia", "userBean==" + userBean.toString());
         }
     };
+   
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub

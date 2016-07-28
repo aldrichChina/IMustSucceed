@@ -15,7 +15,7 @@ import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HotArticleFragment;
 import net.micode.notes.fragment.NewsFragment;
 import net.micode.notes.fragment.NewsFragment.OnHeadlineSelectedListener;
-import net.micode.notes.fragment.SettingsFragment;
+import net.micode.notes.fragment.UserFragment;
 import net.micode.notes.interfacemanage.InterfaceManager.OpenX5WebFragment;
 import net.micode.notes.util.Utils;
 import net.micode.notes.view.ResideMenu.ResideMenu;
@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     /**
      * 用于展示设置的Fragment
      */
-    private SettingsFragment settingFragment;
+    private UserFragment settingFragment;
 
     /**
      * 消息界面布局
@@ -309,7 +309,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             settingText.setTextColor(Color.WHITE);
             if (settingFragment == null) {
                 // 如果SettingFragment为空，则创建一个并添加到界面上
-                settingFragment = new SettingsFragment();
+                settingFragment = new UserFragment();
                 transaction.add(R.id.content, settingFragment);
             } else {
                 // 如果SettingFragment不为空，则直接将它显示出来

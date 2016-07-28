@@ -94,12 +94,14 @@ public class ConstantProvider {
 
     public static String getUserId() {
         if (sessionMap.containsKey(USERID)) {
+            Utils.Log("getUserId==" + sessionMap.get(USERID));
             return sessionMap.get(USERID);
         }
         return "";
     }
 
     public static void setUserId(String str) {
+        Utils.Log("setUserId==" + str);
         sessionMap.put(USERID, str);
     }
 
