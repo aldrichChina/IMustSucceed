@@ -390,8 +390,7 @@ public class Utils {
 			SecretKeySpec key = new SecretKeySpec(password.getBytes(), "AES");
 			Cipher cipher = Cipher.getInstance("AES/ECB/NoPadding");// 创建密码器
 			cipher.init(Cipher.DECRYPT_MODE, key);// 初始化
-			byte[] result = cipher.doFinal(Base64.decode(content.getBytes(),
-					Base64.DEFAULT));
+			byte[] result = cipher.doFinal(Base64.decode(content.getBytes(),Base64.DEFAULT));
 			return new String(result).trim();
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
