@@ -107,7 +107,8 @@ public class DatabaseService {
         String pubDate = newsDetailContent.getPubDate();
         String source = newsDetailContent.getSource();
         String title = newsDetailContent.getTitle();
-        String timeStamp = String.valueOf(dateFormat.parse(pubDate).getTime());
+        // String timeStamp = String.valueOf(dateFormat.parse(pubDate).getTime());
+        String timeStamp = Long.toString(new Date().getTime());
         dbOpenHelper.getReadableDatabase().execSQL(
                 "insert into NewsDetailContent(" + "channelId," + "channelName," + "desc," + "imageUrl," + "link,"
                         + "long_desc," + "pubDate," + "source," + "title," + "timeStamp)values(?,?,?,?,?,?,?,?,?,?)",

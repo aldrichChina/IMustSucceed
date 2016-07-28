@@ -3,6 +3,7 @@ package net.micode.notes.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.adapter.FeedProfileCommentsAdapter;
 import net.micode.notes.adapter.SimpleListDialogAdapter;

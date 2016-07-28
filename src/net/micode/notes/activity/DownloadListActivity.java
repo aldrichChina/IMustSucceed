@@ -3,6 +3,7 @@ package net.micode.notes.activity;
 import java.io.File;
 import java.lang.ref.WeakReference;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.download.DownloadInfo;
 import net.micode.notes.download.DownloadManager;

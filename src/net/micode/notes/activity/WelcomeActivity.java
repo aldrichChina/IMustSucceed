@@ -3,6 +3,7 @@ package net.micode.notes.activity;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.Tencent;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.activity.register.RegisterActivity;
 import net.micode.notes.util.TencentUtil;

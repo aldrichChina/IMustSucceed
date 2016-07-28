@@ -3,9 +3,9 @@ package net.micode.notes.activity.ResideMenuItem;
 import java.io.IOException;
 import java.util.List;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.ConstantProvider;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.ImageActivity;
 import net.micode.notes.adapter.MeinvAdapter;
 import net.micode.notes.entities.Detailed;

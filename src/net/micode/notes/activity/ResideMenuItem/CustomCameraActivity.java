@@ -19,8 +19,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.ImageFormat;

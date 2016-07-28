@@ -77,6 +77,8 @@ public class TencentUtil {
     // 登录回调接口
     public IUiListener listener = new IUiListener() {
 
+        private LoginBean loginBean;
+
         public void onError(UiError arg0) {
 
         }
@@ -104,7 +106,7 @@ public class TencentUtil {
         }
 
         private void parseLoginJson(Object response) throws JSONException {
-            LoginBean loginBean = new LoginBean();
+            loginBean = new LoginBean();
             JSONObject jsonObject = (JSONObject) response;
             loginBean.setRet(jsonObject.getString("ret"));
             loginBean.setPay_token(jsonObject.getString("pay_token"));

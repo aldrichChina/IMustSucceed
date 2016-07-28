@@ -1,4 +1,4 @@
-package net.micode.notes.activity;
+package net.micode.notes;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.dialog.CustomExitDialog;
 import net.micode.notes.dialog.FlippingLoadingDialog;

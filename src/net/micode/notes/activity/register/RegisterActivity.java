@@ -1,8 +1,8 @@
 package net.micode.notes.activity.register;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.MyApplication;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.register.RegisterStep.onNextActionListener;
 import net.micode.notes.dialog.BaseDialog;
 import net.micode.notes.util.FileUtils;

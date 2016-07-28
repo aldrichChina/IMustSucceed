@@ -3,6 +3,14 @@ package net.micode.notes;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.micode.notes.util.DeviceInfoUtil;
+import net.micode.notes.util.Utils;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
+
 public class ConstantProvider {
 
     // 登录数据库判断
@@ -38,7 +46,64 @@ public class ConstantProvider {
     public static String RTCODE = "0";
     // 操作信息
     public static String RTMSG = "";
-    public static final String APIKEY="334070f0f84d859e75972ebfdaae49fe";
+    // 管理设备信息
+    public static Map<String, String> equipinfoMap = new HashMap<String, String>();
+
+    // 设备信息
+    public static void initEquipInfo(Context context) {
+        try {
+            PackageManager pm = context.getApplicationContext().getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getApplicationContext().getPackageName(), 0);
+            equipinfoMap.put("brand", Build.BRAND);
+            equipinfoMap.put("model", Build.MODEL);
+            equipinfoMap.put("sdk", Build.VERSION.RELEASE);
+            equipinfoMap.put("version", pi.versionName);
+            equipinfoMap.put("versionCode", "" + pi.versionCode);
+            equipinfoMap.put("deviceID", DeviceInfoUtil.getid(context));
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // session和token、userid的设置获取
+    public static String getSession() {
+        if (sessionMap.containsKey(JSESSIONID)) {
+            Utils.Log("getSession==" + sessionMap.get(JSESSIONID));
+            return sessionMap.get(JSESSIONID);
+        }
+        return "";
+    }
+
+    public static void setSession(String str) {
+        Utils.Log("setSession==" + str);
+        sessionMap.put(JSESSIONID, str);
+    }
+
+    public static String getToken() {
+        if (sessionMap.containsKey(TOKEN)) {
+            Utils.Log("getToken==" + sessionMap.get(TOKEN));
+            return sessionMap.get(TOKEN);
+        }
+        return "";
+    }
+
+    public static void setToken(String str) {
+        Utils.Log("setToken==" + str);
+        sessionMap.put(TOKEN, str);
+    }
+
+    public static String getUserId() {
+        if (sessionMap.containsKey(USERID)) {
+            return sessionMap.get(USERID);
+        }
+        return "";
+    }
+
+    public static void setUserId(String str) {
+        sessionMap.put(USERID, str);
+    }
+
+    public static final String APIKEY = "334070f0f84d859e75972ebfdaae49fe";
     public static final String BaseURL = "http://apis.baidu.com/";
     public static final String httpUrl = "http://apis.baidu.com/acman/zhaiyanapi/tcrand";
     public static final String httpArg = "fangfa=json";

@@ -1,5 +1,6 @@
 package net.micode.notes.activity;
 
+import net.micode.notes.BaseActivity;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;

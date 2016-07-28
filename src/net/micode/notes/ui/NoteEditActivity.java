@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.db.Notes;
 import net.micode.notes.db.Notes.TextNote;
 import net.micode.notes.model.WorkingNote;

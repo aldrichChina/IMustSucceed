@@ -17,8 +17,8 @@ package net.micode.notes.activity.ResideMenuItem;
 import java.io.File;
 import java.io.IOException;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.util.Utils;
 import android.app.Activity;
 import android.content.Intent;

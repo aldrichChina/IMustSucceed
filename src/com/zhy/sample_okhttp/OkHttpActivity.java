@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
 import net.micode.notes.util.Utils;
 import okhttp3.Call;

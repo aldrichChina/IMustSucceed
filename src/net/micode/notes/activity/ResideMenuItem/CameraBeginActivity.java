@@ -14,8 +14,8 @@
  *****************************************************************/
 package net.micode.notes.activity.ResideMenuItem;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.util.Utils;
 import android.content.Intent;
 import android.graphics.Bitmap;

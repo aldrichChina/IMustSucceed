@@ -1,5 +1,6 @@
 package net.micode.notes.activity;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.activity.ResideMenuItem.BarCodeActivity;
 import net.micode.notes.activity.ResideMenuItem.CalendarActivity;

@@ -1,3 +1,11 @@
+/**   
+ * @title: Installation.java 
+ * @package: com.founder.medical.dao 
+ * @description: TODO
+ * @author x.yan  
+ * @date 2015年4月13日 上午11:50:02 
+ * @version 1.0.0 
+ */
 package net.micode.notes.util;
 
 import java.io.File;
@@ -6,9 +14,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Random;
 import java.util.UUID;
-
-
-
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;
@@ -74,21 +79,26 @@ public class DeviceInfoUtil {
 	private static String getIMEI(Context context) {
 		TelephonyManager mTm = (TelephonyManager) context
 				.getSystemService(Context.TELEPHONY_SERVICE);
-		String imei = mTm.getDeviceId();
-		if (imei != null) {
-			if (imei.length() < 16 && imei.length() > 0) {
-				while (imei.length() < 16) {
-					imei += imei;
+		if (mTm!=null) {
+			String imei = mTm.getDeviceId();
+			if (imei != null) {
+				if (imei.length() < 16 && imei.length() > 0) {
+					while (imei.length() < 16) {
+						imei += imei;
+					}
+					return imei.substring(0, 16);
+				} else if (imei.length() <= 0) {
+					return null;
+				} else {
+					return imei.substring(0, 16);
 				}
-				return imei.substring(0, 16);
-			} else if (imei.length() <= 0) {
-				return null;
 			} else {
-				return imei.substring(0, 16);
+				return null;
 			}
-		} else {
+		}else {
 			return null;
 		}
+		
 	}
 
 	/**

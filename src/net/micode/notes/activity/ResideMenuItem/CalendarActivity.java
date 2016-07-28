@@ -2,8 +2,8 @@ package net.micode.notes.activity.ResideMenuItem;
 
 import java.util.ArrayList;
 
+import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
-import net.micode.notes.activity.BaseActivity;
 import net.micode.notes.util.Utils;
 import android.os.Bundle;
 import android.view.View;
