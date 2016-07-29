@@ -309,7 +309,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             settingText.setTextColor(Color.WHITE);
             if (settingFragment == null) {
                 // 如果SettingFragment为空，则创建一个并添加到界面上
-                settingFragment = new UserFragment();
+                settingFragment = new UserFragment(MainActivity.this);
                 transaction.add(R.id.content, settingFragment);
             } else {
                 // 如果SettingFragment不为空，则直接将它显示出来

@@ -46,64 +46,172 @@
                 android:textColor="@color/gray" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:background="@color/white"
-            android:orientation="vertical" >
+        <ScrollView
+              android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
             <LinearLayout
-                android:id="@+id/btn_introduce_aboutus"
-                style="@style/PersonalTopStyle" >
-
-                <TextView
-                    style="@style/PersonalTextStylebtn"
-                    android:text="功能介绍" />
-
-                <ImageView
-                    style="@style/PersonalRightIconStyle"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/android_list_idex" />
-            </LinearLayout>
-
-            <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/mainbtnverticaldevider" />
+                android:layout_height="wrap_content"
+              
+                android:background="@color/white"
+                android:orientation="vertical" >
 
-            <LinearLayout
-                android:id="@+id/btn_checkupdate_aboutus"
-                style="@style/PersonalTopStyle" >
+                <LinearLayout
+                    android:id="@+id/btn_introduce_aboutus"
+                    style="@style/PersonalTopStyle" >
 
-                <TextView
-                    style="@style/PersonalTextStylebtn"
-                    android:text="检查更新" />
+                    <TextView
+                        style="@style/PersonalTextStylebtn"
+                        android:text="了解更多" />
 
-                <ImageView
-                    style="@style/PersonalRightIconStyle"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/android_list_idex" />
+                    <ImageView
+                        style="@style/PersonalRightIconStyle"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/android_list_idex" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/mainbtnverticaldevider" />
+
+                <LinearLayout
+                    android:id="@+id/btn_checkupdate_aboutus"
+                    style="@style/PersonalTopStyle" >
+
+                    <TextView
+                        style="@style/PersonalTextStylebtn"
+                        android:text="VIP" />
+
+                    <TextView
+                        android:id="@+id/tv_vip"
+                        style="@style/PersonalRightIconStyle"
+                        android:text="不是" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/mainbtnverticaldevider" />
+
+                <LinearLayout style="@style/PersonalTopStyle" >
+
+                    <TextView
+                        style="@style/PersonalTextStylebtn"
+                        android:text="性别" />
+
+                    <TextView
+                        android:id="@+id/tv_gender"
+                        style="@style/PersonalRightIconStyle"
+                        android:text="nv" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/mainbtnverticaldevider" />
+
+                <LinearLayout style="@style/PersonalTopStyle" >
+
+                    <TextView
+                        style="@style/PersonalTextStylebtn"
+                        android:text="现住地" />
+
+                    <TextView
+                        android:id="@+id/tv_city"
+                        style="@style/PersonalRightIconStyle"
+                        android:text="哈尔滨" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/mainbtnverticaldevider" />
+
+                <LinearLayout style="@style/PersonalTopStyle" >
+
+                    <TextView
+                        style="@style/PersonalTextStylebtn"
+                        android:text="祖籍" />
+
+                    <TextView
+                        android:id="@+id/tv_province"
+                        style="@style/PersonalRightIconStyle"
+                        android:text="黑龙江" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/mainbtnverticaldevider" />
+
+                <LinearLayout style="@style/PersonalTopStyle" >
+
+                    <TextView
+                        style="@style/PersonalTextStylebtn"
+                        android:text="Token" />
+
+                    <TextView
+                        android:id="@+id/tv_token"
+                        style="@style/PersonalRightIconStyle"
+                        android:text="Token" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/mainbtnverticaldevider" />
+
+                <LinearLayout style="@style/PersonalTopStyle" >
+
+                    <TextView
+                        style="@style/PersonalTextStylebtn"
+                        android:text="UserId" />
+
+                    <TextView
+                        android:id="@+id/tv_user_id"
+                        style="@style/PersonalRightIconStyle"
+                        android:text="UserId" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/mainbtnverticaldevider" />
+
+                <LinearLayout style="@style/PersonalTopStyle" >
+
+                    <EditText
+                        android:id="@+id/title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="新闻标题，模糊匹配" />
+
+                    <Button
+                        android:id="@+id/news_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="更改新闻内容" />
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout style="@style/PersonalTopStyle" >
-
-                <EditText
-                    android:id="@+id/title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="新闻标题，模糊匹配" />
-
-                <Button
-                    android:id="@+id/news_confirm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="更改新闻内容" />
-            </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>
