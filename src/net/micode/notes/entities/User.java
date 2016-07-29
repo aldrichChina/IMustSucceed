@@ -2,12 +2,7 @@ package net.micode.notes.entities;
 
 import java.util.Date;
 
-import com.lidroid.xutils.db.annotation.Id;
-import com.lidroid.xutils.db.annotation.Table;
-
-@Table(name = "user")
 public class User {
-	@Id
 	private String id;
 
 	private String name;

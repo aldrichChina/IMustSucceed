@@ -96,6 +96,7 @@ public class OkHttpActivity extends BaseActivity {
     public void getHtml(View view) {
         String url = "http://www.zhiyun-tech.com/App/Rider-M/changelog-zh.txt";
         url = "http://www.391k.com/api/xapi.ashx/info.json?key=bd_hyrzjjfb4modhj&size=10&page=1";
+        url="http://www.22mm.cc/";
         OkHttpUtils.get().url(url).id(100).build().execute(new MyStringCallback());
     }
 
@@ -244,7 +245,7 @@ public class OkHttpActivity extends BaseActivity {
     }
 
     public void downloadFile(View view) {
-        String url = "https://github.com/hongyangAndroid/okhttp-utils/blob/master/okhttputils-2_4_1.jar?raw=true";
+        String url = "http://img3.imgtn.bdimg.com/it/u=1134649135,1715143190&fm=206&gp=0.jpg";
         OkHttpUtils//
                 .get()//
                 .url(url)//

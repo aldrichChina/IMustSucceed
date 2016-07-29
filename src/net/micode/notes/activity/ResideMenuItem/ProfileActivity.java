@@ -1,21 +1,27 @@
 package net.micode.notes.activity.ResideMenuItem;
 
+import java.io.File;
+
 import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.activity.DownloadListActivity;
 import net.micode.notes.download.DownloadManager;
 import net.micode.notes.download.DownloadService;
 import net.micode.notes.util.Utils;
+import okhttp3.Call;
+import okhttp3.Request;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.DbException;
-import com.lidroid.xutils.util.LogUtils;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.FileCallBack;
 
 public class ProfileActivity extends BaseActivity {
 
@@ -23,31 +29,15 @@ public class ProfileActivity extends BaseActivity {
     private Button downloadBtn;
     private Button downloadPageBtn;
     private DownloadManager downloadManager;
-
+    private ProgressBar mProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.profile);
         super.onCreate(savedInstanceState);
-        ViewUtils.inject(this);
         downloadManager = DownloadService.getDownloadManager(this);
         downloadAddrEdit = (EditText) findViewById(R.id.download_addr_edit);
         downloadBtn = (Button) findViewById(R.id.download_btn);
-        downloadBtn.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                String target = "/sdcard/Picture/" + System.currentTimeMillis() + "lemon.jpg";
-                try {
-                    downloadManager.addNewDownload(downloadAddrEdit.getText().toString(), downloadAddrEdit.getText()
-                            .toString(), target, true, // 如果目标文件存在，接着未完成的部分继续下载。服务器不支持RANGE时将从新下载。
-                            true, // 如果从请求返回信息中获取到文件名，下载完成后自动重命名。
-                            null);
-                } catch (DbException e) {
-                    LogUtils.e(e.getMessage(), e);
-                }
-
-            }
-        });
+        downloadBtn.setOnClickListener(downloadFile);
         downloadPageBtn = (Button) findViewById(R.id.download_page_btn);
         downloadPageBtn.setOnClickListener(new OnClickListener() {
 
@@ -58,12 +48,51 @@ public class ProfileActivity extends BaseActivity {
         });
 
     }
+    private  View.OnClickListener downloadFile=new View.OnClickListener() {
+        
+        @Override
+        public void onClick(View v) {
 
+            String url = downloadAddrEdit.getText().toString();
+            String target =  System.currentTimeMillis() + "lemon.png";
+            OkHttpUtils//
+                    .get()//
+                    .url(url)//
+                    .build()//
+                    .execute(
+                            new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), target)//
+                            {
+
+                                @Override
+                                public void onBefore(Request request, int id) {
+                                }
+
+                                @Override
+                                public void inProgress(float progress, long total, int id) {
+                                    mProgressBar.setProgress((int) (100 * progress));
+                                    Log.e("jia", "inProgress :" + (int) (100 * progress));
+                                }
+
+                                @Override
+                                public void onError(Call call, Exception e, int id) {
+                                    Log.e("jia", "onError :" + e.getMessage());
+                                }
+
+                                @Override
+                                public void onResponse(File file, int id) {
+                                    Log.e("jia", "onResponse :" + file.getAbsolutePath());
+                                }
+                            });
+        
+                    
+        }
+    };
     @Override
     protected void initViews() {
         ImageView righttitle = (ImageView) findViewById(R.id.righttitle);
         righttitle.setVisibility(View.INVISIBLE);
         ImageView topback = (ImageView) findViewById(R.id.topback);
+        mProgressBar = (ProgressBar) findViewById(R.id.id_progress);
         topback.setBackgroundResource(R.drawable.ic_topbar_back_normal);
         topback.setOnClickListener(new OnClickListener() {
 

@@ -125,7 +125,9 @@
             android:name="net.micode.notes.activity.imagefactory.ImageFactoryActivity"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="net.micode.notes.activity.MainActivity" >
+        <activity
+            android:name="net.micode.notes.activity.MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name="net.micode.notes.activity.main.NearByActivity"
