@@ -125,7 +125,7 @@ public class FindPwdPhoneActivity extends BaseActivity implements
 						startActivity(ResetPwdPhoneActivity.class);
 						finish();
 					} else {
-						showCustomToast("您的手机尚未注册陌陌账号");
+						showCustomToast("您的手机尚未注册柠檬账号");
 					}
 				}
 

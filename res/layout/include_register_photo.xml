@@ -14,7 +14,7 @@
         android:gravity="left|center"
         android:minHeight="36dip"
         android:padding="8dip"
-        android:text="填写推荐人陌陌号，送特殊聊天表情"
+        android:text="填写推荐人柠檬号，送特殊聊天表情"
         android:textColor="@color/font_value"
         android:textSize="14sp" />
 
@@ -136,7 +136,7 @@
             android:layout_marginLeft="5dip"
             android:layout_marginTop="3dip"
             android:paddingLeft="3dip"
-            android:text="附近的陌陌"
+            android:text="附近的柠檬"
             android:textColor="@color/font_value"
             android:textSize="15sp" />
 

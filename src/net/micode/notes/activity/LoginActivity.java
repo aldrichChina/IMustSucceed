@@ -145,7 +145,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	private boolean validateAccount() {
 		mAccount = null;
 		if (isNull(mEtAccount)) {
-			showCustomToast("请输入陌陌号码或登录邮箱");
+			showCustomToast("请输入柠檬号码或登录邮箱");
 			mEtAccount.requestFocus();
 			return false;
 		}

@@ -87,7 +87,7 @@
                         android:layout_marginTop="8dip"
                         android:clickable="true"
                         android:focusable="true"
-                        android:text="注册即表示你同意 陌陌用户协议。违反协议的用户可能会被限制使用，请查看协议并约束行为"
+                        android:text="注册即表示你同意 柠檬用户协议。违反协议的用户可能会被限制使用，请查看协议并约束行为"
                         android:textColor="@color/notes_color"
                         android:textSize="14sp" />
                 </LinearLayout>

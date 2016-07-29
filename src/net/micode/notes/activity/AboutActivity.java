@@ -59,13 +59,13 @@ public class AboutActivity extends BaseActivity implements OnClickListener {
 			intent.setData(Uri.parse(str));
 			startActivity(intent);
 		} catch (Exception e) {
-			showCustomToast("找不到应用市场,无法对陌陌评分");
+			showCustomToast("找不到应用市场,无法对柠檬评分");
 		}
 	}
 
 	@Override
 	protected void onResume() {
-		AboutTabsActivity.mHeaderLayout.setDefaultTitle("关于陌陌", null);
+		AboutTabsActivity.mHeaderLayout.setDefaultTitle("关于柠檬", null);
 		super.onResume();
 	}
 

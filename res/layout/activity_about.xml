@@ -62,7 +62,7 @@
             android:layout_height="40dip"
             android:layout_marginTop="10dip"
             android:background="@drawable/btn_default"
-            android:text="给陌陌评分"
+            android:text="给柠檬评分"
             android:textColor="@color/text_color"
             android:textSize="15sp" />
     </LinearLayout>

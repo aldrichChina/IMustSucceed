@@ -35,7 +35,7 @@ public class AboutTabsActivity extends TabActivity {
 		View aboutView = inflater.inflate(
 				R.layout.common_tabbar_item_lightblue, null);
 		((HandyTextView) aboutView.findViewById(R.id.tabbar_item_htv_label))
-				.setText("关于陌陌");
+				.setText("关于柠檬");
 		TabHost.TabSpec aboutTabSpec = mTabHost.newTabSpec(
 				AboutActivity.class.getName()).setIndicator(aboutView);
 		aboutTabSpec.setContent(new Intent(AboutTabsActivity.this,

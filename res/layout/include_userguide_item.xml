@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dip"
         android:background="@drawable/btn_default_submit"
-        android:text="开始陌陌"
+        android:text="开始柠檬"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:visibility="gone" />

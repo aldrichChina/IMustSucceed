@@ -104,7 +104,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="陌陌号"
+                        android:text="柠檬号"
                         android:textColor="@color/font_attribute"
                         android:textSize="18sp" />
 
