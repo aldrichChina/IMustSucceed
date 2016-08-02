@@ -1,25 +1,6 @@
 package net.micode.notes.download;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import android.content.Context;
-import android.database.Cursor;
-
-import com.lidroid.xutils.DbUtils;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.db.converter.ColumnConverter;
-import com.lidroid.xutils.db.converter.ColumnConverterFactory;
-import com.lidroid.xutils.db.sqlite.ColumnDbType;
-import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.exception.DbException;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.HttpHandler;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.util.LogUtils;
-public class DownloadManager {
+public class DownloadManager {/*
 
 	private List<DownloadInfo> downloadInfoList;
 
@@ -28,7 +9,7 @@ public class DownloadManager {
 	private Context mContext;
 	private DbUtils db;
 
-	/* package */DownloadManager(Context appContext) {
+	 package DownloadManager(Context appContext) {
 		ColumnConverterFactory.registerColumnConverter(HttpHandler.State.class,
 				new HttpHandlerStateConverter());
 		mContext = appContext;
@@ -287,4 +268,4 @@ public class DownloadManager {
 			return ColumnDbType.INTEGER;
 		}
 	}
-}
+*/}

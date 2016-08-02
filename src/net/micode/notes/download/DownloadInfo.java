@@ -1,10 +1,6 @@
 package net.micode.notes.download;
 
-import java.io.File;
-
-import com.lidroid.xutils.db.annotation.Transient;
-import com.lidroid.xutils.http.HttpHandler;
-public class DownloadInfo {
+public class DownloadInfo {/*
 
     public DownloadInfo() {
     }
@@ -127,4 +123,4 @@ public class DownloadInfo {
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
-}
+*/}

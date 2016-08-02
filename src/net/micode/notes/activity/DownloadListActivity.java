@@ -1,37 +1,38 @@
 package net.micode.notes.activity;
 
-import java.io.File;
-import java.lang.ref.WeakReference;
-
 import net.micode.notes.BaseActivity;
-import net.micode.notes.R;
-import net.micode.notes.download.DownloadInfo;
-import net.micode.notes.download.DownloadManager;
-import net.micode.notes.download.DownloadService;
-import net.micode.notes.util.Utils;
-import android.content.Context;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.DbException;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.HttpHandler;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.util.LogUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 
 public class DownloadListActivity extends BaseActivity {
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#initViews()
+     */
+    @Override
+    protected void initViews() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#initEvents()
+     */
+    @Override
+    protected void initEvents() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#setListener()
+     */
+    @Override
+    protected void setListener() {
+        // TODO Auto-generated method stub
+        
+    }/*
 
 	@ViewInject(R.id.download_list)
 	private ListView downloadList;
@@ -297,4 +298,4 @@ public class DownloadListActivity extends BaseActivity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-}
+*/}

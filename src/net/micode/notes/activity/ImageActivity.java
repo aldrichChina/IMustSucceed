@@ -1,25 +1,38 @@
 package net.micode.notes.activity;
 
 import net.micode.notes.BaseActivity;
-import net.micode.notes.MyApplication;
-import net.micode.notes.R;
-import net.micode.notes.dialog.dialogfragment.ConfimDialog;
-import net.micode.notes.util.Utils;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageView;
-
-import com.lidroid.xutils.BitmapUtils;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class ImageActivity extends BaseActivity {
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#initViews()
+     */
+    @Override
+    protected void initViews() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#initEvents()
+     */
+    @Override
+    protected void initEvents() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#setListener()
+     */
+    @Override
+    protected void setListener() {
+        // TODO Auto-generated method stub
+        
+    }/*
 
 	@ViewInject(R.id.big_img)
 	private ImageView bigImage;
@@ -119,4 +132,4 @@ public class ImageActivity extends BaseActivity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-}
+*/}

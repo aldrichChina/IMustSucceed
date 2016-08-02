@@ -25,6 +25,36 @@ import com.zhy.http.okhttp.callback.FileCallBack;
 
 public class ProfileActivity extends BaseActivity {
 
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#initViews()
+     */
+    @Override
+    protected void initViews() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#initEvents()
+     */
+    @Override
+    protected void initEvents() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (非 Javadoc)
+     * Description:
+     * @see net.micode.notes.BaseActivity#setListener()
+     */
+    @Override
+    protected void setListener() {
+        // TODO Auto-generated method stub
+        
+    }/*
+
     private EditText downloadAddrEdit;
     private Button downloadBtn;
     private Button downloadPageBtn;
@@ -115,4 +145,4 @@ public class ProfileActivity extends BaseActivity {
 
     }
 
-}
+*/}

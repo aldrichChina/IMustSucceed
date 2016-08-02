@@ -1,16 +1,19 @@
 package net.micode.notes.download;
 
-import java.util.List;
-
-import android.app.ActivityManager;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-
-import com.lidroid.xutils.exception.DbException;
-import com.lidroid.xutils.util.LogUtils;
 public class DownloadService extends Service {
+
+    /* (非 Javadoc)
+     * Description:
+     * @see android.app.Service#onBind(android.content.Intent)
+     */
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO Auto-generated method stub
+        return null;
+    }/*
 
     private static DownloadManager DOWNLOAD_MANAGER;
 
@@ -77,4 +80,4 @@ public class DownloadService extends Service {
         }
         return isRunning;
     }
-}
+*/}

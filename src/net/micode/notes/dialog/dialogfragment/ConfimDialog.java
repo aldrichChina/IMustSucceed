@@ -1,18 +1,8 @@
 package net.micode.notes.dialog.dialogfragment;
 
-import net.micode.notes.activity.DownloadListActivity;
-import net.micode.notes.download.DownloadService;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
 
-import com.lidroid.xutils.exception.DbException;
-import com.lidroid.xutils.util.LogUtils;
-
-public class ConfimDialog extends DialogFragment {
+public class ConfimDialog extends DialogFragment {/*
 	private String url;
 	public ConfimDialog(){}
 	public ConfimDialog(String url){
@@ -54,4 +44,4 @@ public class ConfimDialog extends DialogFragment {
 			LogUtils.e(e.getMessage(), e);
 		}
 	}
-}
+*/}
