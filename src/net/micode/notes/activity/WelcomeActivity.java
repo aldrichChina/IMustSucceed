@@ -152,12 +152,11 @@ public class WelcomeActivity extends BaseActivity implements OnClickListener {
             break;
 
         case R.id.welcome_btn_login:
-            startActivity(LoginActivity.class);
-
+            mTencentUtil = new TencentUtil(mTencent, getApplicationContext(), WelcomeActivity.this, mHandler);
             break;
 
         case R.id.welcome_ibtn_about:
-            mTencentUtil = new TencentUtil(mTencent, getApplicationContext(), WelcomeActivity.this, mHandler);
+            startActivity(LoginActivity.class);
             break;
         }
     }

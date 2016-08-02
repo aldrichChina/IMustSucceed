@@ -7,8 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.micode.notes.BaseFragment;
+import net.micode.notes.MyApplication;
 import net.micode.notes.R;
 import net.micode.notes.activity.ImageActivity;
+import net.micode.notes.util.Utils;
 import okhttp3.Call;
 import android.content.Context;
 import android.content.Intent;
@@ -36,7 +38,10 @@ public class BitmapFragment extends BaseFragment {
     private ListView imageListView;
     private ImageListAdapter imageListAdapter;
 //	public static BitmapUtils bitmapUtils;
-
+    private HashMap<String, Integer> temp = new HashMap<String, Integer>();
+    private View view;
+    private MyApplication myApplication; 
+    private float mProgress;
     private String[] imgSites = {
     		"http://www.bing.com/gallery/",
     		"http://22mm.xiuna.com/mm/qingliang/",
@@ -48,17 +53,12 @@ public class BitmapFragment extends BaseFragment {
             "http://www.youzi4.com/"
     };
 
-    private HashMap<String, Integer> temp = new HashMap<String, Integer>();
+    
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bitmap_fragment, container, false); // 加载fragment布局
-//        ViewUtils.inject(this, view); //注入view和事件
-//
-//        bitmapUtils = BitmapHelp.getBitmapUtils(this.getActivity().getApplicationContext());
-//        bitmapUtils.configDefaultLoadingImage(R.drawable.icon_app);
-//        bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.ARGB_8888);
-
+        view = inflater.inflate(R.layout.bitmap_fragment, container, false);
+        
         //bitmapUtils.configMemoryCacheEnabled(false);
         //bitmapUtils.configDiskCacheEnabled(false);
 
@@ -111,6 +111,15 @@ super.onCreateView(inflater, container, savedInstanceState);
                 e.printStackTrace();
                 Log.d("jia", "e=="+e);
             }
+            /* (非 Javadoc)
+             * Description:
+             * @see com.zhy.http.okhttp.callback.Callback#inProgress(float, long, int)
+             */
+            @Override
+            public void inProgress(float progress, long total, int id) {
+                Utils.Log("progress=="+progress);
+                mProgress=progress;
+            }
         });
 //        new HttpUtils().send(HttpRequest.HttpMethod.GET, url,
 //                new RequestCallBack<String>() {
@@ -135,7 +144,7 @@ super.onCreateView(inflater, container, savedInstanceState);
         private Context mContext;
         private final LayoutInflater mInflater;
         private ArrayList<String> imgSrcList;
-
+       
         public ImageListAdapter(Context context) {
             super();
             this.mContext = context;
@@ -180,7 +189,10 @@ super.onCreateView(inflater, container, savedInstanceState);
             }
             holder.imgPb.setProgress(0);
 //            bitmapUtils.display(holder.imgItem, imgSrcList.get(position), new CustomBitmapLoadCallBack(holder));
-            Picasso.with(getActivity()).load(imgSrcList.get(position)).into(holder.imgItem);
+            
+            myApplication.mPicasso.load(imgSrcList.get(position)).into(holder.imgItem);
+            holder.imgPb.setProgress((int) (mProgress));
+            holder.imgPb.setProgress(100);
             //bitmapUtils.display((ImageView) view, imgSrcList.get(position), displayConfig);
             //bitmapUtils.display((ImageView) view, imgSrcList.get(position));
             return view;
@@ -214,6 +226,7 @@ super.onCreateView(inflater, container, savedInstanceState);
 //    }
 
     private static final ColorDrawable TRANSPARENT_DRAWABLE = new ColorDrawable(android.R.color.transparent);
+   
 
    
 
@@ -247,7 +260,8 @@ super.onCreateView(inflater, container, savedInstanceState);
 
 	@Override
 	protected void initViews() {
-	    imageListView = (ListView) findViewById(R.id.img_list);
+	    
+	    imageListView = (ListView) view.findViewById(R.id.img_list);
 	    imageListAdapter = new ImageListAdapter(getActivity());
         imageListView.setAdapter(imageListAdapter);
 	    imageListView.setOnItemClickListener(new OnItemClickListener() {
@@ -264,8 +278,7 @@ super.onCreateView(inflater, container, savedInstanceState);
 
 	@Override
 	protected void initEvents() {
-		// TODO Auto-generated method stub
-		
+	    myApplication=MyApplication.getInstance();       
 	}
 
 
