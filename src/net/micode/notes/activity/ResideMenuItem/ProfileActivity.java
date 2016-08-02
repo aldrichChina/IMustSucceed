@@ -5,8 +5,6 @@ import java.io.File;
 import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.activity.DownloadListActivity;
-import net.micode.notes.download.DownloadManager;
-import net.micode.notes.download.DownloadService;
 import net.micode.notes.util.Utils;
 import okhttp3.Call;
 import okhttp3.Request;
@@ -25,46 +23,14 @@ import com.zhy.http.okhttp.callback.FileCallBack;
 
 public class ProfileActivity extends BaseActivity {
 
-    /* (非 Javadoc)
-     * Description:
-     * @see net.micode.notes.BaseActivity#initViews()
-     */
-    @Override
-    protected void initViews() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (非 Javadoc)
-     * Description:
-     * @see net.micode.notes.BaseActivity#initEvents()
-     */
-    @Override
-    protected void initEvents() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (非 Javadoc)
-     * Description:
-     * @see net.micode.notes.BaseActivity#setListener()
-     */
-    @Override
-    protected void setListener() {
-        // TODO Auto-generated method stub
-        
-    }/*
-
     private EditText downloadAddrEdit;
     private Button downloadBtn;
     private Button downloadPageBtn;
-    private DownloadManager downloadManager;
     private ProgressBar mProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.profile);
         super.onCreate(savedInstanceState);
-        downloadManager = DownloadService.getDownloadManager(this);
         downloadAddrEdit = (EditText) findViewById(R.id.download_addr_edit);
         downloadBtn = (Button) findViewById(R.id.download_btn);
         downloadBtn.setOnClickListener(downloadFile);
@@ -145,4 +111,4 @@ public class ProfileActivity extends BaseActivity {
 
     }
 
-*/}
+}
