@@ -10,7 +10,6 @@
 	<classpathentry kind="lib" path="libs/nineoldandroids-library-2.4.0.jar"/>
 	<classpathentry kind="lib" path="libs/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="lib" path="libs/universal-image-loader-1.9.4.jar"/>
-	<classpathentry kind="lib" path="libs/locSDK_4.0.jar"/>
 	<classpathentry kind="lib" path="libs/zxing.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/WorkSpace/mutation.android.client/libs/umeng-update-v2.6.0.1.jar"/>
 	<classpathentry kind="lib" path="libs/Bughd_android_sdk_v1.3.7.jar"/>

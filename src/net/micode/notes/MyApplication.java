@@ -26,13 +26,17 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
@@ -159,19 +163,22 @@ public class MyApplication extends Application {
 
         // 获取当前用户位置
         mLocationClient = new LocationClient(getApplicationContext());
-        mLocationClient.setAK("60b43d1a9513d904b6aa2948b27b4a20");
+//        mLocationClient.setAK("60b43d1a9513d904b6aa2948b27b4a20");
+        LocationClientOption option = new LocationClientOption();
+        option.setCoorType("bd09ll");
+        option.setIsNeedAddress(true);
+        option.setOpenGps(true);
+        option.setScanSpan(1000);
+        mLocationClient.setLocOption(option);
         mLocationClient.registerLocationListener(new BDLocationListener() {
 
-            @Override
-            public void onReceivePoi(BDLocation arg0) {
-
-            }
 
             @Override
-            public void onReceiveLocation(BDLocation arg0) {
-                mLongitude = arg0.getLongitude();
-                mLatitude = arg0.getLatitude();
+            public void onReceiveLocation(BDLocation location) {
+                mLongitude = location.getLongitude();//经度
+                mLatitude = location.getLatitude();//纬度
                 Log.i("地理位置", "经度:" + mLongitude + ",纬度:" + mLatitude);
+                Toast.makeText(mContext, location.getAddrStr(), Toast.LENGTH_SHORT).show();
                 mLocationClient.stop();
             }
         });
@@ -431,5 +438,20 @@ public class MyApplication extends Application {
             System.exit(0);
         }
     }
-
+    /**
+     * @Description (判断网络连接)
+     * @param context
+     * @return
+     */
+    public static boolean isNetWorkConnect(Context context)
+    {
+        ConnectivityManager connectivityManager=(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+        if(networkInfo==null||!networkInfo.isAvailable())
+            return false;
+        else {
+            return true;
+        }
+    
+    }
 }

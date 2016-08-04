@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.micode.notes.R;
 import net.micode.notes.dialog.CustomExitDialog;
 import net.micode.notes.dialog.FlippingLoadingDialog;
 import net.micode.notes.util.MD5Util;
@@ -36,18 +35,19 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
+import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -56,7 +56,7 @@ import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
 
     protected MyApplication mApplication;
     protected NetWorkUtils mNetWorkUtils;
@@ -207,7 +207,7 @@ public abstract class BaseActivity extends Activity {
     protected void showToast(String text) {
         View toastRoot = LayoutInflater.from(BaseActivity.this).inflate(R.layout.common_toast, null);
         ((HandyTextView) toastRoot.findViewById(R.id.toast_text)).setText(text);
-       
+
         if (mToast == null) {
             mToast = new Toast(BaseActivity.this);
             mToast.setGravity(Gravity.CENTER, 0, 0);
@@ -671,4 +671,22 @@ public abstract class BaseActivity extends Activity {
         return MD5Util.md5(strObj);
     }
 
+    /**
+     * @Description ()
+     * @param titleString
+     */
+    public void initTopTitle(final Activity activity) {
+        ImageView righttitle = (ImageView) findViewById(R.id.righttitle);
+        righttitle.setVisibility(View.INVISIBLE);
+        ImageView topback = (ImageView) findViewById(R.id.topback);
+
+        topback.setBackgroundResource(R.drawable.ic_topbar_back_normal);
+        topback.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Utils.finish(activity);
+            }
+        });
+    }
 }

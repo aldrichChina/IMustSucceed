@@ -2,6 +2,7 @@ package net.micode.notes.activity;
 
 import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
+import net.micode.notes.WeatherActivity;
 import net.micode.notes.activity.ResideMenuItem.BarCodeActivity;
 import net.micode.notes.activity.ResideMenuItem.CalendarActivity;
 import net.micode.notes.activity.ResideMenuItem.CameraActivity;
@@ -133,7 +134,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private ResideMenuItem itemProfile;
     private ResideMenuItem itemOkHttp;
     private ResideMenuItem itemCalendar;
-    private ResideMenuItem itemSettings;
+    private ResideMenuItem itemWeather;
     private ResideMenuItem itemPicture;
     private ResideMenuItem itemCamera;
     private ResideMenuItem itemCustomCamera;
@@ -142,7 +143,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private ProfileActivity profileActivity;
     private OkHttpActivity okHttpActivity;
     private CalendarActivity calendarActivity;
-
+    private WeatherActivity weatherActivity;
     private ProfileActivity settingsActivity;
 
     private PictureActivity pictureActivity;
@@ -196,8 +197,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             changeActivity(okHttpActivity);
         } else if (v == itemCalendar) {
             changeActivity(calendarActivity);
-        } else if (v == itemSettings) {
-            changeActivity(settingsActivity);
+        } else if (v == itemWeather) {
+            changeActivity(weatherActivity);
         } else if (v == itemPicture) {
             changeActivity(pictureActivity);
         } else if (v == itemCamera) {
@@ -366,6 +367,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         okHttpActivity=new OkHttpActivity();
         calendarActivity = new CalendarActivity();
         settingsActivity = new ProfileActivity();
+        weatherActivity=new WeatherActivity();
         pictureActivity = new PictureActivity();
         cameraActivity = new CameraActivity();
         cameraBeginActivity = new CameraBeginActivity();
@@ -453,7 +455,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         itemProfile = new ResideMenuItem(this, R.drawable.icon_profile, "Profile");
         itemOkHttp = new ResideMenuItem(this, R.drawable.icon_profile, "OkHttpUtil");
         itemCalendar = new ResideMenuItem(this, R.drawable.icon_calendar, "Calendar");
-        itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "Settings");
+        itemWeather = new ResideMenuItem(this, R.drawable.icon_settings, "天气");
         itemPicture = new ResideMenuItem(this, R.drawable.abc_ic_menu_selectall_mtrl_alpha, "Picture");
         itemCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "系统相机");
         itemCustomCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "自定义相机");
@@ -462,7 +464,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         itemProfile.setOnClickListener(this);
         itemOkHttp.setOnClickListener(this);
         itemCalendar.setOnClickListener(this);
-        itemSettings.setOnClickListener(this);
+        itemWeather.setOnClickListener(this);
         itemPicture.setOnClickListener(this);
         itemCamera.setOnClickListener(this);
         itemCustomCamera.setOnClickListener(this);
@@ -471,7 +473,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemOkHttp, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_RIGHT);
-        resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_RIGHT);
+        resideMenu.addMenuItem(itemWeather, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemPicture, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemCamera, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemCustomCamera, ResideMenu.DIRECTION_RIGHT);

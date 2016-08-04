@@ -85,18 +85,8 @@ public class ProfileActivity extends BaseActivity {
     };
     @Override
     protected void initViews() {
-        ImageView righttitle = (ImageView) findViewById(R.id.righttitle);
-        righttitle.setVisibility(View.INVISIBLE);
-        ImageView topback = (ImageView) findViewById(R.id.topback);
         mProgressBar = (ProgressBar) findViewById(R.id.id_progress);
-        topback.setBackgroundResource(R.drawable.ic_topbar_back_normal);
-        topback.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Utils.finish(ProfileActivity.this);
-            }
-        });
+        initTopTitle(ProfileActivity.this);
     }
 
     @Override
