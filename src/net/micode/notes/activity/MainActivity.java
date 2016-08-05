@@ -1,6 +1,7 @@
 package net.micode.notes.activity;
 
 import net.micode.notes.BaseActivity;
+import net.micode.notes.ConstantProvider;
 import net.micode.notes.R;
 import net.micode.notes.WeatherActivity;
 import net.micode.notes.activity.ResideMenuItem.BarCodeActivity;
@@ -11,6 +12,8 @@ import net.micode.notes.activity.ResideMenuItem.PictureActivity;
 import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
 import net.micode.notes.activity.main.NearByActivity;
 import net.micode.notes.entities.NewsDetailContent;
+import net.micode.notes.entity.ResponseWrapper;
+import net.micode.notes.entity.WeatherSubEntity;
 import net.micode.notes.fragment.BitmapFragment;
 import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HotArticleFragment;
@@ -37,11 +40,12 @@ import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.GsonBuilder;
 import com.umeng.update.UmengUpdateAgent;
 import com.zhy.sample_okhttp.OkHttpActivity;
 
 public class MainActivity extends BaseActivity implements OnClickListener, OnHeadlineSelectedListener,
-        OnLongClickListener,OpenX5WebFragment {
+        OnLongClickListener, OpenX5WebFragment {
 
     /**
      * 用于展示消息的Fragment
@@ -151,6 +155,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private CameraBeginActivity cameraBeginActivity;
     private BarCodeActivity barCodeActivity;
 
+    public static ResponseWrapper mResponseWrapper = new ResponseWrapper();// 数据结构的对象
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -363,17 +368,27 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
 
     @Override
     protected void initEvents() {
+        WeatherSubEntity weatherSubEntity = getWeatherEntity().getWeather_data().get(0);
+        String weatherDate = weatherSubEntity.getDate();
+        if (weatherDate.length() > 14) {
+            String subs = weatherDate.substring(14, weatherDate.length() - 1);
+            toptitle.setText(weatherSubEntity.getWeather() + subs);
+        } else {
+            toptitle.setText(weatherSubEntity.getWeather());
+        }
+
         profileActivity = new ProfileActivity();
-        okHttpActivity=new OkHttpActivity();
+        okHttpActivity = new OkHttpActivity();
         calendarActivity = new CalendarActivity();
         settingsActivity = new ProfileActivity();
-        weatherActivity=new WeatherActivity();
+        weatherActivity = new WeatherActivity();
         pictureActivity = new PictureActivity();
         cameraActivity = new CameraActivity();
         cameraBeginActivity = new CameraBeginActivity();
         barCodeActivity = new BarCodeActivity();
         setUpMenu();
         UmengUpdateAgent.update(this);
+
     }
 
     @Override
@@ -388,43 +403,23 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
 
     @Override
     public void onArticleSelected(NewsDetailContent detailContent, String tag) {
-        Bundle bundle=new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putString("articalUrl", detailContent.getLink());
-        startActivity( X5WebViewActivity.class,bundle);
-        
-        
-        
-        
-        /*// 用户选中HeadlinesFragment中的头标题后
-        // 做一些必要的业务操作
+        startActivity(X5WebViewActivity.class, bundle);
 
-        newsDetailFragment = (NewsDetailFragment) getFragmentManager().findFragmentByTag(tag);
+        /*
+         * // 用户选中HeadlinesFragment中的头标题后 // 做一些必要的业务操作 newsDetailFragment = (NewsDetailFragment)
+         * getFragmentManager().findFragmentByTag(tag); if (newsDetailFragment != null) { // 如果 article frag
+         * 不为空，那么我们在同时显示两个fragmnet的布局中... // 调用ArticleFragment中的方法去更新它的内容
+         * newsDetailFragment.updateArticleView(detailContent); } else { // 否则，我们就是在仅包含一个fragment的布局中并需要交换fragment...
+         * newsDetailFragment = new NewsDetailFragment(); Bundle args = new Bundle();
+         * args.putSerializable("news_detailContent", detailContent); newsDetailFragment.setArguments(args);
+         * FragmentTransaction transaction = getFragmentManager().beginTransaction(); //
+         * 用这个fragment替换任何在fragment_container中的东西 // 并添加事务到back stack中以便用户可以回退到之前的状态 transaction.replace(R.id.content,
+         * newsDetailFragment, tag); transaction.addToBackStack(null); // 提交事务 transaction.commit(); }
+         */
 
-        if (newsDetailFragment != null) {
-            // 如果 article frag 不为空，那么我们在同时显示两个fragmnet的布局中...
-
-            // 调用ArticleFragment中的方法去更新它的内容
-            newsDetailFragment.updateArticleView(detailContent);
-        } else {
-            // 否则，我们就是在仅包含一个fragment的布局中并需要交换fragment...
-
-            newsDetailFragment = new NewsDetailFragment();
-            Bundle args = new Bundle();
-            args.putSerializable("news_detailContent", detailContent);
-            newsDetailFragment.setArguments(args);
-
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            // 用这个fragment替换任何在fragment_container中的东西
-            // 并添加事务到back stack中以便用户可以回退到之前的状态
-            transaction.replace(R.id.content, newsDetailFragment, tag);
-            transaction.addToBackStack(null);
-
-            // 提交事务
-            transaction.commit();
-        }*/
-    
-        }
+    }
 
     @Override
     public boolean onLongClick(View v) {
@@ -497,8 +492,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         });
     }
 
-
-
     private void changeActivity(Activity targetActivity) {
         resideMenu.clearIgnoredViewList();
         Utils.start_Activity(MainActivity.this, targetActivity.getClass());
@@ -513,25 +506,22 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         return true;
     }
 
-    /* (非 Javadoc)
-     * Description:
+    /*
+     * (非 Javadoc) Description:
      * @see net.micode.notes.interfacemanage.InterfaceManager.OpenX5WebFragment#openX5Fragment(java.lang.String)
      */
     @Override
     public void openX5Fragment(String articalUrl) {
-        Bundle bundle=new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putString("articalUrl", articalUrl);
-        startActivity( X5WebViewActivity.class,bundle);
-        
-        
-        
-        
-//        x5WebViewFragment = new X5WebViewFragment(articalUrl);
-//        FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
-//        hideFragments(beginTransaction);
-//        beginTransaction.replace(R.id.content, x5WebViewFragment, "x5WebViewFragment");
-//        beginTransaction.addToBackStack(null);
-//        beginTransaction.commit();        
+        startActivity(X5WebViewActivity.class, bundle);
+
+        // x5WebViewFragment = new X5WebViewFragment(articalUrl);
+        // FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
+        // hideFragments(beginTransaction);
+        // beginTransaction.replace(R.id.content, x5WebViewFragment, "x5WebViewFragment");
+        // beginTransaction.addToBackStack(null);
+        // beginTransaction.commit();
     }
 
 }

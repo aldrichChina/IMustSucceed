@@ -4,6 +4,7 @@ import com.tencent.connect.common.Constants;
 import com.tencent.tauth.Tencent;
 
 import net.micode.notes.BaseActivity;
+import net.micode.notes.ConstantProvider;
 import net.micode.notes.R;
 import net.micode.notes.activity.register.RegisterActivity;
 import net.micode.notes.util.TencentUtil;
@@ -37,8 +38,8 @@ public class WelcomeActivity extends BaseActivity implements OnClickListener {
     private String[] mAvatars = new String[] {"welcome_0", "welcome_1", "welcome_2", "welcome_3", "welcome_4",
             "welcome_5" };
     private String[] mDistances = new String[] {"0.84km", "1.02km", "1.34km", "1.88km", "2.50km", "2.78km" };
-    public static String mAppid;
-    public static Tencent mTencent;
+   
+    public  Tencent mTencent;
     private TencentUtil mTencentUtil;
 
     @Override
@@ -63,9 +64,8 @@ public class WelcomeActivity extends BaseActivity implements OnClickListener {
         mBtnRegister.setOnClickListener(this);
         mBtnLogin.setOnClickListener(this);
         mIbtnAbout.setOnClickListener(this);
-        mAppid = "1105252041";
         if (mTencent == null) {
-            mTencent = Tencent.createInstance(mAppid, this);
+            mTencent = Tencent.createInstance(ConstantProvider.mAppid, this);
         }
         mHandler = new Handler() {
 

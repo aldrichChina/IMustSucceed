@@ -2,11 +2,6 @@ package net.micode.notes.entity;
 
 import java.util.List;
 
-/**
- * 
- * @author htq 爱丽颖的颖火虫
- * bolg:www.csdn.net/htq__
- */
 public class ResponseWrapper {
 
 	private int error;//错误次数

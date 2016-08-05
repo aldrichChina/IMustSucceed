@@ -206,15 +206,15 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				try {
-					Thread.sleep(2000);
+//				try {
+//					Thread.sleep(2000);
 					if ((DEFAULT_ACCOUNTS[0].equals(mAccount)|| DEFAULT_ACCOUNTS[1].equals(mAccount) || DEFAULT_ACCOUNTS[2].equals(mAccount))
 							&& DEFAULT_PASSWORD.equals(mPassword)) {
 						return true;
 					}
-				} catch (InterruptedException e) {
-
-				}
+//				} catch (InterruptedException e) {
+//
+//				}
 				return false;
 			}
 

@@ -49,7 +49,10 @@ public class ConstantProvider {
     // 管理设备信息
     public static Map<String, String> equipinfoMap = new HashMap<String, String>();
     public static String weather_data;
-    public static String normal_city;
+    //定位到的城市
+    public static String locationCity="双鸭山";
+    //QQ登陆Appid
+    public static String mAppid="1105252041";
     // 设备信息
     public static void initEquipInfo(Context context) {
         try {

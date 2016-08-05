@@ -8,6 +8,8 @@ import java.util.List;
 
 import net.micode.notes.dialog.CustomExitDialog;
 import net.micode.notes.dialog.FlippingLoadingDialog;
+import net.micode.notes.entity.ResponseWrapper;
+import net.micode.notes.entity.WeatherEntity;
 import net.micode.notes.util.MD5Util;
 import net.micode.notes.util.NetWorkUtils;
 import net.micode.notes.util.Utils;
@@ -54,6 +56,7 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
 import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseActivity extends FragmentActivity {
@@ -670,7 +673,13 @@ public abstract class BaseActivity extends FragmentActivity {
     public String GetMD5Code(String strObj) {
         return MD5Util.md5(strObj);
     }
-
+    /**
+     * @Description (获得天气信息)
+     * @return
+     */
+    public WeatherEntity getWeatherEntity(){
+        return new GsonBuilder().create().fromJson(ConstantProvider.weather_data, ResponseWrapper.class).getResults().get(0);
+    }
     /**
      * @Description ()
      * @param titleString

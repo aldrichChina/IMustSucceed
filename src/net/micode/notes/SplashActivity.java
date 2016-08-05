@@ -2,10 +2,12 @@ package net.micode.notes;
 
 import java.io.IOException;
 
+import net.micode.notes.activity.MainActivity;
 import net.micode.notes.activity.WelcomeActivity;
 import net.micode.notes.entity.MHttpEntity;
 import net.micode.notes.entity.ResponseWrapper;
 import net.micode.notes.entity.SendDataEntity;
+import net.micode.notes.util.Utils;
 
 import org.apache.http.ParseException;
 import org.apache.http.util.EntityUtils;
@@ -26,10 +28,8 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.google.gson.GsonBuilder;
+import com.tencent.tauth.Tencent;
 
-/**
- * @author htq 爱丽颖的颖火虫 博客地址:bolg.csdn.net/htq__
- */
 public class SplashActivity extends Activity {
 
     public static ResponseWrapper response;// 数据结构的对象
@@ -37,7 +37,7 @@ public class SplashActivity extends Activity {
     public static final int fail = 2;
     public static final int nonet = 3;
     public String normalDistrict;
-    public String locationCity = "武汉";
+    // public String locationCity = "武汉";
     public LocationClient mLocationClient = null;
     public BDLocationListener mListener;
     private ProgressDialog pDialog;
@@ -52,22 +52,22 @@ public class SplashActivity extends Activity {
     }
 
     private void initData() {
-        showProgressDialog("自动定位中...");
+        showProgressDialog("正在为您准备神秘专属惊喜...");
         initBaiduMapLocation();
 
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                sendRequest();
-            }
-        }).start();
+        // new Thread(new Runnable() {
+        //
+        // @Override
+        // public void run() {
+        // try {
+        // Thread.sleep(2000);
+        //
+        // } catch (InterruptedException e) {
+        // e.printStackTrace();
+        // }
+        // sendRequest();
+        // }
+        // }).start();
 
     }
 
@@ -78,6 +78,8 @@ public class SplashActivity extends Activity {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationMode.Hight_Accuracy);
         option.setIsNeedAddress(true);
+        option.setCoorType("bd09ll");
+        option.setOpenGps(true);
         mLocationClient.setLocOption(option);
         mLocationClient.start();
     }
@@ -98,6 +100,7 @@ public class SplashActivity extends Activity {
         try {
             SendDataEntity.setCity(normalDistrict);
             Log.e("TAG", normalDistrict + "==>>normalDistrict");
+            Log.e("TAG", SendDataEntity.getData() + "==>>SendDataEntity.getData()");
             mhe = MHttpEntity.sendHttpRequest(SendDataEntity.getData());
             if (mhe.getHentity() != null) {
                 getData = EntityUtils.toString(mhe.getHentity());
@@ -113,7 +116,7 @@ public class SplashActivity extends Activity {
                         Log.i("weather_info", getData + "-->getData");
                     }
                     if (response.getError() == -3) {
-                        SendDataEntity.setCity(locationCity);
+                        SendDataEntity.setCity(ConstantProvider.locationCity);
 
                         mhe = MHttpEntity.sendHttpRequest(SendDataEntity.getData());
                         if (mhe.getHentity() != null) {
@@ -146,20 +149,29 @@ public class SplashActivity extends Activity {
             if (msg != null)
                 switch (msg.arg1) {
                 case succeed:// 与服务器连接成功，则传递数据并跳转
-                    Intent intent = new Intent(SplashActivity.this, WelcomeActivity.class);
+                    Intent intent;
+                    Tencent mTencent = null;
+                    if (mTencent == null) {
+                        mTencent = Tencent.createInstance(ConstantProvider.mAppid, SplashActivity.this);
+                    }
+                    if (!mTencent.isSessionValid()) {
+                        intent = new Intent(SplashActivity.this, WelcomeActivity.class);
+                    } else {
+                        intent = new Intent(SplashActivity.this, MainActivity.class);
+                    }
+
                     if (msg.obj != null) {
                         intent.putExtra("weather_data", (String) msg.obj);
                         ConstantProvider.weather_data = (String) msg.obj;
                     }
-                    intent.putExtra("normal_city", locationCity);
-                    ConstantProvider.normal_city = locationCity;
+                    intent.putExtra("normal_city", ConstantProvider.locationCity);
                     startActivity(intent);
                     finish();
                     break;
                 case fail:// 与服务器连接失败，弹出错误提示Toast
                     Toast.makeText(SplashActivity.this, getString(R.string.net_fail), Toast.LENGTH_SHORT).show();
                     ConstantProvider.weather_data = (String) msg.obj;
-                    intent = new Intent(SplashActivity.this, WeatherActivity.class);
+                    intent = new Intent(SplashActivity.this, WelcomeActivity.class);
                     intent.putExtra("weather_data", (String) msg.obj);
                     startActivity(intent);
                     finish();
@@ -186,14 +198,23 @@ public class SplashActivity extends Activity {
         public void onReceiveLocation(BDLocation location) {
             if (location != null) {
                 normalDistrict = location.getDistrict();
-                locationCity = location.getCity();
+                Utils.Log("normalDistrict==" + normalDistrict);
+                ConstantProvider.locationCity = location.getCity();
 
-                if (locationCity == null) {
+                if (ConstantProvider.locationCity == null) {
                     Toast.makeText(SplashActivity.this, "定位失败，请检查网络", Toast.LENGTH_SHORT).show();
                 } else {
-                    String[] str = locationCity.split("市");
-                    locationCity = str[0];
-                    if ("".equals(locationCity)) {
+                    String[] str = ConstantProvider.locationCity.split("市");
+                    ConstantProvider.locationCity = str[0];
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            sendRequest();
+                        }
+                    }).start();
+
+                    if ("".equals(ConstantProvider.locationCity)) {
                         Toast.makeText(SplashActivity.this, "定位失败，默认为武汉", Toast.LENGTH_LONG).show();
                     }
                 }
