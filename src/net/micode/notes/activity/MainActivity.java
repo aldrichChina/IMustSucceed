@@ -1,11 +1,10 @@
 package net.micode.notes.activity;
 
 import net.micode.notes.BaseActivity;
-import net.micode.notes.ConstantProvider;
 import net.micode.notes.R;
 import net.micode.notes.WeatherActivity;
+import net.micode.notes.activity.ResideMenuItem.BaiduMapActivity;
 import net.micode.notes.activity.ResideMenuItem.BarCodeActivity;
-import net.micode.notes.activity.ResideMenuItem.CalendarActivity;
 import net.micode.notes.activity.ResideMenuItem.CameraActivity;
 import net.micode.notes.activity.ResideMenuItem.CameraBeginActivity;
 import net.micode.notes.activity.ResideMenuItem.PictureActivity;
@@ -30,17 +29,13 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.GsonBuilder;
 import com.umeng.update.UmengUpdateAgent;
 import com.zhy.sample_okhttp.OkHttpActivity;
 
@@ -137,7 +132,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
     private ResideMenuItem itemHome;
     private ResideMenuItem itemProfile;
     private ResideMenuItem itemOkHttp;
-    private ResideMenuItem itemCalendar;
+    private ResideMenuItem itemBaiduMap;
     private ResideMenuItem itemWeather;
     private ResideMenuItem itemPicture;
     private ResideMenuItem itemCamera;
@@ -146,7 +141,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
 
     private ProfileActivity profileActivity;
     private OkHttpActivity okHttpActivity;
-    private CalendarActivity calendarActivity;
+    private BaiduMapActivity baiduMapActivity;
     private WeatherActivity weatherActivity;
     private ProfileActivity settingsActivity;
 
@@ -200,8 +195,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             changeActivity(profileActivity);
         } else if (v == itemOkHttp) {
             changeActivity(okHttpActivity);
-        } else if (v == itemCalendar) {
-            changeActivity(calendarActivity);
+        } else if (v == itemBaiduMap) {
+            changeActivity(baiduMapActivity);
         } else if (v == itemWeather) {
             changeActivity(weatherActivity);
         } else if (v == itemPicture) {
@@ -379,7 +374,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
 
         profileActivity = new ProfileActivity();
         okHttpActivity = new OkHttpActivity();
-        calendarActivity = new CalendarActivity();
+        baiduMapActivity = new BaiduMapActivity();
         settingsActivity = new ProfileActivity();
         weatherActivity = new WeatherActivity();
         pictureActivity = new PictureActivity();
@@ -449,7 +444,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         itemHome = new ResideMenuItem(this, R.drawable.icon_home, "Home");
         itemProfile = new ResideMenuItem(this, R.drawable.icon_profile, "Profile");
         itemOkHttp = new ResideMenuItem(this, R.drawable.icon_profile, "OkHttpUtil");
-        itemCalendar = new ResideMenuItem(this, R.drawable.icon_calendar, "Calendar");
+        itemBaiduMap = new ResideMenuItem(this, R.drawable.icon_calendar, "地图导航");
         itemWeather = new ResideMenuItem(this, R.drawable.icon_settings, "天气");
         itemPicture = new ResideMenuItem(this, R.drawable.abc_ic_menu_selectall_mtrl_alpha, "Picture");
         itemCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "系统相机");
@@ -458,7 +453,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
         itemOkHttp.setOnClickListener(this);
-        itemCalendar.setOnClickListener(this);
+        itemBaiduMap.setOnClickListener(this);
         itemWeather.setOnClickListener(this);
         itemPicture.setOnClickListener(this);
         itemCamera.setOnClickListener(this);
@@ -467,7 +462,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemOkHttp, ResideMenu.DIRECTION_LEFT);
-        resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_RIGHT);
+        resideMenu.addMenuItem(itemBaiduMap, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemWeather, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemPicture, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemCamera, ResideMenu.DIRECTION_RIGHT);

@@ -37,6 +37,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.SDKInitializer;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
@@ -114,6 +115,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         FIR.init(this);
+        SDKInitializer.initialize(getApplicationContext());
         ClearableCookieJar cookieJar1 = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(
                 getApplicationContext()));
 
@@ -160,7 +162,6 @@ public class MyApplication extends Application {
             mEmoticons_Zemoji.add(emoticonsName);
             mEmoticonsId.put(emoticonsName, emoticonsId);
         }
-
         // 获取当前用户位置
         mLocationClient = new LocationClient(getApplicationContext());
 //        mLocationClient.setAK("60b43d1a9513d904b6aa2948b27b4a20");
