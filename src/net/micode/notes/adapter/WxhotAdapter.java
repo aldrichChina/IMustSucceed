@@ -30,7 +30,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 /**
  * @ClassName WxhotAdapter
@@ -75,7 +75,7 @@ public class WxhotAdapter extends RecyclerView.Adapter<WxhotViewHolder> {
     @Override
     public void onBindViewHolder(WxhotViewHolder holder, int position) {
         holder.titile.setText(wxhotList.get(position).getTitle());
-        Picasso.with(context).load(wxhotList.get(position).getPicUrl()).into(holder.articlePic);
+        Glide.with(context).load(wxhotList.get(position).getPicUrl()).into(holder.articlePic);
     }
 
     /*

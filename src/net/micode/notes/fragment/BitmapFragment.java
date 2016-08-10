@@ -31,120 +31,120 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
 public class BitmapFragment extends BaseFragment {
+
     private ListView imageListView;
     private ImageListAdapter imageListAdapter;
-//	public static BitmapUtils bitmapUtils;
+    // public static BitmapUtils bitmapUtils;
     private HashMap<String, Integer> temp = new HashMap<String, Integer>();
     private View view;
-    private MyApplication myApplication; 
+    private MyApplication myApplication;
     private float mProgress;
     private String[] imgSites = {
-    		"http://www.bing.com/gallery/",
-    		"http://22mm.xiuna.com/mm/qingliang/",
-    		"http://cn.bing.com/images/search?q=超高清美女电脑壁纸&qs=IM&form=QBIR&pq=超高清&sc=8-3&sp=5&sk=IM4",
+            "http://www.ytjiazhuang.cn/tupianqiang/%E8%B6%85%E9%AB%98%E6%B8%85%E5%A3%81%E7%BA%B8%E7%BE%8E%E5%A5%B3.html",
+            "http://download.pchome.net/wallpaper/t31/",
+            "http://www.umei.cc/tags/chaogaoqing.htm",
+            "http://www.bing.com/gallery/",
+            "http://22mm.xiuna.com/mm/qingliang/",
+            "http://cn.bing.com/images/search?q=超高清美女电脑壁纸&qs=IM&form=QBIR&pq=超高清&sc=8-3&sp=5&sk=IM4",
             "http://image.baidu.com/",
             "http://www.22mm.cc/",
             "http://www.moko.cc/",
             "http://eladies.sina.com.cn/photo/",
-            "http://www.youzi4.com/"
-    };
-
-    
+            "http://www.youzi4.com/",
+            "http://cn.bing.com/images/search?q=%E8%B6%85%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87&qpvt=%E8%B6%85%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87&qpvt=%E8%B6%85%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87&qpvt=%E8%B6%85%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87&FORM=IGRE" };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bitmap_fragment, container, false);
-        
-        //bitmapUtils.configMemoryCacheEnabled(false);
-        //bitmapUtils.configDiskCacheEnabled(false);
 
-        //bitmapUtils.configDefaultAutoRotation(true);
+        // bitmapUtils.configMemoryCacheEnabled(false);
+        // bitmapUtils.configDiskCacheEnabled(false);
 
-        //ScaleAnimation animation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
-        //        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        //animation.setDuration(800);
+        // bitmapUtils.configDefaultAutoRotation(true);
+
+        // ScaleAnimation animation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
+        // Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        // animation.setDuration(800);
 
         // AlphaAnimation 在一些android系统上表现不正常, 造成图片列表中加载部分图片后剩余无法加载, 目前原因不明.
         // 可以模仿下面示例里的fadeInDisplay方法实现一个颜色渐变动画。
-        //AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
-        //animation.setDuration(1000);
-        //bitmapUtils.configDefaultImageLoadAnimation(animation);
+        // AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
+        // animation.setDuration(1000);
+        // bitmapUtils.configDefaultImageLoadAnimation(animation);
 
         // 设置最大宽高, 不设置时更具控件属性自适应.
-//        bitmapUtils.configDefaultBitmapMaxSize(BitmapCommonUtils.getScreenSize(getActivity()).scaleDown(3));
+        // bitmapUtils.configDefaultBitmapMaxSize(BitmapCommonUtils.getScreenSize(getActivity()).scaleDown(3));
 
         // 滑动时加载图片，快速滑动时不加载图片
-        //imageListView.setOnScrollListener(new PauseOnScrollListener(bitmapUtils, false, true));
+        // imageListView.setOnScrollListener(new PauseOnScrollListener(bitmapUtils, false, true));
 
-        
         // 加载url请求返回的图片连接给listview
         // 这里只是简单的示例，并非最佳实践，图片较多时，最好上拉加载更多...
         for (String url : imgSites) {
             loadImgList(url);
         }
 
-        /*for (int i = 0; i < 162; i++) {
-            imageListAdapter.addSrc("/sdcard/pic/" + i);
-        }
-        imageListAdapter.notifyDataSetChanged();//通知listview更新数据*/
-super.onCreateView(inflater, container, savedInstanceState);
+        /*
+         * for (int i = 0; i < 162; i++) { imageListAdapter.addSrc("/sdcard/pic/" + i); }
+         * imageListAdapter.notifyDataSetChanged();//通知listview更新数据
+         */
+        super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
 
     private void loadImgList(String url) {
         OkHttpUtils.get().url(url).id(100).build().execute(new StringCallback() {
-            
+
             @Override
             public void onResponse(String response, int id) {
 
                 imageListAdapter.addSrc(getImgSrcList(response));
-                imageListAdapter.notifyDataSetChanged();//通知listview更新数据
-                            
+                imageListAdapter.notifyDataSetChanged();// 通知listview更新数据
+
             }
-            
+
             @Override
             public void onError(Call call, Exception e, int id) {
                 e.printStackTrace();
-                Log.d("jia", "e=="+e);
+                Log.d("jia", "e==" + e);
             }
-            /* (非 Javadoc)
-             * Description:
+
+            /*
+             * (非 Javadoc) Description:
              * @see com.zhy.http.okhttp.callback.Callback#inProgress(float, long, int)
              */
             @Override
             public void inProgress(float progress, long total, int id) {
-                Utils.Log("progress=="+progress);
-                mProgress=progress;
+                Utils.Log("progress==" + progress);
+                BitmapFragment.this.mProgress = progress;
             }
         });
-//        new HttpUtils().send(HttpRequest.HttpMethod.GET, url,
-//                new RequestCallBack<String>() {
-//                    @Override
-//                    public void onSuccess(ResponseInfo<String> responseInfo) {
-//                        imageListAdapter.addSrc(getImgSrcList(responseInfo.result));
-//                        imageListAdapter.notifyDataSetChanged();//通知listview更新数据
-//                    }
-//
-//                    @Override
-//                    public void onFailure(HttpException error, String msg) {
-//                    }
-//                });
+        // new HttpUtils().send(HttpRequest.HttpMethod.GET, url,
+        // new RequestCallBack<String>() {
+        // @Override
+        // public void onSuccess(ResponseInfo<String> responseInfo) {
+        // imageListAdapter.addSrc(getImgSrcList(responseInfo.result));
+        // imageListAdapter.notifyDataSetChanged();//通知listview更新数据
+        // }
+        //
+        // @Override
+        // public void onFailure(HttpException error, String msg) {
+        // }
+        // });
     }
-
-    
-
-   
 
     private class ImageListAdapter extends BaseAdapter {
 
         private Context mContext;
         private final LayoutInflater mInflater;
         private ArrayList<String> imgSrcList;
-       
+
         public ImageListAdapter(Context context) {
             super();
             this.mContext = context;
@@ -181,61 +181,61 @@ super.onCreateView(inflater, container, savedInstanceState);
             if (view == null) {
                 holder = new ImageItemHolder();
                 view = mInflater.inflate(R.layout.bitmap_item, null);
-                holder. imgItem = (ImageView) view.findViewById(R.id.img_item);
-                holder. imgPb = (ProgressBar) view.findViewById(R.id.img_pb);
+                holder.imgItem = (ImageView) view.findViewById(R.id.img_item);
+                holder.imgPb = (ProgressBar) view.findViewById(R.id.img_pb);
                 view.setTag(holder);
             } else {
                 holder = (ImageItemHolder) view.getTag();
             }
             holder.imgPb.setProgress(0);
-//            bitmapUtils.display(holder.imgItem, imgSrcList.get(position), new CustomBitmapLoadCallBack(holder));
-            
-            myApplication.mPicasso.load(imgSrcList.get(position)).into(holder.imgItem);
+            // bitmapUtils.display(holder.imgItem, imgSrcList.get(position), new CustomBitmapLoadCallBack(holder));
+
+            Glide.with(getActivity())//
+                    .load(imgSrcList.get(position))//
+                    // .placeholder(R.drawable.pic_about_immomo)//
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)//
+                    .into(holder.imgItem);
             holder.imgPb.setProgress((int) (mProgress));
-            holder.imgPb.setProgress(100);
-            //bitmapUtils.display((ImageView) view, imgSrcList.get(position), displayConfig);
-            //bitmapUtils.display((ImageView) view, imgSrcList.get(position));
+            holder.imgPb.setVisibility(View.GONE);
+            // bitmapUtils.display((ImageView) view, imgSrcList.get(position), displayConfig);
+            // bitmapUtils.display((ImageView) view, imgSrcList.get(position));
             return view;
         }
     }
 
     private class ImageItemHolder {
+
         private ImageView imgItem;
 
         private ProgressBar imgPb;
     }
 
-//    public class CustomBitmapLoadCallBack extends DefaultBitmapLoadCallBack<ImageView> {
-//        private final ImageItemHolder holder;
-//
-//        public CustomBitmapLoadCallBack(ImageItemHolder holder) {
-//            this.holder = holder;
-//        }
-//
-//        @Override
-//        public void onLoading(ImageView container, String uri, BitmapDisplayConfig config, long total, long current) {
-//            this.holder.imgPb.setProgress((int) (current * 100 / total));
-//        }
-//
-//        @Override
-//        public void onLoadCompleted(ImageView container, String uri, Bitmap bitmap, BitmapDisplayConfig config, BitmapLoadFrom from) {
-//            //super.onLoadCompleted(container, uri, bitmap, config, from);
-//            fadeInDisplay(container, bitmap);
-//            this.holder.imgPb.setProgress(100);
-//        }
-//    }
+    // public class CustomBitmapLoadCallBack extends DefaultBitmapLoadCallBack<ImageView> {
+    // private final ImageItemHolder holder;
+    //
+    // public CustomBitmapLoadCallBack(ImageItemHolder holder) {
+    // this.holder = holder;
+    // }
+    //
+    // @Override
+    // public void onLoading(ImageView container, String uri, BitmapDisplayConfig config, long total, long current) {
+    // this.holder.imgPb.setProgress((int) (current * 100 / total));
+    // }
+    //
+    // @Override
+    // public void onLoadCompleted(ImageView container, String uri, Bitmap bitmap, BitmapDisplayConfig config,
+    // BitmapLoadFrom from) {
+    // //super.onLoadCompleted(container, uri, bitmap, config, from);
+    // fadeInDisplay(container, bitmap);
+    // this.holder.imgPb.setProgress(100);
+    // }
+    // }
 
     private static final ColorDrawable TRANSPARENT_DRAWABLE = new ColorDrawable(android.R.color.transparent);
-   
-
-   
 
     private void fadeInDisplay(ImageView imageView, Bitmap bitmap) {
-        final TransitionDrawable transitionDrawable =
-                new TransitionDrawable(new Drawable[]{
-                        TRANSPARENT_DRAWABLE,
-                        new BitmapDrawable(imageView.getResources(), bitmap)
-                });
+        final TransitionDrawable transitionDrawable = new TransitionDrawable(new Drawable[] {TRANSPARENT_DRAWABLE,
+                new BitmapDrawable(imageView.getResources(), bitmap) });
         imageView.setImageDrawable(transitionDrawable);
         transitionDrawable.startTransition(500);
     }
@@ -258,28 +258,27 @@ super.onCreateView(inflater, container, savedInstanceState);
         return pics;
     }
 
-	@Override
-	protected void initViews() {
-	    
-	    imageListView = (ListView) view.findViewById(R.id.img_list);
-	    imageListAdapter = new ImageListAdapter(getActivity());
+    @Override
+    protected void initViews() {
+
+        imageListView = (ListView) view.findViewById(R.id.img_list);
+        imageListAdapter = new ImageListAdapter(getActivity());
         imageListView.setAdapter(imageListAdapter);
-	    imageListView.setOnItemClickListener(new OnItemClickListener() {
+        imageListView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ImageActivity.class);
                 intent.putExtra("url", imageListAdapter.getItem(position).toString());
                 getActivity().startActivity(intent);
-                            
+
             }
         });
-	}
+    }
 
-	@Override
-	protected void initEvents() {
-	    myApplication=MyApplication.getInstance();       
-	}
-
+    @Override
+    protected void initEvents() {
+        myApplication = MyApplication.getInstance();
+    }
 
 }

@@ -225,11 +225,13 @@
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-<style name="PersonalTopStyle">
+
+    <style name="PersonalTopStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">47dp</item>
         <item name="android:background">@drawable/personal_information_background_corners</item>
     </style>
+
     <style name="PersonalTextStylebtn">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -239,6 +241,7 @@
         <item name="android:textColor">@color/text_userinfobtn</item>
         <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
+
     <style name="PersonalRightIconStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
@@ -247,4 +250,5 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_alignParentRight">true</item>
     </style>
+
 </resources>

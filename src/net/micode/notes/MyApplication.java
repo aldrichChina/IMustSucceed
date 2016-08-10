@@ -51,7 +51,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
-import com.squareup.picasso.Picasso;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
@@ -85,7 +84,7 @@ public class MyApplication extends Application {
     public static OkHttpClient client = new OkHttpClient();
     private static final String TAG = "MainApplication";
     private List<Activity> mList = new LinkedList<Activity>();
-    public static Picasso mPicasso;
+//    public static Picasso mPicasso;
 
     private static class BaseApplicationHolder {
 
@@ -186,9 +185,9 @@ public class MyApplication extends Application {
         mLocationClient.start();
         mLocationClient.requestOfflineLocation();
         System.out.println("开始获取");
-        mPicasso = Picasso.with(getApplicationContext());
-        mPicasso.setIndicatorsEnabled(true); // 开启调模式，它能够在图片左上角显示小三角形，这个小三角形的颜色标明了图片的来源：网络、内存缓存、磁盘缓存
-        mPicasso.setLoggingEnabled(true); // 打开日志，即log中会打印出目前下载的进度、情况
+//        mPicasso = Picasso.with(getApplicationContext());
+//        mPicasso.setIndicatorsEnabled(true); // 开启调模式，它能够在图片左上角显示小三角形，这个小三角形的颜色标明了图片的来源：网络、内存缓存、磁盘缓存
+//        mPicasso.setLoggingEnabled(true); // 打开日志，即log中会打印出目前下载的进度、情况
     }
 
     @Override

@@ -80,6 +80,9 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="360MobileAssistant" />
+        <meta-data
+            android:name="net.micode.notes.GlideConfiguration"
+            android:value="GlideModule" />
 
         <activity
             android:name="net.micode.notes.SplashActivity"
@@ -162,7 +165,8 @@
         </activity>
         <activity
             android:name="net.micode.notes.activity.MainActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name="net.micode.notes.activity.main.NearByActivity"
@@ -228,13 +232,6 @@
         <activity
             android:name=".activity.ImageActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activity.DownloadListActivity" />
-
-        <service android:name=".download.DownloadService" >
-            <intent-filter>
-                <action android:name="download.service.action" />
-            </intent-filter>
-        </service>
 
         <activity
             android:name=".ui.NotesListActivity"

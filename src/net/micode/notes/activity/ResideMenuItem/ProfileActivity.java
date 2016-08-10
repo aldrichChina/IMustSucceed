@@ -4,8 +4,6 @@ import java.io.File;
 
 import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
-import net.micode.notes.activity.DownloadListActivity;
-import net.micode.notes.util.Utils;
 import okhttp3.Call;
 import okhttp3.Request;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -39,7 +36,7 @@ public class ProfileActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                Utils.start_Activity(ProfileActivity.this, DownloadListActivity.class);
+//                Utils.start_Activity(ProfileActivity.this, DownloadListActivity.class);
             }
         });
 

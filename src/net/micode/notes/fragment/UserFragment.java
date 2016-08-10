@@ -54,8 +54,7 @@ public class UserFragment extends BaseFragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+       
         view = inflater.inflate(R.layout.activity_user_center, container, false);
         super.onCreateView(inflater, container, savedInstanceState);
         return view;
