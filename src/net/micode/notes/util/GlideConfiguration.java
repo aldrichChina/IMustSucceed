@@ -13,7 +13,7 @@
  *        - second revision
  *
  *****************************************************************/
-package net.micode.notes;
+package net.micode.notes.util;
 
 import android.content.Context;
 

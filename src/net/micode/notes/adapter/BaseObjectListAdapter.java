@@ -1,8 +1,12 @@
-package net.micode.notes;
+package net.micode.notes.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import net.micode.notes.MyApplication;
+import net.micode.notes.R;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
 import net.micode.notes.entities.Entity;
 import net.micode.notes.view.HandyTextView;
 import android.content.Context;

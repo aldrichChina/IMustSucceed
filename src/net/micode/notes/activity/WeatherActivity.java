@@ -1,12 +1,25 @@
-package net.micode.notes;
+package net.micode.notes.activity;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+import net.micode.notes.BaseActivity;
+import net.micode.notes.ConstantProvider;
+import net.micode.notes.MyApplication;
+import net.micode.notes.R;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
+import net.micode.notes.R.string;
 import net.micode.notes.entity.CityManagerEntity;
 import net.micode.notes.entity.MHttpEntity;
 import net.micode.notes.entity.ResponseWrapper;
 import net.micode.notes.entity.SendDataEntity;
+import net.micode.notes.fragment.AboutMeFragment;
+import net.micode.notes.fragment.ChangeBackgroundFragment;
+import net.micode.notes.fragment.CityManagerFragment;
+import net.micode.notes.fragment.HomePageFragment;
+import net.micode.notes.fragment.LifeIndexFragment;
+import net.micode.notes.interfacemanage.FragmentAndActivity;
 import net.micode.notes.utils.SharePrefrenceUtil;
 import net.micode.notes.utils.SystemUtils;
 

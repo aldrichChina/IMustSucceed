@@ -1,6 +1,9 @@
-package net.micode.notes;
+package net.micode.notes.fragment;
 
 
+import net.micode.notes.R;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.util.Linkify;

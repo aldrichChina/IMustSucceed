@@ -1,8 +1,12 @@
-package net.micode.notes;
+package net.micode.notes.fragment;
 
 import java.util.Calendar;
 import java.util.List;
 
+import net.micode.notes.R;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
+import net.micode.notes.activity.WeatherActivity;
 import net.micode.notes.adapter.GridTodayCAdapter;
 import net.micode.notes.entity.LivingIndexEntity;
 import android.os.Bundle;

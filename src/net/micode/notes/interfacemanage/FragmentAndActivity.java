@@ -1,4 +1,4 @@
-package net.micode.notes;
+package net.micode.notes.interfacemanage;
 
 import android.widget.EditText;
 

@@ -1,5 +1,9 @@
-package net.micode.notes;
+package net.micode.notes.activity;
 
+import net.micode.notes.R;
+import net.micode.notes.R.drawable;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
 import net.micode.notes.adapter.GridAddCityAdapter;
 import net.micode.notes.entity.SQLiteCityManager;
 import android.app.Activity;

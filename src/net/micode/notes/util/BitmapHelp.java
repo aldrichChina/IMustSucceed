@@ -1,4 +1,4 @@
-package net.micode.notes;
+package net.micode.notes.util;
 
 public class BitmapHelp {
 //    private BitmapHelp() {

@@ -3,7 +3,6 @@ package net.micode.notes.adapter;
 import java.util.List;
 
 import net.micode.notes.MyApplication;
-import net.micode.notes.BaseObjectListAdapter;
 import net.micode.notes.activity.message.MessageItem;
 import net.micode.notes.entities.Entity;
 import net.micode.notes.entities.Message;

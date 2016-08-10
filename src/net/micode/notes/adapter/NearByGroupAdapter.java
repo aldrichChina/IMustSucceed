@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.micode.notes.MyApplication;
-import net.micode.notes.BaseObjectListAdapter;
 import net.micode.notes.R;
 import net.micode.notes.entities.Entity;
 import net.micode.notes.entities.NearByGroup;

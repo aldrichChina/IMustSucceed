@@ -1,8 +1,14 @@
-package net.micode.notes;
+package net.micode.notes.fragment;
 
+import net.micode.notes.R;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
+import net.micode.notes.activity.AddCityActivity;
+import net.micode.notes.activity.WeatherActivity;
 import net.micode.notes.adapter.GridCityMAdapter;
 import net.micode.notes.entity.CityManagerEntity;
 import net.micode.notes.entity.SQLiteCityManager;
+import net.micode.notes.interfacemanage.FragmentAndActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;

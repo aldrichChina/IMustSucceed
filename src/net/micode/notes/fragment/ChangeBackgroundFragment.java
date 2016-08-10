@@ -1,10 +1,13 @@
-package net.micode.notes;
+package net.micode.notes.fragment;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.micode.notes.R;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
 import net.micode.notes.adapter.BgPicGridAdapter;
 import net.micode.notes.entity.BgPicEntity;
 import net.micode.notes.utils.SharePrefrenceUtil;

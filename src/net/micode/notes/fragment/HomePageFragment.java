@@ -1,11 +1,18 @@
-package net.micode.notes;
+package net.micode.notes.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import net.micode.notes.R;
+import net.micode.notes.R.drawable;
+import net.micode.notes.R.id;
+import net.micode.notes.R.layout;
+import net.micode.notes.R.string;
+import net.micode.notes.activity.WeatherActivity;
 import net.micode.notes.adapter.ListWeatherAdapter;
 import net.micode.notes.entity.CityManagerEntity;
 import net.micode.notes.entity.SQLiteCityManager;
+import net.micode.notes.interfacemanage.FragmentAndActivity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -38,7 +45,7 @@ public class HomePageFragment extends Fragment {
     private View homeContent;
     public WeatherActivity weatherActivity;
     public FragmentAndActivity mActivity;
-    static ProgressDialog pDialog;
+   public static ProgressDialog pDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
