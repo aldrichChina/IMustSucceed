@@ -9,12 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <net.micode.notes.view.XListView
+        <net.micode.notes.view.XlistView.XListView
             android:id="@+id/newmessagelist"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:cacheColorHint="#00000000" >
-        </net.micode.notes.view.XListView>
+        </net.micode.notes.view.XlistView.XListView>
 
         <TextView
             android:id="@+id/tv_empty"

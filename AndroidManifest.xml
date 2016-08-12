@@ -81,7 +81,7 @@
             android:name="UMENG_CHANNEL"
             android:value="360MobileAssistant" />
         <meta-data
-            android:name="net.micode.notes.GlideConfiguration"
+            android:name="net.micode.notes.util.GlideConfiguration"
             android:value="GlideModule" />
 
         <activity

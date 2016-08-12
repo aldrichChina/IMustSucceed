@@ -70,18 +70,18 @@ public class DatabaseService {
         dbOpenHelper.getWritableDatabase().execSQL(sql);
     }
 
-//    public boolean insertUser(User user) {
-//        if (user.getRelationuserenterprise() != null) {
-//            enterprisename = user.getRelationuserenterprise().getEnterprisename() == null ? "" : user
-//                    .getRelationuserenterprise().getEnterprisename();
-//        }
-//        String Lastlogintime = user.getLastlogintime() == null ? "" : user.getLastlogintime().toString();
-//        String Lastloginip = user.getLastloginip() == null ? "" : user.getLastloginip();
-//        dbOpenHelper.getReadableDatabase().execSQL(
-//                "insert into user(enterprisename,lastlogintime,lastloginip)values(?,?,?)",
-//                new Object[] {enterprisename == null ? "Enterprisename" : enterprisename, Lastlogintime, Lastloginip });
-//        return true;
-//    }
+    // public boolean insertUser(User user) {
+    // if (user.getRelationuserenterprise() != null) {
+    // enterprisename = user.getRelationuserenterprise().getEnterprisename() == null ? "" : user
+    // .getRelationuserenterprise().getEnterprisename();
+    // }
+    // String Lastlogintime = user.getLastlogintime() == null ? "" : user.getLastlogintime().toString();
+    // String Lastloginip = user.getLastloginip() == null ? "" : user.getLastloginip();
+    // dbOpenHelper.getReadableDatabase().execSQL(
+    // "insert into user(enterprisename,lastlogintime,lastloginip)values(?,?,?)",
+    // new Object[] {enterprisename == null ? "Enterprisename" : enterprisename, Lastlogintime, Lastloginip });
+    // return true;
+    // }
 
     /**
      * NewsDetailContent表 用于插入新闻信息数据库
@@ -90,33 +90,41 @@ public class DatabaseService {
      * @return
      * @throws ParseException
      */
-    public boolean insertNewsDetailContent(NewsDetailContent newsDetailContent) throws ParseException {
-        String imageUrl;
-        List<NewsImageUrls> imageurls = newsDetailContent.getImageurls();
-        if (imageurls != null && imageurls.size() > 0) {
+    public boolean insertNewsDetailContent(final NewsDetailContent newsDetailContent) throws ParseException {
+        new Thread(new Runnable() {
 
-            NewsImageUrls newsImageUrls = imageurls.get(0);
-            imageUrl = newsImageUrls.getUrl() == null ? "" : newsDetailContent.getImageurls().get(0).getUrl();
-        } else {
-            imageUrl = "";
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            @Override
+            public void run() {
+                String imageUrl;
+                List<NewsImageUrls> imageurls = newsDetailContent.getImageurls();
+                if (imageurls != null && imageurls.size() > 0) {
 
-        String channelId = newsDetailContent.getChannelId();
-        String channelName = newsDetailContent.getChannelName();
-        String desc = newsDetailContent.getDesc();
-        String link = newsDetailContent.getLink();
-        String long_desc = newsDetailContent.getLong_desc();
-        String pubDate = newsDetailContent.getPubDate();
-        String source = newsDetailContent.getSource();
-        String title = newsDetailContent.getTitle();
-        // String timeStamp = String.valueOf(dateFormat.parse(pubDate).getTime());
-        String timeStamp = Long.toString(new Date().getTime());
-        dbOpenHelper.getReadableDatabase().execSQL(
-                "insert into NewsDetailContent(" + "channelId," + "channelName," + "desc," + "imageUrl," + "link,"
-                        + "long_desc," + "pubDate," + "source," + "title," + "timeStamp)values(?,?,?,?,?,?,?,?,?,?)",
-                new Object[] {channelId, channelName, desc, imageUrl, link, long_desc, pubDate, source, title,
-                        timeStamp });
+                    NewsImageUrls newsImageUrls = imageurls.get(0);
+                    imageUrl = newsImageUrls.getUrl() == null ? "" : newsDetailContent.getImageurls().get(0).getUrl();
+                } else {
+                    imageUrl = "";
+                }
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                String channelId = newsDetailContent.getChannelId();
+                String channelName = newsDetailContent.getChannelName();
+                String desc = newsDetailContent.getDesc();
+                String link = newsDetailContent.getLink();
+                String long_desc = newsDetailContent.getLong_desc();
+                String pubDate = newsDetailContent.getPubDate();
+                String source = newsDetailContent.getSource();
+                String title = newsDetailContent.getTitle();
+                // String timeStamp = String.valueOf(dateFormat.parse(pubDate).getTime());
+                String timeStamp = Long.toString(new Date().getTime());
+                dbOpenHelper.getReadableDatabase().execSQL(
+                        "insert into NewsDetailContent(" + "channelId," + "channelName," + "desc," + "imageUrl,"
+                                + "link," + "long_desc," + "pubDate," + "source," + "title,"
+                                + "timeStamp)values(?,?,?,?,?,?,?,?,?,?)",
+                        new Object[] {channelId, channelName, desc, imageUrl, link, long_desc, pubDate, source, title,
+                                timeStamp });
+            }
+        }).start();
+
         return false;
     }
 
@@ -242,31 +250,26 @@ public class DatabaseService {
      * @return
      */
     public boolean insertLogin(LoginBean loginBean) {
-        dbOpenHelper.getReadableDatabase().execSQL(
-                "insert into Login(_openid, ret, pay_token,pf,query_authority_cost,authority_cost,expires_in,pfkey,msg,access_token,login_cost)values(?,?,?,?,?,?,?,?,?,?,?)",
-                new Object[] {loginBean.getOpenid(), 
-                        loginBean.getRet(),
-                        loginBean.getPay_token(),
-                        loginBean.getPf(),
-                        loginBean.getQuery_authority_cost(),
-                        loginBean.getAuthority_cost(),
-                        loginBean.getExpires_in(),
-                        loginBean.getPfkey(),
-                        loginBean.getMsg(),
-                        loginBean.getAccess_token(),
-                        loginBean.getLogin_cost()
-                        });
+        dbOpenHelper
+                .getReadableDatabase()
+                .execSQL(
+                        "insert into Login(_openid, ret, pay_token,pf,query_authority_cost,authority_cost,expires_in,pfkey,msg,access_token,login_cost)values(?,?,?,?,?,?,?,?,?,?,?)",
+                        new Object[] {loginBean.getOpenid(), loginBean.getRet(), loginBean.getPay_token(),
+                                loginBean.getPf(), loginBean.getQuery_authority_cost(), loginBean.getAuthority_cost(),
+                                loginBean.getExpires_in(), loginBean.getPfkey(), loginBean.getMsg(),
+                                loginBean.getAccess_token(), loginBean.getLogin_cost() });
         Utils.Log("insertLogin插入成功");
         return true;
     }
+
     /**
      * @Description (读取Login表)
      * @return
      */
     public List<LoginBean> rawQueryLogin() {
         List<LoginBean> userList = new ArrayList<LoginBean>();
-        Cursor cursor = dbOpenHelper.getReadableDatabase()
-                .rawQuery("select * from Login  where _openid=?", new String[] { ConstantProvider.getUserId() });
+        Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery("select * from Login  where _openid=?",
+                new String[] {ConstantProvider.getUserId() });
         while (cursor.moveToNext()) {
             LoginBean loginBean = new LoginBean();
             loginBean.setRet(cursor.getString(cursor.getColumnIndex("ret")));
@@ -284,44 +287,35 @@ public class DatabaseService {
         }
         return userList;
     }
+
     /**
      * @Description (插入User表)
      * @param houseSaid
      * @return
      */
     public boolean insertUser(UserBean userBean) {
-        dbOpenHelper.getReadableDatabase().execSQL(
-                "insert into User(_nickname  , is_yellow_year_vip, ret,figureurl_qq_1,figureurl_qq_2,yellow_vip_level,is_lost,msg,city,figureurl_1,vip,level,figureurl_2,province,is_yellow_vip,gender,figureurl,openid)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                new Object[] {userBean.getNickname(), 
-                        userBean.getIs_yellow_year_vip(),
-                        userBean.getRet(),
-                        userBean.getFigureurl_qq_1(),
-                        userBean.getFigureurl_qq_2(),
-                        userBean.getYellow_vip_level(),
-                        userBean.getIs_lost(),
-                        userBean.getMsg(),
-                        userBean.getCity(),
-                        userBean.getFigureurl_1(),
-                        userBean.getVip(),
-                        userBean.getLevel(),
-                        userBean.getFigureurl_2(),
-                        userBean.getProvince(),
-                        userBean.getIs_yellow_vip(),
-                        userBean.getGender(),
-                        userBean.getFigureurl(),
-                        ConstantProvider.getUserId() 
-                        });
+        dbOpenHelper
+                .getReadableDatabase()
+                .execSQL(
+                        "insert into User(_nickname  , is_yellow_year_vip, ret,figureurl_qq_1,figureurl_qq_2,yellow_vip_level,is_lost,msg,city,figureurl_1,vip,level,figureurl_2,province,is_yellow_vip,gender,figureurl,openid)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        new Object[] {userBean.getNickname(), userBean.getIs_yellow_year_vip(), userBean.getRet(),
+                                userBean.getFigureurl_qq_1(), userBean.getFigureurl_qq_2(),
+                                userBean.getYellow_vip_level(), userBean.getIs_lost(), userBean.getMsg(),
+                                userBean.getCity(), userBean.getFigureurl_1(), userBean.getVip(), userBean.getLevel(),
+                                userBean.getFigureurl_2(), userBean.getProvince(), userBean.getIs_yellow_vip(),
+                                userBean.getGender(), userBean.getFigureurl(), ConstantProvider.getUserId() });
         Utils.Log("insertUser插入成功");
         return true;
     }
+
     /**
      * @Description (读取User表)
      * @return
      */
     public List<UserBean> rawQueryUser() {
         List<UserBean> userList = new ArrayList<UserBean>();
-        Cursor cursor = dbOpenHelper.getReadableDatabase()
-                .rawQuery("select * from User where openid=?", new String[] { ConstantProvider.getUserId() });
+        Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery("select * from User where openid=?",
+                new String[] {ConstantProvider.getUserId() });
         while (cursor.moveToNext()) {
             UserBean userBean = new UserBean();
             userBean.setIs_yellow_year_vip(cursor.getString(cursor.getColumnIndex("is_yellow_year_vip")));

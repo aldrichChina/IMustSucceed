@@ -6,7 +6,7 @@
  * @description An ListView support (a) Pull down to refresh, (b) Pull up to load more.
  * 		Implement IXListViewListener, and see stopRefresh() / stopLoadMore().
  */
-package net.micode.notes.view;
+package net.micode.notes.view.XlistView;
 
 import net.micode.notes.R;
 import android.content.Context;

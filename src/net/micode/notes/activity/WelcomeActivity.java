@@ -85,6 +85,7 @@ public class WelcomeActivity extends BaseActivity implements OnClickListener {
     }
 
     private void initAvatarsItem() {
+        initViews();
         initMemberBlocks();
         for (int i = 0; i < mMemberBlocks.length; i++) {
             ((ImageView) mMemberBlocks[i].findViewById(R.id.welcome_item_iv_avatar)).setImageBitmap(mApplication

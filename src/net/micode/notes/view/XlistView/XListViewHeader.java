@@ -4,7 +4,7 @@
  * @author Maxwin
  * @description XListView's header
  */
-package net.micode.notes.view;
+package net.micode.notes.view.XlistView;
 
 import net.micode.notes.R;
 import android.content.Context;
