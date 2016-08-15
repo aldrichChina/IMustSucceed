@@ -15,6 +15,8 @@
  *****************************************************************/
 package net.micode.notes.interfacemanage;
 
+import net.micode.notes.entities.NewsDetailContent;
+
 /**
  * @ClassName InterfaceManager
  * @Description TODO(这里用一句话描述这个类的作用)
@@ -29,5 +31,8 @@ public class InterfaceManager {
          * @Description (TODO这里用一句话描述这个方法的作用)
          */
         void openX5Fragment(String webURL);
+    }
+    public interface RecyClerViewClick{
+        void mOnclikImpl(Object obj);
     }
 }

@@ -166,6 +166,10 @@
     <string name="slogan">简约 好用的生活APP</string>
     <string name="add_city_text">热门城市</string>
     <string name="loading">加载中</string>
+    <!-- RecyclerView -->
+    <string name="nomoredata">no data any more</string>
+    <string name="listview_mode">ListView Mode</string>
+    <string name="demo_loadmore">-loading-</string>
 
     <plurals name="search_results_title">
         <item quantity="one"><xliff:g id="number" example="1">%1$s</xliff:g> result for \"<xliff:g id="search" example="???">%2$s</xliff:g>\"</item>

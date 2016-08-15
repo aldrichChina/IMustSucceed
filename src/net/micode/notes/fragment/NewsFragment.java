@@ -40,9 +40,9 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.http_fragment, container, false);
+        View view = inflater.inflate(R.layout.news_fragment, container, false);
         databaseService = new DatabaseService(getActivity());
-        mListView = (XListView) view.findViewById(R.id.xlistView_newslist);
+        mListView = (XListView) view.findViewById(R.id.id_recycler_newslist);
         tv_empty = (TextView) view.findViewById(R.id.tv_empty);
         getTechnologyNews();
         adapter = new NewsAdapter(getActivity(), newsList);
@@ -120,7 +120,7 @@ public class NewsFragment extends BaseFragment implements IXListViewListener {
 
     // 从数据库获取新闻列表
     private void getNewsFromDb() {
-        newsList = databaseService.rawQueryNewsDetailContent();
+        newsList = databaseService.rawQueryNewsDetailContent(11,11);
         if (adapter instanceof UpdateNewsAdapter) {
             adapter.upadapter(newsList);
         }

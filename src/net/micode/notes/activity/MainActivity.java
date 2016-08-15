@@ -17,6 +17,7 @@ import net.micode.notes.fragment.DbFragment;
 import net.micode.notes.fragment.HotArticleFragment;
 import net.micode.notes.fragment.NewsFragment;
 import net.micode.notes.fragment.NewsFragment.OnHeadlineSelectedListener;
+import net.micode.notes.fragment.RecyclerNewsFragment;
 import net.micode.notes.fragment.UserFragment;
 import net.micode.notes.interfacemanage.InterfaceManager.OpenX5WebFragment;
 import net.micode.notes.util.Utils;
@@ -38,13 +39,13 @@ import android.widget.TextView;
 import com.umeng.update.UmengUpdateAgent;
 import com.zhy.sample_okhttp.OkHttpActivity;
 
-public class MainActivity extends BaseActivity implements OnClickListener, OnHeadlineSelectedListener,
+public class MainActivity extends BaseActivity implements OnClickListener,
         OnLongClickListener, OpenX5WebFragment {
 
     /**
      * 用于展示消息的Fragment
      */
-    private NewsFragment newsFragment;
+    private RecyclerNewsFragment newsFragment;
 
     private DbFragment dbFragment;
 
@@ -255,7 +256,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
             newsText.setTextColor(Color.WHITE);
             if (newsFragment == null) {
                 // 如果NewsFragment为空，则创建一个并添加到界面上
-                newsFragment = new NewsFragment();
+                newsFragment = new RecyclerNewsFragment(MainActivity.this);
                 transaction.add(R.id.content, newsFragment);
             } else {
                 // 如果NewsFragment不为空，则直接将它显示出来
@@ -395,25 +396,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnHea
         toptitle.setOnLongClickListener(this);
     }
 
-    @Override
-    public void onArticleSelected(NewsDetailContent detailContent, String tag) {
-        Bundle bundle = new Bundle();
-        bundle.putString("articalUrl", detailContent.getLink());
-        startActivity(X5WebViewActivity.class, bundle);
-
-        /*
-         * // 用户选中HeadlinesFragment中的头标题后 // 做一些必要的业务操作 newsDetailFragment = (NewsDetailFragment)
-         * getFragmentManager().findFragmentByTag(tag); if (newsDetailFragment != null) { // 如果 article frag
-         * 不为空，那么我们在同时显示两个fragmnet的布局中... // 调用ArticleFragment中的方法去更新它的内容
-         * newsDetailFragment.updateArticleView(detailContent); } else { // 否则，我们就是在仅包含一个fragment的布局中并需要交换fragment...
-         * newsDetailFragment = new NewsDetailFragment(); Bundle args = new Bundle();
-         * args.putSerializable("news_detailContent", detailContent); newsDetailFragment.setArguments(args);
-         * FragmentTransaction transaction = getFragmentManager().beginTransaction(); //
-         * 用这个fragment替换任何在fragment_container中的东西 // 并添加事务到back stack中以便用户可以回退到之前的状态 transaction.replace(R.id.content,
-         * newsDetailFragment, tag); transaction.addToBackStack(null); // 提交事务 transaction.commit(); }
-         */
-
-    }
 
     @Override
     public boolean onLongClick(View v) {

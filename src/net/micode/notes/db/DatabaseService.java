@@ -129,13 +129,29 @@ public class DatabaseService {
     }
 
     /**
+     * @Description (返回NewsDetailContent表的数据的个数)
+     * @return
+     */
+    public int rawQueryNewsDetailContent() {
+        Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery(
+                "select * from NewsDetailContent order by timeStamp desc ", null);
+        int totalCount = cursor.getCount();
+        return totalCount;
+
+    }
+
+    /**
      * @Description (NewsDetailContent表) 读取新闻NewsDetailContent表
      * @return
      */
-    public List<NewsDetailContent> rawQueryNewsDetailContent() {
+    public List<NewsDetailContent> rawQueryNewsDetailContent(int pageNum, int pageSize) {
         List<NewsDetailContent> newsDetailContentList = new ArrayList<NewsDetailContent>();
+        // Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery(
+        // "select * from NewsDetailContent order by timeStamp desc limit ?,?",
+        // new String[] {"" + ((pageNum - 1) * pageSize), "" + pageSize });
         Cursor cursor = dbOpenHelper.getReadableDatabase().rawQuery(
-                "select * from NewsDetailContent order by timeStamp desc", null);
+                "select * from NewsDetailContent order by timeStamp desc limit ?,?",
+                new String[] {"" + 0, "" + (pageNum * pageSize) });
         while (cursor.moveToNext()) {
             List<NewsImageUrls> imageurlsList = new ArrayList<NewsImageUrls>();
             NewsImageUrls newsImageUrls = new NewsImageUrls();
