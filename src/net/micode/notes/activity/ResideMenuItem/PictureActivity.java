@@ -8,7 +8,7 @@ import net.micode.notes.ConstantProvider;
 import net.micode.notes.R;
 import net.micode.notes.activity.ImageActivity;
 import net.micode.notes.adapter.MeinvAdapter;
-import net.micode.notes.entities.Detailed;
+import net.micode.notes.entity.Detailed;
 import net.micode.notes.util.JSONUtil;
 import net.micode.notes.util.Utils;
 import okhttp3.Call;

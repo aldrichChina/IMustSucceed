@@ -13,7 +13,7 @@
  *        - second revision
  *
  *****************************************************************/
-package net.micode.notes.entities;
+package net.micode.notes.entity;
 
 
 /**

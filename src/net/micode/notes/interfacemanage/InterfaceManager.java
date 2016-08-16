@@ -15,7 +15,7 @@
  *****************************************************************/
 package net.micode.notes.interfacemanage;
 
-import net.micode.notes.entities.NewsDetailContent;
+import net.micode.notes.entity.NewsDetailContent;
 
 /**
  * @ClassName InterfaceManager

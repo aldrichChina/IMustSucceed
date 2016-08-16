@@ -5,7 +5,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.micode.notes.entities.Detailed;
+import net.micode.notes.entity.Detailed;
 
 import org.json.JSONArray;
 import org.json.JSONException;

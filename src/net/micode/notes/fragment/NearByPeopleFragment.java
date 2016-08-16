@@ -5,7 +5,7 @@ import net.micode.notes.BaseFragment;
 import net.micode.notes.R;
 import net.micode.notes.activity.OtherProfileActivity;
 import net.micode.notes.adapter.NearByPeopleAdapter;
-import net.micode.notes.entities.NearByPeople;
+import net.micode.notes.entity.NearByPeople;
 import net.micode.notes.util.JsonResolveUtils;
 import net.micode.notes.view.MoMoRefreshListView;
 import net.micode.notes.view.MoMoRefreshListView.OnCancelListener;

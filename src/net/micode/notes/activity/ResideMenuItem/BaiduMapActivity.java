@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.micode.notes.R;
-import net.micode.notes.entities.BaiduMapInfo;
+import net.micode.notes.entity.BaiduMapInfo;
 import net.micode.notes.util.OrientationListener;
 import net.micode.notes.util.OrientationListener.OnOrientationListener;
 import android.app.Activity;

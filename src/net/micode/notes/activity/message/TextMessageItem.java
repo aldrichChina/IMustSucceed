@@ -1,7 +1,7 @@
 package net.micode.notes.activity.message;
 
 import net.micode.notes.R;
-import net.micode.notes.entities.Message;
+import net.micode.notes.entity.Message;
 import net.micode.notes.view.EmoticonsTextView;
 import android.content.Context;
 import android.view.View;

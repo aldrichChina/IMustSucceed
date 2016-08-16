@@ -1,4 +1,4 @@
-package net.micode.notes.entities;
+package net.micode.notes.entity;
 
 public class NewsChannel {
 	private int showapi_res_code;

@@ -19,7 +19,7 @@ import java.util.List;
 
 import net.micode.notes.R;
 import net.micode.notes.adapter.WxhotAdapter.WxhotViewHolder;
-import net.micode.notes.entities.WxhotArticle;
+import net.micode.notes.entity.WxhotArticle;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;

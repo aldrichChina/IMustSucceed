@@ -6,7 +6,7 @@ import java.util.List;
 import net.micode.notes.BaseActivity;
 import net.micode.notes.R;
 import net.micode.notes.adapter.ImageBrowserAdapter;
-import net.micode.notes.entities.NearByPeopleProfile;
+import net.micode.notes.entity.NearByPeopleProfile;
 import net.micode.notes.view.PhotoTextView;
 import net.micode.notes.view.ScrollViewPager;
 import android.os.Bundle;

@@ -6,9 +6,9 @@ import java.util.List;
 
 import net.micode.notes.MyApplication;
 import net.micode.notes.R;
-import net.micode.notes.entities.Entity;
-import net.micode.notes.entities.NearByGroup;
-import net.micode.notes.entities.NearByGroups;
+import net.micode.notes.entity.Entity;
+import net.micode.notes.entity.NearByGroup;
+import net.micode.notes.entity.NearByGroups;
 import net.micode.notes.view.HandyTextView;
 import net.micode.notes.view.MoMoRefreshExpandableList.PinnedHeaderAdapter;
 import android.content.Context;

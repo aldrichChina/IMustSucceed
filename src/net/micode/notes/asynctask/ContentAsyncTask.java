@@ -6,10 +6,10 @@ import java.util.List;
 
 import net.micode.notes.ConstantProvider;
 import net.micode.notes.db.DatabaseService;
-import net.micode.notes.entities.NewsBody;
-import net.micode.notes.entities.NewsChannel;
-import net.micode.notes.entities.NewsDetailContent;
-import net.micode.notes.entities.NewsPageBean;
+import net.micode.notes.entity.NewsBody;
+import net.micode.notes.entity.NewsChannel;
+import net.micode.notes.entity.NewsDetailContent;
+import net.micode.notes.entity.NewsPageBean;
 import net.micode.notes.util.Utils;
 import okhttp3.Call;
 import android.content.Context;

@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
-import net.micode.notes.entities.NearByGroup;
-import net.micode.notes.entities.NearByPeople;
+import net.micode.notes.entity.NearByGroup;
+import net.micode.notes.entity.NearByPeople;
 import okhttp3.OkHttpClient;
 import android.app.Activity;
 import android.app.Application;

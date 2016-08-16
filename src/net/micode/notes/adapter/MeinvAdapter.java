@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.micode.notes.MyApplication;
 import net.micode.notes.R;
-import net.micode.notes.entities.Detailed;
+import net.micode.notes.entity.Detailed;
 import net.micode.notes.util.GlideCircleTransform;
 import android.content.Context;
 import android.view.LayoutInflater;

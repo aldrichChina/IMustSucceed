@@ -1,4 +1,4 @@
-package net.micode.notes.entities;
+package net.micode.notes.entity;
 
 import net.micode.notes.R;
 import android.os.Parcel;

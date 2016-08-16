@@ -9,7 +9,7 @@ import net.micode.notes.activity.ResideMenuItem.CameraBeginActivity;
 import net.micode.notes.activity.ResideMenuItem.PictureActivity;
 import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
 import net.micode.notes.activity.main.NearByActivity;
-import net.micode.notes.entities.NewsDetailContent;
+import net.micode.notes.entity.NewsDetailContent;
 import net.micode.notes.entity.ResponseWrapper;
 import net.micode.notes.entity.WeatherSubEntity;
 import net.micode.notes.fragment.BitmapFragment;

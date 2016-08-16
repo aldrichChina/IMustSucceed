@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.micode.notes.MyApplication;
 import net.micode.notes.R;
-import net.micode.notes.entities.Entity;
-import net.micode.notes.entities.FeedComment;
+import net.micode.notes.entity.Entity;
+import net.micode.notes.entity.FeedComment;
 import net.micode.notes.view.EmoticonsTextView;
 import net.micode.notes.view.HandyTextView;
 import android.content.Context;

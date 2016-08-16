@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.micode.notes.MyApplication;
 import net.micode.notes.R;
-import net.micode.notes.entities.Entity;
-import net.micode.notes.entities.NearByPeople;
+import net.micode.notes.entity.Entity;
+import net.micode.notes.entity.NearByPeople;
 import net.micode.notes.util.PhotoUtils;
 import net.micode.notes.view.HandyTextView;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package net.micode.notes.entities;
+package net.micode.notes.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

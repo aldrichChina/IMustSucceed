@@ -9,7 +9,7 @@ import net.micode.notes.R;
 import net.micode.notes.adapter.WxhotAdapter;
 import net.micode.notes.adapter.WxhotAdapter.ItemClickListener;
 import net.micode.notes.db.DatabaseService;
-import net.micode.notes.entities.WxhotArticle;
+import net.micode.notes.entity.WxhotArticle;
 import net.micode.notes.interfacemanage.InterfaceManager;
 import net.micode.notes.interfacemanage.InterfaceManager.OpenX5WebFragment;
 import net.micode.notes.util.RecyclerDividerItemDecoration;

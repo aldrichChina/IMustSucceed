@@ -7,8 +7,8 @@ import java.net.URL;
 
 import net.micode.notes.ConstantProvider;
 import net.micode.notes.db.DatabaseService;
-import net.micode.notes.entities.LoginBean;
-import net.micode.notes.entities.UserBean;
+import net.micode.notes.entity.LoginBean;
+import net.micode.notes.entity.UserBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;

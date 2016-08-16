@@ -2,7 +2,7 @@ package net.micode.notes.activity.message;
 
 import net.micode.notes.R;
 import net.micode.notes.activity.ImageBrowserActivity;
-import net.micode.notes.entities.Message;
+import net.micode.notes.entity.Message;
 import net.micode.notes.util.PhotoUtils;
 import net.micode.notes.view.HandyTextView;
 import android.content.Context;

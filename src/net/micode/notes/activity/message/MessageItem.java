@@ -1,8 +1,8 @@
 package net.micode.notes.activity.message ;
 import net.micode.notes.MyApplication;
 import net.micode.notes.R;
-import net.micode.notes.entities.Message;
-import net.micode.notes.entities.Message.MESSAGE_TYPE;
+import net.micode.notes.entity.Message;
+import net.micode.notes.entity.Message.MESSAGE_TYPE;
 import net.micode.notes.util.DateUtils;
 import net.micode.notes.view.HandyTextView;
 import android.app.Activity;

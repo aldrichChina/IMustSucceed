@@ -5,12 +5,12 @@ import java.util.List;
 
 import net.micode.notes.MyApplication;
 import net.micode.notes.R;
-import net.micode.notes.entities.Feed;
-import net.micode.notes.entities.FeedComment;
-import net.micode.notes.entities.NearByGroup;
-import net.micode.notes.entities.NearByGroups;
-import net.micode.notes.entities.NearByPeople;
-import net.micode.notes.entities.NearByPeopleProfile;
+import net.micode.notes.entity.Feed;
+import net.micode.notes.entity.FeedComment;
+import net.micode.notes.entity.NearByGroup;
+import net.micode.notes.entity.NearByGroups;
+import net.micode.notes.entity.NearByPeople;
+import net.micode.notes.entity.NearByPeopleProfile;
 
 import org.json.JSONArray;
 import org.json.JSONException;

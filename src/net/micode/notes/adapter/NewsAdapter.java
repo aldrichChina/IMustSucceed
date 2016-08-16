@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.micode.notes.MyApplication;
 import net.micode.notes.R;
-import net.micode.notes.entities.NewsDetailContent;
-import net.micode.notes.entities.NewsImageUrls;
+import net.micode.notes.entity.NewsDetailContent;
+import net.micode.notes.entity.NewsImageUrls;
 import net.micode.notes.fragment.NewsFragment.UpdateNewsAdapter;
 import android.content.Context;
 import android.view.LayoutInflater;
