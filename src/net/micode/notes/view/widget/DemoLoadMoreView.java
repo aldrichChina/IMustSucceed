@@ -1,5 +1,6 @@
 package net.micode.notes.view.widget;
 
+import net.micode.notes.view.PullToRefreshRecyclerView.footer.loadmore.BaseLoadMoreView;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,8 +8,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 /**
  * Created by linhonghong on 2015/12/25.

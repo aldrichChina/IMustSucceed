@@ -1,10 +1,9 @@
-package com.lhh.ptrrv.library.impl;
+package net.micode.notes.view.PullToRefreshRecyclerView.impl;
 
+import net.micode.notes.view.PullToRefreshRecyclerView.PullToRefreshRecyclerView;
+import net.micode.notes.view.PullToRefreshRecyclerView.footer.loadmore.BaseLoadMoreView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
-import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 /**
  * Created by Linhh on 15/11/15.

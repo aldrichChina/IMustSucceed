@@ -1,6 +1,11 @@
-package com.lhh.ptrrv.library;
+package net.micode.notes.view.PullToRefreshRecyclerView;
 
 import net.micode.notes.R;
+import net.micode.notes.view.PullToRefreshRecyclerView.footer.loadmore.BaseLoadMoreView;
+import net.micode.notes.view.PullToRefreshRecyclerView.footer.loadmore.DefaultLoadMoreView;
+import net.micode.notes.view.PullToRefreshRecyclerView.header.Header;
+import net.micode.notes.view.PullToRefreshRecyclerView.impl.PrvInterface;
+import net.micode.notes.view.PullToRefreshRecyclerView.util.PullToRefreshRecyclerViewUtil;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -10,11 +15,6 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
 
-import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
-import com.lhh.ptrrv.library.footer.loadmore.DefaultLoadMoreView;
-import com.lhh.ptrrv.library.header.Header;
-import com.lhh.ptrrv.library.impl.PrvInterface;
-import com.lhh.ptrrv.library.util.PullToRefreshRecyclerViewUtil;
 import com.nineoldandroids.view.ViewHelper;
 
 

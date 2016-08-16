@@ -30,6 +30,8 @@ import net.micode.notes.entities.NewsImageUrls;
 import net.micode.notes.interfacemanage.InterfaceManager;
 import net.micode.notes.interfacemanage.InterfaceManager.RecyClerViewClick;
 import net.micode.notes.util.Utils;
+import net.micode.notes.view.PullToRefreshRecyclerView.PullToRefreshRecyclerView;
+import net.micode.notes.view.PullToRefreshRecyclerView.footer.loadmore.BaseLoadMoreView;
 import net.micode.notes.view.widget.DemoLoadMoreView;
 import net.micode.notes.view.widget.DividerItemDecoration;
 import android.content.Context;
@@ -48,9 +50,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
-import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 /**
  * @ClassName RecyclerNewsFragment
@@ -137,7 +136,6 @@ public class RecyclerNewsFragment extends BaseFragment implements RecyClerViewCl
 
             @Override
             public boolean onDrawLoadMore(Canvas c, RecyclerView parent) {
-                Log.i("onDrawLoadMore", "draw load more");
                 return false;
             }
         });

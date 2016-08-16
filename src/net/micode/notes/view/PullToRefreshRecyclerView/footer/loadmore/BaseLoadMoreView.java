@@ -1,13 +1,12 @@
-package com.lhh.ptrrv.library.footer.loadmore;
+package net.micode.notes.view.PullToRefreshRecyclerView.footer.loadmore;
 
+import net.micode.notes.view.PullToRefreshRecyclerView.util.PullToRefreshRecyclerViewUtil;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
-
-import com.lhh.ptrrv.library.util.PullToRefreshRecyclerViewUtil;
 
 /**
  * Created by Linhh on 15/11/15.

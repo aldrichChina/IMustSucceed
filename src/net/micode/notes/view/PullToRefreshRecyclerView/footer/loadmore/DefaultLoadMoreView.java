@@ -1,4 +1,4 @@
-package com.lhh.ptrrv.library.footer.loadmore;
+package net.micode.notes.view.PullToRefreshRecyclerView.footer.loadmore;
 
 import net.micode.notes.R;
 import android.content.Context;

@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.lhh.ptrrv.library.PullToRefreshRecyclerView
+        <net.micode.notes.view.PullToRefreshRecyclerView.PullToRefreshRecyclerView
             android:id="@+id/id_recycler_newslist"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:cacheColorHint="#00000000"
             android:focusable="true" >
-        </com.lhh.ptrrv.library.PullToRefreshRecyclerView>
+        </net.micode.notes.view.PullToRefreshRecyclerView.PullToRefreshRecyclerView>
 
     </RelativeLayout>
 

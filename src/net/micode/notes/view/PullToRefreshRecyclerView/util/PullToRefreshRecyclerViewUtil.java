@@ -1,4 +1,4 @@
-package com.lhh.ptrrv.library.util;
+package net.micode.notes.view.PullToRefreshRecyclerView.util;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
