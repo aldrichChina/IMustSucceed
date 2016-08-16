@@ -1,4 +1,4 @@
-package net.micode.notes.widget;
+package net.micode.notes.view.widget;
 
 import net.micode.notes.R;
 import android.content.Context;

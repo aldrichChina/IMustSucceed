@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.micode.notes.widget;
+package net.micode.notes.view.widget;
 
 import net.micode.notes.R;
 import net.micode.notes.db.Notes;

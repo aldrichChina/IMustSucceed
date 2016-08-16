@@ -280,7 +280,7 @@
             android:multiprocess="true" />
 
         <receiver
-            android:name=".widget.NoteWidgetProvider_2x"
+            android:name="net.micode.notes.view.widget.NoteWidgetProvider_2x"
             android:label="@string/app_widget2x2" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -293,7 +293,7 @@
                 android:resource="@xml/widget_2x_info" />
         </receiver>
         <receiver
-            android:name=".widget.NoteWidgetProvider_4x"
+            android:name="net.micode.notes.view.widget.NoteWidgetProvider_4x"
             android:label="@string/app_widget4x4" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
