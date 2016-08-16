@@ -1,4 +1,4 @@
-package net.micode.notes;
+package net.micode.notes.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

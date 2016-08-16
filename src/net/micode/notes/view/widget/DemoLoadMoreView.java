@@ -1,4 +1,4 @@
-package net.micode.notes;
+package net.micode.notes.view.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;

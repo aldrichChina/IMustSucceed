@@ -1,4 +1,4 @@
-package net.micode.notes;
+package net.micode.notes.view.widget;
 
 /*
  * Copyright (C) 2014 The Android Open Source Project
