@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/top_title_headline" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.zhy.sample_okhttp.FlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickCall"
+                android:text="拨打电话" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickCallDial"
+                android:text="跳转至拨号界面" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickSendSms"
+                android:text="发送短信" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickWakeUpAndUnlock"
+                android:text="唤醒屏幕并解锁" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickIsApplicationBackground"
+                android:text="判断当前App处于前台还是后台状态" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickIsSleeping"
+                android:text="判断当前手机是否处于锁屏(睡眠)状态" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickIsOnline"
+                android:text="判断当前是否有网络连接" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickIsWifiConnected"
+                android:text="判断当前是否是WIFI连接状态" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickInstallApk"
+                android:text="安装APK" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickIsPhone"
+                android:text="判断当前设备是否为手机" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetDeviceWidthHeight"
+                android:text="获取当前设备宽高，单位px" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetDeviceIMEI"
+                android:text="获取当前设备的IMEI，需要与上面的isPhone()一起使用" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetMacAddress"
+                android:text="获取当前设备的MAC地址" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetAppVersion"
+                android:text="获取当前程序的版本号" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickCollectDeviceInfo"
+                android:text="收集设备信息，用于信息统计分析" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickcollectDeviceInfoStr"
+                android:text="收集设备信息，用于信息统计分析,返回字符串" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickHaveSDCard"
+                android:text="是否有SD卡" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickToggleSoftInput"
+                android:text="动态显示或者是隐藏软键盘" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGoHome"
+                android:text="主动回到Home，后台运行" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetStatusBarHeight"
+                android:text="获取状态栏高度" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetTopBarHeight"
+                android:text="获取状态栏高度＋标题栏(ActionBar)高度" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetNetworkOperator"
+                android:text="获取MCC+MNC代码 (SIM卡运营商国家代码和运营商网络代码)" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetNetworkOperatorName"
+                android:text="返回移动网络运营商的名字" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetPhoneType"
+                android:text="返回移动终端类型" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickGetNetWorkStatus"
+                android:text="判断当前手机的网络类型(WIFI还是2,3,4G)" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickMillisToStringMiddle"
+                android:text="格式为小时/分/秒/毫秒" />
+        </com.zhy.sample_okhttp.FlowLayout>
+    </ScrollView>
+
+</LinearLayout>

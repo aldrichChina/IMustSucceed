@@ -122,8 +122,7 @@ public class Util {
 
     // 需要添加权限
 
-    // <uses-permission
-    // android:name="android.permission.GET_TASKS" />
+    // <uses-permission android:name="android.permission.GET_TASKS" />
 
     // 判断当前手机是否处于锁屏(睡眠)状态
 
@@ -261,7 +260,7 @@ public class Util {
 
         return mDeviceCrashInfo;
     }
-
+    // 收集设备信息，用于信息统计分析,返回字符串
     public static String collectDeviceInfoStr(Context context) {
         Properties prop = collectDeviceInfo(context);
         Set deviceInfos = prop.keySet();

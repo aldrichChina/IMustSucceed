@@ -39,6 +39,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许程序获取当前或最近运行的应用 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
@@ -52,6 +53,13 @@
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- 拨打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 允许程序在手机屏幕关闭后后台进程仍然运行 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 允许程序禁用键盘锁 -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera" />
@@ -109,6 +117,7 @@
         <activity android:name=".activity.ResideMenuItem.CameraBeginActivity" />
         <activity android:name=".activity.ResideMenuItem.CustomCameraActivity" />
         <activity android:name=".activity.ResideMenuItem.BarCodeActivity" />
+        <activity android:name=".activity.ResideMenuItem.UtilActivity" />
         <activity android:name="com.zbar.lib.CaptureActivity" />
         <!-- X5WebView -->
         <activity android:name="net.micode.notes.activity.X5WebViewActivity" >
@@ -232,7 +241,6 @@
         <activity
             android:name=".activity.ImageActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-
         <activity
             android:name=".ui.NotesListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

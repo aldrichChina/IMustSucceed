@@ -8,6 +8,7 @@ import net.micode.notes.activity.ResideMenuItem.CameraActivity;
 import net.micode.notes.activity.ResideMenuItem.CameraBeginActivity;
 import net.micode.notes.activity.ResideMenuItem.PictureActivity;
 import net.micode.notes.activity.ResideMenuItem.ProfileActivity;
+import net.micode.notes.activity.ResideMenuItem.UtilActivity;
 import net.micode.notes.activity.main.NearByActivity;
 import net.micode.notes.entity.NewsDetailContent;
 import net.micode.notes.entity.ResponseWrapper;
@@ -39,8 +40,7 @@ import android.widget.TextView;
 import com.umeng.update.UmengUpdateAgent;
 import com.zhy.sample_okhttp.OkHttpActivity;
 
-public class MainActivity extends BaseActivity implements OnClickListener,
-        OnLongClickListener, OpenX5WebFragment {
+public class MainActivity extends BaseActivity implements OnClickListener, OnLongClickListener, OpenX5WebFragment {
 
     /**
      * 用于展示消息的Fragment
@@ -128,6 +128,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      */
     private FragmentManager fragmentManager;
     private TextView toptitle;
+    // 侧边栏Menu
     private ResideMenu resideMenu;
     private ResideMenuItem itemHome;
     private ResideMenuItem itemProfile;
@@ -138,18 +139,18 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     private ResideMenuItem itemCamera;
     private ResideMenuItem itemCustomCamera;
     private ResideMenuItem itemScan;
-
+    private ResideMenuItem itemUtil;
+    // 侧边栏Activity
     private ProfileActivity profileActivity;
     private OkHttpActivity okHttpActivity;
     private BaiduMapActivity baiduMapActivity;
     private WeatherActivity weatherActivity;
-    private ProfileActivity settingsActivity;
-
+    // private ProfileActivity settingsActivity;
     private PictureActivity pictureActivity;
     private CameraActivity cameraActivity;
     private CameraBeginActivity cameraBeginActivity;
     private BarCodeActivity barCodeActivity;
-
+    private UtilActivity utilActivity;
     public static ResponseWrapper mResponseWrapper = new ResponseWrapper();// 数据结构的对象
 
     @Override
@@ -207,6 +208,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             changeActivity(cameraBeginActivity);
         } else if (v == itemScan) {
             changeActivity(barCodeActivity);
+        }else if(v==itemUtil){
+            changeActivity(utilActivity);
         }
         switch (v.getId()) {
         case R.id.news_layout:
@@ -375,12 +378,13 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         profileActivity = new ProfileActivity();
         okHttpActivity = new OkHttpActivity();
         baiduMapActivity = new BaiduMapActivity();
-        settingsActivity = new ProfileActivity();
+        // settingsActivity = new ProfileActivity();
         weatherActivity = new WeatherActivity();
         pictureActivity = new PictureActivity();
         cameraActivity = new CameraActivity();
         cameraBeginActivity = new CameraBeginActivity();
         barCodeActivity = new BarCodeActivity();
+        utilActivity=new UtilActivity();
         setUpMenu();
         UmengUpdateAgent.update(this);
 
@@ -395,7 +399,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         settingLayout.setOnClickListener(this);
         toptitle.setOnLongClickListener(this);
     }
-
 
     @Override
     public boolean onLongClick(View v) {
@@ -419,7 +422,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         // resideMenu.setMenuListener(menuListener);
         // valid scale factor is between 0.0f and 1.0f. leftmenu'width is
         // 150dip.
-        resideMenu.setScaleValue(0.6f);
+        resideMenu.setScaleValue(0.8f);
 
         // create menu items;
         itemHome = new ResideMenuItem(this, R.drawable.icon_home, "Home");
@@ -431,6 +434,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         itemCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "系统相机");
         itemCustomCamera = new ResideMenuItem(this, R.drawable.nact_chose_camera, "自定义相机");
         itemScan = new ResideMenuItem(this, R.drawable.share_btn_logo_pyq, "二维码");
+        itemUtil=new ResideMenuItem(this, R.drawable.share_btn_logo_pyq, "小工具");
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
         itemOkHttp.setOnClickListener(this);
@@ -440,6 +444,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         itemCamera.setOnClickListener(this);
         itemCustomCamera.setOnClickListener(this);
         itemScan.setOnClickListener(this);
+        itemUtil.setOnClickListener(this);
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemOkHttp, ResideMenu.DIRECTION_LEFT);
@@ -449,6 +454,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         resideMenu.addMenuItem(itemCamera, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemCustomCamera, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemScan, ResideMenu.DIRECTION_RIGHT);
+        resideMenu.addMenuItem(itemUtil, ResideMenu.DIRECTION_RIGHT);
         // You can disable a direction by setting ->
         // resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
 
